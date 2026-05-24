@@ -75,4 +75,5 @@ In the future, we plan to incrementally implement other aspects necessary to sim
    
 ### 🚀 Project Status 
 
-As a first step, we have successfully implemented a mobility model for SPICE-ns and a paper is proposed to be presented at WNS3, Spain 2024. This represents the PhD proposal of Jason Pandian, the maintainer of this repository and project.
+As a first step, we have successfully implemented a mobility model, propagation models for SPICE-ns, and the proposal has been presented in WNS3 2024, Spain and ICNS-3 2025, Japan. This represents the PhD proposal of Jason Pandian, the maintainer of this repository and project.
+
