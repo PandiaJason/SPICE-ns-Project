@@ -1,0 +1,190 @@
+"""
+Configuration parameters for the ECGR (Energy and Capacity-Aware CGR) simulation.
+
+This module defines all network topology, orbital mechanics, traffic generation,
+and algorithm parameters used in the simulation of deep-space DTN routing.
+"""
+
+import numpy as np
+import os
+
+# =============================================================================
+# Simulation Parameters
+# =============================================================================
+SIM_DURATION = 86400        # 24 hours in seconds (~1 Martian sol)
+TIME_STEP = 10              # Simulation time step (seconds)
+RANDOM_SEED = 42
+NUM_MONTE_CARLO_RUNS = 10   # Number of Monte Carlo iterations
+
+# =============================================================================
+# Node Definitions
+# =============================================================================
+ROVER = 0       # Mars Surface Rover
+SMALLSAT = 1    # SmallSat Relay (3U CubeSat)
+MRO = 2         # Mars Reconnaissance Orbiter
+DSN = 3         # Deep Space Network (Earth)
+
+NODE_NAMES = {
+    ROVER: "Mars Rover",
+    SMALLSAT: "SmallSat Relay",
+    MRO: "MRO",
+    DSN: "DSN Earth",
+}
+
+NODE_SPECS = {
+    ROVER: {
+        "battery_capacity_wh": 1200.0,
+        "initial_soc": 0.90,
+        "power_generation_w": 110.0,    # RTG (constant)
+        "idle_power_w": 15.0,
+        "tx_power_w": 25.0,
+        "rx_power_w": 10.0,
+        "buffer_capacity_mb": 4096.0,
+        "is_ground": False,
+    },
+    SMALLSAT: {
+        "battery_capacity_wh": 16.0,
+        "initial_soc": 0.70,
+        "power_generation_w": 8.0,      # Solar (average w/ eclipses)
+        "idle_power_w": 1.8,
+        "tx_power_w": 15.0,              # Higher tx power to drain battery faster
+        "rx_power_w": 5.0,
+        "buffer_capacity_mb": 512.0,     # Larger buffer to prevent buffer-limit drops
+        "is_ground": False,
+    },
+    MRO: {
+        "battery_capacity_wh": 1120.0,
+        "initial_soc": 0.85,
+        "power_generation_w": 1000.0,
+        "idle_power_w": 200.0,
+        "tx_power_w": 100.0,
+        "rx_power_w": 50.0,
+        "buffer_capacity_mb": 8192.0,
+        "is_ground": False,
+    },
+    DSN: {
+        "battery_capacity_wh": 1e9,
+        "initial_soc": 1.0,
+        "power_generation_w": 1e6,
+        "idle_power_w": 0.0,
+        "tx_power_w": 0.0,
+        "rx_power_w": 0.0,
+        "buffer_capacity_mb": 1e9,
+        "is_ground": True,
+    },
+}
+
+# =============================================================================
+# Orbital Mechanics (Synthetic SPICE Parameters)
+# =============================================================================
+MARS_RADIUS_KM = 3389.5
+MARS_GM = 4.282837e13          # Mars gravitational parameter (m^3/s^2)
+SMALLSAT_ALT_KM = 400.0
+MRO_ALT_KM = 300.0
+
+SMALLSAT_ORBIT_RADIUS_M = (MARS_RADIUS_KM + SMALLSAT_ALT_KM) * 1e3
+MRO_ORBIT_RADIUS_M = (MARS_RADIUS_KM + MRO_ALT_KM) * 1e3
+
+SMALLSAT_PERIOD_S = 2 * np.pi * np.sqrt(SMALLSAT_ORBIT_RADIUS_M**3 / MARS_GM)
+MRO_PERIOD_S = 2 * np.pi * np.sqrt(MRO_ORBIT_RADIUS_M**3 / MARS_GM)
+
+EARTH_MARS_AVG_DIST_KM = 225e6
+OWLT_S = EARTH_MARS_AVG_DIST_KM / 299792.458   # One-way light time (~750 s)
+
+# Eclipse model for SmallSat
+ECLIPSE_FRACTION = 0.40
+
+# =============================================================================
+# Contact Plan Parameters
+# =============================================================================
+CONTACT_PARAMS = {
+    (ROVER, SMALLSAT): {
+        "data_rate_bps": 2e6,
+        "avg_duration_s": 720,
+        "std_duration_s": 120,
+        "contacts_per_day": 14,
+        "owlt_s": 0.0,
+    },
+    (ROVER, MRO): {
+        "data_rate_bps": 2e6,
+        "avg_duration_s": 720,
+        "std_duration_s": 120,
+        "contacts_per_day": 8,
+        "owlt_s": 0.0,
+    },
+    (SMALLSAT, MRO): {
+        "data_rate_bps": 1e6,
+        "avg_duration_s": 300,
+        "std_duration_s": 60,
+        "contacts_per_day": 6,
+        "owlt_s": 0.0,
+    },
+    (SMALLSAT, DSN): {
+        "data_rate_bps": 5e5,
+        "avg_duration_s": 1800,
+        "std_duration_s": 300,
+        "contacts_per_day": 4,
+        "owlt_s": OWLT_S,
+    },
+    (MRO, DSN): {
+        "data_rate_bps": 2e6,
+        "avg_duration_s": 14400,
+        "std_duration_s": 1800,
+        "contacts_per_day": 3,
+        "owlt_s": OWLT_S,
+    },
+}
+
+# =============================================================================
+# Traffic Generation
+# =============================================================================
+TRAFFIC_PROFILES = [
+    {
+        "name": "Scientific Image",
+        "source": ROVER,
+        "destination": DSN,
+        "priority": 2,
+        "size_range_mb": (15.0, 90.0),
+        "interval_range_s": (2000, 4000),
+    },
+    {
+        "name": "Critical Telemetry",
+        "source": ROVER,
+        "destination": DSN,
+        "priority": 1,
+        "size_range_mb": (1.0, 5.0),
+        "interval_range_s": (1000, 2000),
+    },
+    {
+        "name": "Housekeeping Data",
+        "source": ROVER,
+        "destination": DSN,
+        "priority": 3,
+        "size_range_mb": (0.2, 2.0),
+        "interval_range_s": (500, 1000),
+    },
+]
+
+# =============================================================================
+# ECGR Algorithm Parameters
+# =============================================================================
+ALPHA_BASE = 1.5    # Delay weight
+BETA_BASE = 0.8     # Energy weight
+GAMMA_BASE = 0.8    # Buffer weight
+
+PRIORITY_WEIGHTS = {
+    1: {"alpha": 2.5, "beta": 0.3, "gamma": 0.3},     # Critical
+    2: {"alpha": 1.2, "beta": 1.0, "gamma": 1.0},     # Normal
+    3: {"alpha": 0.5, "beta": 1.8, "gamma": 1.8},     # Low priority
+}
+
+ENERGY_CRITICAL_THRESHOLD = 0.20
+ENERGY_WARNING_THRESHOLD = 0.35
+BUFFER_WARNING_THRESHOLD = 0.65
+
+# =============================================================================
+# Output Paths
+# =============================================================================
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RESULTS_DIR = os.path.join(BASE_DIR, "results")
+FIGURES_DIR = os.path.join(BASE_DIR, "figures")

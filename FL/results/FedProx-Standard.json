@@ -1,0 +1,6722 @@
+[
+  {
+    "step": 0,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 93.88888888888887,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "1": {
+        "battery_pct": 93.88888888888887,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "2": {
+        "battery_pct": 93.88888888888887,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 93.88888888888887,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 93.88888888888887,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 0,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 0.0
+  },
+  {
+    "step": 1,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 87.77777777777777,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "1": {
+        "battery_pct": 87.77777777777777,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "2": {
+        "battery_pct": 87.77777777777777,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 87.77777777777777,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 87.77777777777777,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 0,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 0.0
+  },
+  {
+    "step": 2,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 74.99999999999999,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 1
+      },
+      "1": {
+        "battery_pct": 81.66666666666667,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "2": {
+        "battery_pct": 81.66666666666667,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 81.66666666666667,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 81.66666666666667,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 1,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 2.0
+  },
+  {
+    "step": 3,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 62.222222222222214,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 2
+      },
+      "1": {
+        "battery_pct": 78.33333333333333,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 1
+      },
+      "2": {
+        "battery_pct": 85.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 85.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 85.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 3,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 2.3333333333333335
+  },
+  {
+    "step": 4,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 49.44444444444442,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "1": {
+        "battery_pct": 72.22222222222221,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 1
+      },
+      "2": {
+        "battery_pct": 88.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 88.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 88.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 4,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 2.25
+  },
+  {
+    "step": 5,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 43.33333333333332,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "1": {
+        "battery_pct": 68.88888888888889,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 2
+      },
+      "2": {
+        "battery_pct": 91.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 91.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 91.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 5,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 2.6
+  },
+  {
+    "step": 6,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 46.66666666666665,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "1": {
+        "battery_pct": 62.77777777777778,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 2
+      },
+      "2": {
+        "battery_pct": 95.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 95.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 95.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 5,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 2.6
+  },
+  {
+    "step": 7,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 49.99999999999998,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "1": {
+        "battery_pct": 59.44444444444446,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 98.33333333333336,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 98.33333333333336,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 98.33333333333336,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 6,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 3.0
+  },
+  {
+    "step": 8,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 53.33333333333331,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "1": {
+        "battery_pct": 53.33333333333334,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 6,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 3.0
+  },
+  {
+    "step": 9,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 49.99999999999998,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 4
+      },
+      "1": {
+        "battery_pct": 56.66666666666668,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 7,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 3.4285714285714284
+  },
+  {
+    "step": 10,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 37.2222222222222,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "1": {
+        "battery_pct": 60.00000000000001,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 8,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 3.75
+  },
+  {
+    "step": 11,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 24.444444444444414,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "1": {
+        "battery_pct": 63.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      }
+    },
+    "global_updates_received": 9,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 4.0
+  },
+  {
+    "step": 12,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 18.333333333333304,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "1": {
+        "battery_pct": 66.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 96.66666666666666,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 1
+      }
+    },
+    "global_updates_received": 10,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 4.8
+  },
+  {
+    "step": 13,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 21.66666666666664,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "1": {
+        "battery_pct": 70.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 90.55555555555554,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 1
+      }
+    },
+    "global_updates_received": 10,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 4.8
+  },
+  {
+    "step": 14,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 18.333333333333304,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "1": {
+        "battery_pct": 73.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 93.88888888888887,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 1
+      }
+    },
+    "global_updates_received": 11,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 4.7272727272727275
+  },
+  {
+    "step": 15,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.222222222222195,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "1": {
+        "battery_pct": 76.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 90.55555555555554,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 2
+      }
+    },
+    "global_updates_received": 12,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 5.5
+  },
+  {
+    "step": 16,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 15.555555555555529,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "1": {
+        "battery_pct": 80.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 84.44444444444443,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 2
+      }
+    },
+    "global_updates_received": 12,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 5.5
+  },
+  {
+    "step": 17,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.222222222222195,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 83.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 87.77777777777777,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 2
+      }
+    },
+    "global_updates_received": 13,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 5.538461538461538
+  },
+  {
+    "step": 18,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 6.111111111111081,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 86.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 86.1111111111111,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 2
+      }
+    },
+    "global_updates_received": 13,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 5.538461538461538
+  },
+  {
+    "step": 19,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.888888888888859,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 89.99999999999999,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 77.77777777777776,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 3
+      }
+    },
+    "global_updates_received": 14,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 6.357142857142857
+  },
+  {
+    "step": 20,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 18.999999999999968,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 93.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 66.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      }
+    },
+    "global_updates_received": 14,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 6.357142857142857
+  },
+  {
+    "step": 21,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.888888888888857,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 96.66666666666669,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 64.99999999999999,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      }
+    },
+    "global_updates_received": 14,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 6.357142857142857
+  },
+  {
+    "step": 22,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 6.777777777777747,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 63.33333333333331,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      }
+    },
+    "global_updates_received": 14,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 6.357142857142857
+  },
+  {
+    "step": 23,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 11.555555555555525,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 54.99999999999997,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 4
+      }
+    },
+    "global_updates_received": 15,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 6.6
+  },
+  {
+    "step": 24,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 19.666666666666636,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "4": {
+        "battery_pct": 37.22222222222219,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 5
+      }
+    },
+    "global_updates_received": 16,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 6.6875
+  },
+  {
+    "step": 25,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.555555555555523,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 96.66666666666666,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 1
+      },
+      "4": {
+        "battery_pct": 26.111111111111086,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 5
+      }
+    },
+    "global_updates_received": 17,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 7.764705882352941
+  },
+  {
+    "step": 26,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 7.444444444444412,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 78.88888888888889,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 2
+      },
+      "4": {
+        "battery_pct": 24.444444444444414,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 5
+      }
+    },
+    "global_updates_received": 18,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.722222222222221
+  },
+  {
+    "step": 27,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.222222222222188,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 61.111111111111114,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "4": {
+        "battery_pct": 22.777777777777754,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 5
+      }
+    },
+    "global_updates_received": 19,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 9.578947368421053
+  },
+  {
+    "step": 28,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 20.3333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 43.333333333333336,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 4
+      },
+      "4": {
+        "battery_pct": 21.111111111111086,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 5
+      }
+    },
+    "global_updates_received": 20,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 9.2
+  },
+  {
+    "step": 29,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.22222222222219,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 25.555555555555554,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "4": {
+        "battery_pct": 12.777777777777752,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 22,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.863636363636363
+  },
+  {
+    "step": 30,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.111111111111075,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 7.777777777777775,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 1.666666666666641,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 31,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.888888888888852,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 7.555555555555553,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 1.4444444444444184,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 32,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 20.999999999999964,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 7.33333333333333,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 1.2222222222221963,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 33,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.888888888888852,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 7.111111111111107,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.999999999999974,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 34,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.777777777777741,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 98.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 6.888888888888885,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.7777777777777518,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 35,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.555555555555518,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 96.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 6.6666666666666625,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.5555555555555296,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 36,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 21.66666666666663,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 94.99999999999999,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 6.44444444444444,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.3333333333333072,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 37,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 15.555555555555516,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 93.33333333333331,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 6.222222222222218,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.111111111111085,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 38,
+    "test_accuracy": 0.21666666666666667,
+    "test_loss": 1.6112817064921061,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.444444444444406,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 91.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 0
+      },
+      "3": {
+        "battery_pct": 5.999999999999996,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 23,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 0,
+    "mean_staleness": 8.565217391304348
+  },
+  {
+    "step": 39,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.222222222222184,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 83.33333333333331,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 1
+      },
+      "3": {
+        "battery_pct": 5.777777777777773,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 24,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 9.833333333333334
+  },
+  {
+    "step": 40,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 22.33333333333329,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 72.2222222222222,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 1
+      },
+      "3": {
+        "battery_pct": 5.55555555555555,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 24,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 9.833333333333334
+  },
+  {
+    "step": 41,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 16.22222222222218,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 100.0,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": true,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 70.55555555555553,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 1
+      },
+      "3": {
+        "battery_pct": 5.333333333333328,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 24,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 9.833333333333334
+  },
+  {
+    "step": 42,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.111111111111068,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 98.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 68.88888888888887,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 1
+      },
+      "3": {
+        "battery_pct": 5.111111111111106,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 24,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 9.833333333333334
+  },
+  {
+    "step": 43,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 3.9999999999999565,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 96.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 67.2222222222222,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 1
+      },
+      "3": {
+        "battery_pct": 4.888888888888884,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 24,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 9.833333333333334
+  },
+  {
+    "step": 44,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.777777777777734,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 94.99999999999999,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 58.88888888888886,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 2
+      },
+      "3": {
+        "battery_pct": 4.666666666666661,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 25,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.16
+  },
+  {
+    "step": 45,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.55555555555551,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 93.33333333333331,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 47.77777777777775,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 2
+      },
+      "3": {
+        "battery_pct": 4.444444444444438,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 25,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.16
+  },
+  {
+    "step": 46,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 21.66666666666662,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 91.66666666666666,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 39.444444444444414,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "3": {
+        "battery_pct": 4.222222222222216,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 26,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.423076923076923
+  },
+  {
+    "step": 47,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 15.555555555555511,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 89.99999999999999,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 28.3333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "3": {
+        "battery_pct": 3.999999999999994,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 26,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.423076923076923
+  },
+  {
+    "step": 48,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.444444444444398,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 88.33333333333331,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 19.999999999999968,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 4
+      },
+      "3": {
+        "battery_pct": 3.7777777777777715,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 4.777777777777778,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 27,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.25925925925926
+  },
+  {
+    "step": 49,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.222222222222175,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 86.66666666666664,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 2.22222222222219,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 3.5555555555555487,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 9.555555555555555,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 28,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.964285714285714
+  },
+  {
+    "step": 50,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.999999999999954,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 84.99999999999997,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 1.9999999999999671,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 3.3333333333333264,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 14.333333333333334,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 28,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.964285714285714
+  },
+  {
+    "step": 51,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.77777777777773,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 83.33333333333329,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 3
+      },
+      "2": {
+        "battery_pct": 1.7777777777777448,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 3.111111111111104,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 22.444444444444443,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 28,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.964285714285714
+  },
+  {
+    "step": 52,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.55555555555551,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 74.99999999999996,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 4
+      },
+      "2": {
+        "battery_pct": 1.5555555555555223,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 2.8888888888888813,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 16.333333333333332,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 29,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.206896551724139
+  },
+  {
+    "step": 53,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.333333333333286,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 63.88888888888885,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 4
+      },
+      "2": {
+        "battery_pct": 1.3333333333333002,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 2.6666666666666594,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 10.222222222222221,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 29,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.206896551724139
+  },
+  {
+    "step": 54,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.111111111111063,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 62.22222222222218,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 4
+      },
+      "2": {
+        "battery_pct": 1.1111111111110779,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 2.4444444444444366,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 4.11111111111111,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 29,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.206896551724139
+  },
+  {
+    "step": 55,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.888888888888841,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 53.88888888888884,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "2": {
+        "battery_pct": 0.8888888888888555,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 2.2222222222222143,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 8.888888888888886,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 30,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.4
+  },
+  {
+    "step": 56,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.666666666666618,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 42.777777777777736,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "2": {
+        "battery_pct": 0.6666666666666333,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 6.999999999999991,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 13.666666666666663,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 30,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.4
+  },
+  {
+    "step": 57,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.444444444444397,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 41.11111111111107,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "2": {
+        "battery_pct": 0.44444444444441106,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 11.77777777777777,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 21.777777777777775,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 30,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.4
+  },
+  {
+    "step": 58,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.222222222222173,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 39.44444444444441,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "2": {
+        "battery_pct": 0.2222222222221888,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 19.88888888888888,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 15.666666666666663,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 30,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.4
+  },
+  {
+    "step": 59,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 11.99999999999995,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 31.111111111111068,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "2": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 13.777777777777766,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 9.555555555555552,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 31,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.580645161290322
+  },
+  {
+    "step": 60,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 11.777777777777729,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 19.99999999999996,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "2": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 7.666666666666656,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 14.333333333333329,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 31,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.580645161290322
+  },
+  {
+    "step": 61,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 11.555555555555506,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 18.333333333333293,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "2": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 12.444444444444432,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 22.44444444444444,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 31,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.580645161290322
+  },
+  {
+    "step": 62,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 11.333333333333284,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 16.666666666666625,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "2": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 20.555555555555543,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 16.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 31,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.580645161290322
+  },
+  {
+    "step": 63,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 11.111111111111063,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 14.999999999999961,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "2": {
+        "battery_pct": 0.0,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 14.444444444444432,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 10.222222222222216,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 31,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.580645161290322
+  },
+  {
+    "step": 64,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.88888888888884,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 13.333333333333297,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "2": {
+        "battery_pct": 4.777777777777778,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 8.33333333333332,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 4.111111111111105,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 31,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.580645161290322
+  },
+  {
+    "step": 65,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.666666666666618,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 11.66666666666663,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 3,
+        "is_sunlit": false,
+        "updates_sent": 6
+      },
+      "2": {
+        "battery_pct": 9.555555555555555,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 13.111111111111098,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 8.888888888888882,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 31,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.580645161290322
+  },
+  {
+    "step": 66,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.444444444444395,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 3.3333333333332966,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 14.333333333333334,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 21.222222222222207,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 13.66666666666666,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 32,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.5
+  },
+  {
+    "step": 67,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.222222222222172,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 3.1111111111110743,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 22.444444444444443,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 15.111111111111097,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 21.77777777777777,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 32,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.5
+  },
+  {
+    "step": 68,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.999999999999948,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 2.888888888888852,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 16.333333333333332,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 8.999999999999986,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 15.666666666666659,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 32,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.5
+  },
+  {
+    "step": 69,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.777777777777727,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 2.6666666666666297,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 10.222222222222221,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 13.777777777777764,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 9.555555555555546,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 32,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.5
+  },
+  {
+    "step": 70,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.555555555555504,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 2.444444444444407,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 4.11111111111111,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 21.888888888888875,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 14.333333333333323,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 32,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.5
+  },
+  {
+    "step": 71,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.333333333333282,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 2.222222222222185,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 8.888888888888886,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 15.777777777777763,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 22.444444444444432,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 32,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.5
+  },
+  {
+    "step": 72,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.111111111111061,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 6.999999999999962,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 13.666666666666663,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 9.666666666666652,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 16.33333333333332,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      }
+    },
+    "global_updates_received": 32,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.5
+  },
+  {
+    "step": 73,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.888888888888838,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 11.777777777777738,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 21.777777777777775,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 14.444444444444427,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 3.555555555555544,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      }
+    },
+    "global_updates_received": 33,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.06060606060606
+  },
+  {
+    "step": 74,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.666666666666616,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 19.88888888888885,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 15.666666666666663,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 22.55555555555554,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 8.33333333333332,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      }
+    },
+    "global_updates_received": 33,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.06060606060606
+  },
+  {
+    "step": 75,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.444444444444393,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 13.77777777777774,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 9.555555555555552,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 16.44444444444443,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 13.111111111111098,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      }
+    },
+    "global_updates_received": 33,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.06060606060606
+  },
+  {
+    "step": 76,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.22222222222217,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 7.666666666666627,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 14.333333333333329,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 10.333333333333314,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 21.222222222222207,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      }
+    },
+    "global_updates_received": 33,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.06060606060606
+  },
+  {
+    "step": 77,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 7.999999999999948,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 12.444444444444404,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 22.44444444444444,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 4.222222222222204,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 15.111111111111097,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      }
+    },
+    "global_updates_received": 33,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 15.06060606060606
+  },
+  {
+    "step": 78,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 7.777777777777725,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 20.555555555555515,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 16.33333333333333,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 8.99999999999998,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 2.3333333333333184,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      }
+    },
+    "global_updates_received": 34,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.647058823529411
+  },
+  {
+    "step": 79,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 7.555555555555503,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 14.444444444444404,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 10.222222222222216,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 13.777777777777759,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 7.111111111111096,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      }
+    },
+    "global_updates_received": 34,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.647058823529411
+  },
+  {
+    "step": 80,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.333333333333279,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 8.333333333333291,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 4.111111111111105,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 21.888888888888868,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 11.888888888888873,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      }
+    },
+    "global_updates_received": 34,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.647058823529411
+  },
+  {
+    "step": 81,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 20.44444444444439,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 13.111111111111068,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 8.888888888888882,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 15.777777777777757,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 19.999999999999986,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      }
+    },
+    "global_updates_received": 34,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.647058823529411
+  },
+  {
+    "step": 82,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.333333333333279,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 21.22222222222218,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 13.66666666666666,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 9.666666666666647,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 13.888888888888873,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      }
+    },
+    "global_updates_received": 34,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.647058823529411
+  },
+  {
+    "step": 83,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.222222222222168,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 15.111111111111066,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 21.77777777777777,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 14.444444444444423,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 7.77777777777776,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      }
+    },
+    "global_updates_received": 34,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.647058823529411
+  },
+  {
+    "step": 84,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 12.999999999999945,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 8.999999999999957,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 15.666666666666659,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 22.555555555555536,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "4": {
+        "battery_pct": 12.555555555555536,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      }
+    },
+    "global_updates_received": 34,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.647058823529411
+  },
+  {
+    "step": 85,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 21.111111111111054,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 13.777777777777732,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 9.555555555555546,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 9.777777777777755,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "4": {
+        "battery_pct": 20.666666666666647,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      }
+    },
+    "global_updates_received": 35,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 14.228571428571428
+  },
+  {
+    "step": 86,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.999999999999943,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 21.888888888888843,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 14.333333333333323,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 14.555555555555532,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "4": {
+        "battery_pct": 7.888888888888869,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 9
+      }
+    },
+    "global_updates_received": 36,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.833333333333334
+  },
+  {
+    "step": 87,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.888888888888832,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 15.777777777777732,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 22.444444444444432,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 22.666666666666643,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "4": {
+        "battery_pct": 12.666666666666645,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 9
+      }
+    },
+    "global_updates_received": 36,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.833333333333334
+  },
+  {
+    "step": 88,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.666666666666611,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 9.66666666666662,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 16.33333333333332,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 16.555555555555532,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "4": {
+        "battery_pct": 20.777777777777757,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 9
+      }
+    },
+    "global_updates_received": 36,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.833333333333334
+  },
+  {
+    "step": 89,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 21.77777777777772,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 14.444444444444398,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 10.222222222222213,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 3.7777777777777515,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "4": {
+        "battery_pct": 7.999999999999978,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 38,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.131578947368421
+  },
+  {
+    "step": 90,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 15.66666666666661,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 22.55555555555551,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 4.1111111111111,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 8.555555555555529,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "4": {
+        "battery_pct": 12.777777777777754,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 38,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.131578947368421
+  },
+  {
+    "step": 91,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.555555555555499,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 16.444444444444397,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 8.888888888888877,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 13.333333333333306,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "4": {
+        "battery_pct": 20.888888888888864,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 38,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.131578947368421
+  },
+  {
+    "step": 92,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.333333333333275,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 10.333333333333286,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 13.666666666666655,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 21.444444444444414,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "4": {
+        "battery_pct": 14.777777777777754,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 38,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 13.131578947368421
+  },
+  {
+    "step": 93,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 22.444444444444386,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 4.222222222222174,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 21.777777777777764,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 8.666666666666638,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 9
+      },
+      "4": {
+        "battery_pct": 8.666666666666641,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 39,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.794871794871796
+  },
+  {
+    "step": 94,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 16.333333333333275,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 8.99999999999995,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 15.666666666666654,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 13.444444444444414,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 9
+      },
+      "4": {
+        "battery_pct": 13.44444444444442,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 39,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.794871794871796
+  },
+  {
+    "step": 95,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.222222222222161,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 13.777777777777727,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 9.555555555555543,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 21.555555555555525,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 9
+      },
+      "4": {
+        "battery_pct": 21.555555555555532,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 39,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.794871794871796
+  },
+  {
+    "step": 96,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 4.111111111111051,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 21.88888888888884,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 14.33333333333332,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 15.444444444444413,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 9
+      },
+      "4": {
+        "battery_pct": 15.44444444444442,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 39,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.794871794871796
+  },
+  {
+    "step": 97,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.888888888888829,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 15.777777777777727,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 22.444444444444432,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 5
+      },
+      "3": {
+        "battery_pct": 2.6666666666666345,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      },
+      "4": {
+        "battery_pct": 9.333333333333307,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 40,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.5
+  },
+  {
+    "step": 98,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.666666666666604,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 9.666666666666616,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 9.666666666666652,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "3": {
+        "battery_pct": 7.444444444444412,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      },
+      "4": {
+        "battery_pct": 9.111111111111086,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 41,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.195121951219512
+  },
+  {
+    "step": 99,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 21.777777777777715,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 14.444444444444393,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 14.444444444444427,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "3": {
+        "battery_pct": 12.222222222222188,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      },
+      "4": {
+        "battery_pct": 8.888888888888863,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 41,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.195121951219512
+  },
+  {
+    "step": 100,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 15.666666666666604,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 22.555555555555504,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 22.55555555555554,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 6
+      },
+      "3": {
+        "battery_pct": 20.3333333333333,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 10
+      },
+      "4": {
+        "battery_pct": 8.66666666666664,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 41,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 12.195121951219512
+  },
+  {
+    "step": 101,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.555555555555491,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 16.444444444444393,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 9.777777777777759,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "3": {
+        "battery_pct": 7.555555555555521,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 8.444444444444416,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 43,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.627906976744185
+  },
+  {
+    "step": 102,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.33333333333327,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 10.33333333333328,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 14.555555555555536,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "3": {
+        "battery_pct": 12.333333333333298,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 8.222222222222195,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 43,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.627906976744185
+  },
+  {
+    "step": 103,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 22.444444444444382,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 4.222222222222169,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 22.666666666666647,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "3": {
+        "battery_pct": 20.44444444444441,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 7.9999999999999725,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 43,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.627906976744185
+  },
+  {
+    "step": 104,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 16.333333333333268,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 8.999999999999947,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 9.888888888888868,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 14.333333333333298,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 7.77777777777775,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 44,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.363636363636363
+  },
+  {
+    "step": 105,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.222222222222157,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 13.777777777777722,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 14.666666666666645,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 8.222222222222184,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 7.555555555555528,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 44,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.363636363636363
+  },
+  {
+    "step": 106,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 4.111111111111046,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 21.888888888888836,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 22.777777777777754,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 7.999999999999963,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 7.3333333333333055,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 44,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.363636363636363
+  },
+  {
+    "step": 107,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.888888888888822,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 15.777777777777724,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 7
+      },
+      "2": {
+        "battery_pct": 16.666666666666643,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 7.77777777777774,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 7.111111111111083,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 44,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.363636363636363
+  },
+  {
+    "step": 108,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.666666666666599,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 2.999999999999943,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 10.555555555555534,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 7.555555555555518,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 6.888888888888861,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 109,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 21.77777777777771,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 7.777777777777721,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 4.444444444444421,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 7.333333333333296,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 6.666666666666638,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 110,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 15.666666666666599,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 12.555555555555497,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 9.222222222222198,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 7.111111111111073,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 6.444444444444415,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 111,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 9.555555555555488,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 20.666666666666607,
+        "is_sleeping": false,
+        "is_visible": true,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 13.999999999999977,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 6.88888888888885,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 6.222222222222193,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 112,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 14.333333333333265,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 14.555555555555497,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 22.111111111111086,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 6.666666666666628,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 5.999999999999971,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 113,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 22.444444444444375,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 8.444444444444384,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 15.999999999999975,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 6.444444444444406,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 5.777777777777748,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 114,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 16.333333333333265,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 13.222222222222163,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 4.8888888888888635,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 6.222222222222183,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 5.555555555555526,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 115,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 10.222222222222152,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 2,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 21.333333333333275,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 4.666666666666641,
+        "is_sleeping": true,
+        "is_visible": true,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 5.999999999999961,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 5.333333333333304,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 116,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 4.1111111111110406,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 15.222222222222163,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 1,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 4.444444444444419,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 5.777777777777739,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 5.1111111111110805,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 117,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 8.888888888888818,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 9.11111111111105,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 4.222222222222197,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 5.555555555555516,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 4.888888888888858,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 118,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 13.666666666666593,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 13.888888888888829,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 3.999999999999974,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 5.333333333333293,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 4.666666666666637,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  },
+  {
+    "step": 119,
+    "test_accuracy": 0.6766666666666666,
+    "test_loss": 1.3095136070251465,
+    "satellites": {
+      "0": {
+        "battery_pct": 21.777777777777708,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "1": {
+        "battery_pct": 21.99999999999994,
+        "is_sleeping": false,
+        "is_visible": false,
+        "mode": "full",
+        "queue_size": 0,
+        "is_sunlit": true,
+        "updates_sent": 8
+      },
+      "2": {
+        "battery_pct": 3.7777777777777515,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 8
+      },
+      "3": {
+        "battery_pct": 5.111111111111071,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 11
+      },
+      "4": {
+        "battery_pct": 4.444444444444414,
+        "is_sleeping": true,
+        "is_visible": false,
+        "mode": "asleep",
+        "queue_size": 0,
+        "is_sunlit": false,
+        "updates_sent": 10
+      }
+    },
+    "global_updates_received": 45,
+    "stale_updates_dropped": 0,
+    "updates_aggregated": 1,
+    "mean_staleness": 11.133333333333333
+  }
+]

@@ -1,0 +1,1551 @@
+{
+  "simulation_config": {
+    "duration_s": 86400,
+    "num_runs": 10,
+    "base_seed": 42,
+    "time_step_s": 10
+  },
+  "aggregate_statistics": {
+    "cgr": {
+      "delivery_ratio": {
+        "mean": 0.8368375970487136,
+        "std": 0.08935031959211573,
+        "min": 0.6231155778894473,
+        "max": 0.9158415841584159,
+        "median": 0.8781937017231135
+      },
+      "avg_latency_s": {
+        "mean": 5462.90928878287,
+        "std": 465.6087907180052,
+        "min": 4908.49115115494,
+        "max": 6691.601777130114,
+        "median": 5420.62338209795
+      },
+      "p95_latency_s": {
+        "mean": 11253.64706169482,
+        "std": 2175.218096637718,
+        "min": 8760.518901062604,
+        "max": 16831.7329224256,
+        "median": 11013.81934400654
+      },
+      "dropped": {
+        "mean": 12.9,
+        "std": 19.25850461484484,
+        "min": 0.0,
+        "max": 60.0,
+        "median": 0.0
+      },
+      "smallsat_min_soc": {
+        "mean": 0.349788535468784,
+        "std": 0.3000642706245494,
+        "min": 0.0,
+        "max": 0.7010763888888888,
+        "median": 0.43887061228503566
+      },
+      "smallsat_avg_soc": {
+        "mean": 0.7118498847813457,
+        "std": 0.2265453144120644,
+        "min": 0.3047061397175457,
+        "max": 0.938623954956044,
+        "median": 0.8273622242547235
+      },
+      "smallsat_below_20pct": {
+        "mean": 0.08479166666666667,
+        "std": 0.13190586058662734,
+        "min": 0.0,
+        "max": 0.40555555555555556,
+        "median": 0.0
+      },
+      "data_delivered_mb": {
+        "mean": 1410.6552833452631,
+        "std": 179.8970335620251,
+        "min": 990.6995260299532,
+        "max": 1696.1380255132178,
+        "median": 1415.165322788001
+      },
+      "priority_1_delivery_ratio": {
+        "mean": 0.9010524386941523,
+        "std": 0.048570934667608805,
+        "min": 0.7758620689655172,
+        "max": 0.9344262295081968,
+        "median": 0.9298245614035088
+      },
+      "priority_2_delivery_ratio": {
+        "mean": 0.7981761469692503,
+        "std": 0.12042587974123085,
+        "min": 0.4827586206896552,
+        "max": 0.9230769230769231,
+        "median": 0.8544973544973544
+      },
+      "priority_3_delivery_ratio": {
+        "mean": 0.8147077575781886,
+        "std": 0.11381545671602054,
+        "min": 0.5350877192982456,
+        "max": 0.9210526315789473,
+        "median": 0.8579393398751115
+      }
+    },
+    "ecgr": {
+      "delivery_ratio": {
+        "mean": 0.889367004343302,
+        "std": 0.019102382840721795,
+        "min": 0.8592964824120602,
+        "max": 0.9158415841584159,
+        "median": 0.887484687117178
+      },
+      "avg_latency_s": {
+        "mean": 5372.83618745849,
+        "std": 518.2536692552493,
+        "min": 4659.0582035336665,
+        "max": 6145.748498493674,
+        "median": 5309.543055547199
+      },
+      "p95_latency_s": {
+        "mean": 11178.638502245656,
+        "std": 2193.1291544403944,
+        "min": 8347.69926791556,
+        "max": 14720.06730451145,
+        "median": 11207.9499352151
+      },
+      "dropped": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "median": 0.0
+      },
+      "smallsat_min_soc": {
+        "mean": 0.4194965983235199,
+        "std": 0.24166038099455112,
+        "min": 0.0,
+        "max": 0.7010763888888888,
+        "median": 0.43887061228503566
+      },
+      "smallsat_avg_soc": {
+        "mean": 0.8080257105441058,
+        "std": 0.13768732710558407,
+        "min": 0.5141157853225102,
+        "max": 0.9465713476832065,
+        "median": 0.8444551705442402
+      },
+      "smallsat_below_20pct": {
+        "mean": 0.017083333333333332,
+        "std": 0.0455506857153194,
+        "min": 0.0,
+        "max": 0.1527777777777778,
+        "median": 0.0
+      },
+      "data_delivered_mb": {
+        "mean": 1524.7481936156105,
+        "std": 108.56150117465985,
+        "min": 1322.2718931125173,
+        "max": 1696.1380255132178,
+        "median": 1508.628796949761
+      },
+      "priority_1_delivery_ratio": {
+        "mean": 0.9165372714657364,
+        "std": 0.02689143052708781,
+        "min": 0.8392857142857143,
+        "max": 0.9344262295081968,
+        "median": 0.9298245614035088
+      },
+      "priority_2_delivery_ratio": {
+        "mean": 0.8605598360770774,
+        "std": 0.035742599323891636,
+        "min": 0.7931034482758621,
+        "max": 0.9230769230769231,
+        "median": 0.8571428571428571
+      },
+      "priority_3_delivery_ratio": {
+        "mean": 0.8828389551373037,
+        "std": 0.0233089359186354,
+        "min": 0.847457627118644,
+        "max": 0.9210526315789473,
+        "median": 0.882637628554144
+      }
+    },
+    "pecgr": {
+      "delivery_ratio": {
+        "mean": 0.8997842868341877,
+        "std": 0.017200739905945162,
+        "min": 0.8656716417910447,
+        "max": 0.9264705882352942,
+        "median": 0.9002811085128614
+      },
+      "avg_latency_s": {
+        "mean": 5072.094677682029,
+        "std": 230.15375519573976,
+        "min": 4726.484214140086,
+        "max": 5344.718258469585,
+        "median": 5156.840955778527
+      },
+      "p95_latency_s": {
+        "mean": 9720.972239106226,
+        "std": 1108.2878104175795,
+        "min": 8347.69926791556,
+        "max": 12041.887832100878,
+        "median": 9685.628402677437
+      },
+      "dropped": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "median": 0.0
+      },
+      "smallsat_min_soc": {
+        "mean": 0.39263434437673983,
+        "std": 0.26377067024429607,
+        "min": 0.0,
+        "max": 0.7010763888888888,
+        "median": 0.43887061228503566
+      },
+      "smallsat_avg_soc": {
+        "mean": 0.7898167724387313,
+        "std": 0.16023332447896393,
+        "min": 0.4878195411738787,
+        "max": 0.9465767118371752,
+        "median": 0.8432821709511928
+      },
+      "smallsat_below_20pct": {
+        "mean": 0.020277777777777777,
+        "std": 0.04672305620870152,
+        "min": 0.0,
+        "max": 0.15625,
+        "median": 0.0
+      },
+      "data_delivered_mb": {
+        "mean": 1527.0351201999363,
+        "std": 108.24616188008032,
+        "min": 1322.2718931125173,
+        "max": 1707.4678742899735,
+        "median": 1531.6771584644634
+      },
+      "priority_1_delivery_ratio": {
+        "mean": 0.9271899808253423,
+        "std": 0.010348309232162772,
+        "min": 0.9122807017543859,
+        "max": 0.9482758620689655,
+        "median": 0.9298245614035088
+      },
+      "priority_2_delivery_ratio": {
+        "mean": 0.8608152639187121,
+        "std": 0.043980237826148724,
+        "min": 0.7586206896551724,
+        "max": 0.9230769230769231,
+        "median": 0.8571428571428571
+      },
+      "priority_3_delivery_ratio": {
+        "mean": 0.895699496320771,
+        "std": 0.02676194008219529,
+        "min": 0.8521739130434782,
+        "max": 0.9322033898305084,
+        "median": 0.8964697138610183
+      }
+    }
+  },
+  "per_run_cgr": [
+    {
+      "algorithm": "CGR",
+      "total_bundles": 199,
+      "delivered": 157,
+      "dropped": 19,
+      "in_transit": 23,
+      "delivery_ratio": 0.7889447236180904,
+      "avg_latency_s": 5397.259067216176,
+      "median_latency_s": 4947.17927743596,
+      "p95_latency_s": 9611.979705047348,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4718.8397467395425
+        },
+        "2": {
+          "total": 27,
+          "delivered": 20,
+          "dropped": 3,
+          "delivery_ratio": 0.7407407407407407,
+          "avg_latency": 10223.234984443276
+        },
+        "3": {
+          "total": 115,
+          "delivered": 84,
+          "dropped": 16,
+          "delivery_ratio": 0.7304347826086957,
+          "avg_latency": 4676.267467700932
+        }
+      },
+      "drop_reasons": {
+        "tx_energy_exhausted": 19
+      },
+      "smallsat_min_soc": 0.0021527777777777778,
+      "smallsat_avg_soc": 0.6159951233227235,
+      "smallsat_below_20pct_fraction": 0.05625,
+      "total_data_generated_mb": 1730.974974865081,
+      "total_data_delivered_mb": 1374.4271146107255,
+      "smallsat_routes": 218,
+      "total_routing_decisions": 349,
+      "run_seed": 42
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 202,
+      "delivered": 165,
+      "dropped": 16,
+      "in_transit": 21,
+      "delivery_ratio": 0.8168316831683168,
+      "avg_latency_s": 5591.192413609007,
+      "median_latency_s": 5007.909131934379,
+      "p95_latency_s": 11569.372376490228,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 49,
+          "dropped": 3,
+          "delivery_ratio": 0.8596491228070176,
+          "avg_latency": 4464.7312515409785
+        },
+        "2": {
+          "total": 30,
+          "delivered": 22,
+          "dropped": 5,
+          "delivery_ratio": 0.7333333333333333,
+          "avg_latency": 10352.114051548462
+        },
+        "3": {
+          "total": 115,
+          "delivered": 94,
+          "dropped": 8,
+          "delivery_ratio": 0.8173913043478261,
+          "avg_latency": 5064.131997722471
+        }
+      },
+      "drop_reasons": {
+        "tx_energy_exhausted": 16
+      },
+      "smallsat_min_soc": 0.0,
+      "smallsat_avg_soc": 0.48131643059953283,
+      "smallsat_below_20pct_fraction": 0.15,
+      "total_data_generated_mb": 1793.0539682913732,
+      "total_data_delivered_mb": 1346.670194172593,
+      "smallsat_routes": 217,
+      "total_routing_decisions": 347,
+      "run_seed": 59
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 202,
+      "delivered": 185,
+      "dropped": 0,
+      "in_transit": 17,
+      "delivery_ratio": 0.9158415841584159,
+      "avg_latency_s": 5501.804951036903,
+      "median_latency_s": 5050.650209038948,
+      "p95_latency_s": 10893.24884772558,
+      "priority_stats": {
+        "1": {
+          "total": 61,
+          "delivered": 57,
+          "dropped": 0,
+          "delivery_ratio": 0.9344262295081968,
+          "avg_latency": 4447.804190711036
+        },
+        "2": {
+          "total": 28,
+          "delivered": 25,
+          "dropped": 0,
+          "delivery_ratio": 0.8928571428571429,
+          "avg_latency": 9923.611326845154
+        },
+        "3": {
+          "total": 113,
+          "delivered": 103,
+          "dropped": 0,
+          "delivery_ratio": 0.911504424778761,
+          "avg_latency": 5011.83295048708
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.7010763888888888,
+      "smallsat_avg_soc": 0.938623954956044,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1835.5216424482282,
+      "total_data_delivered_mb": 1625.214541562805,
+      "smallsat_routes": 251,
+      "total_routing_decisions": 387,
+      "run_seed": 76
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 198,
+      "delivered": 175,
+      "dropped": 0,
+      "in_transit": 23,
+      "delivery_ratio": 0.8838383838383839,
+      "avg_latency_s": 5055.912149440936,
+      "median_latency_s": 4710.091421614108,
+      "p95_latency_s": 9035.06396317195,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4622.715446177805
+        },
+        "2": {
+          "total": 27,
+          "delivered": 23,
+          "dropped": 0,
+          "delivery_ratio": 0.8518518518518519,
+          "avg_latency": 8131.764015476458
+        },
+        "3": {
+          "total": 114,
+          "delivered": 99,
+          "dropped": 0,
+          "delivery_ratio": 0.868421052631579,
+          "avg_latency": 4573.233688371534
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.6889509354142895,
+      "smallsat_avg_soc": 0.8898463100030538,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1688.7190989586818,
+      "total_data_delivered_mb": 1427.2948411290627,
+      "smallsat_routes": 225,
+      "total_routing_decisions": 358,
+      "run_seed": 93
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 204,
+      "delivered": 178,
+      "dropped": 0,
+      "in_transit": 26,
+      "delivery_ratio": 0.8725490196078431,
+      "avg_latency_s": 6691.601777130114,
+      "median_latency_s": 5476.655612838011,
+      "p95_latency_s": 16831.7329224256,
+      "priority_stats": {
+        "1": {
+          "total": 58,
+          "delivered": 54,
+          "dropped": 0,
+          "delivery_ratio": 0.9310344827586207,
+          "avg_latency": 4187.572220023985
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 11950.9230834532
+        },
+        "3": {
+          "total": 118,
+          "delivered": 100,
+          "dropped": 0,
+          "delivery_ratio": 0.847457627118644,
+          "avg_latency": 6781.540624449882
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.6430116985035106,
+      "smallsat_avg_soc": 0.9201799902933543,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 2024.0447771945949,
+      "total_data_delivered_mb": 1696.1380255132178,
+      "smallsat_routes": 227,
+      "total_routing_decisions": 380,
+      "run_seed": 110
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 202,
+      "delivered": 184,
+      "dropped": 0,
+      "in_transit": 18,
+      "delivery_ratio": 0.9108910891089109,
+      "avg_latency_s": 5627.259622513353,
+      "median_latency_s": 5320.3644000230815,
+      "p95_latency_s": 12660.289491131436,
+      "priority_stats": {
+        "1": {
+          "total": 59,
+          "delivered": 54,
+          "dropped": 0,
+          "delivery_ratio": 0.9152542372881356,
+          "avg_latency": 4722.813675289743
+        },
+        "2": {
+          "total": 26,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.9230769230769231,
+          "avg_latency": 8180.287094936363
+        },
+        "3": {
+          "total": 117,
+          "delivered": 106,
+          "dropped": 0,
+          "delivery_ratio": 0.905982905982906,
+          "avg_latency": 5509.9711490409245
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.346969495053428,
+      "smallsat_avg_soc": 0.8087162675460156,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1579.5312926052554,
+      "total_data_delivered_mb": 1435.619122623756,
+      "smallsat_routes": 240,
+      "total_routing_decisions": 386,
+      "run_seed": 127
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 199,
+      "delivered": 182,
+      "dropped": 0,
+      "in_transit": 17,
+      "delivery_ratio": 0.914572864321608,
+      "avg_latency_s": 5164.94430606097,
+      "median_latency_s": 4677.953281198237,
+      "p95_latency_s": 10885.493925663824,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4422.010487009266
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 7443.158355133083
+        },
+        "3": {
+          "total": 114,
+          "delivered": 105,
+          "dropped": 0,
+          "delivery_ratio": 0.9210526315789473,
+          "avg_latency": 5019.214355889633
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.5307717295166433,
+      "smallsat_avg_soc": 0.8460081809634314,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1574.7779347725611,
+      "total_data_delivered_mb": 1322.2718931125173,
+      "smallsat_routes": 245,
+      "total_routing_decisions": 378,
+      "run_seed": 144
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 201,
+      "delivered": 151,
+      "dropped": 34,
+      "in_transit": 16,
+      "delivery_ratio": 0.7512437810945274,
+      "avg_latency_s": 5246.639752686573,
+      "median_latency_s": 4842.236716347325,
+      "p95_latency_s": 11134.389840287502,
+      "priority_stats": {
+        "1": {
+          "total": 58,
+          "delivered": 45,
+          "dropped": 9,
+          "delivery_ratio": 0.7758620689655172,
+          "avg_latency": 4681.29190721503
+        },
+        "2": {
+          "total": 28,
+          "delivered": 22,
+          "dropped": 1,
+          "delivery_ratio": 0.7857142857142857,
+          "avg_latency": 8412.45315592676
+        },
+        "3": {
+          "total": 115,
+          "delivered": 84,
+          "dropped": 24,
+          "delivery_ratio": 0.7304347826086957,
+          "avg_latency": 4720.363064292946
+        }
+      },
+      "drop_reasons": {
+        "tx_energy_exhausted": 34
+      },
+      "smallsat_min_soc": 0.0,
+      "smallsat_avg_soc": 0.3047061397175457,
+      "smallsat_below_20pct_fraction": 0.40555555555555556,
+      "total_data_generated_mb": 1784.7292162981528,
+      "total_data_delivered_mb": 1403.0358044469397,
+      "smallsat_routes": 222,
+      "total_routing_decisions": 336,
+      "run_seed": 161
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 199,
+      "delivered": 124,
+      "dropped": 60,
+      "in_transit": 15,
+      "delivery_ratio": 0.6231155778894473,
+      "avg_latency_s": 4908.49115115494,
+      "median_latency_s": 4787.399726780659,
+      "p95_latency_s": 8760.518901062604,
+      "priority_stats": {
+        "1": {
+          "total": 56,
+          "delivered": 49,
+          "dropped": 3,
+          "delivery_ratio": 0.875,
+          "avg_latency": 4479.8411953529185
+        },
+        "2": {
+          "total": 29,
+          "delivered": 14,
+          "dropped": 12,
+          "delivery_ratio": 0.4827586206896552,
+          "avg_latency": 7234.206524932742
+        },
+        "3": {
+          "total": 114,
+          "delivered": 61,
+          "dropped": 45,
+          "delivery_ratio": 0.5350877192982456,
+          "avg_latency": 4719.045783964938
+        }
+      },
+      "drop_reasons": {
+        "tx_energy_exhausted": 60
+      },
+      "smallsat_min_soc": 0.0,
+      "smallsat_avg_soc": 0.40643292208956294,
+      "smallsat_below_20pct_fraction": 0.2361111111111111,
+      "total_data_generated_mb": 1930.161316548979,
+      "total_data_delivered_mb": 990.6995260299532,
+      "smallsat_routes": 183,
+      "total_routing_decisions": 309,
+      "run_seed": 178
+    },
+    {
+      "algorithm": "CGR",
+      "total_bundles": 201,
+      "delivered": 179,
+      "dropped": 0,
+      "in_transit": 22,
+      "delivery_ratio": 0.8905472636815921,
+      "avg_latency_s": 5443.987696979723,
+      "median_latency_s": 4993.051735237939,
+      "p95_latency_s": 11154.380643942135,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4390.99340137151
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 9625.943226656036
+        },
+        "3": {
+          "total": 116,
+          "delivered": 102,
+          "dropped": 0,
+          "delivery_ratio": 0.8793103448275862,
+          "avg_latency": 5007.142255362113
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.5849523295333022,
+      "smallsat_avg_soc": 0.9066735283221925,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1630.0873618772175,
+      "total_data_delivered_mb": 1485.181770251062,
+      "smallsat_routes": 244,
+      "total_routing_decisions": 381,
+      "run_seed": 195
+    }
+  ],
+  "per_run_ecgr": [
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 199,
+      "delivered": 176,
+      "dropped": 0,
+      "in_transit": 23,
+      "delivery_ratio": 0.8844221105527639,
+      "avg_latency_s": 6145.748498493674,
+      "median_latency_s": 5858.887090770779,
+      "p95_latency_s": 12846.541480920332,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4718.8397467395425
+        },
+        "2": {
+          "total": 27,
+          "delivered": 23,
+          "dropped": 0,
+          "delivery_ratio": 0.8518518518518519,
+          "avg_latency": 8745.495668382979
+        },
+        "3": {
+          "total": 115,
+          "delivered": 100,
+          "dropped": 0,
+          "delivery_ratio": 0.8695652173913043,
+          "avg_latency": 6304.068287848822
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.24374189931626614,
+      "smallsat_avg_soc": 0.7992087966076837,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1730.974974865081,
+      "total_data_delivered_mb": 1508.3233817392893,
+      "smallsat_routes": 169,
+      "total_routing_decisions": 366,
+      "run_seed": 42
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 202,
+      "delivered": 181,
+      "dropped": 0,
+      "in_transit": 21,
+      "delivery_ratio": 0.8960396039603961,
+      "avg_latency_s": 4936.7638535740225,
+      "median_latency_s": 4840.867361470562,
+      "p95_latency_s": 8806.429162296852,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 52,
+          "dropped": 0,
+          "delivery_ratio": 0.9122807017543859,
+          "avg_latency": 4474.665018754629
+        },
+        "2": {
+          "total": 30,
+          "delivered": 27,
+          "dropped": 0,
+          "delivery_ratio": 0.9,
+          "avg_latency": 6956.612607288886
+        },
+        "3": {
+          "total": 115,
+          "delivered": 102,
+          "dropped": 0,
+          "delivery_ratio": 0.8869565217391304,
+          "avg_latency": 4637.67780514566
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.1572289413092064,
+      "smallsat_avg_soc": 0.6727952029034834,
+      "smallsat_below_20pct_fraction": 0.018055555555555554,
+      "total_data_generated_mb": 1793.0539682913732,
+      "total_data_delivered_mb": 1620.4581447214096,
+      "smallsat_routes": 181,
+      "total_routing_decisions": 370,
+      "run_seed": 59
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 202,
+      "delivered": 185,
+      "dropped": 0,
+      "in_transit": 17,
+      "delivery_ratio": 0.9158415841584159,
+      "avg_latency_s": 5478.876782570235,
+      "median_latency_s": 5037.839485717937,
+      "p95_latency_s": 12434.518326287189,
+      "priority_stats": {
+        "1": {
+          "total": 61,
+          "delivered": 57,
+          "dropped": 0,
+          "delivery_ratio": 0.9344262295081968,
+          "avg_latency": 4447.804190711036
+        },
+        "2": {
+          "total": 28,
+          "delivered": 25,
+          "dropped": 0,
+          "delivery_ratio": 0.8928571428571429,
+          "avg_latency": 8260.945580525073
+        },
+        "3": {
+          "total": 113,
+          "delivered": 103,
+          "dropped": 0,
+          "delivery_ratio": 0.911504424778761,
+          "avg_latency": 5374.2109358430835
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.7010763888888888,
+      "smallsat_avg_soc": 0.9465713476832065,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1835.5216424482282,
+      "total_data_delivered_mb": 1625.214541562805,
+      "smallsat_routes": 223,
+      "total_routing_decisions": 386,
+      "run_seed": 76
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 198,
+      "delivered": 175,
+      "dropped": 0,
+      "in_transit": 23,
+      "delivery_ratio": 0.8838383838383839,
+      "avg_latency_s": 4710.848177012333,
+      "median_latency_s": 4606.00532038723,
+      "p95_latency_s": 8449.302927735182,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4622.715446177805
+        },
+        "2": {
+          "total": 27,
+          "delivered": 23,
+          "dropped": 0,
+          "delivery_ratio": 0.8518518518518519,
+          "avg_latency": 5973.152457003324
+        },
+        "3": {
+          "total": 114,
+          "delivered": 99,
+          "dropped": 0,
+          "delivery_ratio": 0.868421052631579,
+          "avg_latency": 4464.767735542002
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.6889509354142895,
+      "smallsat_avg_soc": 0.9207112592498797,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1688.7190989586818,
+      "total_data_delivered_mb": 1427.2948411290627,
+      "smallsat_routes": 205,
+      "total_routing_decisions": 357,
+      "run_seed": 93
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 204,
+      "delivered": 178,
+      "dropped": 0,
+      "in_transit": 26,
+      "delivery_ratio": 0.8725490196078431,
+      "avg_latency_s": 6067.497391549813,
+      "median_latency_s": 5344.532648257649,
+      "p95_latency_s": 14720.06730451145,
+      "priority_stats": {
+        "1": {
+          "total": 58,
+          "delivered": 54,
+          "dropped": 0,
+          "delivery_ratio": 0.9310344827586207,
+          "avg_latency": 4191.720518999523
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 9947.056022149507
+        },
+        "3": {
+          "total": 118,
+          "delivered": 100,
+          "dropped": 0,
+          "delivery_ratio": 0.847457627118644,
+          "avg_latency": 6149.322831383044
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.7010763888888888,
+      "smallsat_avg_soc": 0.937490180047305,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 2024.0447771945949,
+      "total_data_delivered_mb": 1696.1380255132178,
+      "smallsat_routes": 231,
+      "total_routing_decisions": 378,
+      "run_seed": 110
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 202,
+      "delivered": 184,
+      "dropped": 0,
+      "in_transit": 18,
+      "delivery_ratio": 0.9108910891089109,
+      "avg_latency_s": 5140.2093285241635,
+      "median_latency_s": 4816.883277105375,
+      "p95_latency_s": 10173.371206166792,
+      "priority_stats": {
+        "1": {
+          "total": 59,
+          "delivered": 54,
+          "dropped": 0,
+          "delivery_ratio": 0.9152542372881356,
+          "avg_latency": 4722.813675289743
+        },
+        "2": {
+          "total": 26,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.9230769230769231,
+          "avg_latency": 6433.403198366749
+        },
+        "3": {
+          "total": 117,
+          "delivered": 106,
+          "dropped": 0,
+          "delivery_ratio": 0.905982905982906,
+          "avg_latency": 5060.0462379433775
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.346969495053428,
+      "smallsat_avg_soc": 0.826726469102779,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1579.5312926052554,
+      "total_data_delivered_mb": 1435.619122623756,
+      "smallsat_routes": 216,
+      "total_routing_decisions": 386,
+      "run_seed": 127
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 199,
+      "delivered": 182,
+      "dropped": 0,
+      "in_transit": 17,
+      "delivery_ratio": 0.914572864321608,
+      "avg_latency_s": 4659.0582035336665,
+      "median_latency_s": 4447.02176634766,
+      "p95_latency_s": 8347.69926791556,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4422.010487009266
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 5298.169324733045
+        },
+        "3": {
+          "total": 114,
+          "delivered": 105,
+          "dropped": 0,
+          "delivery_ratio": 0.9210526315789473,
+          "avg_latency": 4632.628318457552
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.5307717295166433,
+      "smallsat_avg_soc": 0.8621838719857016,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1574.7779347725611,
+      "total_data_delivered_mb": 1322.2718931125173,
+      "smallsat_routes": 223,
+      "total_routing_decisions": 377,
+      "run_seed": 144
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 201,
+      "delivered": 174,
+      "dropped": 0,
+      "in_transit": 27,
+      "delivery_ratio": 0.8656716417910447,
+      "avg_latency_s": 5130.57936892647,
+      "median_latency_s": 5010.09855774149,
+      "p95_latency_s": 10015.898252577119,
+      "priority_stats": {
+        "1": {
+          "total": 58,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9137931034482759,
+          "avg_latency": 4748.623704278036
+        },
+        "2": {
+          "total": 28,
+          "delivered": 23,
+          "dropped": 0,
+          "delivery_ratio": 0.8214285714285714,
+          "avg_latency": 6317.949851860777
+        },
+        "3": {
+          "total": 115,
+          "delivered": 98,
+          "dropped": 0,
+          "delivery_ratio": 0.8521739130434782,
+          "avg_latency": 5058.478645649714
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.24019787531428533,
+      "smallsat_avg_soc": 0.6722202776399927,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1784.7292162981528,
+      "total_data_delivered_mb": 1508.9342121602326,
+      "smallsat_routes": 198,
+      "total_routing_decisions": 372,
+      "run_seed": 161
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 199,
+      "delivered": 171,
+      "dropped": 0,
+      "in_transit": 28,
+      "delivery_ratio": 0.8592964824120602,
+      "avg_latency_s": 5941.221608925488,
+      "median_latency_s": 5228.03360878105,
+      "p95_latency_s": 13750.028429782678,
+      "priority_stats": {
+        "1": {
+          "total": 56,
+          "delivered": 47,
+          "dropped": 0,
+          "delivery_ratio": 0.8392857142857143,
+          "avg_latency": 4201.8632833892025
+        },
+        "2": {
+          "total": 29,
+          "delivered": 23,
+          "dropped": 0,
+          "delivery_ratio": 0.7931034482758621,
+          "avg_latency": 9659.58057692287
+        },
+        "3": {
+          "total": 114,
+          "delivered": 101,
+          "dropped": 0,
+          "delivery_ratio": 0.8859649122807017,
+          "avg_latency": 5903.870965720199
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.0,
+      "smallsat_avg_soc": 0.5141157853225102,
+      "smallsat_below_20pct_fraction": 0.1527777777777778,
+      "total_data_generated_mb": 1930.161316548979,
+      "total_data_delivered_mb": 1618.046003342752,
+      "smallsat_routes": 131,
+      "total_routing_decisions": 349,
+      "run_seed": 178
+    },
+    {
+      "algorithm": "ECGR",
+      "total_bundles": 201,
+      "delivered": 179,
+      "dropped": 0,
+      "in_transit": 22,
+      "delivery_ratio": 0.8905472636815921,
+      "avg_latency_s": 5517.558661475025,
+      "median_latency_s": 5089.541102851879,
+      "p95_latency_s": 12242.528664263407,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4390.99340137151
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 7340.982980631195
+        },
+        "3": {
+          "total": 116,
+          "delivered": 102,
+          "dropped": 0,
+          "delivery_ratio": 0.8793103448275862,
+          "avg_latency": 5673.889790158732
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.5849523295333022,
+      "smallsat_avg_soc": 0.928233914898516,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1630.0873618772175,
+      "total_data_delivered_mb": 1485.181770251062,
+      "smallsat_routes": 184,
+      "total_routing_decisions": 380,
+      "run_seed": 195
+    }
+  ],
+  "per_run_pecgr": [
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 199,
+      "delivered": 177,
+      "dropped": 0,
+      "in_transit": 22,
+      "delivery_ratio": 0.8894472361809045,
+      "avg_latency_s": 5173.040055076374,
+      "median_latency_s": 4916.729502118349,
+      "p95_latency_s": 9404.60716092835,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4553.888828583201
+        },
+        "2": {
+          "total": 27,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8888888888888888,
+          "avg_latency": 8528.125697096517
+        },
+        "3": {
+          "total": 115,
+          "delivered": 100,
+          "dropped": 0,
+          "delivery_ratio": 0.8695652173913043,
+          "avg_latency": 4695.969651032922
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.12494410036264922,
+      "smallsat_avg_soc": 0.8039389403048888,
+      "smallsat_below_20pct_fraction": 0.008333333333333333,
+      "total_data_generated_mb": 1730.974974865081,
+      "total_data_delivered_mb": 1583.4886973798502,
+      "smallsat_routes": 223,
+      "total_routing_decisions": 376,
+      "run_seed": 42
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 202,
+      "delivered": 181,
+      "dropped": 0,
+      "in_transit": 21,
+      "delivery_ratio": 0.8960396039603961,
+      "avg_latency_s": 4814.388732858172,
+      "median_latency_s": 4709.998422532575,
+      "p95_latency_s": 8737.921194077666,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 52,
+          "dropped": 0,
+          "delivery_ratio": 0.9122807017543859,
+          "avg_latency": 4474.665018754629
+        },
+        "2": {
+          "total": 30,
+          "delivered": 27,
+          "dropped": 0,
+          "delivery_ratio": 0.9,
+          "avg_latency": 6968.269789751388
+        },
+        "3": {
+          "total": 115,
+          "delivered": 102,
+          "dropped": 0,
+          "delivery_ratio": 0.8869565217391304,
+          "avg_latency": 4417.436228909813
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.03592335647034703,
+      "smallsat_avg_soc": 0.5582260772175868,
+      "smallsat_below_20pct_fraction": 0.03819444444444445,
+      "total_data_generated_mb": 1793.0539682913732,
+      "total_data_delivered_mb": 1620.4581447214096,
+      "smallsat_routes": 223,
+      "total_routing_decisions": 370,
+      "run_seed": 59
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 202,
+      "delivered": 185,
+      "dropped": 0,
+      "in_transit": 17,
+      "delivery_ratio": 0.9158415841584159,
+      "avg_latency_s": 5330.651593703761,
+      "median_latency_s": 5073.608374481002,
+      "p95_latency_s": 10689.581790490236,
+      "priority_stats": {
+        "1": {
+          "total": 61,
+          "delivered": 57,
+          "dropped": 0,
+          "delivery_ratio": 0.9344262295081968,
+          "avg_latency": 4447.804190711036
+        },
+        "2": {
+          "total": 28,
+          "delivered": 25,
+          "dropped": 0,
+          "delivery_ratio": 0.8928571428571429,
+          "avg_latency": 7807.476482579904
+        },
+        "3": {
+          "total": 113,
+          "delivered": 103,
+          "dropped": 0,
+          "delivery_ratio": 0.911504424778761,
+          "avg_latency": 5218.046542720088
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.7010763888888888,
+      "smallsat_avg_soc": 0.9465767118371752,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1835.5216424482282,
+      "total_data_delivered_mb": 1625.214541562805,
+      "smallsat_routes": 243,
+      "total_routing_decisions": 386,
+      "run_seed": 76
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 198,
+      "delivered": 175,
+      "dropped": 0,
+      "in_transit": 23,
+      "delivery_ratio": 0.8838383838383839,
+      "avg_latency_s": 4772.208916041612,
+      "median_latency_s": 4646.567075824692,
+      "p95_latency_s": 8449.302927735182,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4622.715446177805
+        },
+        "2": {
+          "total": 27,
+          "delivered": 23,
+          "dropped": 0,
+          "delivery_ratio": 0.8518518518518519,
+          "avg_latency": 5973.152457003324
+        },
+        "3": {
+          "total": 114,
+          "delivered": 99,
+          "dropped": 0,
+          "delivery_ratio": 0.868421052631579,
+          "avg_latency": 4573.233688371534
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.6889509354142895,
+      "smallsat_avg_soc": 0.919255369700163,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1688.7190989586818,
+      "total_data_delivered_mb": 1427.2948411290627,
+      "smallsat_routes": 219,
+      "total_routing_decisions": 357,
+      "run_seed": 93
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 204,
+      "delivered": 189,
+      "dropped": 0,
+      "in_transit": 15,
+      "delivery_ratio": 0.9264705882352942,
+      "avg_latency_s": 5344.718258469585,
+      "median_latency_s": 5068.221386641975,
+      "p95_latency_s": 12041.887832100878,
+      "priority_stats": {
+        "1": {
+          "total": 58,
+          "delivered": 55,
+          "dropped": 0,
+          "delivery_ratio": 0.9482758620689655,
+          "avg_latency": 4101.238268729577
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 9980.832552157897
+        },
+        "3": {
+          "total": 118,
+          "delivered": 110,
+          "dropped": 0,
+          "delivery_ratio": 0.9322033898305084,
+          "avg_latency": 4954.942407443956
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.6725572332135644,
+      "smallsat_avg_soc": 0.9366876757305873,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 2024.0447771945949,
+      "total_data_delivered_mb": 1707.4678742899735,
+      "smallsat_routes": 255,
+      "total_routing_decisions": 393,
+      "run_seed": 110
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 202,
+      "delivered": 184,
+      "dropped": 0,
+      "in_transit": 18,
+      "delivery_ratio": 0.9108910891089109,
+      "avg_latency_s": 5206.905201221663,
+      "median_latency_s": 5006.376243897943,
+      "p95_latency_s": 10173.371206166792,
+      "priority_stats": {
+        "1": {
+          "total": 59,
+          "delivered": 54,
+          "dropped": 0,
+          "delivery_ratio": 0.9152542372881356,
+          "avg_latency": 4722.813675289743
+        },
+        "2": {
+          "total": 26,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.9230769230769231,
+          "avg_latency": 6433.403198366749
+        },
+        "3": {
+          "total": 117,
+          "delivered": 106,
+          "dropped": 0,
+          "delivery_ratio": 0.905982905982906,
+          "avg_latency": 5175.820205644698
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.346969495053428,
+      "smallsat_avg_soc": 0.825471763456024,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1579.5312926052554,
+      "total_data_delivered_mb": 1435.619122623756,
+      "smallsat_routes": 232,
+      "total_routing_decisions": 386,
+      "run_seed": 127
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 199,
+      "delivered": 182,
+      "dropped": 0,
+      "in_transit": 17,
+      "delivery_ratio": 0.914572864321608,
+      "avg_latency_s": 4726.484214140086,
+      "median_latency_s": 4485.250870607582,
+      "p95_latency_s": 8347.69926791556,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4422.010487009266
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 5298.169324733045
+        },
+        "3": {
+          "total": 114,
+          "delivered": 105,
+          "dropped": 0,
+          "delivery_ratio": 0.9210526315789473,
+          "avg_latency": 4749.500070175348
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.5307717295166433,
+      "smallsat_avg_soc": 0.8610925784463616,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1574.7779347725611,
+      "total_data_delivered_mb": 1322.2718931125173,
+      "smallsat_routes": 239,
+      "total_routing_decisions": 377,
+      "run_seed": 144
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 201,
+      "delivered": 174,
+      "dropped": 0,
+      "in_transit": 27,
+      "delivery_ratio": 0.8656716417910447,
+      "avg_latency_s": 4909.248189045452,
+      "median_latency_s": 4668.235637497624,
+      "p95_latency_s": 8950.114356591683,
+      "priority_stats": {
+        "1": {
+          "total": 58,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9137931034482759,
+          "avg_latency": 4739.965033241865
+        },
+        "2": {
+          "total": 28,
+          "delivered": 23,
+          "dropped": 0,
+          "delivery_ratio": 0.8214285714285714,
+          "avg_latency": 6489.012611863937
+        },
+        "3": {
+          "total": 115,
+          "delivered": 98,
+          "dropped": 0,
+          "delivery_ratio": 0.8521739130434782,
+          "avg_latency": 4630.038245502237
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.24019787531428533,
+      "smallsat_avg_soc": 0.6342055848074055,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1784.7292162981528,
+      "total_data_delivered_mb": 1508.9342121602326,
+      "smallsat_routes": 240,
+      "total_routing_decisions": 374,
+      "run_seed": 161
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 199,
+      "delivered": 180,
+      "dropped": 0,
+      "in_transit": 19,
+      "delivery_ratio": 0.9045226130653267,
+      "avg_latency_s": 5302.65975978291,
+      "median_latency_s": 4937.412657206267,
+      "p95_latency_s": 9966.649644426527,
+      "priority_stats": {
+        "1": {
+          "total": 56,
+          "delivered": 52,
+          "dropped": 0,
+          "delivery_ratio": 0.9285714285714286,
+          "avg_latency": 4491.915288243655
+        },
+        "2": {
+          "total": 29,
+          "delivered": 22,
+          "dropped": 0,
+          "delivery_ratio": 0.7586206896551724,
+          "avg_latency": 10349.819064455225
+        },
+        "3": {
+          "total": 114,
+          "delivered": 106,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4652.859833530556
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.0,
+      "smallsat_avg_soc": 0.4878195411738787,
+      "smallsat_below_20pct_fraction": 0.15625,
+      "total_data_generated_mb": 1930.161316548979,
+      "total_data_delivered_mb": 1554.4201047686945,
+      "smallsat_routes": 223,
+      "total_routing_decisions": 375,
+      "run_seed": 178
+    },
+    {
+      "algorithm": "P-ECGR",
+      "total_bundles": 201,
+      "delivered": 179,
+      "dropped": 0,
+      "in_transit": 22,
+      "delivery_ratio": 0.8905472636815921,
+      "avg_latency_s": 5140.641856480681,
+      "median_latency_s": 4960.208457048517,
+      "p95_latency_s": 10448.587010629388,
+      "priority_stats": {
+        "1": {
+          "total": 57,
+          "delivered": 53,
+          "dropped": 0,
+          "delivery_ratio": 0.9298245614035088,
+          "avg_latency": 4390.99340137151
+        },
+        "2": {
+          "total": 28,
+          "delivered": 24,
+          "dropped": 0,
+          "delivery_ratio": 0.8571428571428571,
+          "avg_latency": 7363.488832934011
+        },
+        "3": {
+          "total": 116,
+          "delivered": 102,
+          "dropped": 0,
+          "delivery_ratio": 0.8793103448275862,
+          "avg_latency": 5007.142255362113
+        }
+      },
+      "drop_reasons": {},
+      "smallsat_min_soc": 0.5849523295333022,
+      "smallsat_avg_soc": 0.924893481713242,
+      "smallsat_below_20pct_fraction": 0.0,
+      "total_data_generated_mb": 1630.0873618772175,
+      "total_data_delivered_mb": 1485.181770251062,
+      "smallsat_routes": 236,
+      "total_routing_decisions": 380,
+      "run_seed": 195
+    }
+  ]
+}
