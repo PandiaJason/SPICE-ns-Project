@@ -54,6 +54,19 @@
 Contact Graph Routing (CGR) is the de facto standard for store-carry-forward routing in deep-space Delay-Tolerant Networks (DTN). While CGR leverages the deterministic predictability of orbital contact schedules, it implicitly assumes that relay nodes possess sufficient energy and storage to execute all scheduled transmissions. This assumption breaks down in heterogeneous networks containing resource-constrained SmallSats, where standard CGR drains relay batteries to critical levels, causing packet drops. State-of-the-Art Energy-Aware CGR (\ecgr{}) protects relay health but suffers from resource conservatism due to using instantaneous state metrics, yielding lower delivery ratios. This paper proposes \emph{Predictive Energy and Capacity-Aware Contact Graph Routing} (\pecgr{}), which introduces a future energy prediction model and a reservation-based energy booking registry. By tracking committed transmissions, \pecgr{} prevents energy overbooking and load-balances traffic across heterogeneous relays. We evaluate \pecgr{} via discrete-event simulation of a Mars relay network using contact plans from synthetic SPICE ephemeris data. Over 10 Monte Carlo runs, \pecgr{} maintains zero packet drops and keeps the SmallSat battery safe (spending $2.0 \pm 4.7\%$ of the time below $20\%$ SoC, compared to $8.5 \pm 13.2\%$ for CGR and $1.7 \pm 4.6\%$ for SOTA \ecgr{}), while increasing the bundle delivery ratio to $90.0 \pm 1.7\%$ (outperforming CGR's $83.7 \pm 8.9\%$ and SOTA \ecgr{}'s $88.9 \pm 1.9\%$), and reducing latency compared to both standard CGR and SOTA \ecgr{}. The proposed algorithm adds negligible computational overhead, making it suitable for flight-grade onboard processors.
 \end{abstract}
 
+\begin{graphicalabstract}
+  \centering
+  \includegraphics[width=\textwidth]{figs/P-ECGR_Deep_Space_Routing_Solution.png}
+\end{graphicalabstract}
+
+\begin{highlights}
+  \item Identifies the critical energy overbooking bottleneck in state-of-the-art energy-aware Contact Graph Routing (CGR) for heterogeneous deep-space networks.
+  \item Proposes \pecgr{}, integrating a future battery solar-charging prediction model with a local reservation-based energy booking registry to protect constrained SmallSats.
+  \item Evaluates performance using a modular discrete-event Mars relay simulation with Keplerian orbit propagation and planetary shadow eclipses.
+  \item Achieves zero bundle drops due to energy or buffer exhaustion across all Monte Carlo simulation runs, preserving SmallSat relay health.
+  \item Outperforms SOTA energy-aware CGR by increasing delivery ratio to $90.0 \pm 1.7\%$ and reducing end-to-end latency to $5072\,$s.
+\end{highlights}
+
 \begin{keywords}
 Delay-tolerant networking \sep Contact graph routing \sep Deep space communications \sep SmallSat \sep Energy-aware routing \sep Mars relay network
 \end{keywords}
