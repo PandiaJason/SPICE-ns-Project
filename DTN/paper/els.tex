@@ -60,7 +60,7 @@ Contact Graph Routing (CGR) is the de facto standard for store-carry-forward rou
 \end{graphicalabstract}
 
 \begin{highlights}
-  \item Presents baseline Proposed ECGR and predictive P-ECGR routing for deep space SmallSat
+  \item Presents Proposed ECGR and predictive P-ECGR routing for deep-space SmallSats.
   \item P-ECGR integrates solar-charging predictions with a discrete energy booking registry.
   \item Evaluates routing using a high-fidelity discrete-event planetary Mars relay simulator
   \item Both newly proposed algorithms eliminate bundle drops due to energy or buffer exhaustion
@@ -200,7 +200,7 @@ The state of charge (SoC) is defined as:
 \begin{equation}
     \text{SoC}(t) = \frac{E(t)}{E_{\max}}
 \end{equation}
-If the battery SoC drops to $0.0$, the node shut downs, dropping all bundles currently stored in its buffer.
+If the battery SoC drops to $0.0$, the node shuts down, dropping all bundles currently stored in its buffer.
 
 \subsection{Buffer Model}
 Each node $n$ has a physical buffer storage capacity $B_{\max}^n$ bytes. The buffer utilization $U_B(t)$ is the fraction of capacity occupied by queued bundles:
@@ -325,7 +325,7 @@ When evaluating subsequent bundles, the net predicted energy $E_{\text{net}}(n, 
 \end{equation}
 where $\mathcal{K}_n(t_{\text{now}}, t_{\text{start}})$ is the set of bundle IDs booked for transmission on node $n$ during the interval $[t_{\text{now}}, t_{\text{start}})$. Registry entries scheduled in the past ($t < t_{\text{now}}$) are pruned, as their actual energy drain is already reflected in the node's real-time state $E_n(t_{\text{now}})$.
 
-\subsubsection{Energy Penalty deadband Function}
+\subsubsection{Energy Penalty Deadband Function}
 Let the predicted state of charge be $\text{SoC}_{\text{pred}}(n) = E_{\text{net}}(n, t_{\text{start}}) / E_{\max}^n$. The predicted post-transmission SoC after sending bundle $b$ is:
 \begin{equation}
     \text{SoC}_{\text{post}}(n) = \text{SoC}_{\text{pred}}(n) - \frac{E_{\text{tx}}(b)}{E_{\max}^n}
