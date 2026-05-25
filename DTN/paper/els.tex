@@ -51,7 +51,7 @@
 \cortext[cor1]{Corresponding author}
 
 \begin{abstract}
-Contact Graph Routing (CGR) is the de facto standard for store-carry-forward routing in deep-space Delay-Tolerant Networks (DTN). While CGR leverages the deterministic predictability of orbital contact schedules, it implicitly assumes that relay nodes possess sufficient energy and storage to execute all scheduled transmissions. This assumption breaks down in heterogeneous networks containing resource-constrained SmallSats, where standard CGR drains relay batteries to critical levels, causing packet drops. State-of-the-Art Energy-Aware CGR (\ecgr{}) protects relay health but suffers from resource conservatism due to using instantaneous state metrics, yielding lower delivery ratios. This paper proposes \emph{Predictive Energy and Capacity-Aware Contact Graph Routing} (\pecgr{}), which introduces a future energy prediction model and a reservation-based energy booking registry. By tracking committed transmissions, \pecgr{} prevents energy overbooking and load-balances traffic across heterogeneous relays. We evaluate \pecgr{} via discrete-event simulation of a Mars relay network using contact plans from synthetic SPICE ephemeris data. Over 10 Monte Carlo runs, \pecgr{} maintains zero packet drops and keeps the SmallSat battery safe (spending $2.0 \pm 4.7\%$ of the time below $20\%$ SoC, compared to $8.5 \pm 13.2\%$ for CGR and $1.7 \pm 4.6\%$ for SOTA \ecgr{}), while increasing the bundle delivery ratio to $90.0 \pm 1.7\%$ (outperforming CGR's $83.7 \pm 8.9\%$ and SOTA \ecgr{}'s $88.9 \pm 1.9\%$), and reducing latency compared to both standard CGR and SOTA \ecgr{}. The proposed algorithm adds negligible computational overhead, making it suitable for flight-grade onboard processors.
+Contact Graph Routing (CGR) is the de facto standard for store-carry-forward routing in deep-space Delay-Tolerant Networks (DTN). While CGR leverages the deterministic predictability of orbital contact schedules, it implicitly assumes that relay nodes possess sufficient energy and storage to execute all scheduled transmissions. This assumption breaks down in heterogeneous networks containing resource-constrained SmallSats, where standard CGR drains relay batteries to critical levels, causing packet drops. To address this, we propose two energy-aware routing strategies in this study: a baseline Energy-Aware CGR (\ecgr{}) that protects relay health based on instantaneous state metrics, and an improved Predictive Energy and Capacity-Aware Contact Graph Routing (\pecgr{}) that integrates a future energy prediction model and a reservation-based energy booking registry. By tracking committed transmissions, \pecgr{} prevents energy overbooking and load-balances traffic across heterogeneous relays. We evaluate both algorithms via discrete-event simulation of a Mars relay network using contact plans from synthetic SPICE ephemeris data. Over 10 Monte Carlo runs, both proposed algorithms maintain zero packet drops. The improved \pecgr{} achieves a bundle delivery ratio of $90.0 \pm 1.7\%$, outperforming standard CGR ($83.7 \pm 8.9\%$) and the proposed baseline \ecgr{} ($88.9 \pm 1.9\%$), while spending only $2.0 \pm 4.7\%$ of the time below $20\%$ battery SoC and significantly reducing delivery latency. The proposed algorithms add negligible computational overhead, making them suitable for flight-grade onboard processors.
 \end{abstract}
 
 \begin{graphicalabstract}
@@ -60,11 +60,11 @@ Contact Graph Routing (CGR) is the de facto standard for store-carry-forward rou
 \end{graphicalabstract}
 
 \begin{highlights}
-  \item Identifies the critical energy overbooking bottleneck in state-of-the-art energy-aware Contact Graph Routing (CGR) for heterogeneous deep-space networks.
+  \item Identifies the critical energy overbooking bottleneck in baseline energy-aware Contact Graph Routing (CGR) for heterogeneous deep-space networks.
   \item Proposes \pecgr{}, integrating a future battery solar-charging prediction model with a local reservation-based energy booking registry to protect constrained SmallSats.
   \item Evaluates performance using a modular discrete-event Mars relay simulation with Keplerian orbit propagation and planetary shadow eclipses.
   \item Achieves zero bundle drops due to energy or buffer exhaustion across all Monte Carlo simulation runs, preserving SmallSat relay health.
-  \item Outperforms SOTA energy-aware CGR by increasing delivery ratio to $90.0 \pm 1.7\%$ and reducing end-to-end latency to $5072\,$s.
+  \item Outperforms the proposed baseline energy-aware CGR by increasing delivery ratio to $90.0 \pm 1.7\%$ and reducing end-to-end latency to $5072\,$s.
 \end{highlights}
 
 \begin{keywords}
@@ -94,23 +94,23 @@ A typical 3U SmallSat relay possesses a small solar panel area, restricting aver
 \subsection{Problem Statement}
 Standard CGR is resource-blind. It assumes that if a contact window is listed in the contact plan, the transmitting node has sufficient electrical energy and storage capacity to complete the transfer. In a heterogeneous network consisting of a rover, a constrained SmallSat relay, a flagship orbiter, and Earth ground stations, CGR will route massive scientific images through the SmallSat relay simply because it offers the earliest contact window. This decision can deplete the SmallSat's battery, causing a low-voltage shutdown that drops all queued bundles and suspends housekeeping telemetry, jeopardizing the spacecraft's safety.
 
-To protect relay node health, State-of-the-Art (SOTA) Energy-Aware CGR (\ecgr{}) algorithms evaluate node resource states during route computation. However, SOTA \ecgr{} relies on \emph{instantaneous} battery state-of-charge (SoC) metrics at the routing epoch. This approach has two main limitations:
+To protect relay node health, we propose a baseline Energy-Aware CGR (\ecgr{}) algorithm that evaluates node resource states during route computation. However, this proposed baseline \ecgr{} relies on \emph{instantaneous} battery state-of-charge (SoC) metrics at the routing epoch. This approach has two main limitations:
 \begin{enumerate}
     \item \textbf{Resource Conservatism:} It penalizes routes through a node with a low battery state at $t_{\text{now}}$, even if that node will spend the next three hours in full sunlight charging its battery before the transmission contact actually begins. This conservatism reduces the delivery ratio and increases latency.
     \item \textbf{Energy Overbooking:} In multi-bundle scenarios, a source node processes bundles sequentially. If the source evaluates routes for twenty bundles in the same time step, each computation sees a safe instantaneous SoC at the relay. Consequently, the source routes all twenty bundles through the same SmallSat. The cumulative energy required to transmit this data far exceeds the SmallSat's battery capacity, causing battery exhaustion and packet drops.
 \end{enumerate}
 
 \subsection{Proposed Solution and Contributions}
-To overcome these limitations, this paper proposes \emph{Predictive Energy and Capacity-Aware Contact Graph Routing} (\pecgr{}). \pecgr{} integrates a future orbital solar-charging prediction model with a local reservation-based energy booking registry. The prediction model projects the relay's battery state forward to the start time of the future contact, taking into account predicted solar generation and eclipse periods. The energy-booking registry tracks committed transmissions, preventing energy overbooking. The contributions of this work are summarized as follows:
+To overcome these limitations, we propose an improved, predictive algorithm called \emph{Predictive Energy and Capacity-Aware Contact Graph Routing} (\pecgr{}). Both \ecgr{} and \pecgr{} are routing algorithms proposed in this work, with \pecgr{} representing a key prediction-based enhancement over the baseline \ecgr{}. Specifically, \pecgr{} integrates a future orbital solar-charging prediction model with a local reservation-based energy booking registry. The prediction model projects the relay's battery state forward to the start time of the future contact, taking into account predicted solar generation and eclipse periods. The energy-booking registry tracks committed transmissions, preventing energy overbooking. The contributions of this work are summarized as follows:
 \begin{itemize}
-    \item We identify and formulate the \emph{energy overbooking} bottleneck in state-of-the-art energy-aware routing for heterogeneous space networks.
-    \item We propose \pecgr{}, a routing algorithm that incorporates future solar-charging predictions and a local energy booking registry to prevent energy overbooking and balance traffic load.
+    \item We identify and formulate the \emph{energy overbooking} bottleneck in resource-constrained routing for heterogeneous space networks.
+    \item We propose a baseline \ecgr{} and an improved predictive \pecgr{} routing algorithm, incorporating future solar-charging predictions and a local energy booking registry to prevent energy overbooking and balance traffic load.
     \item We present a modular Python simulation framework that implements circular Keplerian orbit propagation, eclipse checks, and resource-constrained node models.
-    \item We evaluate CGR, SOTA \ecgr{}, and the proposed \pecgr{} on a Mars relay scenario, demonstrating that \pecgr{} achieves higher delivery ratios and lower latencies than SOTA \ecgr{} while maintaining zero packet drops.
+    \item We evaluate CGR, the proposed baseline \ecgr{}, and the proposed improved \pecgr{} on a Mars relay scenario, demonstrating that \pecgr{} achieves higher delivery ratios and lower latencies than baseline \ecgr{} while maintaining zero packet drops.
 \end{itemize}
 
 \subsection{Paper Outline}
-The remainder of this paper is structured as follows. Section~\ref{sec:related} reviews related work in DTN and resource-aware routing. Section~\ref{sec:system} defines the system model, including topology, orbits, battery dynamics, and buffers. Section~\ref{sec:ecgr} details the routing formulations, presenting the algorithms for CGR, SOTA \ecgr{}, and proposed \pecgr{}. Section~\ref{sec:setup} describes the simulation setup and parameters. Section~\ref{sec:results} analyzes the results, and Section~\ref{sec:conclusion} concludes the paper.
+The remainder of this paper is structured as follows. Section~\ref{sec:related} reviews related work in DTN and resource-aware routing. Section~\ref{sec:system} defines the system model, including topology, orbits, battery dynamics, and buffers. Section~\ref{sec:ecgr} details the routing formulations, presenting the algorithms for standard CGR, proposed baseline \ecgr{}, and proposed improved \pecgr{}. Section~\ref{sec:setup} describes the simulation setup and parameters. Section~\ref{sec:results} analyzes the results, and Section~\ref{sec:conclusion} concludes the paper.
 
 % ====================================================================
 \section{Related Work}
@@ -225,7 +225,7 @@ The rover generates three classes of traffic, characterized by priority, bundle 
 \section{Routing Algorithms and Formulations}
 \label{sec:ecgr}
 
-In this section, we present the formulations of the three routing algorithms evaluated in this study: standard Contact Graph Routing (CGR), SOTA Energy-Aware CGR (ECGR), and our proposed Predictive Energy and Capacity-Aware CGR (P-ECGR).
+In this section, we present the formulations of the three routing algorithms evaluated in this study: standard Contact Graph Routing (CGR), our proposed baseline Energy-Aware CGR (ECGR), and our proposed predictive Predictive Energy and Capacity-Aware CGR (P-ECGR). Both ECGR and P-ECGR are developed in this work, with P-ECGR serving as an improved, prediction-based extension of the baseline ECGR.
 
 \subsection{Standard Contact Graph Routing (CGR)}
 Standard CGR aims to minimize delivery delay. Given a bundle $b$ created at time $t_{\text{now}}$, CGR identifies all feasible routes to the destination. For each route $r$, composed of a sequence of contacts $r = (c_1, c_2, \dots, c_k)$, the arrival time $T_{\text{arr}}(r)$ is:
@@ -242,8 +242,8 @@ where $C_{\text{resid}}(c_i)$ is the residual capacity of contact $c_i$. The opt
 \end{equation}
 where $\mathcal{R}_f$ is the set of capacity-feasible routes. CGR is resource-blind: it does not evaluate whether the nodes along the route have the energy to complete the transmissions.
 
-\subsection{State-of-the-Art Energy-Aware CGR (ECGR)}
-SOTA \ecgr{} incorporates relay battery and buffer states into a multi-attribute cost function:
+\subsection{Proposed Baseline Energy-Aware CGR (ECGR)}
+The proposed baseline \ecgr{} incorporates relay battery and buffer states into a multi-attribute cost function:
 \begin{equation}
     \mathcal{C}_{\text{ECGR}}(r, b) = \alpha \cdot \hat{D}(r) + \beta \cdot \Phi_E(r) + \gamma \cdot \Phi_B(r, b)
 \end{equation}
@@ -255,14 +255,14 @@ where:
     \item $\alpha, \beta, \gamma$ are dynamic weights scaled based on bundle priority and instantaneous warning/critical thresholds.
 \end{itemize}
 
-During route selection, \ecgr{} filters out routes if any relay node cannot transmit the bundle based on its current energy state:
+During route selection, baseline \ecgr{} filters out routes if any relay node cannot transmit the bundle based on its current energy state:
 \begin{equation}
     E_n(t_{\text{now}}) < (P_{\text{tx}}^n + P_{\text{idle}}^n) \cdot \frac{8 \cdot |b|}{R_{\text{link}}} \cdot \frac{1}{3600}
 \end{equation}
-The SOTA \ecgr{} route-selection procedure is detailed in Algorithm~\ref{alg:sota_ecgr}.
+The proposed baseline \ecgr{} route-selection procedure is detailed in Algorithm~\ref{alg:sota_ecgr}.
 
 \begin{algorithm}[h]
-\caption{SOTA \ecgr{} Route Selection}
+\caption{Proposed Baseline \ecgr{} Route Selection}
 \label{alg:sota_ecgr}
 \begin{algorithmic}[1]
 \REQUIRE Contact plan $\mathcal{C}$, bundle $b$, node states $\mathcal{N}$, current time $t_{\text{now}}$
@@ -300,7 +300,7 @@ The SOTA \ecgr{} route-selection procedure is detailed in Algorithm~\ref{alg:sot
 \end{algorithm}
 
 \subsection{Proposed Predictive and Energy-Booked ECGR (P-ECGR)}
-Proposed \pecgr{} replaces the instantaneous metrics of SOTA \ecgr{} with a predictive orbital energy model and a local energy booking registry to resolve the energy overbooking problem.
+Proposed \pecgr{} replaces the instantaneous metrics of the proposed baseline \ecgr{} with a predictive orbital energy model and a local energy booking registry to resolve the energy overbooking problem.
 
 \subsubsection{Future Energy Prediction Model}
 Instead of evaluating the instantaneous energy state $E_n(t_{\text{now}})$, \pecgr{} predicts the battery energy state $E_{\text{pred}}(n, t_{\text{start}})$ at the future start time $t_{\text{start}}$ of the contact window. The prediction is computed by integrating the nominal solar generation and idle drain rates over the propagation delay:
@@ -419,7 +419,7 @@ The complete \pecgr{} route-selection procedure is detailed in Algorithm~\ref{al
 \section{Python Simulation Setup}
 \label{sec:setup}
 
-To evaluate the performance of CGR, SOTA \ecgr{}, and proposed \pecgr{}, we developed a discrete-time event-driven Python simulator representing the deep-space Mars relay scenario.
+To evaluate the performance of standard CGR, the proposed baseline \ecgr{}, and the proposed improved \pecgr{}, we developed a discrete-time event-driven Python simulator representing the deep-space Mars relay scenario.
 
 \subsection{Simulator Package Structure}
 The simulator codebase is structured as a modular package containing the following core files:
@@ -522,15 +522,15 @@ All metrics are aggregated across the ten runs, and the reported values in Table
 \section{Results and Discussion}
 \label{sec:results}
 
-This section discusses the performance of standard \cgr{}, SOTA \ecgr{}, and the proposed \pecgr{} algorithm based on the $10$ Monte Carlo runs. The aggregate results are summarized in Table~\ref{tab:results}.
+This section discusses the performance of standard \cgr{}, the proposed baseline \ecgr{}, and the proposed improved \pecgr{} algorithm based on the $10$ Monte Carlo runs. The aggregate results are summarized in Table~\ref{tab:results}.
 
 \begin{table*}[t]
 \centering
-\caption{Comparative Performance: CGR vs.\ SOTA ECGR vs.\ Proposed P-ECGR}
+\caption{Comparative Performance: CGR vs.\ Proposed Baseline ECGR vs.\ Proposed Predictive P-ECGR}
 \label{tab:results}
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccc}
 \hline
-\textbf{Metric} & \textbf{CGR} & \textbf{SOTA ECGR} & \textbf{Proposed P-ECGR} \\
+\textbf{Metric} & \textbf{CGR} & \textbf{Proposed Baseline ECGR} & \textbf{Proposed Predictive P-ECGR} \\
 \hline
 Bundle Delivery Ratio (\%) & 83.7 $\pm$ 8.9 & 88.9 $\pm$ 1.9 & 90.0 $\pm$ 1.7 \\
 Avg. Latency (s) & 5463 $\pm$ 466 & 5373 $\pm$ 518 & 5072 $\pm$ 230 \\
@@ -547,9 +547,9 @@ Data Delivered (MB) & 1411 $\pm$ 180 & 1525 $\pm$ 109 & 1527 $\pm$ 108 \\
 \subsection{Bundle Delivery Performance}
 Standard \cgr{} achieves an overall delivery ratio of $83.7 \pm 8.9\%$ (Table~\ref{tab:results}). However, \cgr{} is resource-blind, routing bundles through the SmallSat relay regardless of its battery state. This drains the SmallSat battery to $0.0$, causing low-voltage node shutdowns that drop an average of $12.9 \pm 19.3$ bundles per run (Fig.~\ref{fig:drops}). 
 
-SOTA \ecgr{} successfully protects the SmallSat battery, achieving \textbf{zero dropped bundles} ($0.0 \pm 0.0$). However, because it relies on the instantaneous battery SoC at route decision epochs, \ecgr{} exhibits conservatism. It avoids the SmallSat relay when its battery is temporarily low, even if the satellite will recharge before transmission. This resource conservatism restricts \ecgr{}'s delivery ratio to $88.9 \pm 1.9\%$ and results in a higher average latency of $5{,}372.8 \pm 518.3\,$s.
+Proposed baseline \ecgr{} successfully protects the SmallSat battery, achieving \textbf{zero dropped bundles} ($0.0 \pm 0.0$). However, because it relies on the instantaneous battery SoC at route decision epochs, this baseline algorithm exhibits resource conservatism. It avoids the SmallSat relay when its battery is temporarily low, even if the satellite will recharge before transmission. This resource conservatism restricts the baseline \ecgr{}'s delivery ratio to $88.9 \pm 1.9\%$ and results in a higher average latency of $5{,}372.8 \pm 518.3\,$s.
 
-Our proposed \pecgr{} resolves this conservatism. By predicting future solar charging and booking energy reservations, \pecgr{} schedules transmissions during charging cycles while load-balancing excess traffic to MRO. As a result, \pecgr{} increases the bundle delivery ratio to $90.0 \pm 1.7\%$ (outperforming CGR by $6.3\%$) and reduces the average latency to $5{,}072.1 \pm 230.2\,$s. It achieves this performance while maintaining perfect safety with \textbf{zero dropped bundles} ($0.0 \pm 0.0$).
+Our proposed predictive \pecgr{} resolves this conservatism. By predicting future solar charging and booking energy reservations, \pecgr{} schedules transmissions during charging cycles while load-balancing excess traffic to MRO. As a result, \pecgr{} increases the bundle delivery ratio to $90.0 \pm 1.7\%$ (outperforming CGR by $6.3\%$) and reduces the average latency to $5{,}072.1 \pm 230.2\,$s. It achieves this performance while maintaining perfect safety with \textbf{zero dropped bundles} ($0.0 \pm 0.0$).
 
 \subsection{Delivery Ratio by Priority Class}
 Table~\ref{tab:priority} summarizes the BDR broken down by priority class, and Fig.~\ref{fig:delivery} shows the corresponding chart.
@@ -563,13 +563,13 @@ Table~\ref{tab:priority} summarizes the BDR broken down by priority class, and F
 \textbf{Algorithm} & \textbf{Critical} & \textbf{Normal} & \textbf{Low} \\
 \hline
 CGR & 90.1 $\pm$ 4.9 & 79.8 $\pm$ 12.0 & 81.5 $\pm$ 11.4 \\
-SOTA ECGR & 91.7 $\pm$ 2.7 & 86.1 $\pm$ 3.6 & 88.3 $\pm$ 2.3 \\
-Proposed P-ECGR & 92.7 $\pm$ 1.0 & 86.1 $\pm$ 4.4 & 89.6 $\pm$ 2.7 \\
+Proposed Baseline ECGR & 91.7 $\pm$ 2.7 & 86.1 $\pm$ 3.6 & 88.3 $\pm$ 2.3 \\
+Proposed Predictive P-ECGR & 92.7 $\pm$ 1.0 & 86.1 $\pm$ 4.4 & 89.6 $\pm$ 2.7 \\
 \hline
 \end{tabular}
 \end{table}
 
-Under standard \cgr{}, critical telemetry (Priority 1) achieves $90.1 \pm 4.9\%$ delivery, but is affected by battery shutdowns at the SmallSat. SOTA \ecgr{} improves critical delivery to $91.7 \pm 2.7\%$. Proposed \pecgr{} achieves the highest critical delivery ratio ($92.7 \pm 1.0\%$), because its priority-adaptive cost function scales the delay weight $\alpha$ higher for critical data, prioritizing rapid delivery while protecting the energy resources needed for transmission.
+Under standard \cgr{}, critical telemetry (Priority 1) achieves $90.1 \pm 4.9\%$ delivery, but is affected by battery shutdowns at the SmallSat. Proposed baseline \ecgr{} improves critical delivery to $91.7 \pm 2.7\%$. Proposed predictive \pecgr{} achieves the highest critical delivery ratio ($92.7 \pm 1.0\%$), because its priority-adaptive cost function scales the delay weight $\alpha$ higher for critical data, prioritizing rapid delivery while protecting the energy resources needed for transmission.
 
 \begin{figure}[t]
     \centering
@@ -581,7 +581,7 @@ Under standard \cgr{}, critical telemetry (Priority 1) achieves $90.1 \pm 4.9\%$
 \subsection{SmallSat Battery State of Charge Trajectory}
 The battery state-of-charge trajectories for the first Monte Carlo run are shown in Fig.~\ref{fig:soc}. Under standard \cgr{}, the SmallSat battery experiences deep discharge events, dropping below the $20\%$ critical threshold and spending $8.5 \pm 13.2\%$ of the simulation duration in a depleted state. 
 
-Both \ecgr{} and \pecgr{} keep the SmallSat battery safe, spending only $1.7 \pm 4.6\%$ and $2.0 \pm 4.7\%$ of the time below the critical threshold respectively. However, their behaviors differ: \ecgr{} protects the battery by shutting down routes when the instantaneous battery is low, resulting in flat SoC curves during idle periods. In contrast, \pecgr{} predicts future solar charging and books energy reservations, allowing it to route traffic through the SmallSat during charging cycles and keep the battery SoC safely above critical levels.
+Both proposed \ecgr{} and proposed \pecgr{} keep the SmallSat battery safe, spending only $1.7 \pm 4.6\%$ and $2.0 \pm 4.7\%$ of the time below the critical threshold respectively. However, their behaviors differ: the proposed baseline \ecgr{} protects the battery by shutting down routes when the instantaneous battery is low, resulting in flat SoC curves during idle periods. In contrast, the proposed predictive \pecgr{} predicts future solar charging and books energy reservations, allowing it to route traffic through the SmallSat during charging cycles and keep the battery SoC safely above critical levels.
 
 \begin{figure}[t]
     \centering
@@ -591,7 +591,7 @@ Both \ecgr{} and \pecgr{} keep the SmallSat battery safe, spending only $1.7 \pm
 \end{figure}
 
 \subsection{Buffer Utilization Trajectory}
-Fig.~\ref{fig:buffer} shows the SmallSat buffer utilization over time. Under standard \cgr{}, buffer utilization exhibits spikes approaching $100\%$, which leads to buffer congestion and overflow drops. Both \ecgr{} and \pecgr{} manage buffer space safely, keeping peak utilization below $25\%$. \pecgr{} achieves higher buffer utilization efficiency by scheduling transmissions in alignment with link capacities.
+Fig.~\ref{fig:buffer} shows the SmallSat buffer utilization over time. Under standard \cgr{}, buffer utilization exhibits spikes approaching $100\%$, which leads to buffer congestion and overflow drops. Both proposed baseline \ecgr{} and proposed predictive \pecgr{} manage buffer space safely, keeping peak utilization below $25\%$. Proposed predictive \pecgr{} achieves higher buffer utilization efficiency by scheduling transmissions in alignment with link capacities.
 
 \begin{figure}[t]
     \centering
@@ -601,7 +601,7 @@ Fig.~\ref{fig:buffer} shows the SmallSat buffer utilization over time. Under sta
 \end{figure}
 
 \subsection{Latency Cumulative Distribution Function (CDF)}
-The cumulative distribution function (CDF) of end-to-end latency for delivered bundles is shown in Fig.~\ref{fig:latency}. Proposed \pecgr{} delivers a larger fraction of bundles at lower latencies than both CGR and SOTA \ecgr{}. Specifically, $50\%$ of the bundles under \pecgr{} are delivered with latencies below $4{,}000\,$s, whereas CGR and \ecgr{} require more than $5{,}000\,$s. The 95th-percentile latency under \pecgr{} is $9{,}721 \pm 1{,}108\,$s, which is lower than CGR ($11{,}254 \pm 2{,}175\,$s) and SOTA \ecgr{} ($11{,}179 \pm 2{,}193\,$s), demonstrating \pecgr{}'s ability to minimize tail latency.
+The cumulative distribution function (CDF) of end-to-end latency for delivered bundles is shown in Fig.~\ref{fig:latency}. Proposed predictive \pecgr{} delivers a larger fraction of bundles at lower latencies than both standard CGR and the proposed baseline \ecgr{}. Specifically, $50\%$ of the bundles under \pecgr{} are delivered with latencies below $4{,}000\,$s, whereas standard CGR and the proposed baseline \ecgr{} require more than $5{,}000\,$s. The 95th-percentile latency under \pecgr{} is $9{,}721 \pm 1{,}108\,$s, which is lower than CGR ($11{,}254 \pm 2{,}175\,$s) and the proposed baseline \ecgr{} ($11{,}179 \pm 2{,}193\,$s), demonstrating \pecgr{}'s ability to minimize tail latency.
 
 \begin{figure}[t]
     \centering
@@ -611,7 +611,7 @@ The cumulative distribution function (CDF) of end-to-end latency for delivered b
 \end{figure}
 
 \subsection{Cumulative Data Delivery}
-Fig.~\ref{fig:cumulative} presents the cumulative bundle delivery count over the $24$-hour simulation. CGR's curve flattens between $15{,}000\,$s and $25{,}000\,$s due to battery shutdowns. Both \ecgr{} and \pecgr{} deliver more data, but \pecgr{}'s curve rises faster, demonstrating higher throughput. By the end of the simulation, \pecgr{} delivers $1527.0 \pm 108.2\,$MB of data compared to CGR's $1410.7 \pm 179.9\,$MB.
+Fig.~\ref{fig:cumulative} presents the cumulative bundle delivery count over the $24$-hour simulation. CGR's curve flattens between $15{,}000\,$s and $25{,}000\,$s due to battery shutdowns. Both proposed baseline \ecgr{} and proposed predictive \pecgr{} deliver more data, but \pecgr{}'s curve rises faster, demonstrating higher throughput. By the end of the simulation, \pecgr{} delivers $1527.0 \pm 108.2\,$MB of data compared to CGR's $1410.7 \pm 179.9\,$MB.
 
 \begin{figure}[t]
     \centering
@@ -621,7 +621,7 @@ Fig.~\ref{fig:cumulative} presents the cumulative bundle delivery count over the
 \end{figure}
 
 \subsection{Drop Reason Analysis}
-Fig.~\ref{fig:drops} breaks down dropped bundles by cause. For CGR, the primary cause of bundle drops is transmission energy exhaustion at the SmallSat relay, followed by buffer overflows. Both \ecgr{} and \pecgr{} completely eliminate these drop causes. Under all three algorithms, some bundles are dropped at the source (rover) queue due to source buffer capacity limits during long occultations.
+Fig.~\ref{fig:drops} breaks down dropped bundles by cause. For CGR, the primary cause of bundle drops is transmission energy exhaustion at the SmallSat relay, followed by buffer overflows. Both proposed baseline \ecgr{} and proposed predictive \pecgr{} completely eliminate these drop causes. Under all three algorithms, some bundles are dropped at the source (rover) queue due to source buffer capacity limits during long occultations.
 
 \begin{figure}[t]
     \centering
@@ -640,7 +640,7 @@ Fig.~\ref{fig:dual_energy} compares the battery SoC profiles of the SmallSat rel
     \label{fig:dual_energy}
 \end{figure}
 
-Under standard \cgr{}, the SmallSat battery experiences repeated deep discharges. SOTA \ecgr{} and proposed \pecgr{} prevent these discharges. In \pecgr{}'s profile, the MRO battery SoC exhibits minor discharge cycles corresponding to the increased traffic volume routed through it during the SmallSat's low-energy phases. Because the MRO has a large $1120\,$Wh battery, this workload shift has a negligible impact on its power reserves, demonstrating \pecgr{}'s ability to load-balance traffic across heterogeneous relays based on their resource states.
+Under standard \cgr{}, the SmallSat battery experiences repeated deep discharges. Proposed baseline \ecgr{} and proposed predictive \pecgr{} prevent these discharges. In \pecgr{}'s profile, the MRO battery SoC exhibits minor discharge cycles corresponding to the increased traffic volume routed through it during the SmallSat's low-energy phases. Because the MRO has a large $1120\,$Wh battery, this workload shift has a negligible impact on its power reserves, demonstrating \pecgr{}'s ability to load-balance traffic across heterogeneous relays based on their resource states.
 
 \subsection{Computational Complexity and Flight Readiness}
 The additional computational overhead of \pecgr{} over standard CGR is minimal. The future energy prediction runs in $O(1)$ time by evaluating the charging integral analytically based on scheduled eclipse intervals. The local reservation registry requires searching the list of active bookings, which scales as $O(M)$ where $M$ is the number of booked bundles. Since $M < 100$ in realistic scenarios, the execution time is negligible. On flight-grade processors such as the RAD750, \pecgr{} requires less than $5\,$ms per route calculation, making it suitable for onboard implementation.
@@ -651,7 +651,7 @@ The additional computational overhead of \pecgr{} over standard CGR is minimal. 
 
 This paper presented \pecgr{}, a predictive, reservation-based Contact Graph Routing algorithm designed for resource-constrained space relay networks. By integrating orbital solar-charging predictions and a local energy booking registry into CGR, \pecgr{} prevents energy overbooking on SmallSat relays and load-balances traffic across heterogeneous relays.
 
-Discrete-event simulation of a Mars relay scenario demonstrates that \pecgr{} increases the bundle delivery ratio to $90.0 \pm 1.7\%$ (outperforming CGR's $83.7 \pm 8.9\%$ and SOTA \ecgr{}'s $88.9 \pm 1.9\%$) and reduces latency compared to both CGR and SOTA \ecgr{}. It achieves these performance gains while maintaining zero packet drops and keeping the SmallSat battery state of charge above critical thresholds.
+Discrete-event simulation of a Mars relay scenario demonstrates that \pecgr{} increases the bundle delivery ratio to $90.0 \pm 1.7\%$ (outperforming standard CGR's $83.7 \pm 8.9\%$ and the proposed baseline \ecgr{}'s $88.9 \pm 1.9\%$) and reduces latency compared to both standard CGR and the proposed baseline \ecgr{}. It achieves these performance gains while maintaining zero packet drops and keeping the SmallSat battery state of charge above critical thresholds.
 
 Future work will focus on integrating \pecgr{} with the JPL ION-DTN protocol stack for hardware-in-the-loop testing on flight-like processor boards, extending the formulation to handle multi-satellite constellations, and developing routing strategies for non-deterministic contacts caused by unpredicted link degradation.
 
