@@ -133,6 +133,8 @@ Energy-constrained routing has received less attention in the context of CGR. Al
 
 Machine learning and reinforcement learning approaches have been proposed for DTN routing (e.g., Dudukovich et al.~\cite{dudukovich2019dtn}). However, these algorithms require significant computational resources, making them unsuitable for radiation-hardened spacecraft processors, such as the RAD750 (operating at $133$--$200\,$MHz) or LEON3 processors, which have strict memory and CPU utilization limits. In contrast, our proposed \pecgr{} algorithm has low computational overhead and is backward-compatible with existing CGR systems.
 
+These fundamental limitations of existing routing frameworks highlight the urgent need for a new class of resource-aware routing algorithms tailored specifically for SmallSat relay networks. While traditional deep-space relays (e.g., flagship orbiters) possess highly robust power budgets and large buffers, SmallSat constellations are characterized by severe SWaP constraints, highly dynamic solar-charging profiles, and vulnerability to rapid battery depletion. Existing energy-blind or conservatively state-blind algorithms either risk complete relay shutdowns or severely underutilize the available orbital contacts. Therefore, a novel algorithm that integrates predictive solar energy modeling, active eclipse tracking, and a cooperative reservation-based booking mechanism is essential to guarantee network longevity, eliminate premature battery failures, and maximize overall data throughput in heterogeneous SmallSat relay architectures.
+
 % ====================================================================
 \section{System Model}
 \label{sec:system}
