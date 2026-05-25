@@ -32,7 +32,7 @@ plt.rcParams.update({
 })
 
 COLORS = {'cgr': '#7F7F7F', 'ecgr': '#FF7F0E', 'pecgr': '#1F77B4'}
-LABELS = {'cgr': 'Standard CGR', 'ecgr': 'ECGR', 'pecgr': 'Proposed P-ECGR'}
+LABELS = {'cgr': 'Standard CGR', 'ecgr': 'Proposed ECGR', 'pecgr': 'Proposed P-ECGR'}
 
 
 def _f(v):
@@ -168,7 +168,7 @@ def fig_drop_reasons(agg, out):
         ax.bar(1, ecgr_v, w, bottom=bottom_ecgr, color=cmap(i), edgecolor='white')
         ax.bar(2, pecgr_v, w, bottom=bottom_pecgr, color=cmap(i), edgecolor='white')
         bottom_cgr += cgr_v; bottom_ecgr += ecgr_v; bottom_pecgr += pecgr_v
-    ax.set_xticks([0,1,2]); ax.set_xticklabels(['Standard CGR','ECGR','Proposed P-ECGR'])
+    ax.set_xticks([0,1,2]); ax.set_xticklabels(['Standard CGR','Proposed ECGR','Proposed P-ECGR'])
     ax.set_ylabel('Average Dropped Bundles')
     ax.legend(loc='upper right', fontsize=6)
     fig.savefig(os.path.join(out, 'fig6_drop_reasons.pdf'))
@@ -302,9 +302,9 @@ def gen_table_results(agg, out):
         ('Data Delivered (MB)', 'data_delivered_mb', 1, 0),
     ]
 
-    tex = '\\begin{table*}[t]\n\\centering\n\\caption{Comparative Performance: CGR vs.\\ ECGR vs.\\ Proposed P-ECGR}\n'
+    tex = '\\begin{table*}[t]\n\\centering\n\\caption{Comparative Performance: CGR vs.\\ Proposed ECGR vs.\\ Proposed P-ECGR}\n'
     tex += '\\label{tab:results}\n\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lccc}\n\\hline\n'
-    tex += '\\textbf{Metric} & \\textbf{CGR} & \\textbf{ECGR} & \\textbf{Proposed P-ECGR} \\\\\n\\hline\n'
+    tex += '\\textbf{Metric} & \\textbf{CGR} & \\textbf{Proposed ECGR} & \\textbf{Proposed P-ECGR} \\\\\n\\hline\n'
     for label, key, scale, prec in rows:
         cgr_v = fmts('cgr', key, scale, prec)
         ecgr_v = fmts('ecgr', key, scale, prec)
@@ -324,7 +324,7 @@ def gen_table_priority(agg, out):
     tex += '\\label{tab:priority}\n\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lccc}\n\\hline\n'
     tex += '\\textbf{Algorithm} & \\textbf{Critical} & \\textbf{Normal} & \\textbf{Low} \\\\\n\\hline\n'
     for algo in ['cgr','ecgr','pecgr']:
-        name = 'CGR' if algo == 'cgr' else ('Baseline ECGR' if algo == 'ecgr' else 'Proposed P-ECGR')
+        name = 'CGR' if algo == 'cgr' else ('Proposed ECGR' if algo == 'ecgr' else 'Proposed P-ECGR')
         vals = []
         for p in [1,2,3]:
             k = f'priority_{p}_delivery_ratio'
