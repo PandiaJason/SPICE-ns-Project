@@ -1,46 +1,63 @@
-\documentclass[journal,twocolumn]{IEEEtran}
+\documentclass[a4paper,fleqn]{cas-dc}
 
+\usepackage[numbers]{natbib}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{algorithm}
-\usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
-\usepackage{cite}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{url}
-\usepackage{hyperref}
 \usepackage{subcaption}
-\usepackage{balance}
-
-\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 
 \newcommand{\ecgr}{\textsf{ECGR}}
 \newcommand{\cgr}{\textsf{CGR}}
 \newcommand{\pecgr}{\textsf{P-ECGR}}
 
 \begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
 
-\title{An Energy-Aware, Contact-Graph Routing Optimization Strategy for Heterogeneous Deep Space SmallSat Relays}
+\shorttitle{Energy-Aware Contact-Graph Routing for Heterogeneous Space Relays}
+\shortauthors{J. Pandian and I. Kala}
 
-\author{
-\IEEEauthorblockN{Jason Pandian}
-\thanks{Manuscript submitted for double-blind peer review. Primary correspondence may be directed to the submission portal.}
-}
+\title [mode = title]{An Energy-Aware, Contact-Graph Routing Optimization Strategy for Heterogeneous Deep Space SmallSat Relays}
 
-\maketitle
+\author[1]{Jason Pandian}[
+                        role=Researcher,
+                        orcid=0000-0002-3928-1039]
+\cormark[1]
+\ead{pandiajason@gmail.com}
+\credit{Conceptualization of this study, Methodology, Software, Writing - Original draft preparation}
 
-% ====================================================================
+\affiliation[1]{organization={Department of Information Technology, Nehru Institute of Technology},
+                city={Coimbatore}, 
+                state={Tamil Nadu},
+                country={India}}
+
+\author[2]{I. Kala}[
+                        role=Professor]
+\credit{Methodology, Software, Validation, Writing - Review \& Editing}
+
+\affiliation[2]{organization={Department of Computer Science and Engineering, Nehru Institute of Technology},
+                city={Coimbatore}, 
+                state={Tamil Nadu},
+                country={India}}
+
+\cortext[cor1]{Corresponding author}
+
 \begin{abstract}
 Contact Graph Routing (CGR) is the de facto standard for store-carry-forward routing in deep-space Delay-Tolerant Networks (DTN). While CGR leverages the deterministic predictability of orbital contact schedules, it implicitly assumes that relay nodes possess sufficient energy and storage to execute all scheduled transmissions. This assumption breaks down in heterogeneous networks containing resource-constrained SmallSats, where standard CGR drains relay batteries to critical levels, causing packet drops. State-of-the-Art Energy-Aware CGR (\ecgr{}) protects relay health but suffers from resource conservatism due to using instantaneous state metrics, yielding lower delivery ratios. This paper proposes \emph{Predictive Energy and Capacity-Aware Contact Graph Routing} (\pecgr{}), which introduces a future energy prediction model and a reservation-based energy booking registry. By tracking committed transmissions, \pecgr{} prevents energy overbooking and load-balances traffic across heterogeneous relays. We evaluate \pecgr{} via discrete-event simulation of a Mars relay network using contact plans from synthetic SPICE ephemeris data. Over 10 Monte Carlo runs, \pecgr{} maintains zero packet drops and keeps the SmallSat battery safe (spending $2.0 \pm 4.7\%$ of the time below $20\%$ SoC, compared to $8.5 \pm 13.2\%$ for CGR and $1.7 \pm 4.6\%$ for SOTA \ecgr{}), while increasing the bundle delivery ratio to $90.0 \pm 1.7\%$ (outperforming CGR's $83.7 \pm 8.9\%$ and SOTA \ecgr{}'s $88.9 \pm 1.9\%$), and reducing latency compared to both standard CGR and SOTA \ecgr{}. The proposed algorithm adds negligible computational overhead, making it suitable for flight-grade onboard processors.
 \end{abstract}
 
-\begin{IEEEkeywords}
-Delay-tolerant networking, contact graph routing, deep space communications, SmallSat, energy-aware routing, Mars relay network
-\end{IEEEkeywords}
+\begin{keywords}
+Delay-tolerant networking \sep Contact graph routing \sep Deep space communications \sep SmallSat \sep Energy-aware routing \sep Mars relay network
+\end{keywords}
 
-% ====================================================================
+\maketitle
+
 \section{Introduction}
 \label{sec:intro}
 
@@ -72,7 +89,7 @@ To protect relay node health, State-of-the-Art (SOTA) Energy-Aware CGR (\ecgr{})
 To overcome these limitations, this paper proposes \emph{Predictive Energy and Capacity-Aware Contact Graph Routing} (\pecgr{}). \pecgr{} integrates a future orbital solar-charging prediction model with a local reservation-based energy booking registry. The prediction model projects the relay's battery state forward to the start time of the future contact, taking into account predicted solar generation and eclipse periods. The energy-booking registry tracks committed transmissions, preventing energy overbooking. The contributions of this work are summarized as follows:
 \begin{itemize}
     \item We identify and formulate the \emph{energy overbooking} bottleneck in state-of-the-art energy-aware routing for heterogeneous space networks.
-    \textsf{\item} We propose \pecgr{}, a routing algorithm that incorporates future solar-charging predictions and a local energy booking registry to prevent energy overbooking and balance traffic load.
+    \item We propose \pecgr{}, a routing algorithm that incorporates future solar-charging predictions and a local energy booking registry to prevent energy overbooking and balance traffic load.
     \item We present a modular Python simulation framework that implements circular Keplerian orbit propagation, eclipse checks, and resource-constrained node models.
     \item We evaluate CGR, SOTA \ecgr{}, and the proposed \pecgr{} on a Mars relay scenario, demonstrating that \pecgr{} achieves higher delivery ratios and lower latencies than SOTA \ecgr{} while maintaining zero packet drops.
 \end{itemize}
@@ -116,7 +133,7 @@ We consider a four-node deep-space relay network modeling a realistic Mars explo
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/fig8_topology.pdf}
+    \includegraphics[width=\columnwidth]{figs/fig8_topology.pdf}
     \caption{Mars relay network topology showing the four-node scenario with link types and data rates. The SmallSat relay (Node~1) is the resource-constrained bottleneck.}
     \label{fig:topology}
 \end{figure}
@@ -162,7 +179,7 @@ Eclipses occur when Mars obstructs the line of sight between the satellite and t
 \begin{equation}
     P_{\text{cons}}(t) = P_{\text{idle}} + P_{\text{tx}} \cdot \mathbb{1}_{\text{tx}}(t) + P_{\text{rx}} \cdot \mathbb{1}_{\text{rx}}(t)
 \end{equation}
-where $P_{\text{idle}}$ is the baseline system power, $P_{\text{tx}}$ is the additional power consumed by the radio transmitter during active transmission, $P_{\text{rx}}$ is the power consumed by the receiver during active reception, and $\mathbb{1}_{\text{tx}}, \mathbb{1}_{\text{rx}} \in \{0, 1\}$ are indicators of transmission and reception activity.
+where $P_{\text{idle}} $ is the baseline system power, $P_{\text{tx}} $ is the additional power consumed by the radio transmitter during active transmission, $P_{\text{rx}} $ is the power consumed by the receiver during active reception, and $\mathbb{1}_{\text{tx}}, \mathbb{1}_{\text{rx}} \in \{0, 1\}$ are indicators of transmission and reception activity.
 
 The state of charge (SoC) is defined as:
 \begin{equation}
@@ -419,21 +436,42 @@ The link from MRO to DSN has a data rate of $2\,$Mbps, and MRO is well-provision
 \subsection{Simulation Parameters}
 The simulation parameters are summarized in Table~\ref{tab:params}.
 
-\input{../figures/table1_params}
+\begin{table}[t]
+\centering
+\caption{Simulation Parameters}
+\label{tab:params}
+\begin{tabular}{ll}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Simulation Duration & 86,400 s (24.0 h) \\
+SmallSat Battery & 16.0 Wh \\
+SmallSat Solar Power & 8.0 W (avg) \\
+SmallSat Buffer & 512 MB \\
+SmallSat Tx Power & 15.0 W \\
+MRO Battery & 1120.0 Wh \\
+MRO Buffer & 8192 MB \\
+Rover-SmallSat Rate & 2 Mbps (UHF) \\
+MRO-DSN Rate & 2 Mbps (X-band) \\
+Earth-Mars OWLT & ~750 s \\
+Monte Carlo Runs & 10 \\
+\hline
+\end{tabular}
+\end{table}
 
 \subsection{Monte Carlo Configuration}
 To obtain statistically significant results, we execute $10$ independent Monte Carlo runs. The orbital contact plan is kept identical across all runs (since orbits are deterministic), but the traffic generation seeds are varied deterministically as $42 + 17i$ for run $i$. This approach introduces variance in bundle creation times, sizes, and priority sequences.
-% --------------------------------------------------------------
+
 \subsection{Performance Evaluation Metrics}
 \label{sec:metrics}
-To quantify the behavior of the three routing schemes (\cgr{}, \ecgr{}, and \pecgr{}) we collect a set of complementary metrics that capture throughput, latency, reliability, and resource usage of the SmallSat relay.  All metrics are computed over the 10 Monte‑Carlo simulation runs and reported as mean $\pm$ one standard deviation.
+To quantify the behavior of the three routing schemes (\cgr{}, \ecgr{}, and \pecgr{}) we collect a set of complementary metrics that capture throughput, latency, reliability, and resource usage of the SmallSat relay. All metrics are computed over the 10 Monte‑Carlo simulation runs and reported as mean $\pm$ one standard deviation.
 \begin{itemize}
   \item \textbf{Bundle Delivery Ratio (BDR)} (\%):
         \begin{equation}
           \text{BDR}
           = \frac{N_{\text{delivered}}}{N_{\text{generated}}}\times 100,
         \end{equation}
-        where $N_{\text{generated}}$ is the total number of bundles injected into the network and $N_{\text{delivered}}$ is the number that reach the destination before the 24‑hour simulation deadline.  BDR directly measures the effectiveness of the routing algorithm in utilizing available contacts.
+        where $N_{\text{generated}}$ is the total number of bundles injected into the network and $N_{\text{delivered}}$ is the number that reach the destination before the 24‑hour simulation deadline. BDR directly measures the effectiveness of the routing algorithm in utilizing available contacts.
   \item \textbf{Average End‑to‑End Latency} (seconds):
         \begin{equation}
           \overline{L}
@@ -441,7 +479,7 @@ To quantify the behavior of the three routing schemes (\cgr{}, \ecgr{}, and \pec
             \sum_{i=1}^{N_{\text{delivered}}}
             \bigl(t^{\text{arrival}}_{i} - t^{\text{inject}}_{i}\bigr),
         \end{equation}
-        where $t^{\text{inject}}_{i}$ is the injection time of bundle $i$ and $t^{\text{arrival}}_{i}$ is the time it is received at the ground station.  This metric captures the timeliness of data delivery, which is critical for time‑sensitive telemetry and scientific payloads.
+        where $t^{\text{inject}}_{i}$ is the injection time of bundle $i$ and $t^{\text{arrival}}_{i}$ is the time it is received at the ground station. This metric captures the timeliness of data delivery, which is critical for time‑sensitive telemetry and scientific payloads.
   \item \textbf{95th‑percentile Latency} (seconds):
         The $95^{\text{th}}$ percentile of the latency distribution,
         \[
@@ -449,9 +487,9 @@ To quantify the behavior of the three routing schemes (\cgr{}, \ecgr{}, and \pec
         \]
         highlights worst‑case delivery delays experienced by a small fraction of bundles, providing insight into tail‑performance for high‑priority traffic.
   \item \textbf{Dropped Bundles} (count):
-        The number of bundles that are removed from the simulation due to either (i) \emph{energy exhaustion} (the SmallSat’s battery falls below the transmission threshold) or (ii) \emph{buffer overflow}.  This metric quantifies reliability loss resulting from resource constraints.
+        The number of bundles that are removed from the simulation due to either (i) \emph{energy exhaustion} (the SmallSat’s battery falls below the transmission threshold) or (ii) \emph{buffer overflow}. This metric quantifies reliability loss resulting from resource constraints.
   \item \textbf{SmallSat Minimum State‑of‑Charge (SoC)} (\%):
-        The lowest battery SoC observed on the SmallSat during a run.  It is a direct indicator of the routing algorithm’s impact on relay health.
+        The lowest battery SoC observed on the SmallSat during a run. It is a direct indicator of the routing algorithm’s impact on relay health.
   \item \textbf{Time Below Critical SoC} (\% of simulation time):
         \begin{equation}
           \text{Below}_{20\%}
@@ -459,19 +497,37 @@ To quantify the behavior of the three routing schemes (\cgr{}, \ecgr{}, and \pec
                  \mathbf{1}\bigl(\text{SoC}(t) < 20\%\bigr)\,dt}
                  {T}\times 100,
         \end{equation}
-        where $T$ is the total simulation horizon (24 h).  This metric captures how often the SmallSat operates in a vulnerable energy regime.
+        where $T$ is the total simulation horizon (24 h). This metric captures how often the SmallSat operates in a vulnerable energy regime.
   \item \textbf{Total Data Delivered} (MB):
-        The cumulative volume of payload data successfully transferred to the ground station, computed as the sum of the sizes of all delivered bundles.  It reflects the overall scientific return of each routing strategy.
+        The cumulative volume of payload data successfully transferred to the ground station, computed as the sum of the sizes of all delivered bundles. It reflects the overall scientific return of each routing strategy.
 \end{itemize}
-All metrics are aggregated across the ten runs, and the reported values in Table~\ref{tab:results} correspond to the mean $\pm$ one standard deviation.  Together, they provide a holistic view of throughput, timeliness, reliability, and energy sustainability for the heterogeneous deep‑space DTN under study.
-% --------------------------------------------------------------
+All metrics are aggregated across the ten runs, and the reported values in Table~\ref{tab:results} correspond to the mean $\pm$ one standard deviation. Together, they provide a holistic view of throughput, timeliness, reliability, and energy sustainability for the heterogeneous deep‑space DTN under study.
+
 % ====================================================================
 \section{Results and Discussion}
 \label{sec:results}
 
 This section discusses the performance of standard \cgr{}, SOTA \ecgr{}, and the proposed \pecgr{} algorithm based on the $10$ Monte Carlo runs. The aggregate results are summarized in Table~\ref{tab:results}.
 
-\input{../figures/table2_results}
+\begin{table*}[t]
+\centering
+\caption{Comparative Performance: CGR vs.\ SOTA ECGR vs.\ Proposed P-ECGR}
+\label{tab:results}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccc}
+\hline
+\textbf{Metric} & \textbf{CGR} & \textbf{SOTA ECGR} & \textbf{Proposed P-ECGR} \\
+\hline
+Bundle Delivery Ratio (\%) & 83.7 $\pm$ 8.9 & 88.9 $\pm$ 1.9 & 90.0 $\pm$ 1.7 \\
+Avg. Latency (s) & 5463 $\pm$ 466 & 5373 $\pm$ 518 & 5072 $\pm$ 230 \\
+95th-pct. Latency (s) & 11254 $\pm$ 2175 & 11179 $\pm$ 2193 & 9721 $\pm$ 1108 \\
+Dropped Bundles & 12.9 $\pm$ 19.3 & 0.0 $\pm$ 0.0 & 0.0 $\pm$ 0.0 \\
+SmallSat Min SoC (\%) & 35.0 $\pm$ 30.0 & 41.9 $\pm$ 24.2 & 39.3 $\pm$ 26.4 \\
+SmallSat Avg SoC (\%) & 71.2 $\pm$ 22.7 & 80.8 $\pm$ 13.8 & 79.0 $\pm$ 16.0 \\
+Time Below 20\% SoC (\%) & 8.5 $\pm$ 13.2 & 1.7 $\pm$ 4.6 & 2.0 $\pm$ 4.7 \\
+Data Delivered (MB) & 1411 $\pm$ 180 & 1525 $\pm$ 109 & 1527 $\pm$ 108 \\
+\hline
+\end{tabular*}
+\end{table*}
 
 \subsection{Bundle Delivery Performance}
 Standard \cgr{} achieves an overall delivery ratio of $83.7 \pm 8.9\%$ (Table~\ref{tab:results}). However, \cgr{} is resource-blind, routing bundles through the SmallSat relay regardless of its battery state. This drains the SmallSat battery to $0.0$, causing low-voltage node shutdowns that drop an average of $12.9 \pm 19.3$ bundles per run (Fig.~\ref{fig:drops}). 
@@ -483,13 +539,26 @@ Our proposed \pecgr{} resolves this conservatism. By predicting future solar cha
 \subsection{Delivery Ratio by Priority Class}
 Table~\ref{tab:priority} summarizes the BDR broken down by priority class, and Fig.~\ref{fig:delivery} shows the corresponding chart.
 
-\input{../figures/table3_priority}
+\begin{table}[t]
+\centering
+\caption{Per-Priority Bundle Delivery Ratio (\%)}
+\label{tab:priority}
+\begin{tabular}{lccc}
+\hline
+\textbf{Algorithm} & \textbf{Critical} & \textbf{Normal} & \textbf{Low} \\
+\hline
+CGR & 90.1 $\pm$ 4.9 & 79.8 $\pm$ 12.0 & 81.5 $\pm$ 11.4 \\
+SOTA ECGR & 91.7 $\pm$ 2.7 & 86.1 $\pm$ 3.6 & 88.3 $\pm$ 2.3 \\
+Proposed P-ECGR & 92.7 $\pm$ 1.0 & 86.1 $\pm$ 4.4 & 89.6 $\pm$ 2.7 \\
+\hline
+\end{tabular}
+\end{table}
 
 Under standard \cgr{}, critical telemetry (Priority 1) achieves $90.1 \pm 4.9\%$ delivery, but is affected by battery shutdowns at the SmallSat. SOTA \ecgr{} improves critical delivery to $91.7 \pm 2.7\%$. Proposed \pecgr{} achieves the highest critical delivery ratio ($92.7 \pm 1.0\%$), because its priority-adaptive cost function scales the delay weight $\alpha$ higher for critical data, prioritizing rapid delivery while protecting the energy resources needed for transmission.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/fig1_delivery_ratio.pdf}
+    \includegraphics[width=\columnwidth]{figs/fig1_delivery_ratio.pdf}
     \caption{Bundle delivery ratio by priority class. Error bars represent $\pm 1\sigma$ over 10 Monte Carlo runs.}
     \label{fig:delivery}
 \end{figure}
@@ -501,7 +570,7 @@ Both \ecgr{} and \pecgr{} keep the SmallSat battery safe, spending only $1.7 \pm
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/fig2_smallsat_soc.pdf}
+    \includegraphics[width=\columnwidth]{figs/fig2_smallsat_soc.pdf}
     \caption{SmallSat relay battery SoC over a 24-hour simulation period. \pecgr{} maintains battery health while maximizing relay utilization.}
     \label{fig:soc}
 \end{figure}
@@ -511,7 +580,7 @@ Fig.~\ref{fig:buffer} shows the SmallSat buffer utilization over time. Under sta
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/fig3_smallsat_buffer.pdf}
+    \includegraphics[width=\columnwidth]{figs/fig3_smallsat_buffer.pdf}
     \caption{SmallSat relay buffer utilization over time.}
     \label{fig:buffer}
 \end{figure}
@@ -521,7 +590,7 @@ The cumulative distribution function (CDF) of end-to-end latency for delivered b
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/fig4_latency_cdf.pdf}
+    \includegraphics[width=\columnwidth]{figs/fig4_latency_cdf.pdf}
     \caption{Cumulative distribution function (CDF) of end-to-end latency for delivered bundles.}
     \label{fig:latency}
 \end{figure}
@@ -531,7 +600,7 @@ Fig.~\ref{fig:cumulative} presents the cumulative bundle delivery count over the
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/fig5_cumulative_delivery.pdf}
+    \includegraphics[width=\columnwidth]{figs/fig5_cumulative_delivery.pdf}
     \caption{Cumulative bundles delivered over 24-hour simulation.}
     \label{fig:cumulative}
 \end{figure}
@@ -541,7 +610,7 @@ Fig.~\ref{fig:drops} breaks down dropped bundles by cause. For CGR, the primary 
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/fig6_drop_reasons.pdf}
+    \includegraphics[width=\columnwidth]{figs/fig6_drop_reasons.pdf}
     \caption{Average dropped bundles by failure cause.}
     \label{fig:drops}
 \end{figure}
@@ -551,7 +620,7 @@ Fig.~\ref{fig:dual_energy} compares the battery SoC profiles of the SmallSat rel
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/fig7_dual_energy.pdf}
+    \includegraphics[width=\columnwidth]{figs/fig7_dual_energy.pdf}
     \caption{Battery SoC comparison for SmallSat relay and MRO. \pecgr{} shifts relay workload to MRO, preserving SmallSat health.}
     \label{fig:dual_energy}
 \end{figure}
@@ -571,12 +640,10 @@ Discrete-event simulation of a Mars relay scenario demonstrates that \pecgr{} in
 
 Future work will focus on integrating \pecgr{} with the JPL ION-DTN protocol stack for hardware-in-the-loop testing on flight-like processor boards, extending the formulation to handle multi-satellite constellations, and developing routing strategies for non-deterministic contacts caused by unpredicted link degradation.
 
-% ====================================================================
 \section*{Acknowledgment}
 The authors thank NASA JPL for making the ION-DTN implementation and SPICE toolkit publicly available.
 
-\balance
-\bibliographystyle{IEEEtran}
+\bibliographystyle{cas-model2-names}
 \bibliography{references}
 
 \end{document}
