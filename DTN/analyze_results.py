@@ -319,12 +319,12 @@ def gen_table_results(agg, out):
 # ── Table III: Per-Priority Results ──────────────────────────────────────
 def gen_table_priority(agg, out):
     s = agg['aggregate_statistics']
-    tex = '\\begin{table}[t]\n\\centering\n'
+    tex = '\\begin{table*}[t]\n\\centering\n'
     tex += '\\caption{Per-Priority Bundle Delivery Ratio (\\%)}\n'
-    tex += '\\label{tab:priority}\n\\begin{tabular}{lccc}\n\\hline\n'
+    tex += '\\label{tab:priority}\n\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lccc}\n\\hline\n'
     tex += '\\textbf{Algorithm} & \\textbf{Critical} & \\textbf{Normal} & \\textbf{Low} \\\\\n\\hline\n'
     for algo in ['cgr','ecgr','pecgr']:
-        name = 'CGR' if algo == 'cgr' else ('ECGR' if algo == 'ecgr' else 'Proposed P-ECGR')
+        name = 'CGR' if algo == 'cgr' else ('Baseline ECGR' if algo == 'ecgr' else 'Proposed P-ECGR')
         vals = []
         for p in [1,2,3]:
             k = f'priority_{p}_delivery_ratio'
@@ -332,7 +332,7 @@ def gen_table_priority(agg, out):
             sd = s[algo][k]['std']*100
             vals.append(f'{m:.1f} $\\pm$ {sd:.1f}')
         tex += f'{name} & {vals[0]} & {vals[1]} & {vals[2]} \\\\\n'
-    tex += '\\hline\n\\end{tabular}\n\\end{table}\n'
+    tex += '\\hline\n\\end{tabular*}\n\\end{table*}\n'
     with open(os.path.join(out, 'table3_priority.tex'), 'w') as f:
         f.write(tex)
     print('  ✓ Table III: Priority')
