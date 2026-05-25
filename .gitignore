@@ -5,3 +5,6 @@ Publicatons/
 .ipynb_checkpoints/
 
 # ns-3 source (too large for GitHub)
+
+# Ignore compiled manuscript PDF
+/DTN/paper/els.pdf
