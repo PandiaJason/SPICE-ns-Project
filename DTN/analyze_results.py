@@ -303,7 +303,7 @@ def gen_table_results(agg, out):
     ]
 
     tex = '\\begin{table*}[t]\n\\centering\n\\caption{Comparative Performance: CGR vs.\\ Proposed ECGR vs.\\ Proposed P-ECGR}\n'
-    tex += '\\label{tab:results}\n\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lccc}\n\\hline\n'
+    tex += '\\label{tab:results}\n\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}llll}\n\\hline\n'
     tex += '\\textbf{Metric} & \\textbf{CGR} & \\textbf{Proposed ECGR} & \\textbf{Proposed P-ECGR} \\\\\n\\hline\n'
     for label, key, scale, prec in rows:
         cgr_v = fmts('cgr', key, scale, prec)
@@ -321,7 +321,7 @@ def gen_table_priority(agg, out):
     s = agg['aggregate_statistics']
     tex = '\\begin{table*}[t]\n\\centering\n'
     tex += '\\caption{Per-Priority Bundle Delivery Ratio (\\%)}\n'
-    tex += '\\label{tab:priority}\n\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lccc}\n\\hline\n'
+    tex += '\\label{tab:priority}\n\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}llll}\n\\hline\n'
     tex += '\\textbf{Algorithm} & \\textbf{Critical} & \\textbf{Normal} & \\textbf{Low} \\\\\n\\hline\n'
     for algo in ['cgr','ecgr','pecgr']:
         name = 'CGR' if algo == 'cgr' else ('Proposed ECGR' if algo == 'ecgr' else 'Proposed P-ECGR')
