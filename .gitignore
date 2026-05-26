@@ -6,5 +6,6 @@ Publicatons/
 
 # ns-3 source (too large for GitHub)
 
-# Ignore compiled manuscript PDF
+# Ignore compiled manuscript PDFs
 /DTN/paper/els.pdf
+/DTN/paper/manuscript-Anonymized.pdf
