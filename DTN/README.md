@@ -108,9 +108,9 @@ The quantitative results below represent the average metrics across 10 Monte Car
 | **Proposed P-ECGR** | **$\mathbf{92.7 \pm 1.0}$** | **$\mathbf{86.1 \pm 4.4}$** | **$\mathbf{89.6 \pm 2.7}$** |
 
 ### Key Takeaways:
-*   **Zero Drop Guarantee:** Both ECGR and P-ECGR guarantee **zero packet drops** due to resource exhaustion, unlike CGR which averages $\approx 13$ drops per scenario.
-*   **Throughput & Latency Gains:** P-ECGR improves bundle delivery ratios to **$90.0\%$** and reduces delivery latencies by **$7\%$** compared to standard CGR by load-balancing bundles across alternative orbits when energy levels permit.
-*   **Operational Readiness:** Executing in under **$5\,$ms** per routing calculation on simulated RAD750 hardware, P-ECGR adds negligible computational load, rendering it fit for flight software deployment.
+*   **Zero Drop Guarantee:** Both ECGR and P-ECGR guarantee **zero packet drops** due to resource exhaustion, unlike CGR which averages **~13 drops** per scenario.
+*   **Throughput & Latency Gains:** P-ECGR improves bundle delivery ratios to **90.0%** and reduces delivery latencies by **7%** compared to standard CGR by load-balancing bundles across alternative orbits when energy levels permit.
+*   **Operational Readiness:** Executing in under **5 ms** per routing calculation on simulated RAD750 hardware, P-ECGR adds negligible computational load, rendering it fit for flight software deployment.
 
 ---
 
