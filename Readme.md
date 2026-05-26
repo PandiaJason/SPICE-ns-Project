@@ -77,3 +77,24 @@ In the future, we plan to incrementally implement other aspects necessary to sim
 
 As a first step, we have successfully implemented a mobility model, propagation models for SPICE-ns, and the proposal has been presented in WNS3 2024, Spain and ICNS-3 2025, Japan. This represents the PhD proposal of Jason Pandian, the maintainer of this repository and project.
 
+---
+
+## 🚀 Latest Development: DTN Routing Simulation & Physical Communication Submission
+
+We have successfully finalized and structured the complete technical package and double-anonymized manuscripts for our research paper:
+**"Predictive Energy-Aware Contact Graph Routing for SmallSat Relay Networks"**
+submitted to the journal **Physical Communication** (Elsevier).
+
+The complete simulation engine, routing logic, data post-processing tools, and LaTeX manuscript bundles are located in the **[`DTN/`](./DTN/)** directory.
+
+### 🌟 Key Highlights of the DTN Module:
+*   **P-ECGR & ECGR Routing Logic:** Two novel, resource-aware routing algorithms that protect relay battery health and achieve **zero packet drops** under strict energy constraints.
+*   **Planetary Relay Constellation Simulator:** Discrete-event simulation of a Mars-Earth DTN relay network (Rover $\to$ SmallSat $\to$ MRO $\to$ DSN Earth) using planetary ephemeris contacts.
+*   **Submission-Ready LaTeX Bundle:**
+    *   **Double-Anonymized Manuscript ([`paper/anonymized_manuscript/`](./DTN/paper/anonymized_manuscript/)):** Review-ready version with embedded results tables, flat figure files, and a pre-compiled `.bbl` bibliography file.
+    *   **De-Anonymized Manuscript ([`paper/manuscript/`](./DTN/paper/manuscript/)):** Complete manuscript including full author details, acknowledgments, funding sources, and biography sections.
+    *   **Official Cover Letter \& Title Page ([`paper/`](./DTN/paper/)):** Formal letter to the Editor-in-Chief, signature files, declarations, and full corresponding author contact registry (including telephone, e-mail, and ORCID).
+
+For quick setup, execution of Monte Carlo simulations, plotting pipelines, and LaTeX compilation, please follow the dedicated **[DTN README](./DTN/README.md)**.
+
+
