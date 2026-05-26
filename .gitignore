@@ -27,3 +27,33 @@ DTN/paper/
 *.fdb_latexmk
 *.synctex.gz
 
+# Python caching and environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Local simulation outputs and intermediate analysis plots
+DTN/results/
+DTN/figures/
+
+# Local archives and backups
+*.zip
+*.tar.gz
+*.gz
+*.tgz
+*.rar
+*.7z
+
+# Local temporary/scratch folders
+/scratch/
+/ns-3.47/DS-SpiceMobilityModel/JUSC.pdf
+/ns-3.47/DS-SpiceMobilityModel/Publishing_Agreement.pdf
+/ns-3.47/DS-SpiceMobilityModel/cover_letter.pdf
+/ns-3.47/DS-SpiceMobilityModel/production_Manuscript_file*/
+/ns-3.47/DS-SpiceMobilityModel/New/
+
+
