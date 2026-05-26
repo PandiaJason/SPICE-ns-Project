@@ -12,3 +12,16 @@ Publicatons/
 /DTN/paper/Anonymized_manuscript/anonymized_manuscript.pdf
 /DTN/paper/manuscript/manuscript.pdf
 /DTN/paper/cover_letter.pdf
+
+# Ignore LaTeX auxiliary files
+*.aux
+*.abs
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
