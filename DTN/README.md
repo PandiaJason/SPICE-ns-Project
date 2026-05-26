@@ -1,5 +1,7 @@
 # Predictive Energy-Aware Contact Graph Routing for SmallSat Relay Networks
 
+<img width="2752" height="1536" alt="P-ECGR_Deep_Space_Routing_Solution" src="https://github.com/user-attachments/assets/908ed8dd-ceb4-4797-9756-546914f69ccb" />
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Tectonic](https://img.shields.io/badge/Tectonic-LaTeX-blue.svg)](https://tectonic-typesetting.github.io/en-US/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
