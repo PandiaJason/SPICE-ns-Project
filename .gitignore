@@ -39,7 +39,6 @@ ENV/
 
 # Local simulation outputs and intermediate analysis plots
 DTN/results/
-DTN/figures/
 
 # Local archives and backups
 *.zip
