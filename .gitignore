@@ -12,6 +12,7 @@ Publicatons/
 /DTN/paper/Anonymized_manuscript/anonymized_manuscript.pdf
 /DTN/paper/manuscript/manuscript.pdf
 /DTN/paper/cover_letter.pdf
+/DTN/paper/title_page.pdf
 
 # Ignore LaTeX auxiliary files
 *.aux
