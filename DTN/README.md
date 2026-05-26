@@ -32,8 +32,6 @@ DTN/
 │   ├── routing.py            # Routing implementations (CGR, ECGR, P-ECGR)
 │   └── simulator.py          # Discrete-time simulation execution engine
 ├── results/                  # Simulation outputs (JSON + .ionrc schedules)
-├── scratch/                  # Reorganized experimental scratch python scripts
-│   └── scratch_*.py          # Standalone routing development scripts
 ├── run_simulation.py         # Entry point: Execute Monte Carlo simulations
 ├── analyze_results.py        # Post-processing: Generate IEEE/Elsevier-quality tables/plots
 ├── requirements.txt          # Python dependencies

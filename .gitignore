@@ -1,6 +1,7 @@
 # Ignore  publication files or directories
 Publicatons/
 DTN/paper/
+DTN/scratch/
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
