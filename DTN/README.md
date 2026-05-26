@@ -32,20 +32,10 @@ DTN/
 │   ├── routing.py            # Routing implementations (CGR, ECGR, P-ECGR)
 │   └── simulator.py          # Discrete-time simulation execution engine
 ├── results/                  # Simulation outputs (JSON + .ionrc schedules)
+├── figures/                  # Pre-rendered, publication-grade figures (PDF & PNG) and results tables
 ├── run_simulation.py         # Entry point: Execute Monte Carlo simulations
 ├── analyze_results.py        # Post-processing: Generate IEEE/Elsevier-quality tables/plots
-├── requirements.txt          # Python dependencies
-└── paper/                    # Publishing and LaTeX source files
-    ├── els.tex               # Original Elsevier cas-dc publication source
-    ├── references.bib        # Comprehensive bibliography database
-    ├── cover_letter.tex      # LaTeX cover letter for Physical Communication
-    ├── title_page.tex        # LaTeX title page with authors & affiliations
-    ├── manuscript/           # Standalone directory: Original version (with names & bios)
-    │   ├── manuscript.tex    # Standalone LaTeX file (with compiled bibliography .bbl)
-    │   └── figs/             # Full figures including author bios
-    └── anonymized_manuscript/ # Standalone directory: De-identified review-ready version (flat)
-        ├── anonymized_manuscript.tex # Blind review LaTeX file (with compiled bibliography .bbl)
-        └── *.pdf, *.png      # Flat figures folder directly in the source directory
+└── requirements.txt          # Python dependencies
 ```
 
 ---
@@ -83,30 +73,10 @@ Extract metrics, output LaTeX tabular data, and generate high-fidelity plots for
 python3 analyze_results.py
 ```
 
-This compiles:
-*   **Figures 1–8** (PDF and PNG formats) representing bundle delivery profiles, State of Charge (SoC) timelines, and delay cumulative distribution functions (CDFs) saved to the respective `figs/` directories.
-*   **Tables I–III** representing network properties and routing results.
+This compiles and saves the final publication artifacts directly to the `figures/` directory:
+*   **Figures 1–8** (PDF and PNG formats) representing bundle delivery profiles, State of Charge (SoC) timelines, network topology, drop reasons, and latency CDFs.
+*   **Tables I–III** representing simulation parameters, routing comparative results, and per-priority statistics.
 
-### 4. Compile LaTeX Manuscripts
-
-We compile LaTeX sources using the modern [Tectonic](https://tectonic-typesetting.github.io/en-US/) compiler (using the `-k` flag to preserve compiled `.bbl` bibliography files for submission):
-
-```bash
-# Compile the non-anonymized manuscript (keeps manuscript.bbl)
-cd paper/manuscript
-tectonic -k manuscript.tex
-
-# Compile the double-anonymized review manuscript (keeps anonymized_manuscript.bbl)
-cd ../anonymized_manuscript
-tectonic -k anonymized_manuscript.tex
-
-# Compile the submission cover letter
-cd ..
-tectonic cover_letter.tex
-
-# Compile the submission title page
-tectonic title_page.tex
-```
 
 ---
 
