@@ -34,7 +34,7 @@ Contact Graph Routing (CGR) is the de facto standard for store-carry-forward rou
 
 \begin{graphicalabstract}
   \centering
-  \includegraphics[width=\textwidth]{figs/Energy-Aware_Satellite_Routing.png}
+  \includegraphics[width=\textwidth]{Energy-Aware_Satellite_Routing.png}
 \end{graphicalabstract}
 
 \begin{highlights}
@@ -128,7 +128,7 @@ We consider a four-node deep-space relay network modeling a realistic Mars explo
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figs/fig8_topology.pdf}
+    \includegraphics[width=\columnwidth]{fig8_topology.pdf}
     \caption{Mars relay network topology showing the four-node scenario with link types and data rates. The SmallSat relay (Node~1) is the resource-constrained bottleneck.}
     \label{fig:topology}
 \end{figure}
@@ -459,32 +459,32 @@ To obtain statistically significant results, we execute $10$ independent Monte C
 
 \subsection{Performance Evaluation Metrics}
 \label{sec:metrics}
-To quantify the behavior of the three routing schemes (\cgr{}, \ecgr{}, and \pecgr{}) we collect a set of complementary metrics that capture throughput, latency, reliability, and resource usage of the SmallSat relay. All metrics are computed over the 10 Monte‑Carlo simulation runs and reported as mean $\pm$ one standard deviation.
+To quantify the behavior of the three routing schemes (\cgr{}, \ecgr{}, and \pecgr{}) we collect a set of complementary metrics that capture throughput, latency, reliability, and resource usage of the SmallSat relay. All metrics are computed over the 10 Monte-Carlo simulation runs and reported as mean $\pm$ one standard deviation.
 \begin{itemize}
   \item \textbf{Bundle Delivery Ratio (BDR)} (\%):
         \begin{equation}
           \text{BDR}
           = \frac{N_{\text{delivered}}}{N_{\text{generated}}}\times 100,
         \end{equation}
-        where $N_{\text{generated}}$ is the total number of bundles injected into the network and $N_{\text{delivered}}$ is the number that reach the destination before the 24‑hour simulation deadline. BDR directly measures the effectiveness of the routing algorithm in utilizing available contacts.
-  \item \textbf{Average End‑to‑End Latency} (seconds):
+        where $N_{\text{generated}}$ is the total number of bundles injected into the network and $N_{\text{delivered}}$ is the number that reach the destination before the 24-hour simulation deadline. BDR directly measures the effectiveness of the routing algorithm in utilizing available contacts.
+  \item \textbf{Average End-to-End Latency} (seconds):
         \begin{equation}
           \overline{L}
           = \frac{1}{N_{\text{delivered}}}
             \sum_{i=1}^{N_{\text{delivered}}}
             \bigl(t^{\text{arrival}}_{i} - t^{\text{inject}}_{i}\bigr),
         \end{equation}
-        where $t^{\text{inject}}_{i}$ is the injection time of bundle $i$ and $t^{\text{arrival}}_{i}$ is the time it is received at the ground station. This metric captures the timeliness of data delivery, which is critical for time‑sensitive telemetry and scientific payloads.
-  \item \textbf{95th‑percentile Latency} (seconds):
+        where $t^{\text{inject}}_{i}$ is the injection time of bundle $i$ and $t^{\text{arrival}}_{i}$ is the time it is received at the ground station. This metric captures the timeliness of data delivery, which is critical for time-sensitive telemetry and scientific payloads.
+  \item \textbf{95th-percentile Latency} (seconds):
         The $95^{\text{th}}$ percentile of the latency distribution,
         \[
           L_{95} = \text{percentile}_{0.95}\bigl\{t^{\text{arrival}}_{i} - t^{\text{inject}}_{i}\bigr\},
         \]
-        highlights worst‑case delivery delays experienced by a small fraction of bundles, providing insight into tail‑performance for high‑priority traffic.
+        highlights worst-case delivery delays experienced by a small fraction of bundles, providing insight into tail-performance for high-priority traffic.
   \item \textbf{Dropped Bundles} (count):
-        The number of bundles that are removed from the simulation due to either (i) \emph{energy exhaustion} (the SmallSat’s battery falls below the transmission threshold) or (ii) \emph{buffer overflow}. This metric quantifies reliability loss resulting from resource constraints.
-  \item \textbf{SmallSat Minimum State‑of‑Charge (SoC)} (\%):
-        The lowest battery SoC observed on the SmallSat during a run. It is a direct indicator of the routing algorithm’s impact on relay health.
+        The number of bundles that are removed from the simulation due to either (i) \emph{energy exhaustion} (the SmallSat's battery falls below the transmission threshold) or (ii) \emph{buffer overflow}. This metric quantifies reliability loss resulting from resource constraints.
+  \item \textbf{SmallSat Minimum State-of-Charge (SoC)} (\%):
+        The lowest battery SoC observed on the SmallSat during a run. It is a direct indicator of the routing algorithm's impact on relay health.
   \item \textbf{Time Below Critical SoC} (\% of simulation time):
         \begin{equation}
           \text{Below}_{20\%}
@@ -492,11 +492,11 @@ To quantify the behavior of the three routing schemes (\cgr{}, \ecgr{}, and \pec
                  \mathbf{1}\bigl(\text{SoC}(t) < 20\%\bigr)\,dt}
                  {T}\times 100,
         \end{equation}
-        where $T$ is the total simulation horizon (24 h). This metric captures how often the SmallSat operates in a vulnerable energy regime.
+        where $T$ is the total simulation horizon (24 h). This metric captures how often the SmallSat operates in a vulnerable energy regime.
   \item \textbf{Total Data Delivered} (MB):
         The cumulative volume of payload data successfully transferred to the ground station, computed as the sum of the sizes of all delivered bundles. It reflects the overall scientific return of each routing strategy.
 \end{itemize}
-All metrics are aggregated across the ten runs, and the reported values in Table~\ref{tab:results} correspond to the mean $\pm$ one standard deviation. Together, they provide a holistic view of throughput, timeliness, reliability, and energy sustainability for the heterogeneous deep‑space DTN under study.
+All metrics are aggregated across the ten runs, and the reported values in Table~\ref{tab:results} correspond to the mean $\pm$ one standard deviation. Together, they provide a holistic view of throughput, timeliness, reliability, and energy sustainability for the heterogeneous deep-space DTN under study.
 
 % ====================================================================
 \section{Results and Discussion}
@@ -553,7 +553,7 @@ Under standard \cgr{}, critical telemetry (Priority 1) achieves $90.1 \pm 4.9\%$
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figs/fig1_delivery_ratio.pdf}
+    \includegraphics[width=\columnwidth]{fig1_delivery_ratio.pdf}
     \caption{Bundle delivery ratio by priority class. Error bars represent $\pm 1\sigma$ over 10 Monte Carlo runs.}
     \label{fig:delivery}
 \end{figure}
@@ -565,7 +565,7 @@ Both proposed \ecgr{} and proposed \pecgr{} keep the SmallSat battery safe, spen
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figs/fig2_smallsat_soc.pdf}
+    \includegraphics[width=\columnwidth]{fig2_smallsat_soc.pdf}
     \caption{SmallSat relay battery SoC over a 24-hour simulation period. \pecgr{} maintains battery health while maximizing relay utilization.}
     \label{fig:soc}
 \end{figure}
@@ -575,7 +575,7 @@ Fig.~\ref{fig:buffer} shows the SmallSat buffer utilization over time. Under sta
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figs/fig3_smallsat_buffer.pdf}
+    \includegraphics[width=\columnwidth]{fig3_smallsat_buffer.pdf}
     \caption{SmallSat relay buffer utilization over time.}
     \label{fig:buffer}
 \end{figure}
@@ -585,7 +585,7 @@ The cumulative distribution function (CDF) of end-to-end latency for delivered b
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figs/fig4_latency_cdf.pdf}
+    \includegraphics[width=\columnwidth]{fig4_latency_cdf.pdf}
     \caption{Cumulative distribution function (CDF) of end-to-end latency for delivered bundles.}
     \label{fig:latency}
 \end{figure}
@@ -595,7 +595,7 @@ Fig.~\ref{fig:cumulative} presents the cumulative bundle delivery count over the
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figs/fig5_cumulative_delivery.pdf}
+    \includegraphics[width=\columnwidth]{fig5_cumulative_delivery.pdf}
     \caption{Cumulative bundles delivered over 24-hour simulation.}
     \label{fig:cumulative}
 \end{figure}
@@ -605,7 +605,7 @@ Fig.~\ref{fig:drops} breaks down dropped bundles by cause. For CGR, the primary 
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figs/fig6_drop_reasons.pdf}
+    \includegraphics[width=\columnwidth]{fig6_drop_reasons.pdf}
     \caption{Average dropped bundles by failure cause.}
     \label{fig:drops}
 \end{figure}
@@ -615,7 +615,7 @@ Fig.~\ref{fig:dual_energy} compares the battery SoC profiles of the SmallSat rel
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figs/fig7_dual_energy.pdf}
+    \includegraphics[width=\columnwidth]{fig7_dual_energy.pdf}
     \caption{Battery SoC comparison for SmallSat relay and MRO. \pecgr{} shifts relay workload to MRO, preserving SmallSat health.}
     \label{fig:dual_energy}
 \end{figure}
