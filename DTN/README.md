@@ -32,6 +32,8 @@ DTN/
 │   ├── routing.py            # Routing implementations (CGR, ECGR, P-ECGR)
 │   └── simulator.py          # Discrete-time simulation execution engine
 ├── results/                  # Simulation outputs (JSON + .ionrc schedules)
+├── scratch/                  # Reorganized experimental scratch python scripts
+│   └── scratch_*.py          # Standalone routing development scripts
 ├── run_simulation.py         # Entry point: Execute Monte Carlo simulations
 ├── analyze_results.py        # Post-processing: Generate IEEE/Elsevier-quality tables/plots
 ├── requirements.txt          # Python dependencies
@@ -39,12 +41,13 @@ DTN/
     ├── els.tex               # Original Elsevier cas-dc publication source
     ├── references.bib        # Comprehensive bibliography database
     ├── cover_letter.tex      # LaTeX cover letter for Physical Communication
+    ├── title_page.tex        # LaTeX title page with authors & affiliations
     ├── manuscript/           # Standalone directory: Original version (with names & bios)
-    │   ├── manuscript.tex    # Standalone LaTeX file
+    │   ├── manuscript.tex    # Standalone LaTeX file (with compiled bibliography .bbl)
     │   └── figs/             # Full figures including author bios
-    └── anonymized_manuscript/ # Standalone directory: De-identified review-ready version
-        ├── anonymized_manuscript.tex # Blind review LaTeX file
-        └── figs/             # Anonymous figures and results tables
+    └── anonymized_manuscript/ # Standalone directory: De-identified review-ready version (flat)
+        ├── anonymized_manuscript.tex # Blind review LaTeX file (with compiled bibliography .bbl)
+        └── *.pdf, *.png      # Flat figures folder directly in the source directory
 ```
 
 ---
@@ -88,20 +91,23 @@ This compiles:
 
 ### 4. Compile LaTeX Manuscripts
 
-We compile LaTeX sources using the modern [Tectonic](https://tectonic-typesetting.github.io/en-US/) compiler:
+We compile LaTeX sources using the modern [Tectonic](https://tectonic-typesetting.github.io/en-US/) compiler (using the `-k` flag to preserve compiled `.bbl` bibliography files for submission):
 
 ```bash
-# Compile the non-anonymized manuscript
+# Compile the non-anonymized manuscript (keeps manuscript.bbl)
 cd paper/manuscript
-tectonic manuscript.tex
+tectonic -k manuscript.tex
 
-# Compile the double-anonymized review manuscript
+# Compile the double-anonymized review manuscript (keeps anonymized_manuscript.bbl)
 cd ../anonymized_manuscript
-tectonic anonymized_manuscript.tex
+tectonic -k anonymized_manuscript.tex
 
 # Compile the submission cover letter
 cd ..
 tectonic cover_letter.tex
+
+# Compile the submission title page
+tectonic title_page.tex
 ```
 
 ---
