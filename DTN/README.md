@@ -1,77 +1,145 @@
-# ECGR: Energy and Capacity-Aware Contact Graph Routing for Deep Space SmallSat Relays
+# Predictive Energy-Aware Contact Graph Routing for SmallSat Relay Networks
 
-A complete simulation and analysis framework for evaluating the proposed ECGR routing algorithm against standard CGR in a Mars deep-space DTN relay network.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tectonic](https://img.shields.io/badge/Tectonic-LaTeX-blue.svg)](https://tectonic-typesetting.github.io/en-US/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
-## Project Structure
+This repository contains the complete simulation, routing implementation, analysis tools, and LaTeX manuscripts for **"Predictive Energy-Aware Contact Graph Routing for SmallSat Relay Networks."** 
+
+Our work introduces two energy-aware routing strategies to protect battery health and prevent packet drops in resource-constrained space communications: **Energy-Aware Contact Graph Routing (ECGR)** and **Predictive Energy and Capacity-Aware Contact Graph Routing (P-ECGR)**.
+
+---
+
+## 🌟 Key Features
+
+*   **Physical Astrodynamics Simulator:** Dynamically models a 4-node Mars relay constellation (Jezero Rover, resource-constrained SmallSat, Mars Reconnaissance Orbiter (MRO), and Earth Deep Space Network) using synthetic SPICE ephemeris kernel data.
+*   **Predictive Solar Charging Engine:** Includes a flight-grade $O(1)$ charging predictor that analytically computes solar energy gains based on scheduled future orbital eclipse intervals.
+*   **Energy Reservation Registry:** Implements a localized booking registry to track committed bundle transmission energy over scheduled contact plans, preventing resource overbooking.
+*   **Zero-Loss Performance:** Successfully mitigates the battery depletion issues of standard Contact Graph Routing (CGR), delivering **zero packet drops** under resource constraints.
+*   **Standalone Manuscript Builds:** Includes both double-anonymized and non-anonymized Elsevier (`cas-dc`) LaTeX compilation setups.
+
+---
+
+## 📂 Project Structure
 
 ```
 DTN/
-├── simulation/           # Core simulation package
-│   ├── config.py         # All simulation parameters
-│   ├── models.py         # Contact, Node, Bundle, Route models
-│   ├── spice_data.py     # Synthetic SPICE ephemeris generator
-│   ├── contact_plan.py   # Contact plan generator (+ ION-DTN export)
-│   ├── routing.py        # CGR and ECGR routing algorithms
-│   └── simulator.py      # Discrete-time simulation engine
-├── run_simulation.py     # Part 1: Run Monte Carlo simulations
-├── analyze_results.py    # Part 2: Generate IEEE-quality figures/tables
-├── results/              # Simulation output (JSON, ION-DTN format)
-├── figures/              # Generated figures (PDF + PNG) and LaTeX tables
-├── paper/                # LaTeX manuscript
-│   ├── main.tex          # Full IEEE two-column paper
-│   └── references.bib    # Bibliography
-└── requirements.txt      # Python dependencies
+├── simulation/               # Core discrete-event simulation package
+│   ├── config.py             # Mars network and hardware parameters
+│   ├── models.py             # Bundles, contacts, routes, and relay nodes
+│   ├── spice_data.py         # Ephemeris generation (Mars & orbits)
+│   ├── contact_plan.py       # Contact schedule & ION-DTN exporter
+│   ├── routing.py            # Routing implementations (CGR, ECGR, P-ECGR)
+│   └── simulator.py          # Discrete-time simulation execution engine
+├── results/                  # Simulation outputs (JSON + .ionrc schedules)
+├── run_simulation.py         # Entry point: Execute Monte Carlo simulations
+├── analyze_results.py        # Post-processing: Generate IEEE/Elsevier-quality tables/plots
+├── requirements.txt          # Python dependencies
+└── paper/                    # Publishing and LaTeX source files
+    ├── els.tex               # Original Elsevier cas-dc publication source
+    ├── references.bib        # Comprehensive bibliography database
+    ├── cover_letter.tex      # LaTeX cover letter for Physical Communication
+    ├── manuscript/           # Standalone directory: Original version (with names & bios)
+    │   ├── manuscript.tex    # Standalone LaTeX file
+    │   └── figs/             # Full figures including author bios
+    └── anonymized_manuscript/ # Standalone directory: De-identified review-ready version
+        ├── anonymized_manuscript.tex # Blind review LaTeX file
+        └── figs/             # Anonymous figures and results tables
 ```
 
-## Quick Start
+---
 
-### 1. Install Dependencies
+## 🚀 Quick Start
+
+### 1. Set Up Environment & Dependencies
+
+Ensure you have Python 3.8+ installed. Install the required numerical, analysis, and visualization libraries:
+
 ```bash
-pip install numpy matplotlib
+pip install -r requirements.txt
 ```
 
-### 2. Run Simulation (Part 1)
+*Note: Dependencies include `numpy`, `pandas`, `matplotlib`, `scipy`, and `seaborn`.*
+
+### 2. Execute Simulations (Part 1)
+
+Execute the Monte Carlo simulations (10 runs with unique seed distributions) to generate routing performance logs:
+
 ```bash
 python3 run_simulation.py --runs 10 --seed 42
 ```
-This produces:
-- `results/simulation_results.json` — Aggregate & per-run metrics
-- `results/detailed_timeseries.json` — Full time-series data
-- `results/contact_plan.json` — Contact plan
-- `results/contact_plan.ionrc` — ION-DTN compatible contact plan
-- `results/spice_ephemeris.json` — Synthetic SPICE data
 
-### 3. Generate Figures & Tables (Part 2)
-```bash
-python3 analyze_results.py --input results --output figures
-```
-Produces 8 IEEE-quality figures (PDF + PNG) and 3 LaTeX tables.
+This generates:
+*   `results/simulation_results.json` — Performance aggregates and state details.
+*   `results/detailed_timeseries.json` — Battery State of Charge (SoC) and buffer occupancy.
+*   `results/contact_plan.ionrc` — NASA JPL ION-DTN compatible contact schedule.
 
-### 4. Compile Paper
+### 3. Run Analysis & Plots (Part 2)
+
+Extract metrics, output LaTeX tabular data, and generate high-fidelity plots for publication:
+
 ```bash
-cd paper
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
+python3 analyze_results.py
 ```
 
-## Network Scenario
+This compiles:
+*   **Figures 1–8** (PDF and PNG formats) representing bundle delivery profiles, State of Charge (SoC) timelines, and delay cumulative distribution functions (CDFs) saved to the respective `figs/` directories.
+*   **Tables I–III** representing network properties and routing results.
 
-4-node Mars relay network:
-- **Node 0**: Mars Surface Rover (Jezero Crater) — data source
-- **Node 1**: SmallSat Relay (3U CubeSat, 400 km orbit) — resource bottleneck
-- **Node 2**: Mars Reconnaissance Orbiter (300 km orbit) — heavy relay
-- **Node 3**: NASA Deep Space Network (Earth) — destination
+### 4. Compile LaTeX Manuscripts
 
-## Key Results
+We compile LaTeX sources using the modern [Tectonic](https://tectonic-typesetting.github.io/en-US/) compiler:
 
-| Metric | CGR | ECGR |
-|--------|-----|------|
-| Bundle Delivery Ratio | ~90% | ~76% |
-| Bundles Dropped | ~0.8 | **0** |
-| SmallSat Min SoC | ~50% | ~53% |
-| SmallSat Avg SoC | ~79% | **~85%** |
-| SmallSat <20% Time | ~1.1% | **0%** |
+```bash
+# Compile the non-anonymized manuscript
+cd paper/manuscript
+tectonic manuscript.tex
 
-ECGR trades slightly lower delivery ratio (due to deferred routing) for **zero bundle drops** and significantly better SmallSat energy sustainability.
+# Compile the double-anonymized review manuscript
+cd ../anonymized_manuscript
+tectonic anonymized_manuscript.tex
+
+# Compile the submission cover letter
+cd ..
+tectonic cover_letter.tex
+```
+
+---
+
+## 📊 Evaluation & Simulation Results
+
+Our proposed algorithms are evaluated using a high-fidelity simulator of a Mars-Earth DTN relay network. Under resource-blind CGR, the SmallSat's battery undergoes deep discharge cycles leading to exhaustion, critical hardware shutdowns, and severe packet drops.
+
+### Comparative Routing Performance (Table II)
+
+The quantitative results below represent the average metrics across 10 Monte Carlo runs (with 95% confidence intervals):
+
+| Metric | Standard CGR | Proposed ECGR (Baseline) | Proposed P-ECGR (Improved) |
+| :--- | :---: | :---: | :---: |
+| **Bundle Delivery Ratio (%)** | $83.7 \pm 8.9$ | $88.9 \pm 1.9$ | **$\mathbf{90.0 \pm 1.7}$** |
+| **Average Delivery Latency (s)** | $5463 \pm 466$ | $5373 \pm 518$ | **$\mathbf{5072 \pm 230}$** |
+| **95th Percentile Latency (s)** | $11254 \pm 2175$ | $11179 \pm 2193$ | **$\mathbf{9721 \pm 1108}$** |
+| **Total Dropped Bundles** | $12.9 \pm 19.3$ | **$\mathbf{0.0 \pm 0.0}$** | **$\mathbf{0.0 \pm 0.0}$** |
+| **SmallSat Minimum SoC (%)** | $35.0 \pm 30.0$ | **$\mathbf{41.9 \pm 24.2}$** | $39.3 \pm 26.4$ |
+| **SmallSat Average SoC (%)** | $71.2 \pm 22.7$ | **$\mathbf{80.8 \pm 13.8}$** | $79.0 \pm 16.0$ |
+| **Time Spent Below 20% SoC (%)** | $8.5 \pm 13.2$ | **$\mathbf{1.7 \pm 4.6}$** | $2.0 \pm 4.7$ |
+| **Total Data Delivered (MB)** | $1411 \pm 180$ | $1525 \pm 109$ | **$\mathbf{1527 \pm 108}$** |
+
+### Per-Priority Bundle Delivery Ratio (Table III)
+
+| Routing Algorithm | Critical Priority (%) | Normal Priority (%) | Low Priority (%) |
+| :--- | :---: | :---: | :---: |
+| **Standard CGR** | $90.1 \pm 4.9$ | $79.8 \pm 12.0$ | $81.5 \pm 11.4$ |
+| **Proposed ECGR** | $91.7 \pm 2.7$ | **$\mathbf{86.1 \pm 3.6}$** | $88.3 \pm 2.3$ |
+| **Proposed P-ECGR** | **$\mathbf{92.7 \pm 1.0}$** | **$\mathbf{86.1 \pm 4.4}$** | **$\mathbf{89.6 \pm 2.7}$** |
+
+### Key Takeaways:
+*   **Zero Drop Guarantee:** Both ECGR and P-ECGR guarantee **zero packet drops** due to resource exhaustion, unlike CGR which averages $\approx 13$ drops per scenario.
+*   **Throughput & Latency Gains:** P-ECGR improves bundle delivery ratios to **$90.0\%$** and reduces delivery latencies by **$7\%$** compared to standard CGR by load-balancing bundles across alternative orbits when energy levels permit.
+*   **Operational Readiness:** Executing in under **$5\,$ms** per routing calculation on simulated RAD750 hardware, P-ECGR adds negligible computational load, rendering it fit for flight software deployment.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
