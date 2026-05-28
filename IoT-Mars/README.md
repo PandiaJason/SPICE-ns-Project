@@ -18,6 +18,9 @@ Operating wireless sensor networks on Mars introduces major physical-layer degra
 2. **Charged Dust Storms**: Martian dust storms attenuate the radio signal through scattering and absorption. Regolith accumulation also forms a thick dust coating on transceiver antennas, introducing massive impedance mismatches (modeled as a $4\text{ dB}$ loss penalty on both ends).
 3. **Severe Geological Path Loss**: The lack of liquid water in Martian regolith results in poor surface reflectivity, increasing path loss exponents ($\eta \approx 3.5$) and log-normal shadowing standard deviations ($\sigma \approx 8\text{ dB}$).
 
+<img width="1024" height="1024" alt="martian_lorawan_topology" src="https://github.com/user-attachments/assets/cbfd2d6e-3fe7-4264-9489-b083a3642ef5" />
+The Simulated Martian LoRaWAN Scenario Topology.
+
 ### The Proposed Weather-Resilient Model
 To counter these Martian physical challenges, this framework introduces and evaluates:
 * **UHF 433 MHz Band Shift**: Leveraging longer wavelengths to reduce Rayleigh frequency-squared scattering by a factor of 16 and lower path loss exponents.
