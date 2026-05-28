@@ -1,0 +1,5826 @@
+{
+  "smallsat_ephemeris": [
+    {
+      "epoch_s": "0",
+      "epoch_utc": "2026-07-15T00:00:00",
+      "lat_deg": -80.8727,
+      "lon_deg": -81.3758,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1578,
+      "phase_rad": 4.8629
+    },
+    {
+      "epoch_s": "300",
+      "epoch_utc": "2026-07-15T00:05:00",
+      "lat_deg": -65.9502,
+      "lon_deg": -67.3465,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1424,
+      "phase_rad": 5.1291
+    },
+    {
+      "epoch_s": "600",
+      "epoch_utc": "2026-07-15T00:10:00",
+      "lat_deg": -50.7817,
+      "lon_deg": -53.3172,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0257,
+      "phase_rad": 5.3952
+    },
+    {
+      "epoch_s": "900",
+      "epoch_utc": "2026-07-15T00:15:00",
+      "lat_deg": -35.573,
+      "lon_deg": -39.2878,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8429,
+      "phase_rad": 5.6613
+    },
+    {
+      "epoch_s": "1200",
+      "epoch_utc": "2026-07-15T00:20:00",
+      "lat_deg": -20.3513,
+      "lon_deg": -25.2585,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5579,
+      "phase_rad": 5.9275
+    },
+    {
+      "epoch_s": "1500",
+      "epoch_utc": "2026-07-15T00:25:00",
+      "lat_deg": -5.1246,
+      "lon_deg": -11.2292,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1023,
+      "phase_rad": 6.1936
+    },
+    {
+      "epoch_s": "1800",
+      "epoch_utc": "2026-07-15T00:30:00",
+      "lat_deg": 10.1032,
+      "lon_deg": 2.8001,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.3713,
+      "phase_rad": 0.1766
+    },
+    {
+      "epoch_s": "2100",
+      "epoch_utc": "2026-07-15T00:35:00",
+      "lat_deg": 25.3288,
+      "lon_deg": 16.8295,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.2673,
+      "phase_rad": 0.4427
+    },
+    {
+      "epoch_s": "2400",
+      "epoch_utc": "2026-07-15T00:40:00",
+      "lat_deg": 40.5476,
+      "lon_deg": 30.8588,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.1361,
+      "phase_rad": 0.7089
+    },
+    {
+      "epoch_s": "2700",
+      "epoch_utc": "2026-07-15T00:45:00",
+      "lat_deg": 55.7481,
+      "lon_deg": 44.8881,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.4971,
+      "phase_rad": 0.975
+    },
+    {
+      "epoch_s": "3000",
+      "epoch_utc": "2026-07-15T00:50:00",
+      "lat_deg": 70.8844,
+      "lon_deg": 58.9175,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.498,
+      "phase_rad": 1.2411
+    },
+    {
+      "epoch_s": "3300",
+      "epoch_utc": "2026-07-15T00:55:00",
+      "lat_deg": 85.2854,
+      "lon_deg": 72.9468,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.4029,
+      "phase_rad": 1.5073
+    },
+    {
+      "epoch_s": "3600",
+      "epoch_utc": "2026-07-15T01:00:00",
+      "lat_deg": 78.0136,
+      "lon_deg": 86.9761,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8742,
+      "phase_rad": 1.7734
+    },
+    {
+      "epoch_s": "3900",
+      "epoch_utc": "2026-07-15T01:05:00",
+      "lat_deg": 62.9863,
+      "lon_deg": 101.0054,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.1296,
+      "phase_rad": 2.0396
+    },
+    {
+      "epoch_s": "4200",
+      "epoch_utc": "2026-07-15T01:10:00",
+      "lat_deg": 47.8053,
+      "lon_deg": 115.0348,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.9146,
+      "phase_rad": 2.3057
+    },
+    {
+      "epoch_s": "4500",
+      "epoch_utc": "2026-07-15T01:15:00",
+      "lat_deg": 32.5929,
+      "lon_deg": 129.0641,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.5534,
+      "phase_rad": 2.5719
+    },
+    {
+      "epoch_s": "4800",
+      "epoch_utc": "2026-07-15T01:20:00",
+      "lat_deg": 17.3698,
+      "lon_deg": 143.0934,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.8709,
+      "phase_rad": 2.838
+    },
+    {
+      "epoch_s": "5100",
+      "epoch_utc": "2026-07-15T01:25:00",
+      "lat_deg": 2.1426,
+      "lon_deg": 157.1227,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.7992,
+      "phase_rad": 3.1041
+    },
+    {
+      "epoch_s": "5400",
+      "epoch_utc": "2026-07-15T01:30:00",
+      "lat_deg": -13.085,
+      "lon_deg": 171.1521,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.3813,
+      "phase_rad": 3.3703
+    },
+    {
+      "epoch_s": "5700",
+      "epoch_utc": "2026-07-15T01:35:00",
+      "lat_deg": -28.3098,
+      "lon_deg": -174.8186,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7514,
+      "phase_rad": 3.6364
+    },
+    {
+      "epoch_s": "6000",
+      "epoch_utc": "2026-07-15T01:40:00",
+      "lat_deg": -43.5262,
+      "lon_deg": -160.7893,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.4965,
+      "phase_rad": 3.9026
+    },
+    {
+      "epoch_s": "6300",
+      "epoch_utc": "2026-07-15T01:45:00",
+      "lat_deg": -58.7201,
+      "lon_deg": -146.7599,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2053,
+      "phase_rad": 4.1687
+    },
+    {
+      "epoch_s": "6600",
+      "epoch_utc": "2026-07-15T01:50:00",
+      "lat_deg": -73.8253,
+      "lon_deg": -132.7306,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8873,
+      "phase_rad": 4.4349
+    },
+    {
+      "epoch_s": "6900",
+      "epoch_utc": "2026-07-15T01:55:00",
+      "lat_deg": -86.9299,
+      "lon_deg": -118.7013,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.6157,
+      "phase_rad": 4.701
+    },
+    {
+      "epoch_s": "7200",
+      "epoch_utc": "2026-07-15T02:00:00",
+      "lat_deg": -75.1051,
+      "lon_deg": -104.672,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0666,
+      "phase_rad": 4.9671
+    },
+    {
+      "epoch_s": "7500",
+      "epoch_utc": "2026-07-15T02:05:00",
+      "lat_deg": -60.0183,
+      "lon_deg": -90.6426,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9776,
+      "phase_rad": 5.2333
+    },
+    {
+      "epoch_s": "7800",
+      "epoch_utc": "2026-07-15T02:10:00",
+      "lat_deg": -44.8278,
+      "lon_deg": -76.6133,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8325,
+      "phase_rad": 5.4994
+    },
+    {
+      "epoch_s": "8100",
+      "epoch_utc": "2026-07-15T02:15:00",
+      "lat_deg": -29.6125,
+      "lon_deg": -62.584,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.627,
+      "phase_rad": 5.7656
+    },
+    {
+      "epoch_s": "8400",
+      "epoch_utc": "2026-07-15T02:20:00",
+      "lat_deg": -14.3881,
+      "lon_deg": -48.5547,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3346,
+      "phase_rad": 6.0317
+    },
+    {
+      "epoch_s": "8700",
+      "epoch_utc": "2026-07-15T02:25:00",
+      "lat_deg": 0.8394,
+      "lon_deg": -34.5253,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.9153,
+      "phase_rad": 0.0147
+    },
+    {
+      "epoch_s": "9000",
+      "epoch_utc": "2026-07-15T02:30:00",
+      "lat_deg": 16.0667,
+      "lon_deg": -20.496,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.3191,
+      "phase_rad": 0.2808
+    },
+    {
+      "epoch_s": "9300",
+      "epoch_utc": "2026-07-15T02:35:00",
+      "lat_deg": 31.2904,
+      "lon_deg": -6.4667,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.5064,
+      "phase_rad": 0.547
+    },
+    {
+      "epoch_s": "9600",
+      "epoch_utc": "2026-07-15T02:40:00",
+      "lat_deg": 46.5041,
+      "lon_deg": 7.5627,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.4974,
+      "phase_rad": 0.8131
+    },
+    {
+      "epoch_s": "9900",
+      "epoch_utc": "2026-07-15T02:45:00",
+      "lat_deg": 61.6896,
+      "lon_deg": 21.592,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.5825,
+      "phase_rad": 1.0792
+    },
+    {
+      "epoch_s": "10200",
+      "epoch_utc": "2026-07-15T02:50:00",
+      "lat_deg": 76.7466,
+      "lon_deg": 35.6213,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.5119,
+      "phase_rad": 1.3454
+    },
+    {
+      "epoch_s": "10500",
+      "epoch_utc": "2026-07-15T02:55:00",
+      "lat_deg": 86.1999,
+      "lon_deg": 49.6506,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.9345,
+      "phase_rad": 1.6115
+    },
+    {
+      "epoch_s": "10800",
+      "epoch_utc": "2026-07-15T03:00:00",
+      "lat_deg": 72.1715,
+      "lon_deg": 63.68,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8001,
+      "phase_rad": 1.8777
+    },
+    {
+      "epoch_s": "11100",
+      "epoch_utc": "2026-07-15T03:05:00",
+      "lat_deg": 57.0473,
+      "lon_deg": 77.7093,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3249,
+      "phase_rad": 2.1438
+    },
+    {
+      "epoch_s": "11400",
+      "epoch_utc": "2026-07-15T03:10:00",
+      "lat_deg": 41.8495,
+      "lon_deg": 91.7386,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2838,
+      "phase_rad": 2.41
+    },
+    {
+      "epoch_s": "11700",
+      "epoch_utc": "2026-07-15T03:15:00",
+      "lat_deg": 26.6316,
+      "lon_deg": 105.7679,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.3923,
+      "phase_rad": 2.6761
+    },
+    {
+      "epoch_s": "12000",
+      "epoch_utc": "2026-07-15T03:20:00",
+      "lat_deg": 11.4064,
+      "lon_deg": 119.7973,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.7183,
+      "phase_rad": 2.9422
+    },
+    {
+      "epoch_s": "12300",
+      "epoch_utc": "2026-07-15T03:25:00",
+      "lat_deg": -3.8213,
+      "lon_deg": 133.8266,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.0504,
+      "phase_rad": 3.2084
+    },
+    {
+      "epoch_s": "12600",
+      "epoch_utc": "2026-07-15T03:30:00",
+      "lat_deg": -19.0483,
+      "lon_deg": 147.8559,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.7039,
+      "phase_rad": 3.4745
+    },
+    {
+      "epoch_s": "12900",
+      "epoch_utc": "2026-07-15T03:35:00",
+      "lat_deg": -34.2707,
+      "lon_deg": 161.8853,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.0272,
+      "phase_rad": 3.7407
+    },
+    {
+      "epoch_s": "13200",
+      "epoch_utc": "2026-07-15T03:40:00",
+      "lat_deg": -49.481,
+      "lon_deg": 175.9146,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.1998,
+      "phase_rad": 4.0068
+    },
+    {
+      "epoch_s": "13500",
+      "epoch_utc": "2026-07-15T03:45:00",
+      "lat_deg": -64.6554,
+      "lon_deg": -170.0561,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2029,
+      "phase_rad": 4.2729
+    },
+    {
+      "epoch_s": "13800",
+      "epoch_utc": "2026-07-15T03:50:00",
+      "lat_deg": -79.6318,
+      "lon_deg": -156.0268,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.9446,
+      "phase_rad": 4.5391
+    },
+    {
+      "epoch_s": "14100",
+      "epoch_utc": "2026-07-15T03:55:00",
+      "lat_deg": -83.8949,
+      "lon_deg": -141.9974,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9021,
+      "phase_rad": 4.8052
+    },
+    {
+      "epoch_s": "14400",
+      "epoch_utc": "2026-07-15T04:00:00",
+      "lat_deg": -69.2233,
+      "lon_deg": -127.9681,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9415,
+      "phase_rad": 5.0714
+    },
+    {
+      "epoch_s": "14700",
+      "epoch_utc": "2026-07-15T04:05:00",
+      "lat_deg": -54.074,
+      "lon_deg": -113.9388,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8254,
+      "phase_rad": 5.3375
+    },
+    {
+      "epoch_s": "15000",
+      "epoch_utc": "2026-07-15T04:10:00",
+      "lat_deg": -38.8704,
+      "lon_deg": -99.9095,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6654,
+      "phase_rad": 5.6037
+    },
+    {
+      "epoch_s": "15300",
+      "epoch_utc": "2026-07-15T04:15:00",
+      "lat_deg": -23.6506,
+      "lon_deg": -85.8801,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.4524,
+      "phase_rad": 5.8698
+    },
+    {
+      "epoch_s": "15600",
+      "epoch_utc": "2026-07-15T04:20:00",
+      "lat_deg": -8.4245,
+      "lon_deg": -71.8508,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1681,
+      "phase_rad": 6.1359
+    },
+    {
+      "epoch_s": "15900",
+      "epoch_utc": "2026-07-15T04:25:00",
+      "lat_deg": 6.8033,
+      "lon_deg": -57.8215,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7885,
+      "phase_rad": 0.1189
+    },
+    {
+      "epoch_s": "16200",
+      "epoch_utc": "2026-07-15T04:30:00",
+      "lat_deg": 22.0297,
+      "lon_deg": -43.7921,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2871,
+      "phase_rad": 0.385
+    },
+    {
+      "epoch_s": "16500",
+      "epoch_utc": "2026-07-15T04:35:00",
+      "lat_deg": 37.2505,
+      "lon_deg": -29.7628,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.6449,
+      "phase_rad": 0.6512
+    },
+    {
+      "epoch_s": "16800",
+      "epoch_utc": "2026-07-15T04:40:00",
+      "lat_deg": 52.4568,
+      "lon_deg": -15.7335,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.87,
+      "phase_rad": 0.9173
+    },
+    {
+      "epoch_s": "17100",
+      "epoch_utc": "2026-07-15T04:45:00",
+      "lat_deg": 67.6163,
+      "lon_deg": -1.7042,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.0212,
+      "phase_rad": 1.1835
+    },
+    {
+      "epoch_s": "17400",
+      "epoch_utc": "2026-07-15T04:50:00",
+      "lat_deg": 82.4394,
+      "lon_deg": 12.3252,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.6271,
+      "phase_rad": 1.4496
+    },
+    {
+      "epoch_s": "17700",
+      "epoch_utc": "2026-07-15T04:55:00",
+      "lat_deg": 81.1727,
+      "lon_deg": 26.3545,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.296,
+      "phase_rad": 1.7158
+    },
+    {
+      "epoch_s": "18000",
+      "epoch_utc": "2026-07-15T05:00:00",
+      "lat_deg": 66.266,
+      "lon_deg": 40.3838,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3808,
+      "phase_rad": 1.9819
+    },
+    {
+      "epoch_s": "18300",
+      "epoch_utc": "2026-07-15T05:05:00",
+      "lat_deg": 51.0991,
+      "lon_deg": 54.4131,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2708,
+      "phase_rad": 2.248
+    },
+    {
+      "epoch_s": "18600",
+      "epoch_utc": "2026-07-15T05:10:00",
+      "lat_deg": 35.8909,
+      "lon_deg": 68.4425,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9365,
+      "phase_rad": 2.5142
+    },
+    {
+      "epoch_s": "18900",
+      "epoch_utc": "2026-07-15T05:15:00",
+      "lat_deg": 20.6693,
+      "lon_deg": 82.4718,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 0.89,
+      "range_rate_km_s": -2.6634,
+      "phase_rad": 2.7803
+    },
+    {
+      "epoch_s": "19200",
+      "epoch_utc": "2026-07-15T05:20:00",
+      "lat_deg": 5.4426,
+      "lon_deg": 96.5011,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 5.08,
+      "range_rate_km_s": 1.2134,
+      "phase_rad": 3.0465
+    },
+    {
+      "epoch_s": "19500",
+      "epoch_utc": "2026-07-15T05:25:00",
+      "lat_deg": -9.7852,
+      "lon_deg": 110.5305,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.5841,
+      "phase_rad": 3.3126
+    },
+    {
+      "epoch_s": "19800",
+      "epoch_utc": "2026-07-15T05:30:00",
+      "lat_deg": -25.0109,
+      "lon_deg": 124.5598,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.1707,
+      "phase_rad": 3.5788
+    },
+    {
+      "epoch_s": "20100",
+      "epoch_utc": "2026-07-15T05:35:00",
+      "lat_deg": -40.2299,
+      "lon_deg": 138.5891,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.3567,
+      "phase_rad": 3.8449
+    },
+    {
+      "epoch_s": "20400",
+      "epoch_utc": "2026-07-15T05:40:00",
+      "lat_deg": -55.431,
+      "lon_deg": 152.6184,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4319,
+      "phase_rad": 4.111
+    },
+    {
+      "epoch_s": "20700",
+      "epoch_utc": "2026-07-15T05:45:00",
+      "lat_deg": -70.57,
+      "lon_deg": 166.6478,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4547,
+      "phase_rad": 4.3772
+    },
+    {
+      "epoch_s": "21000",
+      "epoch_utc": "2026-07-15T05:50:00",
+      "lat_deg": -85.0357,
+      "lon_deg": -179.3229,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.1458,
+      "phase_rad": 4.6433
+    },
+    {
+      "epoch_s": "21300",
+      "epoch_utc": "2026-07-15T05:55:00",
+      "lat_deg": -78.3215,
+      "lon_deg": -165.2936,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8969,
+      "phase_rad": 4.9095
+    },
+    {
+      "epoch_s": "21600",
+      "epoch_utc": "2026-07-15T06:00:00",
+      "lat_deg": -63.3026,
+      "lon_deg": -151.2643,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8188,
+      "phase_rad": 5.1756
+    },
+    {
+      "epoch_s": "21900",
+      "epoch_utc": "2026-07-15T06:05:00",
+      "lat_deg": -48.1228,
+      "lon_deg": -137.2349,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6896,
+      "phase_rad": 5.4418
+    },
+    {
+      "epoch_s": "22200",
+      "epoch_utc": "2026-07-15T06:10:00",
+      "lat_deg": -32.9108,
+      "lon_deg": -123.2056,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5231,
+      "phase_rad": 5.7079
+    },
+    {
+      "epoch_s": "22500",
+      "epoch_utc": "2026-07-15T06:15:00",
+      "lat_deg": -17.6878,
+      "lon_deg": -109.1763,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3111,
+      "phase_rad": 5.974
+    },
+    {
+      "epoch_s": "22800",
+      "epoch_utc": "2026-07-15T06:20:00",
+      "lat_deg": -2.4606,
+      "lon_deg": -95.1469,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0409,
+      "phase_rad": 6.2402
+    },
+    {
+      "epoch_s": "23100",
+      "epoch_utc": "2026-07-15T06:25:00",
+      "lat_deg": 12.767,
+      "lon_deg": -81.1176,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.6973,
+      "phase_rad": 0.2231
+    },
+    {
+      "epoch_s": "23400",
+      "epoch_utc": "2026-07-15T06:30:00",
+      "lat_deg": 27.9919,
+      "lon_deg": -67.0883,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2654,
+      "phase_rad": 0.4893
+    },
+    {
+      "epoch_s": "23700",
+      "epoch_utc": "2026-07-15T06:35:00",
+      "lat_deg": 43.2086,
+      "lon_deg": -53.059,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.7352,
+      "phase_rad": 0.7554
+    },
+    {
+      "epoch_s": "24000",
+      "epoch_utc": "2026-07-15T06:40:00",
+      "lat_deg": 58.4033,
+      "lon_deg": -39.0296,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.1116,
+      "phase_rad": 1.0216
+    },
+    {
+      "epoch_s": "24300",
+      "epoch_utc": "2026-07-15T06:45:00",
+      "lat_deg": 73.5124,
+      "lon_deg": -25.0003,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.4383,
+      "phase_rad": 1.2877
+    },
+    {
+      "epoch_s": "24600",
+      "epoch_utc": "2026-07-15T06:50:00",
+      "lat_deg": 86.8469,
+      "lon_deg": -10.971,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.4839,
+      "phase_rad": 1.5538
+    },
+    {
+      "epoch_s": "24900",
+      "epoch_utc": "2026-07-15T06:55:00",
+      "lat_deg": 75.4168,
+      "lon_deg": 3.0583,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5087,
+      "phase_rad": 1.82
+    },
+    {
+      "epoch_s": "25200",
+      "epoch_utc": "2026-07-15T07:00:00",
+      "lat_deg": 60.335,
+      "lon_deg": 17.0877,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5479,
+      "phase_rad": 2.0861
+    },
+    {
+      "epoch_s": "25500",
+      "epoch_utc": "2026-07-15T07:05:00",
+      "lat_deg": 45.1454,
+      "lon_deg": 31.117,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5549,
+      "phase_rad": 2.3523
+    },
+    {
+      "epoch_s": "25800",
+      "epoch_utc": "2026-07-15T07:10:00",
+      "lat_deg": 29.9303,
+      "lon_deg": 45.1463,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5571,
+      "phase_rad": 2.6184
+    },
+    {
+      "epoch_s": "26100",
+      "epoch_utc": "2026-07-15T07:15:00",
+      "lat_deg": 14.7061,
+      "lon_deg": 59.1757,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 0.12,
+      "range_rate_km_s": -4.5576,
+      "phase_rad": 2.8846
+    },
+    {
+      "epoch_s": "26400",
+      "epoch_utc": "2026-07-15T07:20:00",
+      "lat_deg": -0.5213,
+      "lon_deg": 73.205,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 20.79,
+      "range_rate_km_s": -4.5473,
+      "phase_rad": 3.1507
+    },
+    {
+      "epoch_s": "26700",
+      "epoch_utc": "2026-07-15T07:25:00",
+      "lat_deg": -15.7487,
+      "lon_deg": 87.2343,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 11.64,
+      "range_rate_km_s": 4.5565,
+      "phase_rad": 3.4168
+    },
+    {
+      "epoch_s": "27000",
+      "epoch_utc": "2026-07-15T07:30:00",
+      "lat_deg": -30.9725,
+      "lon_deg": 101.2636,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5568,
+      "phase_rad": 3.683
+    },
+    {
+      "epoch_s": "27300",
+      "epoch_utc": "2026-07-15T07:35:00",
+      "lat_deg": -46.1866,
+      "lon_deg": 115.293,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5545,
+      "phase_rad": 3.9491
+    },
+    {
+      "epoch_s": "27600",
+      "epoch_utc": "2026-07-15T07:40:00",
+      "lat_deg": -61.373,
+      "lon_deg": 129.3223,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5467,
+      "phase_rad": 4.2153
+    },
+    {
+      "epoch_s": "27900",
+      "epoch_utc": "2026-07-15T07:45:00",
+      "lat_deg": -76.4364,
+      "lon_deg": 143.3516,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.498,
+      "phase_rad": 4.4814
+    },
+    {
+      "epoch_s": "28200",
+      "epoch_utc": "2026-07-15T07:50:00",
+      "lat_deg": -86.3866,
+      "lon_deg": 157.3809,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.7572,
+      "phase_rad": 4.7476
+    },
+    {
+      "epoch_s": "28500",
+      "epoch_utc": "2026-07-15T07:55:00",
+      "lat_deg": -72.4852,
+      "lon_deg": 171.4103,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.5581,
+      "phase_rad": 5.0137
+    },
+    {
+      "epoch_s": "28800",
+      "epoch_utc": "2026-07-15T08:00:00",
+      "lat_deg": -57.3642,
+      "lon_deg": -174.5604,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7054,
+      "phase_rad": 5.2798
+    },
+    {
+      "epoch_s": "29100",
+      "epoch_utc": "2026-07-15T08:05:00",
+      "lat_deg": -42.1671,
+      "lon_deg": -160.5311,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.57,
+      "phase_rad": 5.546
+    },
+    {
+      "epoch_s": "29400",
+      "epoch_utc": "2026-07-15T08:10:00",
+      "lat_deg": -26.9496,
+      "lon_deg": -146.5017,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.4022,
+      "phase_rad": 5.8121
+    },
+    {
+      "epoch_s": "29700",
+      "epoch_utc": "2026-07-15T08:15:00",
+      "lat_deg": -11.7244,
+      "lon_deg": -132.4724,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1955,
+      "phase_rad": 6.0783
+    },
+    {
+      "epoch_s": "30000",
+      "epoch_utc": "2026-07-15T08:20:00",
+      "lat_deg": 3.5033,
+      "lon_deg": -118.4431,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.941,
+      "phase_rad": 0.0612
+    },
+    {
+      "epoch_s": "30300",
+      "epoch_utc": "2026-07-15T08:25:00",
+      "lat_deg": 18.7303,
+      "lon_deg": -104.4138,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.6288,
+      "phase_rad": 0.3274
+    },
+    {
+      "epoch_s": "30600",
+      "epoch_utc": "2026-07-15T08:30:00",
+      "lat_deg": 33.9528,
+      "lon_deg": -90.3844,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2499,
+      "phase_rad": 0.5935
+    },
+    {
+      "epoch_s": "30900",
+      "epoch_utc": "2026-07-15T08:35:00",
+      "lat_deg": 49.1636,
+      "lon_deg": -76.3551,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.7989,
+      "phase_rad": 0.8597
+    },
+    {
+      "epoch_s": "31200",
+      "epoch_utc": "2026-07-15T08:40:00",
+      "lat_deg": 64.3393,
+      "lon_deg": -62.3258,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.2812,
+      "phase_rad": 1.1258
+    },
+    {
+      "epoch_s": "31500",
+      "epoch_utc": "2026-07-15T08:45:00",
+      "lat_deg": 79.3267,
+      "lon_deg": -48.2965,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.7668,
+      "phase_rad": 1.3919
+    },
+    {
+      "epoch_s": "31800",
+      "epoch_utc": "2026-07-15T08:50:00",
+      "lat_deg": 84.17,
+      "lon_deg": -34.2671,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2186,
+      "phase_rad": 1.6581
+    },
+    {
+      "epoch_s": "32100",
+      "epoch_utc": "2026-07-15T08:55:00",
+      "lat_deg": 69.5382,
+      "lon_deg": -20.2378,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4666,
+      "phase_rad": 1.9242
+    },
+    {
+      "epoch_s": "32400",
+      "epoch_utc": "2026-07-15T09:00:00",
+      "lat_deg": 54.3912,
+      "lon_deg": -6.2085,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4501,
+      "phase_rad": 2.1904
+    },
+    {
+      "epoch_s": "32700",
+      "epoch_utc": "2026-07-15T09:05:00",
+      "lat_deg": 39.1882,
+      "lon_deg": 7.8209,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.396,
+      "phase_rad": 2.4565
+    },
+    {
+      "epoch_s": "33000",
+      "epoch_utc": "2026-07-15T09:10:00",
+      "lat_deg": 23.9685,
+      "lon_deg": 21.8502,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2753,
+      "phase_rad": 2.7227
+    },
+    {
+      "epoch_s": "33300",
+      "epoch_utc": "2026-07-15T09:15:00",
+      "lat_deg": 8.7425,
+      "lon_deg": 35.8795,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9553,
+      "phase_rad": 2.9888
+    },
+    {
+      "epoch_s": "33600",
+      "epoch_utc": "2026-07-15T09:20:00",
+      "lat_deg": -6.4853,
+      "lon_deg": 49.9088,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8151,
+      "phase_rad": 3.2549
+    },
+    {
+      "epoch_s": "33900",
+      "epoch_utc": "2026-07-15T09:25:00",
+      "lat_deg": -21.7117,
+      "lon_deg": 63.9382,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 4.74,
+      "range_rate_km_s": 0.7859,
+      "phase_rad": 3.5211
+    },
+    {
+      "epoch_s": "34200",
+      "epoch_utc": "2026-07-15T09:30:00",
+      "lat_deg": -36.9327,
+      "lon_deg": 77.9675,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.4184,
+      "phase_rad": 3.7872
+    },
+    {
+      "epoch_s": "34500",
+      "epoch_utc": "2026-07-15T09:35:00",
+      "lat_deg": -52.1395,
+      "lon_deg": 91.9968,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.1071,
+      "phase_rad": 4.0534
+    },
+    {
+      "epoch_s": "34800",
+      "epoch_utc": "2026-07-15T09:40:00",
+      "lat_deg": -67.3008,
+      "lon_deg": 106.0261,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.3088,
+      "phase_rad": 4.3195
+    },
+    {
+      "epoch_s": "35100",
+      "epoch_utc": "2026-07-15T09:45:00",
+      "lat_deg": -82.1462,
+      "lon_deg": 120.0555,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.1983,
+      "phase_rad": 4.5857
+    },
+    {
+      "epoch_s": "35400",
+      "epoch_utc": "2026-07-15T09:50:00",
+      "lat_deg": -81.4714,
+      "lon_deg": 134.0848,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.7081,
+      "phase_rad": 4.8518
+    },
+    {
+      "epoch_s": "35700",
+      "epoch_utc": "2026-07-15T09:55:00",
+      "lat_deg": -66.5817,
+      "lon_deg": 148.1141,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.1197,
+      "phase_rad": 5.1179
+    },
+    {
+      "epoch_s": "36000",
+      "epoch_utc": "2026-07-15T10:00:00",
+      "lat_deg": -51.4164,
+      "lon_deg": 162.1435,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.0769,
+      "phase_rad": 5.3841
+    },
+    {
+      "epoch_s": "36300",
+      "epoch_utc": "2026-07-15T10:05:00",
+      "lat_deg": -36.2087,
+      "lon_deg": 176.1728,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.913,
+      "phase_rad": 5.6502
+    },
+    {
+      "epoch_s": "36600",
+      "epoch_utc": "2026-07-15T10:10:00",
+      "lat_deg": -20.9872,
+      "lon_deg": -169.7979,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.2991,
+      "phase_rad": 5.9164
+    },
+    {
+      "epoch_s": "36900",
+      "epoch_utc": "2026-07-15T10:15:00",
+      "lat_deg": -5.7606,
+      "lon_deg": -155.7686,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0998,
+      "phase_rad": 6.1825
+    },
+    {
+      "epoch_s": "37200",
+      "epoch_utc": "2026-07-15T10:20:00",
+      "lat_deg": 9.4672,
+      "lon_deg": -141.7392,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8608,
+      "phase_rad": 0.1655
+    },
+    {
+      "epoch_s": "37500",
+      "epoch_utc": "2026-07-15T10:25:00",
+      "lat_deg": 24.693,
+      "lon_deg": -127.7099,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5755,
+      "phase_rad": 0.4316
+    },
+    {
+      "epoch_s": "37800",
+      "epoch_utc": "2026-07-15T10:30:00",
+      "lat_deg": 39.9121,
+      "lon_deg": -113.6806,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2383,
+      "phase_rad": 0.6977
+    },
+    {
+      "epoch_s": "38100",
+      "epoch_utc": "2026-07-15T10:35:00",
+      "lat_deg": 55.1139,
+      "lon_deg": -99.6513,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8466,
+      "phase_rad": 0.9639
+    },
+    {
+      "epoch_s": "38400",
+      "epoch_utc": "2026-07-15T10:40:00",
+      "lat_deg": 70.2554,
+      "lon_deg": -85.6219,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.4097,
+      "phase_rad": 1.23
+    },
+    {
+      "epoch_s": "38700",
+      "epoch_utc": "2026-07-15T10:45:00",
+      "lat_deg": 84.7786,
+      "lon_deg": -71.5926,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.237,
+      "phase_rad": 1.4962
+    },
+    {
+      "epoch_s": "39000",
+      "epoch_utc": "2026-07-15T10:50:00",
+      "lat_deg": 78.6288,
+      "lon_deg": -57.5633,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3278,
+      "phase_rad": 1.7623
+    },
+    {
+      "epoch_s": "39300",
+      "epoch_utc": "2026-07-15T10:55:00",
+      "lat_deg": 63.6189,
+      "lon_deg": -43.5339,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3264,
+      "phase_rad": 2.0285
+    },
+    {
+      "epoch_s": "39600",
+      "epoch_utc": "2026-07-15T11:00:00",
+      "lat_deg": 48.4402,
+      "lon_deg": -29.5046,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2516,
+      "phase_rad": 2.2946
+    },
+    {
+      "epoch_s": "39900",
+      "epoch_utc": "2026-07-15T11:05:00",
+      "lat_deg": 33.2286,
+      "lon_deg": -15.4753,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1202,
+      "phase_rad": 2.5607
+    },
+    {
+      "epoch_s": "40200",
+      "epoch_utc": "2026-07-15T11:10:00",
+      "lat_deg": 18.0058,
+      "lon_deg": -1.446,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8857,
+      "phase_rad": 2.8269
+    },
+    {
+      "epoch_s": "40500",
+      "epoch_utc": "2026-07-15T11:15:00",
+      "lat_deg": 2.7787,
+      "lon_deg": 12.5834,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.4346,
+      "phase_rad": 3.093
+    },
+    {
+      "epoch_s": "40800",
+      "epoch_utc": "2026-07-15T11:20:00",
+      "lat_deg": -12.449,
+      "lon_deg": 26.6127,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5148,
+      "phase_rad": 3.3592
+    },
+    {
+      "epoch_s": "41100",
+      "epoch_utc": "2026-07-15T11:25:00",
+      "lat_deg": -27.6739,
+      "lon_deg": 40.642,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.7948,
+      "phase_rad": 3.6253
+    },
+    {
+      "epoch_s": "41400",
+      "epoch_utc": "2026-07-15T11:30:00",
+      "lat_deg": -42.8909,
+      "lon_deg": 54.6713,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.3366,
+      "phase_rad": 3.8915
+    },
+    {
+      "epoch_s": "41700",
+      "epoch_utc": "2026-07-15T11:35:00",
+      "lat_deg": -58.0864,
+      "lon_deg": 68.7007,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.8185,
+      "phase_rad": 4.1576
+    },
+    {
+      "epoch_s": "42000",
+      "epoch_utc": "2026-07-15T11:40:00",
+      "lat_deg": -73.1993,
+      "lon_deg": 82.73,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.5377,
+      "phase_rad": 4.4237
+    },
+    {
+      "epoch_s": "42300",
+      "epoch_utc": "2026-07-15T11:45:00",
+      "lat_deg": -86.7349,
+      "lon_deg": 96.7593,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.8885,
+      "phase_rad": 4.6899
+    },
+    {
+      "epoch_s": "42600",
+      "epoch_utc": "2026-07-15T11:50:00",
+      "lat_deg": -75.7282,
+      "lon_deg": 110.7887,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.6636,
+      "phase_rad": 4.956
+    },
+    {
+      "epoch_s": "42900",
+      "epoch_utc": "2026-07-15T11:55:00",
+      "lat_deg": -60.6516,
+      "lon_deg": 124.818,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.5609,
+      "phase_rad": 5.2222
+    },
+    {
+      "epoch_s": "43200",
+      "epoch_utc": "2026-07-15T12:00:00",
+      "lat_deg": -45.463,
+      "lon_deg": 138.8473,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.71,
+      "phase_rad": 5.4883
+    },
+    {
+      "epoch_s": "43500",
+      "epoch_utc": "2026-07-15T12:05:00",
+      "lat_deg": -30.2482,
+      "lon_deg": 152.8766,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.8392,
+      "phase_rad": 5.7545
+    },
+    {
+      "epoch_s": "43800",
+      "epoch_utc": "2026-07-15T12:10:00",
+      "lat_deg": -15.0242,
+      "lon_deg": 166.906,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.6747,
+      "phase_rad": 6.0206
+    },
+    {
+      "epoch_s": "44100",
+      "epoch_utc": "2026-07-15T12:15:00",
+      "lat_deg": 0.2033,
+      "lon_deg": -179.0647,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0194,
+      "phase_rad": 0.0036
+    },
+    {
+      "epoch_s": "44400",
+      "epoch_utc": "2026-07-15T12:20:00",
+      "lat_deg": 15.4307,
+      "lon_deg": -165.0354,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7951,
+      "phase_rad": 0.2697
+    },
+    {
+      "epoch_s": "44700",
+      "epoch_utc": "2026-07-15T12:25:00",
+      "lat_deg": 30.6546,
+      "lon_deg": -151.0061,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.533,
+      "phase_rad": 0.5358
+    },
+    {
+      "epoch_s": "45000",
+      "epoch_utc": "2026-07-15T12:30:00",
+      "lat_deg": 45.869,
+      "lon_deg": -136.9767,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2295,
+      "phase_rad": 0.802
+    },
+    {
+      "epoch_s": "45300",
+      "epoch_utc": "2026-07-15T12:35:00",
+      "lat_deg": 61.0564,
+      "lon_deg": -122.9474,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8844,
+      "phase_rad": 1.0681
+    },
+    {
+      "epoch_s": "45600",
+      "epoch_utc": "2026-07-15T12:40:00",
+      "lat_deg": 76.1258,
+      "lon_deg": -108.9181,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.5194,
+      "phase_rad": 1.3343
+    },
+    {
+      "epoch_s": "45900",
+      "epoch_utc": "2026-07-15T12:45:00",
+      "lat_deg": 86.5539,
+      "lon_deg": -94.8887,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5412,
+      "phase_rad": 1.6004
+    },
+    {
+      "epoch_s": "46200",
+      "epoch_utc": "2026-07-15T12:50:00",
+      "lat_deg": 72.7987,
+      "lon_deg": -80.8594,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2245,
+      "phase_rad": 1.8666
+    },
+    {
+      "epoch_s": "46500",
+      "epoch_utc": "2026-07-15T12:55:00",
+      "lat_deg": 57.6812,
+      "lon_deg": -66.8301,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1573,
+      "phase_rad": 2.1327
+    },
+    {
+      "epoch_s": "46800",
+      "epoch_utc": "2026-07-15T13:00:00",
+      "lat_deg": 42.4848,
+      "lon_deg": -52.8008,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0395,
+      "phase_rad": 2.3988
+    },
+    {
+      "epoch_s": "47100",
+      "epoch_utc": "2026-07-15T13:05:00",
+      "lat_deg": 27.2675,
+      "lon_deg": -38.7714,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8595,
+      "phase_rad": 2.665
+    },
+    {
+      "epoch_s": "47400",
+      "epoch_utc": "2026-07-15T13:10:00",
+      "lat_deg": 12.0424,
+      "lon_deg": -24.7421,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5789,
+      "phase_rad": 2.9311
+    },
+    {
+      "epoch_s": "47700",
+      "epoch_utc": "2026-07-15T13:15:00",
+      "lat_deg": -3.1853,
+      "lon_deg": -10.7128,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1286,
+      "phase_rad": 3.1973
+    },
+    {
+      "epoch_s": "48000",
+      "epoch_utc": "2026-07-15T13:20:00",
+      "lat_deg": -18.4123,
+      "lon_deg": 3.3165,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.4012,
+      "phase_rad": 3.4634
+    },
+    {
+      "epoch_s": "48300",
+      "epoch_utc": "2026-07-15T13:25:00",
+      "lat_deg": -33.635,
+      "lon_deg": 17.3459,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.2936,
+      "phase_rad": 3.7295
+    },
+    {
+      "epoch_s": "48600",
+      "epoch_utc": "2026-07-15T13:30:00",
+      "lat_deg": -48.8461,
+      "lon_deg": 31.3752,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.1241,
+      "phase_rad": 3.9957
+    },
+    {
+      "epoch_s": "48900",
+      "epoch_utc": "2026-07-15T13:35:00",
+      "lat_deg": -64.0232,
+      "lon_deg": 45.4045,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.4957,
+      "phase_rad": 4.2618
+    },
+    {
+      "epoch_s": "49200",
+      "epoch_utc": "2026-07-15T13:40:00",
+      "lat_deg": -79.0209,
+      "lon_deg": 59.4339,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.4264,
+      "phase_rad": 4.528
+    },
+    {
+      "epoch_s": "49500",
+      "epoch_utc": "2026-07-15T13:45:00",
+      "lat_deg": -84.4405,
+      "lon_deg": 73.4632,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.9943,
+      "phase_rad": 4.7941
+    },
+    {
+      "epoch_s": "49800",
+      "epoch_utc": "2026-07-15T13:50:00",
+      "lat_deg": -69.853,
+      "lon_deg": 87.4925,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8081,
+      "phase_rad": 5.0603
+    },
+    {
+      "epoch_s": "50100",
+      "epoch_utc": "2026-07-15T13:55:00",
+      "lat_deg": -54.7084,
+      "lon_deg": 101.5218,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.6755,
+      "phase_rad": 5.3264
+    },
+    {
+      "epoch_s": "50400",
+      "epoch_utc": "2026-07-15T14:00:00",
+      "lat_deg": -39.5059,
+      "lon_deg": 115.5512,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.0125,
+      "phase_rad": 5.5925
+    },
+    {
+      "epoch_s": "50700",
+      "epoch_utc": "2026-07-15T14:05:00",
+      "lat_deg": -24.2865,
+      "lon_deg": 129.5805,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.7009,
+      "phase_rad": 5.8587
+    },
+    {
+      "epoch_s": "51000",
+      "epoch_utc": "2026-07-15T14:10:00",
+      "lat_deg": -9.0606,
+      "lon_deg": 143.6098,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.8519,
+      "phase_rad": 6.1248
+    },
+    {
+      "epoch_s": "51300",
+      "epoch_utc": "2026-07-15T14:15:00",
+      "lat_deg": 6.1672,
+      "lon_deg": 157.6391,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.5041,
+      "phase_rad": 0.1078
+    },
+    {
+      "epoch_s": "51600",
+      "epoch_utc": "2026-07-15T14:20:00",
+      "lat_deg": 21.3938,
+      "lon_deg": 171.6685,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.8665,
+      "phase_rad": 0.3739
+    },
+    {
+      "epoch_s": "51900",
+      "epoch_utc": "2026-07-15T14:25:00",
+      "lat_deg": 36.615,
+      "lon_deg": -174.3022,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.4983,
+      "phase_rad": 0.6401
+    },
+    {
+      "epoch_s": "52200",
+      "epoch_utc": "2026-07-15T14:30:00",
+      "lat_deg": 51.8221,
+      "lon_deg": -160.2729,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2227,
+      "phase_rad": 0.9062
+    },
+    {
+      "epoch_s": "52500",
+      "epoch_utc": "2026-07-15T14:35:00",
+      "lat_deg": 66.9853,
+      "lon_deg": -146.2435,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.9164,
+      "phase_rad": 1.1724
+    },
+    {
+      "epoch_s": "52800",
+      "epoch_utc": "2026-07-15T14:40:00",
+      "lat_deg": 81.8511,
+      "lon_deg": -132.2142,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.6566,
+      "phase_rad": 1.4385
+    },
+    {
+      "epoch_s": "53100",
+      "epoch_utc": "2026-07-15T14:45:00",
+      "lat_deg": 81.7686,
+      "lon_deg": -118.1849,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0881,
+      "phase_rad": 1.7046
+    },
+    {
+      "epoch_s": "53400",
+      "epoch_utc": "2026-07-15T14:50:00",
+      "lat_deg": 66.8974,
+      "lon_deg": -104.1556,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0903,
+      "phase_rad": 1.9708
+    },
+    {
+      "epoch_s": "53700",
+      "epoch_utc": "2026-07-15T14:55:00",
+      "lat_deg": 51.7338,
+      "lon_deg": -90.1262,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9902,
+      "phase_rad": 2.2369
+    },
+    {
+      "epoch_s": "54000",
+      "epoch_utc": "2026-07-15T15:00:00",
+      "lat_deg": 36.5265,
+      "lon_deg": -76.0969,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8456,
+      "phase_rad": 2.5031
+    },
+    {
+      "epoch_s": "54300",
+      "epoch_utc": "2026-07-15T15:05:00",
+      "lat_deg": 21.3052,
+      "lon_deg": -62.0676,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6422,
+      "phase_rad": 2.7692
+    },
+    {
+      "epoch_s": "54600",
+      "epoch_utc": "2026-07-15T15:10:00",
+      "lat_deg": 6.0787,
+      "lon_deg": -48.0383,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3526,
+      "phase_rad": 3.0354
+    },
+    {
+      "epoch_s": "54900",
+      "epoch_utc": "2026-07-15T15:15:00",
+      "lat_deg": -9.1491,
+      "lon_deg": -34.0089,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.9362,
+      "phase_rad": 3.3015
+    },
+    {
+      "epoch_s": "55200",
+      "epoch_utc": "2026-07-15T15:20:00",
+      "lat_deg": -24.375,
+      "lon_deg": -19.9796,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.3418,
+      "phase_rad": 3.5676
+    },
+    {
+      "epoch_s": "55500",
+      "epoch_utc": "2026-07-15T15:25:00",
+      "lat_deg": -39.5944,
+      "lon_deg": -5.9503,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.5278,
+      "phase_rad": 3.8338
+    },
+    {
+      "epoch_s": "55800",
+      "epoch_utc": "2026-07-15T15:30:00",
+      "lat_deg": -54.7967,
+      "lon_deg": 8.0791,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.5139,
+      "phase_rad": 4.0999
+    },
+    {
+      "epoch_s": "56100",
+      "epoch_utc": "2026-07-15T15:35:00",
+      "lat_deg": -69.9407,
+      "lon_deg": 22.1084,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.5633,
+      "phase_rad": 4.3661
+    },
+    {
+      "epoch_s": "56400",
+      "epoch_utc": "2026-07-15T15:40:00",
+      "lat_deg": -84.515,
+      "lon_deg": 36.1377,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.0773,
+      "phase_rad": 4.6322
+    },
+    {
+      "epoch_s": "56700",
+      "epoch_utc": "2026-07-15T15:45:00",
+      "lat_deg": -78.9356,
+      "lon_deg": 50.167,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0962,
+      "phase_rad": 4.8984
+    },
+    {
+      "epoch_s": "57000",
+      "epoch_utc": "2026-07-15T15:50:00",
+      "lat_deg": -63.9351,
+      "lon_deg": 64.1964,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9226,
+      "phase_rad": 5.1645
+    },
+    {
+      "epoch_s": "57300",
+      "epoch_utc": "2026-07-15T15:55:00",
+      "lat_deg": -48.7577,
+      "lon_deg": 78.2257,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.2849,
+      "phase_rad": 5.4306
+    },
+    {
+      "epoch_s": "57600",
+      "epoch_utc": "2026-07-15T16:00:00",
+      "lat_deg": -33.5465,
+      "lon_deg": 92.255,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.5674,
+      "phase_rad": 5.6968
+    },
+    {
+      "epoch_s": "57900",
+      "epoch_utc": "2026-07-15T16:05:00",
+      "lat_deg": -18.3238,
+      "lon_deg": 106.2843,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.3494,
+      "phase_rad": 5.9629
+    },
+    {
+      "epoch_s": "58200",
+      "epoch_utc": "2026-07-15T16:10:00",
+      "lat_deg": -3.0967,
+      "lon_deg": 120.3137,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.2011,
+      "phase_rad": 6.2291
+    },
+    {
+      "epoch_s": "58500",
+      "epoch_utc": "2026-07-15T16:15:00",
+      "lat_deg": 12.131,
+      "lon_deg": 134.343,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.9064,
+      "phase_rad": 0.212
+    },
+    {
+      "epoch_s": "58800",
+      "epoch_utc": "2026-07-15T16:20:00",
+      "lat_deg": 27.356,
+      "lon_deg": 148.3723,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.1909,
+      "phase_rad": 0.4782
+    },
+    {
+      "epoch_s": "59100",
+      "epoch_utc": "2026-07-15T16:25:00",
+      "lat_deg": 42.5733,
+      "lon_deg": 162.4017,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.3246,
+      "phase_rad": 0.7443
+    },
+    {
+      "epoch_s": "59400",
+      "epoch_utc": "2026-07-15T16:30:00",
+      "lat_deg": 57.7695,
+      "lon_deg": 176.431,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.3932,
+      "phase_rad": 1.0104
+    },
+    {
+      "epoch_s": "59700",
+      "epoch_utc": "2026-07-15T16:35:00",
+      "lat_deg": 72.886,
+      "lon_deg": -169.5397,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.9472,
+      "phase_rad": 1.2766
+    },
+    {
+      "epoch_s": "60000",
+      "epoch_utc": "2026-07-15T16:40:00",
+      "lat_deg": 86.5966,
+      "lon_deg": -155.5104,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.3268,
+      "phase_rad": 1.5427
+    },
+    {
+      "epoch_s": "60300",
+      "epoch_utc": "2026-07-15T16:45:00",
+      "lat_deg": 76.0392,
+      "lon_deg": -141.481,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0289,
+      "phase_rad": 1.8089
+    },
+    {
+      "epoch_s": "60600",
+      "epoch_utc": "2026-07-15T16:50:00",
+      "lat_deg": 60.9683,
+      "lon_deg": -127.4517,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9557,
+      "phase_rad": 2.075
+    },
+    {
+      "epoch_s": "60900",
+      "epoch_utc": "2026-07-15T16:55:00",
+      "lat_deg": 45.7805,
+      "lon_deg": -113.4224,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8366,
+      "phase_rad": 2.3412
+    },
+    {
+      "epoch_s": "61200",
+      "epoch_utc": "2026-07-15T17:00:00",
+      "lat_deg": 30.5661,
+      "lon_deg": -99.3931,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6774,
+      "phase_rad": 2.6073
+    },
+    {
+      "epoch_s": "61500",
+      "epoch_utc": "2026-07-15T17:05:00",
+      "lat_deg": 15.3422,
+      "lon_deg": -85.3637,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.4661,
+      "phase_rad": 2.8734
+    },
+    {
+      "epoch_s": "61800",
+      "epoch_utc": "2026-07-15T17:10:00",
+      "lat_deg": 0.1147,
+      "lon_deg": -71.3344,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1837,
+      "phase_rad": 3.1396
+    },
+    {
+      "epoch_s": "62100",
+      "epoch_utc": "2026-07-15T17:15:00",
+      "lat_deg": -15.1127,
+      "lon_deg": -57.3051,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8058,
+      "phase_rad": 3.4057
+    },
+    {
+      "epoch_s": "62400",
+      "epoch_utc": "2026-07-15T17:20:00",
+      "lat_deg": -30.3368,
+      "lon_deg": -43.2757,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.3053,
+      "phase_rad": 3.6719
+    },
+    {
+      "epoch_s": "62700",
+      "epoch_utc": "2026-07-15T17:25:00",
+      "lat_deg": -45.5514,
+      "lon_deg": -29.2464,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.663,
+      "phase_rad": 3.938
+    },
+    {
+      "epoch_s": "63000",
+      "epoch_utc": "2026-07-15T17:30:00",
+      "lat_deg": -60.7398,
+      "lon_deg": -15.2171,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.8877,
+      "phase_rad": 4.2042
+    },
+    {
+      "epoch_s": "63300",
+      "epoch_utc": "2026-07-15T17:35:00",
+      "lat_deg": -75.8148,
+      "lon_deg": -1.1878,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.0631,
+      "phase_rad": 4.4703
+    },
+    {
+      "epoch_s": "63600",
+      "epoch_utc": "2026-07-15T17:40:00",
+      "lat_deg": -86.6989,
+      "lon_deg": 12.8416,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0855,
+      "phase_rad": 4.7364
+    },
+    {
+      "epoch_s": "63900",
+      "epoch_utc": "2026-07-15T17:45:00",
+      "lat_deg": -73.1121,
+      "lon_deg": 26.8709,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4909,
+      "phase_rad": 5.0026
+    },
+    {
+      "epoch_s": "64200",
+      "epoch_utc": "2026-07-15T17:50:00",
+      "lat_deg": -57.9981,
+      "lon_deg": 40.9002,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5001,
+      "phase_rad": 5.2687
+    },
+    {
+      "epoch_s": "64500",
+      "epoch_utc": "2026-07-15T17:55:00",
+      "lat_deg": -42.8025,
+      "lon_deg": 54.9295,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4504,
+      "phase_rad": 5.5349
+    },
+    {
+      "epoch_s": "64800",
+      "epoch_utc": "2026-07-15T18:00:00",
+      "lat_deg": -27.5854,
+      "lon_deg": 68.9589,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 1.99,
+      "range_rate_km_s": -4.2043,
+      "phase_rad": 5.801
+    },
+    {
+      "epoch_s": "65100",
+      "epoch_utc": "2026-07-15T18:05:00",
+      "lat_deg": -12.3604,
+      "lon_deg": 82.9882,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 16.93,
+      "range_rate_km_s": -0.8774,
+      "phase_rad": 6.0672
+    },
+    {
+      "epoch_s": "65400",
+      "epoch_utc": "2026-07-15T18:10:00",
+      "lat_deg": 2.8672,
+      "lon_deg": 97.0175,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 5.66,
+      "range_rate_km_s": 4.0765,
+      "phase_rad": 0.0501
+    },
+    {
+      "epoch_s": "65700",
+      "epoch_utc": "2026-07-15T18:15:00",
+      "lat_deg": 18.0943,
+      "lon_deg": 111.0469,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4337,
+      "phase_rad": 0.3163
+    },
+    {
+      "epoch_s": "66000",
+      "epoch_utc": "2026-07-15T18:20:00",
+      "lat_deg": 33.3172,
+      "lon_deg": 125.0762,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5022,
+      "phase_rad": 0.5824
+    },
+    {
+      "epoch_s": "66300",
+      "epoch_utc": "2026-07-15T18:25:00",
+      "lat_deg": 48.5287,
+      "lon_deg": 139.1055,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5237,
+      "phase_rad": 0.8485
+    },
+    {
+      "epoch_s": "66600",
+      "epoch_utc": "2026-07-15T18:30:00",
+      "lat_deg": 63.707,
+      "lon_deg": 153.1348,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5258,
+      "phase_rad": 1.1147
+    },
+    {
+      "epoch_s": "66900",
+      "epoch_utc": "2026-07-15T18:35:00",
+      "lat_deg": 78.7143,
+      "lon_deg": 167.1642,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4621,
+      "phase_rad": 1.3808
+    },
+    {
+      "epoch_s": "67200",
+      "epoch_utc": "2026-07-15T18:40:00",
+      "lat_deg": 84.7058,
+      "lon_deg": -178.8065,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8318,
+      "phase_rad": 1.647
+    },
+    {
+      "epoch_s": "67500",
+      "epoch_utc": "2026-07-15T18:45:00",
+      "lat_deg": 70.1678,
+      "lon_deg": -164.7772,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9266,
+      "phase_rad": 1.9131
+    },
+    {
+      "epoch_s": "67800",
+      "epoch_utc": "2026-07-15T18:50:00",
+      "lat_deg": 55.0255,
+      "lon_deg": -150.7479,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8296,
+      "phase_rad": 2.1793
+    },
+    {
+      "epoch_s": "68100",
+      "epoch_utc": "2026-07-15T18:55:00",
+      "lat_deg": 39.8237,
+      "lon_deg": -136.7185,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6997,
+      "phase_rad": 2.4454
+    },
+    {
+      "epoch_s": "68400",
+      "epoch_utc": "2026-07-15T19:00:00",
+      "lat_deg": 24.6044,
+      "lon_deg": -122.6892,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5341,
+      "phase_rad": 2.7115
+    },
+    {
+      "epoch_s": "68700",
+      "epoch_utc": "2026-07-15T19:05:00",
+      "lat_deg": 9.3786,
+      "lon_deg": -108.6599,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3233,
+      "phase_rad": 2.9777
+    },
+    {
+      "epoch_s": "69000",
+      "epoch_utc": "2026-07-15T19:10:00",
+      "lat_deg": -5.8492,
+      "lon_deg": -94.6305,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0544,
+      "phase_rad": 3.2438
+    },
+    {
+      "epoch_s": "69300",
+      "epoch_utc": "2026-07-15T19:15:00",
+      "lat_deg": -21.0758,
+      "lon_deg": -80.6012,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.712,
+      "phase_rad": 3.51
+    },
+    {
+      "epoch_s": "69600",
+      "epoch_utc": "2026-07-15T19:20:00",
+      "lat_deg": -36.2972,
+      "lon_deg": -66.5719,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2808,
+      "phase_rad": 3.7761
+    },
+    {
+      "epoch_s": "69900",
+      "epoch_utc": "2026-07-15T19:25:00",
+      "lat_deg": -51.5048,
+      "lon_deg": -52.5426,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.7511,
+      "phase_rad": 4.0422
+    },
+    {
+      "epoch_s": "70200",
+      "epoch_utc": "2026-07-15T19:30:00",
+      "lat_deg": -66.6696,
+      "lon_deg": -38.5132,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.1311,
+      "phase_rad": 4.3084
+    },
+    {
+      "epoch_s": "70500",
+      "epoch_utc": "2026-07-15T19:35:00",
+      "lat_deg": -81.5543,
+      "lon_deg": -24.4839,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.5564,
+      "phase_rad": 4.5745
+    },
+    {
+      "epoch_s": "70800",
+      "epoch_utc": "2026-07-15T19:40:00",
+      "lat_deg": -82.0642,
+      "lon_deg": -10.4546,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3758,
+      "phase_rad": 4.8407
+    },
+    {
+      "epoch_s": "71100",
+      "epoch_utc": "2026-07-15T19:45:00",
+      "lat_deg": -67.213,
+      "lon_deg": 3.5747,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5074,
+      "phase_rad": 5.1068
+    },
+    {
+      "epoch_s": "71400",
+      "epoch_utc": "2026-07-15T19:50:00",
+      "lat_deg": -52.0511,
+      "lon_deg": 17.6041,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4991,
+      "phase_rad": 5.373
+    },
+    {
+      "epoch_s": "71700",
+      "epoch_utc": "2026-07-15T19:55:00",
+      "lat_deg": -36.8442,
+      "lon_deg": 31.6334,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4549,
+      "phase_rad": 5.6391
+    },
+    {
+      "epoch_s": "72000",
+      "epoch_utc": "2026-07-15T20:00:00",
+      "lat_deg": -21.6232,
+      "lon_deg": 45.6627,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.307,
+      "phase_rad": 5.9052
+    },
+    {
+      "epoch_s": "72300",
+      "epoch_utc": "2026-07-15T20:05:00",
+      "lat_deg": -6.3967,
+      "lon_deg": 59.6921,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 8.81,
+      "range_rate_km_s": -3.4049,
+      "phase_rad": 6.1714
+    },
+    {
+      "epoch_s": "72600",
+      "epoch_utc": "2026-07-15T20:10:00",
+      "lat_deg": 8.8311,
+      "lon_deg": 73.7214,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": 12.74,
+      "range_rate_km_s": 2.4593,
+      "phase_rad": 0.1543
+    },
+    {
+      "epoch_s": "72900",
+      "epoch_utc": "2026-07-15T20:15:00",
+      "lat_deg": 24.0571,
+      "lon_deg": 87.7507,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.2082,
+      "phase_rad": 0.4205
+    },
+    {
+      "epoch_s": "73200",
+      "epoch_utc": "2026-07-15T20:20:00",
+      "lat_deg": 39.2767,
+      "lon_deg": 101.78,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.43,
+      "phase_rad": 0.6866
+    },
+    {
+      "epoch_s": "73500",
+      "epoch_utc": "2026-07-15T20:25:00",
+      "lat_deg": 54.4796,
+      "lon_deg": 115.8094,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4875,
+      "phase_rad": 0.9528
+    },
+    {
+      "epoch_s": "73800",
+      "epoch_utc": "2026-07-15T20:30:00",
+      "lat_deg": 69.6259,
+      "lon_deg": 129.8387,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.493,
+      "phase_rad": 1.2189
+    },
+    {
+      "epoch_s": "74100",
+      "epoch_utc": "2026-07-15T20:35:00",
+      "lat_deg": 84.2458,
+      "lon_deg": 143.868,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.1258,
+      "phase_rad": 1.4851
+    },
+    {
+      "epoch_s": "74400",
+      "epoch_utc": "2026-07-15T20:40:00",
+      "lat_deg": 79.2416,
+      "lon_deg": 157.8973,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.1922,
+      "phase_rad": 1.7512
+    },
+    {
+      "epoch_s": "74700",
+      "epoch_utc": "2026-07-15T20:45:00",
+      "lat_deg": 64.2513,
+      "lon_deg": 171.9267,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.5304,
+      "phase_rad": 2.0173
+    },
+    {
+      "epoch_s": "75000",
+      "epoch_utc": "2026-07-15T20:50:00",
+      "lat_deg": 49.0752,
+      "lon_deg": -174.044,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7147,
+      "phase_rad": 2.2835
+    },
+    {
+      "epoch_s": "75300",
+      "epoch_utc": "2026-07-15T20:55:00",
+      "lat_deg": 33.8643,
+      "lon_deg": -160.0147,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5793,
+      "phase_rad": 2.5496
+    },
+    {
+      "epoch_s": "75600",
+      "epoch_utc": "2026-07-15T21:00:00",
+      "lat_deg": 18.6417,
+      "lon_deg": -145.9853,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.4123,
+      "phase_rad": 2.8158
+    },
+    {
+      "epoch_s": "75900",
+      "epoch_utc": "2026-07-15T21:05:00",
+      "lat_deg": 3.4147,
+      "lon_deg": -131.956,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.2065,
+      "phase_rad": 3.0819
+    },
+    {
+      "epoch_s": "76200",
+      "epoch_utc": "2026-07-15T21:10:00",
+      "lat_deg": -11.813,
+      "lon_deg": -117.9267,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.9529,
+      "phase_rad": 3.3481
+    },
+    {
+      "epoch_s": "76500",
+      "epoch_utc": "2026-07-15T21:15:00",
+      "lat_deg": -27.0381,
+      "lon_deg": -103.8974,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.6416,
+      "phase_rad": 3.6142
+    },
+    {
+      "epoch_s": "76800",
+      "epoch_utc": "2026-07-15T21:20:00",
+      "lat_deg": -42.2556,
+      "lon_deg": -89.868,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2633,
+      "phase_rad": 3.8803
+    },
+    {
+      "epoch_s": "77100",
+      "epoch_utc": "2026-07-15T21:25:00",
+      "lat_deg": -57.4525,
+      "lon_deg": -75.8387,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8135,
+      "phase_rad": 4.1465
+    },
+    {
+      "epoch_s": "77400",
+      "epoch_utc": "2026-07-15T21:30:00",
+      "lat_deg": -72.5725,
+      "lon_deg": -61.8094,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.3064,
+      "phase_rad": 4.4126
+    },
+    {
+      "epoch_s": "77700",
+      "epoch_utc": "2026-07-15T21:35:00",
+      "lat_deg": -86.4352,
+      "lon_deg": -47.7801,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.6272,
+      "phase_rad": 4.6788
+    },
+    {
+      "epoch_s": "78000",
+      "epoch_utc": "2026-07-15T21:40:00",
+      "lat_deg": -76.3499,
+      "lon_deg": -33.7507,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3711,
+      "phase_rad": 4.9449
+    },
+    {
+      "epoch_s": "78300",
+      "epoch_utc": "2026-07-15T21:45:00",
+      "lat_deg": -61.2849,
+      "lon_deg": -19.7214,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3499,
+      "phase_rad": 5.2111
+    },
+    {
+      "epoch_s": "78600",
+      "epoch_utc": "2026-07-15T21:50:00",
+      "lat_deg": -46.0981,
+      "lon_deg": -5.6921,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2588,
+      "phase_rad": 5.4772
+    },
+    {
+      "epoch_s": "78900",
+      "epoch_utc": "2026-07-15T21:55:00",
+      "lat_deg": -30.884,
+      "lon_deg": 8.3373,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0779,
+      "phase_rad": 5.7433
+    },
+    {
+      "epoch_s": "79200",
+      "epoch_utc": "2026-07-15T22:00:00",
+      "lat_deg": -15.6602,
+      "lon_deg": 22.3666,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6858,
+      "phase_rad": 6.0095
+    },
+    {
+      "epoch_s": "79500",
+      "epoch_utc": "2026-07-15T22:05:00",
+      "lat_deg": -0.4328,
+      "lon_deg": 36.3959,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7236,
+      "phase_rad": 6.2756
+    },
+    {
+      "epoch_s": "79800",
+      "epoch_utc": "2026-07-15T22:10:00",
+      "lat_deg": 14.7947,
+      "lon_deg": 50.4252,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.5249,
+      "phase_rad": 0.2586
+    },
+    {
+      "epoch_s": "80100",
+      "epoch_utc": "2026-07-15T22:15:00",
+      "lat_deg": 30.0189,
+      "lon_deg": 64.4546,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.0802,
+      "phase_rad": 0.5247
+    },
+    {
+      "epoch_s": "80400",
+      "epoch_utc": "2026-07-15T22:20:00",
+      "lat_deg": 45.2338,
+      "lon_deg": 78.4839,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.4255,
+      "phase_rad": 0.7909
+    },
+    {
+      "epoch_s": "80700",
+      "epoch_utc": "2026-07-15T22:25:00",
+      "lat_deg": 60.4232,
+      "lon_deg": 92.5132,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.9561,
+      "phase_rad": 1.057
+    },
+    {
+      "epoch_s": "81000",
+      "epoch_utc": "2026-07-15T22:30:00",
+      "lat_deg": 75.5035,
+      "lon_deg": 106.5425,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.1428,
+      "phase_rad": 1.3231
+    },
+    {
+      "epoch_s": "81300",
+      "epoch_utc": "2026-07-15T22:35:00",
+      "lat_deg": 86.8185,
+      "lon_deg": 120.5719,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.2017,
+      "phase_rad": 1.5893
+    },
+    {
+      "epoch_s": "81600",
+      "epoch_utc": "2026-07-15T22:40:00",
+      "lat_deg": 73.4252,
+      "lon_deg": 134.6012,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.839,
+      "phase_rad": 1.8554
+    },
+    {
+      "epoch_s": "81900",
+      "epoch_utc": "2026-07-15T22:45:00",
+      "lat_deg": 58.315,
+      "lon_deg": 148.6305,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.1014,
+      "phase_rad": 2.1216
+    },
+    {
+      "epoch_s": "82200",
+      "epoch_utc": "2026-07-15T22:50:00",
+      "lat_deg": 43.1201,
+      "lon_deg": 162.6599,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.0587,
+      "phase_rad": 2.3877
+    },
+    {
+      "epoch_s": "82500",
+      "epoch_utc": "2026-07-15T22:55:00",
+      "lat_deg": 27.9033,
+      "lon_deg": 176.6892,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.8926,
+      "phase_rad": 2.6539
+    },
+    {
+      "epoch_s": "82800",
+      "epoch_utc": "2026-07-15T23:00:00",
+      "lat_deg": 12.6784,
+      "lon_deg": -169.2815,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3084,
+      "phase_rad": 2.92
+    },
+    {
+      "epoch_s": "83100",
+      "epoch_utc": "2026-07-15T23:05:00",
+      "lat_deg": -2.5492,
+      "lon_deg": -155.2522,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1097,
+      "phase_rad": 3.1861
+    },
+    {
+      "epoch_s": "83400",
+      "epoch_utc": "2026-07-15T23:10:00",
+      "lat_deg": -17.7763,
+      "lon_deg": -141.2228,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8715,
+      "phase_rad": 3.4523
+    },
+    {
+      "epoch_s": "83700",
+      "epoch_utc": "2026-07-15T23:15:00",
+      "lat_deg": -32.9993,
+      "lon_deg": -127.1935,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5869,
+      "phase_rad": 3.7184
+    },
+    {
+      "epoch_s": "84000",
+      "epoch_utc": "2026-07-15T23:20:00",
+      "lat_deg": -48.2112,
+      "lon_deg": -113.1642,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2504,
+      "phase_rad": 3.9846
+    },
+    {
+      "epoch_s": "84300",
+      "epoch_utc": "2026-07-15T23:25:00",
+      "lat_deg": -63.3907,
+      "lon_deg": -99.1349,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8611,
+      "phase_rad": 4.2507
+    },
+    {
+      "epoch_s": "84600",
+      "epoch_utc": "2026-07-15T23:30:00",
+      "lat_deg": -78.4072,
+      "lon_deg": -85.1055,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.4554,
+      "phase_rad": 4.5169
+    },
+    {
+      "epoch_s": "84900",
+      "epoch_utc": "2026-07-15T23:35:00",
+      "lat_deg": -84.9648,
+      "lon_deg": -71.0762,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0116,
+      "phase_rad": 4.783
+    },
+    {
+      "epoch_s": "85200",
+      "epoch_utc": "2026-07-15T23:40:00",
+      "lat_deg": -70.4824,
+      "lon_deg": -57.0469,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2324,
+      "phase_rad": 5.0491
+    },
+    {
+      "epoch_s": "85500",
+      "epoch_utc": "2026-07-15T23:45:00",
+      "lat_deg": -55.3427,
+      "lon_deg": -43.0175,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1438,
+      "phase_rad": 5.3153
+    },
+    {
+      "epoch_s": "85800",
+      "epoch_utc": "2026-07-15T23:50:00",
+      "lat_deg": -40.1414,
+      "lon_deg": -28.9882,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9896,
+      "phase_rad": 5.5814
+    },
+    {
+      "epoch_s": "86100",
+      "epoch_utc": "2026-07-15T23:55:00",
+      "lat_deg": -24.9223,
+      "lon_deg": -14.9589,
+      "alt_km": 400.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7343,
+      "phase_rad": 5.8476
+    }
+  ],
+  "mro_ephemeris": [
+    {
+      "epoch_s": "0",
+      "epoch_utc": "2026-07-15T00:00:00",
+      "lat_deg": 21.972,
+      "lon_deg": 157.9962,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.9218,
+      "phase_rad": 2.7576
+    },
+    {
+      "epoch_s": "300",
+      "epoch_utc": "2026-07-15T00:05:00",
+      "lat_deg": 6.1224,
+      "lon_deg": 172.6497,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.7436,
+      "phase_rad": 3.0346
+    },
+    {
+      "epoch_s": "600",
+      "epoch_utc": "2026-07-15T00:10:00",
+      "lat_deg": -9.7287,
+      "lon_deg": -172.6968,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0617,
+      "phase_rad": 3.3116
+    },
+    {
+      "epoch_s": "900",
+      "epoch_utc": "2026-07-15T00:15:00",
+      "lat_deg": -25.5775,
+      "lon_deg": -158.0434,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8166,
+      "phase_rad": 3.5887
+    },
+    {
+      "epoch_s": "1200",
+      "epoch_utc": "2026-07-15T00:20:00",
+      "lat_deg": -41.4187,
+      "lon_deg": -143.3899,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5276,
+      "phase_rad": 3.8657
+    },
+    {
+      "epoch_s": "1500",
+      "epoch_utc": "2026-07-15T00:25:00",
+      "lat_deg": -57.2387,
+      "lon_deg": -128.7364,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.1912,
+      "phase_rad": 4.1427
+    },
+    {
+      "epoch_s": "1800",
+      "epoch_utc": "2026-07-15T00:30:00",
+      "lat_deg": -72.9754,
+      "lon_deg": -114.083,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8165,
+      "phase_rad": 4.4198
+    },
+    {
+      "epoch_s": "2100",
+      "epoch_utc": "2026-07-15T00:35:00",
+      "lat_deg": -86.8701,
+      "lon_deg": -99.4295,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.4861,
+      "phase_rad": 4.6968
+    },
+    {
+      "epoch_s": "2400",
+      "epoch_utc": "2026-07-15T00:40:00",
+      "lat_deg": -74.7292,
+      "lon_deg": -84.776,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2061,
+      "phase_rad": 4.9738
+    },
+    {
+      "epoch_s": "2700",
+      "epoch_utc": "2026-07-15T00:45:00",
+      "lat_deg": -59.0158,
+      "lon_deg": -70.1226,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1172,
+      "phase_rad": 5.2509
+    },
+    {
+      "epoch_s": "3000",
+      "epoch_utc": "2026-07-15T00:50:00",
+      "lat_deg": -43.2001,
+      "lon_deg": -55.4691,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9612,
+      "phase_rad": 5.5279
+    },
+    {
+      "epoch_s": "3300",
+      "epoch_utc": "2026-07-15T00:55:00",
+      "lat_deg": -27.3603,
+      "lon_deg": -40.8156,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7235,
+      "phase_rad": 5.8049
+    },
+    {
+      "epoch_s": "3600",
+      "epoch_utc": "2026-07-15T01:00:00",
+      "lat_deg": -11.512,
+      "lon_deg": -26.1622,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3551,
+      "phase_rad": 6.082
+    },
+    {
+      "epoch_s": "3900",
+      "epoch_utc": "2026-07-15T01:05:00",
+      "lat_deg": 4.339,
+      "lon_deg": -11.5087,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7765,
+      "phase_rad": 0.0758
+    },
+    {
+      "epoch_s": "4200",
+      "epoch_utc": "2026-07-15T01:10:00",
+      "lat_deg": 20.189,
+      "lon_deg": 3.1447,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8894,
+      "phase_rad": 0.3529
+    },
+    {
+      "epoch_s": "4500",
+      "epoch_utc": "2026-07-15T01:15:00",
+      "lat_deg": 36.0337,
+      "lon_deg": 17.7982,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.663,
+      "phase_rad": 0.6299
+    },
+    {
+      "epoch_s": "4800",
+      "epoch_utc": "2026-07-15T01:20:00",
+      "lat_deg": 51.8636,
+      "lon_deg": 32.4517,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.7172,
+      "phase_rad": 0.9069
+    },
+    {
+      "epoch_s": "5100",
+      "epoch_utc": "2026-07-15T01:25:00",
+      "lat_deg": 67.6449,
+      "lon_deg": 47.1051,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.9105,
+      "phase_rad": 1.184
+    },
+    {
+      "epoch_s": "5400",
+      "epoch_utc": "2026-07-15T01:30:00",
+      "lat_deg": 83.0336,
+      "lon_deg": 61.7586,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.4695,
+      "phase_rad": 1.461
+    },
+    {
+      "epoch_s": "5700",
+      "epoch_utc": "2026-07-15T01:35:00",
+      "lat_deg": 79.9628,
+      "lon_deg": 76.4121,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.2857,
+      "phase_rad": 1.738
+    },
+    {
+      "epoch_s": "6000",
+      "epoch_utc": "2026-07-15T01:40:00",
+      "lat_deg": 64.3798,
+      "lon_deg": 91.0655,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7019,
+      "phase_rad": 2.0151
+    },
+    {
+      "epoch_s": "6300",
+      "epoch_utc": "2026-07-15T01:45:00",
+      "lat_deg": 48.582,
+      "lon_deg": 105.719,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.514,
+      "phase_rad": 2.2921
+    },
+    {
+      "epoch_s": "6600",
+      "epoch_utc": "2026-07-15T01:50:00",
+      "lat_deg": 32.7477,
+      "lon_deg": 120.3725,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.1497,
+      "phase_rad": 2.5692
+    },
+    {
+      "epoch_s": "6900",
+      "epoch_utc": "2026-07-15T01:55:00",
+      "lat_deg": 16.9014,
+      "lon_deg": 135.0259,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.7623,
+      "phase_rad": 2.8462
+    },
+    {
+      "epoch_s": "7200",
+      "epoch_utc": "2026-07-15T02:00:00",
+      "lat_deg": 1.0509,
+      "lon_deg": 149.6794,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.8721,
+      "phase_rad": 3.1232
+    },
+    {
+      "epoch_s": "7500",
+      "epoch_utc": "2026-07-15T02:05:00",
+      "lat_deg": -14.7999,
+      "lon_deg": 164.3329,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.5192,
+      "phase_rad": 3.4003
+    },
+    {
+      "epoch_s": "7800",
+      "epoch_utc": "2026-07-15T02:10:00",
+      "lat_deg": -30.647,
+      "lon_deg": 178.9863,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.8885,
+      "phase_rad": 3.6773
+    },
+    {
+      "epoch_s": "8100",
+      "epoch_utc": "2026-07-15T02:15:00",
+      "lat_deg": -46.4837,
+      "lon_deg": -166.3602,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5091,
+      "phase_rad": 3.9543
+    },
+    {
+      "epoch_s": "8400",
+      "epoch_utc": "2026-07-15T02:20:00",
+      "lat_deg": -62.2895,
+      "lon_deg": -151.7067,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2068,
+      "phase_rad": 4.2314
+    },
+    {
+      "epoch_s": "8700",
+      "epoch_utc": "2026-07-15T02:25:00",
+      "lat_deg": -77.9389,
+      "lon_deg": -137.0533,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8918,
+      "phase_rad": 4.5084
+    },
+    {
+      "epoch_s": "9000",
+      "epoch_utc": "2026-07-15T02:30:00",
+      "lat_deg": -84.8519,
+      "lon_deg": -122.3998,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9536,
+      "phase_rad": 4.7854
+    },
+    {
+      "epoch_s": "9300",
+      "epoch_utc": "2026-07-15T02:35:00",
+      "lat_deg": -69.7275,
+      "lon_deg": -107.7464,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0779,
+      "phase_rad": 5.0625
+    },
+    {
+      "epoch_s": "9600",
+      "epoch_utc": "2026-07-15T02:40:00",
+      "lat_deg": -53.9603,
+      "lon_deg": -93.0929,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9577,
+      "phase_rad": 5.3395
+    },
+    {
+      "epoch_s": "9900",
+      "epoch_utc": "2026-07-15T02:45:00",
+      "lat_deg": -38.1338,
+      "lon_deg": -78.4394,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7822,
+      "phase_rad": 5.6165
+    },
+    {
+      "epoch_s": "10200",
+      "epoch_utc": "2026-07-15T02:50:00",
+      "lat_deg": -22.2903,
+      "lon_deg": -63.786,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.535,
+      "phase_rad": 5.8936
+    },
+    {
+      "epoch_s": "10500",
+      "epoch_utc": "2026-07-15T02:55:00",
+      "lat_deg": -6.4407,
+      "lon_deg": -49.1325,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1841,
+      "phase_rad": 6.1706
+    },
+    {
+      "epoch_s": "10800",
+      "epoch_utc": "2026-07-15T03:00:00",
+      "lat_deg": 9.4104,
+      "lon_deg": -34.479,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.6855,
+      "phase_rad": 0.1645
+    },
+    {
+      "epoch_s": "11100",
+      "epoch_utc": "2026-07-15T03:05:00",
+      "lat_deg": 25.2593,
+      "lon_deg": -19.8256,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.9925,
+      "phase_rad": 0.4415
+    },
+    {
+      "epoch_s": "11400",
+      "epoch_utc": "2026-07-15T03:10:00",
+      "lat_deg": 41.1007,
+      "lon_deg": -5.1721,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.0876,
+      "phase_rad": 0.7185
+    },
+    {
+      "epoch_s": "11700",
+      "epoch_utc": "2026-07-15T03:15:00",
+      "lat_deg": 56.9214,
+      "lon_deg": 9.4814,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.0348,
+      "phase_rad": 0.9956
+    },
+    {
+      "epoch_s": "12000",
+      "epoch_utc": "2026-07-15T03:20:00",
+      "lat_deg": 72.6617,
+      "lon_deg": 24.1348,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.9931,
+      "phase_rad": 1.2726
+    },
+    {
+      "epoch_s": "12300",
+      "epoch_utc": "2026-07-15T03:25:00",
+      "lat_deg": 86.7647,
+      "lon_deg": 38.7883,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.1531,
+      "phase_rad": 1.5496
+    },
+    {
+      "epoch_s": "12600",
+      "epoch_utc": "2026-07-15T03:30:00",
+      "lat_deg": 75.0415,
+      "lon_deg": 53.4418,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0963,
+      "phase_rad": 1.8267
+    },
+    {
+      "epoch_s": "12900",
+      "epoch_utc": "2026-07-15T03:35:00",
+      "lat_deg": 59.3329,
+      "lon_deg": 68.0952,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8008,
+      "phase_rad": 2.1037
+    },
+    {
+      "epoch_s": "13200",
+      "epoch_utc": "2026-07-15T03:40:00",
+      "lat_deg": 43.5181,
+      "lon_deg": 82.7487,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0216,
+      "phase_rad": 2.3808
+    },
+    {
+      "epoch_s": "13500",
+      "epoch_utc": "2026-07-15T03:45:00",
+      "lat_deg": 27.6785,
+      "lon_deg": 97.4022,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.219,
+      "phase_rad": 2.6578
+    },
+    {
+      "epoch_s": "13800",
+      "epoch_utc": "2026-07-15T03:50:00",
+      "lat_deg": 11.8303,
+      "lon_deg": 112.0556,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.4007,
+      "phase_rad": 2.9348
+    },
+    {
+      "epoch_s": "14100",
+      "epoch_utc": "2026-07-15T03:55:00",
+      "lat_deg": -4.0206,
+      "lon_deg": 126.7091,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.1116,
+      "phase_rad": 3.2119
+    },
+    {
+      "epoch_s": "14400",
+      "epoch_utc": "2026-07-15T04:00:00",
+      "lat_deg": -19.8707,
+      "lon_deg": 141.3626,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.8494,
+      "phase_rad": 3.4889
+    },
+    {
+      "epoch_s": "14700",
+      "epoch_utc": "2026-07-15T04:05:00",
+      "lat_deg": -35.7156,
+      "lon_deg": 156.016,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.173,
+      "phase_rad": 3.7659
+    },
+    {
+      "epoch_s": "15000",
+      "epoch_utc": "2026-07-15T04:10:00",
+      "lat_deg": -51.546,
+      "lon_deg": 170.6695,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.3315,
+      "phase_rad": 4.043
+    },
+    {
+      "epoch_s": "15300",
+      "epoch_utc": "2026-07-15T04:15:00",
+      "lat_deg": -67.3291,
+      "lon_deg": -174.6771,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.2209,
+      "phase_rad": 4.32
+    },
+    {
+      "epoch_s": "15600",
+      "epoch_utc": "2026-07-15T04:20:00",
+      "lat_deg": -82.7448,
+      "lon_deg": -160.0236,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.005,
+      "phase_rad": 4.597
+    },
+    {
+      "epoch_s": "15900",
+      "epoch_utc": "2026-07-15T04:25:00",
+      "lat_deg": -80.2664,
+      "lon_deg": -145.3701,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0144,
+      "phase_rad": 4.8741
+    },
+    {
+      "epoch_s": "16200",
+      "epoch_utc": "2026-07-15T04:30:00",
+      "lat_deg": -64.6962,
+      "lon_deg": -130.7167,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9527,
+      "phase_rad": 5.1511
+    },
+    {
+      "epoch_s": "16500",
+      "epoch_utc": "2026-07-15T04:35:00",
+      "lat_deg": -48.8998,
+      "lon_deg": -116.0632,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8163,
+      "phase_rad": 5.4281
+    },
+    {
+      "epoch_s": "16800",
+      "epoch_utc": "2026-07-15T04:40:00",
+      "lat_deg": -33.0658,
+      "lon_deg": -101.4097,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6324,
+      "phase_rad": 5.7052
+    },
+    {
+      "epoch_s": "17100",
+      "epoch_utc": "2026-07-15T04:45:00",
+      "lat_deg": -17.2197,
+      "lon_deg": -86.7563,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3875,
+      "phase_rad": 5.9822
+    },
+    {
+      "epoch_s": "17400",
+      "epoch_utc": "2026-07-15T04:50:00",
+      "lat_deg": -1.3692,
+      "lon_deg": -72.1028,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0603,
+      "phase_rad": 6.2593
+    },
+    {
+      "epoch_s": "17700",
+      "epoch_utc": "2026-07-15T04:55:00",
+      "lat_deg": 14.4816,
+      "lon_deg": -57.4493,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.625,
+      "phase_rad": 0.2531
+    },
+    {
+      "epoch_s": "18000",
+      "epoch_utc": "2026-07-15T05:00:00",
+      "lat_deg": 30.3288,
+      "lon_deg": -42.7959,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.0565,
+      "phase_rad": 0.5301
+    },
+    {
+      "epoch_s": "18300",
+      "epoch_utc": "2026-07-15T05:05:00",
+      "lat_deg": 46.1659,
+      "lon_deg": -28.1424,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.3447,
+      "phase_rad": 0.8072
+    },
+    {
+      "epoch_s": "18600",
+      "epoch_utc": "2026-07-15T05:10:00",
+      "lat_deg": 61.9727,
+      "lon_deg": -13.4889,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.5183,
+      "phase_rad": 1.0842
+    },
+    {
+      "epoch_s": "18900",
+      "epoch_utc": "2026-07-15T05:15:00",
+      "lat_deg": 77.63,
+      "lon_deg": 1.1645,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.3008,
+      "phase_rad": 1.3612
+    },
+    {
+      "epoch_s": "19200",
+      "epoch_utc": "2026-07-15T05:20:00",
+      "lat_deg": 85.1073,
+      "lon_deg": 15.818,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0185,
+      "phase_rad": 1.6383
+    },
+    {
+      "epoch_s": "19500",
+      "epoch_utc": "2026-07-15T05:25:00",
+      "lat_deg": 70.0426,
+      "lon_deg": 30.4715,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5186,
+      "phase_rad": 1.9153
+    },
+    {
+      "epoch_s": "19800",
+      "epoch_utc": "2026-07-15T05:30:00",
+      "lat_deg": 54.2778,
+      "lon_deg": 45.1249,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4816,
+      "phase_rad": 2.1924
+    },
+    {
+      "epoch_s": "20100",
+      "epoch_utc": "2026-07-15T05:35:00",
+      "lat_deg": 38.4518,
+      "lon_deg": 59.7784,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3313,
+      "phase_rad": 2.4694
+    },
+    {
+      "epoch_s": "20400",
+      "epoch_utc": "2026-07-15T05:40:00",
+      "lat_deg": 22.6086,
+      "lon_deg": 74.4318,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7109,
+      "phase_rad": 2.7464
+    },
+    {
+      "epoch_s": "20700",
+      "epoch_utc": "2026-07-15T05:45:00",
+      "lat_deg": 6.759,
+      "lon_deg": 89.0853,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": 7.06,
+      "range_rate_km_s": -0.0585,
+      "phase_rad": 3.0235
+    },
+    {
+      "epoch_s": "21000",
+      "epoch_utc": "2026-07-15T05:50:00",
+      "lat_deg": -9.092,
+      "lon_deg": 103.7388,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.6862,
+      "phase_rad": 3.3005
+    },
+    {
+      "epoch_s": "21300",
+      "epoch_utc": "2026-07-15T05:55:00",
+      "lat_deg": -24.941,
+      "lon_deg": 118.3922,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.3283,
+      "phase_rad": 3.5775
+    },
+    {
+      "epoch_s": "21600",
+      "epoch_utc": "2026-07-15T06:00:00",
+      "lat_deg": -40.7827,
+      "lon_deg": 133.0457,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4854,
+      "phase_rad": 3.8546
+    },
+    {
+      "epoch_s": "21900",
+      "epoch_utc": "2026-07-15T06:05:00",
+      "lat_deg": -56.6041,
+      "lon_deg": 147.6992,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5402,
+      "phase_rad": 4.1316
+    },
+    {
+      "epoch_s": "22200",
+      "epoch_utc": "2026-07-15T06:10:00",
+      "lat_deg": -72.3478,
+      "lon_deg": 162.3526,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5451,
+      "phase_rad": 4.4086
+    },
+    {
+      "epoch_s": "22500",
+      "epoch_utc": "2026-07-15T06:15:00",
+      "lat_deg": -86.6325,
+      "lon_deg": 177.0061,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.3324,
+      "phase_rad": 4.6857
+    },
+    {
+      "epoch_s": "22800",
+      "epoch_utc": "2026-07-15T06:20:00",
+      "lat_deg": -75.3536,
+      "lon_deg": -168.3404,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9378,
+      "phase_rad": 4.9627
+    },
+    {
+      "epoch_s": "23100",
+      "epoch_utc": "2026-07-15T06:25:00",
+      "lat_deg": -59.65,
+      "lon_deg": -153.687,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8374,
+      "phase_rad": 5.2397
+    },
+    {
+      "epoch_s": "23400",
+      "epoch_utc": "2026-07-15T06:30:00",
+      "lat_deg": -43.836,
+      "lon_deg": -139.0335,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6929,
+      "phase_rad": 5.5168
+    },
+    {
+      "epoch_s": "23700",
+      "epoch_utc": "2026-07-15T06:35:00",
+      "lat_deg": -27.9968,
+      "lon_deg": -124.38,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5073,
+      "phase_rad": 5.7938
+    },
+    {
+      "epoch_s": "24000",
+      "epoch_utc": "2026-07-15T06:40:00",
+      "lat_deg": -12.1487,
+      "lon_deg": -109.7266,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.2701,
+      "phase_rad": 6.0709
+    },
+    {
+      "epoch_s": "24300",
+      "epoch_utc": "2026-07-15T06:45:00",
+      "lat_deg": 3.7023,
+      "lon_deg": -95.0731,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.9671,
+      "phase_rad": 0.0647
+    },
+    {
+      "epoch_s": "24600",
+      "epoch_utc": "2026-07-15T06:50:00",
+      "lat_deg": 19.5524,
+      "lon_deg": -80.4196,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5819,
+      "phase_rad": 0.3417
+    },
+    {
+      "epoch_s": "24900",
+      "epoch_utc": "2026-07-15T06:55:00",
+      "lat_deg": 35.3974,
+      "lon_deg": -65.7662,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.1,
+      "phase_rad": 0.6188
+    },
+    {
+      "epoch_s": "25200",
+      "epoch_utc": "2026-07-15T07:00:00",
+      "lat_deg": 51.2283,
+      "lon_deg": -51.1127,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.5158,
+      "phase_rad": 0.8958
+    },
+    {
+      "epoch_s": "25500",
+      "epoch_utc": "2026-07-15T07:05:00",
+      "lat_deg": 67.0132,
+      "lon_deg": -36.4592,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.8475,
+      "phase_rad": 1.1728
+    },
+    {
+      "epoch_s": "25800",
+      "epoch_utc": "2026-07-15T07:10:00",
+      "lat_deg": 82.4535,
+      "lon_deg": -21.8058,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.2923,
+      "phase_rad": 1.4499
+    },
+    {
+      "epoch_s": "26100",
+      "epoch_utc": "2026-07-15T07:15:00",
+      "lat_deg": 80.569,
+      "lon_deg": -7.1523,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5038,
+      "phase_rad": 1.7269
+    },
+    {
+      "epoch_s": "26400",
+      "epoch_utc": "2026-07-15T07:20:00",
+      "lat_deg": 65.0125,
+      "lon_deg": 7.5011,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.6078,
+      "phase_rad": 2.004
+    },
+    {
+      "epoch_s": "26700",
+      "epoch_utc": "2026-07-15T07:25:00",
+      "lat_deg": 49.2176,
+      "lon_deg": 22.1546,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.616,
+      "phase_rad": 2.281
+    },
+    {
+      "epoch_s": "27000",
+      "epoch_utc": "2026-07-15T07:30:00",
+      "lat_deg": 33.384,
+      "lon_deg": 36.8081,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.6129,
+      "phase_rad": 2.558
+    },
+    {
+      "epoch_s": "27300",
+      "epoch_utc": "2026-07-15T07:35:00",
+      "lat_deg": 17.538,
+      "lon_deg": 51.4615,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5928,
+      "phase_rad": 2.8351
+    },
+    {
+      "epoch_s": "27600",
+      "epoch_utc": "2026-07-15T07:40:00",
+      "lat_deg": 1.6876,
+      "lon_deg": 66.115,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": 10.43,
+      "range_rate_km_s": -4.3804,
+      "phase_rad": 3.1121
+    },
+    {
+      "epoch_s": "27900",
+      "epoch_utc": "2026-07-15T07:45:00",
+      "lat_deg": -14.1633,
+      "lon_deg": 80.7685,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": 13.03,
+      "range_rate_km_s": 4.2554,
+      "phase_rad": 3.3891
+    },
+    {
+      "epoch_s": "28200",
+      "epoch_utc": "2026-07-15T07:50:00",
+      "lat_deg": -30.0107,
+      "lon_deg": 95.4219,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5864,
+      "phase_rad": 3.6662
+    },
+    {
+      "epoch_s": "28500",
+      "epoch_utc": "2026-07-15T07:55:00",
+      "lat_deg": -45.848,
+      "lon_deg": 110.0754,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.6093,
+      "phase_rad": 3.9432
+    },
+    {
+      "epoch_s": "28800",
+      "epoch_utc": "2026-07-15T08:00:00",
+      "lat_deg": -61.6559,
+      "lon_deg": 124.7289,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.6075,
+      "phase_rad": 4.2202
+    },
+    {
+      "epoch_s": "29100",
+      "epoch_utc": "2026-07-15T08:05:00",
+      "lat_deg": -77.3206,
+      "lon_deg": 139.3823,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5502,
+      "phase_rad": 4.4973
+    },
+    {
+      "epoch_s": "29400",
+      "epoch_utc": "2026-07-15T08:10:00",
+      "lat_deg": -85.3549,
+      "lon_deg": 154.0358,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.2414,
+      "phase_rad": 4.7743
+    },
+    {
+      "epoch_s": "29700",
+      "epoch_utc": "2026-07-15T08:15:00",
+      "lat_deg": -70.3575,
+      "lon_deg": 168.6893,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.5741,
+      "phase_rad": 5.0513
+    },
+    {
+      "epoch_s": "30000",
+      "epoch_utc": "2026-07-15T08:20:00",
+      "lat_deg": -54.5953,
+      "lon_deg": -176.6573,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7333,
+      "phase_rad": 5.3284
+    },
+    {
+      "epoch_s": "30300",
+      "epoch_utc": "2026-07-15T08:25:00",
+      "lat_deg": -38.7699,
+      "lon_deg": -162.0038,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5856,
+      "phase_rad": 5.6054
+    },
+    {
+      "epoch_s": "30600",
+      "epoch_utc": "2026-07-15T08:30:00",
+      "lat_deg": -22.9268,
+      "lon_deg": -147.3503,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.4022,
+      "phase_rad": 5.8825
+    },
+    {
+      "epoch_s": "30900",
+      "epoch_utc": "2026-07-15T08:35:00",
+      "lat_deg": -7.0774,
+      "lon_deg": -132.6969,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1751,
+      "phase_rad": 6.1595
+    },
+    {
+      "epoch_s": "31200",
+      "epoch_utc": "2026-07-15T08:40:00",
+      "lat_deg": 8.7737,
+      "lon_deg": -118.0434,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8945,
+      "phase_rad": 0.1533
+    },
+    {
+      "epoch_s": "31500",
+      "epoch_utc": "2026-07-15T08:45:00",
+      "lat_deg": 24.6228,
+      "lon_deg": -103.39,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5497,
+      "phase_rad": 0.4304
+    },
+    {
+      "epoch_s": "31800",
+      "epoch_utc": "2026-07-15T08:50:00",
+      "lat_deg": 40.4647,
+      "lon_deg": -88.7365,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.1317,
+      "phase_rad": 0.7074
+    },
+    {
+      "epoch_s": "32100",
+      "epoch_utc": "2026-07-15T08:55:00",
+      "lat_deg": 56.2868,
+      "lon_deg": -74.083,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.6379,
+      "phase_rad": 0.9844
+    },
+    {
+      "epoch_s": "32400",
+      "epoch_utc": "2026-07-15T09:00:00",
+      "lat_deg": 72.0337,
+      "lon_deg": -59.4296,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.0871,
+      "phase_rad": 1.2615
+    },
+    {
+      "epoch_s": "32700",
+      "epoch_utc": "2026-07-15T09:05:00",
+      "lat_deg": 86.4763,
+      "lon_deg": -44.7761,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.4981,
+      "phase_rad": 1.5385
+    },
+    {
+      "epoch_s": "33000",
+      "epoch_utc": "2026-07-15T09:10:00",
+      "lat_deg": 75.6653,
+      "lon_deg": -30.1226,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5061,
+      "phase_rad": 1.8156
+    },
+    {
+      "epoch_s": "33300",
+      "epoch_utc": "2026-07-15T09:15:00",
+      "lat_deg": 59.967,
+      "lon_deg": -15.4692,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5092,
+      "phase_rad": 2.0926
+    },
+    {
+      "epoch_s": "33600",
+      "epoch_utc": "2026-07-15T09:20:00",
+      "lat_deg": 44.1539,
+      "lon_deg": -0.8157,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4584,
+      "phase_rad": 2.3696
+    },
+    {
+      "epoch_s": "33900",
+      "epoch_utc": "2026-07-15T09:25:00",
+      "lat_deg": 28.315,
+      "lon_deg": 13.8378,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3471,
+      "phase_rad": 2.6467
+    },
+    {
+      "epoch_s": "34200",
+      "epoch_utc": "2026-07-15T09:30:00",
+      "lat_deg": 12.467,
+      "lon_deg": 28.4912,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.076,
+      "phase_rad": 2.9237
+    },
+    {
+      "epoch_s": "34500",
+      "epoch_utc": "2026-07-15T09:35:00",
+      "lat_deg": -3.3839,
+      "lon_deg": 43.1447,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.2326,
+      "phase_rad": 3.2007
+    },
+    {
+      "epoch_s": "34800",
+      "epoch_utc": "2026-07-15T09:40:00",
+      "lat_deg": -19.2341,
+      "lon_deg": 57.7982,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.422,
+      "phase_rad": 3.4778
+    },
+    {
+      "epoch_s": "35100",
+      "epoch_utc": "2026-07-15T09:45:00",
+      "lat_deg": -35.0793,
+      "lon_deg": 72.4516,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.8738,
+      "phase_rad": 3.7548
+    },
+    {
+      "epoch_s": "35400",
+      "epoch_utc": "2026-07-15T09:50:00",
+      "lat_deg": -50.9106,
+      "lon_deg": 87.1051,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.9683,
+      "phase_rad": 4.0318
+    },
+    {
+      "epoch_s": "35700",
+      "epoch_utc": "2026-07-15T09:55:00",
+      "lat_deg": -66.6973,
+      "lon_deg": 101.7586,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.2876,
+      "phase_rad": 4.3089
+    },
+    {
+      "epoch_s": "36000",
+      "epoch_utc": "2026-07-15T10:00:00",
+      "lat_deg": -82.1601,
+      "lon_deg": 116.412,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.2104,
+      "phase_rad": 4.5859
+    },
+    {
+      "epoch_s": "36300",
+      "epoch_utc": "2026-07-15T10:05:00",
+      "lat_deg": -80.8705,
+      "lon_deg": 131.0655,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.8314,
+      "phase_rad": 4.8629
+    },
+    {
+      "epoch_s": "36600",
+      "epoch_utc": "2026-07-15T10:10:00",
+      "lat_deg": -65.3288,
+      "lon_deg": 145.7189,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.0959,
+      "phase_rad": 5.14
+    },
+    {
+      "epoch_s": "36900",
+      "epoch_utc": "2026-07-15T10:15:00",
+      "lat_deg": -49.5353,
+      "lon_deg": 160.3724,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.1383,
+      "phase_rad": 5.417
+    },
+    {
+      "epoch_s": "37200",
+      "epoch_utc": "2026-07-15T10:20:00",
+      "lat_deg": -33.7021,
+      "lon_deg": 175.0259,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.0327,
+      "phase_rad": 5.6941
+    },
+    {
+      "epoch_s": "37500",
+      "epoch_utc": "2026-07-15T10:25:00",
+      "lat_deg": -17.8563,
+      "lon_deg": -170.3207,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3131,
+      "phase_rad": 5.9711
+    },
+    {
+      "epoch_s": "37800",
+      "epoch_utc": "2026-07-15T10:30:00",
+      "lat_deg": -2.0059,
+      "lon_deg": -155.6672,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0969,
+      "phase_rad": 6.2481
+    },
+    {
+      "epoch_s": "38100",
+      "epoch_utc": "2026-07-15T10:35:00",
+      "lat_deg": 13.8449,
+      "lon_deg": -141.0137,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8366,
+      "phase_rad": 0.242
+    },
+    {
+      "epoch_s": "38400",
+      "epoch_utc": "2026-07-15T10:40:00",
+      "lat_deg": 29.6925,
+      "lon_deg": -126.3603,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5248,
+      "phase_rad": 0.519
+    },
+    {
+      "epoch_s": "38700",
+      "epoch_utc": "2026-07-15T10:45:00",
+      "lat_deg": 45.5301,
+      "lon_deg": -111.7068,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.1559,
+      "phase_rad": 0.796
+    },
+    {
+      "epoch_s": "39000",
+      "epoch_utc": "2026-07-15T10:50:00",
+      "lat_deg": 61.3391,
+      "lon_deg": -97.0533,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.7297,
+      "phase_rad": 1.0731
+    },
+    {
+      "epoch_s": "39300",
+      "epoch_utc": "2026-07-15T10:55:00",
+      "lat_deg": 77.0108,
+      "lon_deg": -82.3999,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.2789,
+      "phase_rad": 1.3501
+    },
+    {
+      "epoch_s": "39600",
+      "epoch_utc": "2026-07-15T11:00:00",
+      "lat_deg": 85.5934,
+      "lon_deg": -67.7464,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0042,
+      "phase_rad": 1.6272
+    },
+    {
+      "epoch_s": "39900",
+      "epoch_utc": "2026-07-15T11:05:00",
+      "lat_deg": 70.6724,
+      "lon_deg": -53.0929,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3979,
+      "phase_rad": 1.9042
+    },
+    {
+      "epoch_s": "40200",
+      "epoch_utc": "2026-07-15T11:10:00",
+      "lat_deg": 54.9128,
+      "lon_deg": -38.4395,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3397,
+      "phase_rad": 2.1812
+    },
+    {
+      "epoch_s": "40500",
+      "epoch_utc": "2026-07-15T11:15:00",
+      "lat_deg": 39.088,
+      "lon_deg": -23.786,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2255,
+      "phase_rad": 2.4583
+    },
+    {
+      "epoch_s": "40800",
+      "epoch_utc": "2026-07-15T11:20:00",
+      "lat_deg": 23.2451,
+      "lon_deg": -9.1325,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0243,
+      "phase_rad": 2.7353
+    },
+    {
+      "epoch_s": "41100",
+      "epoch_utc": "2026-07-15T11:25:00",
+      "lat_deg": 7.3957,
+      "lon_deg": 5.5209,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6461,
+      "phase_rad": 3.0123
+    },
+    {
+      "epoch_s": "41400",
+      "epoch_utc": "2026-07-15T11:30:00",
+      "lat_deg": -8.4554,
+      "lon_deg": 20.1744,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8839,
+      "phase_rad": 3.2894
+    },
+    {
+      "epoch_s": "41700",
+      "epoch_utc": "2026-07-15T11:35:00",
+      "lat_deg": -24.3045,
+      "lon_deg": 34.8279,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.387,
+      "phase_rad": 3.5664
+    },
+    {
+      "epoch_s": "42000",
+      "epoch_utc": "2026-07-15T11:40:00",
+      "lat_deg": -40.1467,
+      "lon_deg": 49.4813,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.7673,
+      "phase_rad": 3.8434
+    },
+    {
+      "epoch_s": "42300",
+      "epoch_utc": "2026-07-15T11:45:00",
+      "lat_deg": -55.9694,
+      "lon_deg": 64.1348,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.516,
+      "phase_rad": 4.1205
+    },
+    {
+      "epoch_s": "42600",
+      "epoch_utc": "2026-07-15T11:50:00",
+      "lat_deg": -71.7194,
+      "lon_deg": 78.7882,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.4279,
+      "phase_rad": 4.3975
+    },
+    {
+      "epoch_s": "42900",
+      "epoch_utc": "2026-07-15T11:55:00",
+      "lat_deg": -86.2992,
+      "lon_deg": 93.4417,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.4803,
+      "phase_rad": 4.6745
+    },
+    {
+      "epoch_s": "43200",
+      "epoch_utc": "2026-07-15T12:00:00",
+      "lat_deg": -75.9767,
+      "lon_deg": 108.0952,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8166,
+      "phase_rad": 4.9516
+    },
+    {
+      "epoch_s": "43500",
+      "epoch_utc": "2026-07-15T12:05:00",
+      "lat_deg": -60.284,
+      "lon_deg": 122.7486,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.6467,
+      "phase_rad": 5.2286
+    },
+    {
+      "epoch_s": "43800",
+      "epoch_utc": "2026-07-15T12:10:00",
+      "lat_deg": -44.4719,
+      "lon_deg": 137.4021,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.7304,
+      "phase_rad": 5.5057
+    },
+    {
+      "epoch_s": "44100",
+      "epoch_utc": "2026-07-15T12:15:00",
+      "lat_deg": -28.6332,
+      "lon_deg": 152.0556,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.9424,
+      "phase_rad": 5.7827
+    },
+    {
+      "epoch_s": "44400",
+      "epoch_utc": "2026-07-15T12:20:00",
+      "lat_deg": -12.7853,
+      "lon_deg": 166.709,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.8127,
+      "phase_rad": 6.0597
+    },
+    {
+      "epoch_s": "44700",
+      "epoch_utc": "2026-07-15T12:25:00",
+      "lat_deg": 3.0656,
+      "lon_deg": -178.6375,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0316,
+      "phase_rad": 0.0536
+    },
+    {
+      "epoch_s": "45000",
+      "epoch_utc": "2026-07-15T12:30:00",
+      "lat_deg": 18.9158,
+      "lon_deg": -163.984,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7892,
+      "phase_rad": 0.3306
+    },
+    {
+      "epoch_s": "45300",
+      "epoch_utc": "2026-07-15T12:35:00",
+      "lat_deg": 34.7612,
+      "lon_deg": -149.3306,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5049,
+      "phase_rad": 0.6076
+    },
+    {
+      "epoch_s": "45600",
+      "epoch_utc": "2026-07-15T12:40:00",
+      "lat_deg": 50.5929,
+      "lon_deg": -134.6771,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.1751,
+      "phase_rad": 0.8847
+    },
+    {
+      "epoch_s": "45900",
+      "epoch_utc": "2026-07-15T12:45:00",
+      "lat_deg": 66.3813,
+      "lon_deg": -120.0236,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8023,
+      "phase_rad": 1.1617
+    },
+    {
+      "epoch_s": "46200",
+      "epoch_utc": "2026-07-15T12:50:00",
+      "lat_deg": 81.8648,
+      "lon_deg": -105.3702,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.4775,
+      "phase_rad": 1.4388
+    },
+    {
+      "epoch_s": "46500",
+      "epoch_utc": "2026-07-15T12:55:00",
+      "lat_deg": 81.1708,
+      "lon_deg": -90.7167,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.252,
+      "phase_rad": 1.7158
+    },
+    {
+      "epoch_s": "46800",
+      "epoch_utc": "2026-07-15T13:00:00",
+      "lat_deg": 65.6451,
+      "lon_deg": -76.0632,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2582,
+      "phase_rad": 1.9928
+    },
+    {
+      "epoch_s": "47100",
+      "epoch_utc": "2026-07-15T13:05:00",
+      "lat_deg": 49.8531,
+      "lon_deg": -61.4098,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.159,
+      "phase_rad": 2.2699
+    },
+    {
+      "epoch_s": "47400",
+      "epoch_utc": "2026-07-15T13:10:00",
+      "lat_deg": 34.0203,
+      "lon_deg": -46.7563,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0028,
+      "phase_rad": 2.5469
+    },
+    {
+      "epoch_s": "47700",
+      "epoch_utc": "2026-07-15T13:15:00",
+      "lat_deg": 18.1746,
+      "lon_deg": -32.1029,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7594,
+      "phase_rad": 2.8239
+    },
+    {
+      "epoch_s": "48000",
+      "epoch_utc": "2026-07-15T13:20:00",
+      "lat_deg": 2.3242,
+      "lon_deg": -17.4494,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3683,
+      "phase_rad": 3.101
+    },
+    {
+      "epoch_s": "48300",
+      "epoch_utc": "2026-07-15T13:25:00",
+      "lat_deg": -13.5266,
+      "lon_deg": -2.7959,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7274,
+      "phase_rad": 3.378
+    },
+    {
+      "epoch_s": "48600",
+      "epoch_utc": "2026-07-15T13:30:00",
+      "lat_deg": -29.3743,
+      "lon_deg": 11.8575,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.7102,
+      "phase_rad": 3.655
+    },
+    {
+      "epoch_s": "48900",
+      "epoch_utc": "2026-07-15T13:35:00",
+      "lat_deg": -45.2122,
+      "lon_deg": 26.511,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.3063,
+      "phase_rad": 3.9321
+    },
+    {
+      "epoch_s": "49200",
+      "epoch_utc": "2026-07-15T13:40:00",
+      "lat_deg": -61.0222,
+      "lon_deg": 41.1645,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.1768,
+      "phase_rad": 4.2091
+    },
+    {
+      "epoch_s": "49500",
+      "epoch_utc": "2026-07-15T13:45:00",
+      "lat_deg": -76.7006,
+      "lon_deg": 55.8179,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.2904,
+      "phase_rad": 4.4861
+    },
+    {
+      "epoch_s": "49800",
+      "epoch_utc": "2026-07-15T13:50:00",
+      "lat_deg": -85.8211,
+      "lon_deg": 70.4714,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.6765,
+      "phase_rad": 4.7632
+    },
+    {
+      "epoch_s": "50100",
+      "epoch_utc": "2026-07-15T13:55:00",
+      "lat_deg": -70.9871,
+      "lon_deg": 85.1249,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.9732,
+      "phase_rad": 5.0402
+    },
+    {
+      "epoch_s": "50400",
+      "epoch_utc": "2026-07-15T14:00:00",
+      "lat_deg": -55.2302,
+      "lon_deg": 99.7783,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8309,
+      "phase_rad": 5.3173
+    },
+    {
+      "epoch_s": "50700",
+      "epoch_utc": "2026-07-15T14:05:00",
+      "lat_deg": -39.406,
+      "lon_deg": 114.4318,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.0407,
+      "phase_rad": 5.5943
+    },
+    {
+      "epoch_s": "51000",
+      "epoch_utc": "2026-07-15T14:10:00",
+      "lat_deg": -23.5634,
+      "lon_deg": 129.0853,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.7734,
+      "phase_rad": 5.8713
+    },
+    {
+      "epoch_s": "51300",
+      "epoch_utc": "2026-07-15T14:15:00",
+      "lat_deg": -7.714,
+      "lon_deg": 143.7387,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.9741,
+      "phase_rad": 6.1484
+    },
+    {
+      "epoch_s": "51600",
+      "epoch_utc": "2026-07-15T14:20:00",
+      "lat_deg": 8.137,
+      "lon_deg": 158.3922,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.6279,
+      "phase_rad": 0.1422
+    },
+    {
+      "epoch_s": "51900",
+      "epoch_utc": "2026-07-15T14:25:00",
+      "lat_deg": 23.9863,
+      "lon_deg": 173.0457,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.9803,
+      "phase_rad": 0.4193
+    },
+    {
+      "epoch_s": "52200",
+      "epoch_utc": "2026-07-15T14:30:00",
+      "lat_deg": 39.8286,
+      "lon_deg": -172.3009,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.4888,
+      "phase_rad": 0.6963
+    },
+    {
+      "epoch_s": "52500",
+      "epoch_utc": "2026-07-15T14:35:00",
+      "lat_deg": 55.652,
+      "lon_deg": -157.6474,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.191,
+      "phase_rad": 0.9733
+    },
+    {
+      "epoch_s": "52800",
+      "epoch_utc": "2026-07-15T14:40:00",
+      "lat_deg": 71.4051,
+      "lon_deg": -142.9939,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8636,
+      "phase_rad": 1.2504
+    },
+    {
+      "epoch_s": "53100",
+      "epoch_utc": "2026-07-15T14:45:00",
+      "lat_deg": 86.104,
+      "lon_deg": -128.3405,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.0174,
+      "phase_rad": 1.5274
+    },
+    {
+      "epoch_s": "53400",
+      "epoch_utc": "2026-07-15T14:50:00",
+      "lat_deg": 76.2878,
+      "lon_deg": -113.687,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1841,
+      "phase_rad": 1.8044
+    },
+    {
+      "epoch_s": "53700",
+      "epoch_utc": "2026-07-15T14:55:00",
+      "lat_deg": 60.601,
+      "lon_deg": -99.0336,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1157,
+      "phase_rad": 2.0815
+    },
+    {
+      "epoch_s": "54000",
+      "epoch_utc": "2026-07-15T15:00:00",
+      "lat_deg": 44.7898,
+      "lon_deg": -84.3801,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9905,
+      "phase_rad": 2.3585
+    },
+    {
+      "epoch_s": "54300",
+      "epoch_utc": "2026-07-15T15:05:00",
+      "lat_deg": 28.9514,
+      "lon_deg": -69.7266,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8116,
+      "phase_rad": 2.6355
+    },
+    {
+      "epoch_s": "54600",
+      "epoch_utc": "2026-07-15T15:10:00",
+      "lat_deg": 13.1036,
+      "lon_deg": -55.0732,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5551,
+      "phase_rad": 2.9126
+    },
+    {
+      "epoch_s": "54900",
+      "epoch_utc": "2026-07-15T15:15:00",
+      "lat_deg": -2.7473,
+      "lon_deg": -40.4197,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1823,
+      "phase_rad": 3.1896
+    },
+    {
+      "epoch_s": "55200",
+      "epoch_utc": "2026-07-15T15:20:00",
+      "lat_deg": -18.5976,
+      "lon_deg": -25.7662,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.6392,
+      "phase_rad": 3.4666
+    },
+    {
+      "epoch_s": "55500",
+      "epoch_utc": "2026-07-15T15:25:00",
+      "lat_deg": -34.443,
+      "lon_deg": -11.1128,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.8692,
+      "phase_rad": 3.7437
+    },
+    {
+      "epoch_s": "55800",
+      "epoch_utc": "2026-07-15T15:30:00",
+      "lat_deg": -50.2752,
+      "lon_deg": 3.5407,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.861,
+      "phase_rad": 4.0207
+    },
+    {
+      "epoch_s": "56100",
+      "epoch_utc": "2026-07-15T15:35:00",
+      "lat_deg": -66.0652,
+      "lon_deg": 18.1942,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.2783,
+      "phase_rad": 4.2978
+    },
+    {
+      "epoch_s": "56400",
+      "epoch_utc": "2026-07-15T15:40:00",
+      "lat_deg": -81.5678,
+      "lon_deg": 32.8476,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.1939,
+      "phase_rad": 4.5748
+    },
+    {
+      "epoch_s": "56700",
+      "epoch_utc": "2026-07-15T15:45:00",
+      "lat_deg": -81.4698,
+      "lon_deg": 47.5011,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1096,
+      "phase_rad": 4.8518
+    },
+    {
+      "epoch_s": "57000",
+      "epoch_utc": "2026-07-15T15:50:00",
+      "lat_deg": -65.9612,
+      "lon_deg": 62.1546,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.03,
+      "phase_rad": 5.1289
+    },
+    {
+      "epoch_s": "57300",
+      "epoch_utc": "2026-07-15T15:55:00",
+      "lat_deg": -50.1708,
+      "lon_deg": 76.808,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.4278,
+      "phase_rad": 5.4059
+    },
+    {
+      "epoch_s": "57600",
+      "epoch_utc": "2026-07-15T16:00:00",
+      "lat_deg": -34.3384,
+      "lon_deg": 91.4615,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.7225,
+      "phase_rad": 5.6829
+    },
+    {
+      "epoch_s": "57900",
+      "epoch_utc": "2026-07-15T16:05:00",
+      "lat_deg": -18.4929,
+      "lon_deg": 106.115,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.347,
+      "phase_rad": 5.96
+    },
+    {
+      "epoch_s": "58200",
+      "epoch_utc": "2026-07-15T16:10:00",
+      "lat_deg": -2.6426,
+      "lon_deg": 120.7684,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.2883,
+      "phase_rad": 6.237
+    },
+    {
+      "epoch_s": "58500",
+      "epoch_utc": "2026-07-15T16:15:00",
+      "lat_deg": 13.2083,
+      "lon_deg": 135.4219,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.9977,
+      "phase_rad": 0.2309
+    },
+    {
+      "epoch_s": "58800",
+      "epoch_utc": "2026-07-15T16:20:00",
+      "lat_deg": 29.056,
+      "lon_deg": 150.0753,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.2761,
+      "phase_rad": 0.5079
+    },
+    {
+      "epoch_s": "59100",
+      "epoch_utc": "2026-07-15T16:25:00",
+      "lat_deg": 44.8943,
+      "lon_deg": 164.7288,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4047,
+      "phase_rad": 0.7849
+    },
+    {
+      "epoch_s": "59400",
+      "epoch_utc": "2026-07-15T16:30:00",
+      "lat_deg": 60.7052,
+      "lon_deg": 179.3823,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4686,
+      "phase_rad": 1.062
+    },
+    {
+      "epoch_s": "59700",
+      "epoch_utc": "2026-07-15T16:35:00",
+      "lat_deg": 76.39,
+      "lon_deg": -165.9643,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.9219,
+      "phase_rad": 1.339
+    },
+    {
+      "epoch_s": "60000",
+      "epoch_utc": "2026-07-15T16:40:00",
+      "lat_deg": 86.0364,
+      "lon_deg": -151.3108,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7585,
+      "phase_rad": 1.616
+    },
+    {
+      "epoch_s": "60300",
+      "epoch_utc": "2026-07-15T16:45:00",
+      "lat_deg": 71.3016,
+      "lon_deg": -136.6573,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.0793,
+      "phase_rad": 1.8931
+    },
+    {
+      "epoch_s": "60600",
+      "epoch_utc": "2026-07-15T16:50:00",
+      "lat_deg": 55.5476,
+      "lon_deg": -122.0039,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9816,
+      "phase_rad": 2.1701
+    },
+    {
+      "epoch_s": "60900",
+      "epoch_utc": "2026-07-15T16:55:00",
+      "lat_deg": 39.7241,
+      "lon_deg": -107.3504,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8412,
+      "phase_rad": 2.4471
+    },
+    {
+      "epoch_s": "61200",
+      "epoch_utc": "2026-07-15T17:00:00",
+      "lat_deg": 23.8816,
+      "lon_deg": -92.6969,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.6523,
+      "phase_rad": 2.7242
+    },
+    {
+      "epoch_s": "61500",
+      "epoch_utc": "2026-07-15T17:05:00",
+      "lat_deg": 8.0324,
+      "lon_deg": -78.0435,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3972,
+      "phase_rad": 3.0012
+    },
+    {
+      "epoch_s": "61800",
+      "epoch_utc": "2026-07-15T17:10:00",
+      "lat_deg": -7.8187,
+      "lon_deg": -63.39,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.051,
+      "phase_rad": 3.2782
+    },
+    {
+      "epoch_s": "62100",
+      "epoch_utc": "2026-07-15T17:15:00",
+      "lat_deg": -23.668,
+      "lon_deg": -48.7365,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5827,
+      "phase_rad": 3.5553
+    },
+    {
+      "epoch_s": "62400",
+      "epoch_utc": "2026-07-15T17:20:00",
+      "lat_deg": -39.5106,
+      "lon_deg": -34.0831,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.9636,
+      "phase_rad": 3.8323
+    },
+    {
+      "epoch_s": "62700",
+      "epoch_utc": "2026-07-15T17:25:00",
+      "lat_deg": -55.3346,
+      "lon_deg": -19.4296,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.1866,
+      "phase_rad": 4.1094
+    },
+    {
+      "epoch_s": "63000",
+      "epoch_utc": "2026-07-15T17:30:00",
+      "lat_deg": -71.0905,
+      "lon_deg": -4.7761,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.305,
+      "phase_rad": 4.3864
+    },
+    {
+      "epoch_s": "63300",
+      "epoch_utc": "2026-07-15T17:35:00",
+      "lat_deg": -85.8934,
+      "lon_deg": 9.8773,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.2479,
+      "phase_rad": 4.6634
+    },
+    {
+      "epoch_s": "63600",
+      "epoch_utc": "2026-07-15T17:40:00",
+      "lat_deg": -76.5985,
+      "lon_deg": 24.5308,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5312,
+      "phase_rad": 4.9405
+    },
+    {
+      "epoch_s": "63900",
+      "epoch_utc": "2026-07-15T17:45:00",
+      "lat_deg": -60.918,
+      "lon_deg": 39.1843,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5618,
+      "phase_rad": 5.2175
+    },
+    {
+      "epoch_s": "64200",
+      "epoch_utc": "2026-07-15T17:50:00",
+      "lat_deg": -45.1077,
+      "lon_deg": 53.8377,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5103,
+      "phase_rad": 5.4945
+    },
+    {
+      "epoch_s": "64500",
+      "epoch_utc": "2026-07-15T17:55:00",
+      "lat_deg": -29.2696,
+      "lon_deg": 68.4912,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2549,
+      "phase_rad": 5.7716
+    },
+    {
+      "epoch_s": "64800",
+      "epoch_utc": "2026-07-15T18:00:00",
+      "lat_deg": -13.422,
+      "lon_deg": 83.1446,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": 12.66,
+      "range_rate_km_s": -1.0953,
+      "phase_rad": 6.0486
+    },
+    {
+      "epoch_s": "65100",
+      "epoch_utc": "2026-07-15T18:05:00",
+      "lat_deg": 2.4289,
+      "lon_deg": 97.7981,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": 1.78,
+      "range_rate_km_s": 4.0741,
+      "phase_rad": 0.0425
+    },
+    {
+      "epoch_s": "65400",
+      "epoch_utc": "2026-07-15T18:10:00",
+      "lat_deg": 18.2793,
+      "lon_deg": 112.4516,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4857,
+      "phase_rad": 0.3195
+    },
+    {
+      "epoch_s": "65700",
+      "epoch_utc": "2026-07-15T18:15:00",
+      "lat_deg": 34.1249,
+      "lon_deg": 127.105,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5638,
+      "phase_rad": 0.5965
+    },
+    {
+      "epoch_s": "66000",
+      "epoch_utc": "2026-07-15T18:20:00",
+      "lat_deg": 49.9575,
+      "lon_deg": 141.7585,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5881,
+      "phase_rad": 0.8736
+    },
+    {
+      "epoch_s": "66300",
+      "epoch_utc": "2026-07-15T18:25:00",
+      "lat_deg": 65.749,
+      "lon_deg": 156.412,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5893,
+      "phase_rad": 1.1506
+    },
+    {
+      "epoch_s": "66600",
+      "epoch_utc": "2026-07-15T18:30:00",
+      "lat_deg": 81.2693,
+      "lon_deg": 171.0654,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.4685,
+      "phase_rad": 1.4276
+    },
+    {
+      "epoch_s": "66900",
+      "epoch_utc": "2026-07-15T18:35:00",
+      "lat_deg": 81.7673,
+      "lon_deg": -174.2811,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9981,
+      "phase_rad": 1.7047
+    },
+    {
+      "epoch_s": "67200",
+      "epoch_utc": "2026-07-15T18:40:00",
+      "lat_deg": 66.2773,
+      "lon_deg": -159.6276,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9723,
+      "phase_rad": 1.9817
+    },
+    {
+      "epoch_s": "67500",
+      "epoch_utc": "2026-07-15T18:45:00",
+      "lat_deg": 50.4885,
+      "lon_deg": -144.9742,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.8598,
+      "phase_rad": 2.2587
+    },
+    {
+      "epoch_s": "67800",
+      "epoch_utc": "2026-07-15T18:50:00",
+      "lat_deg": 34.6566,
+      "lon_deg": -130.3207,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7114,
+      "phase_rad": 2.5358
+    },
+    {
+      "epoch_s": "68100",
+      "epoch_utc": "2026-07-15T18:55:00",
+      "lat_deg": 18.8112,
+      "lon_deg": -115.6672,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5201,
+      "phase_rad": 2.8128
+    },
+    {
+      "epoch_s": "68400",
+      "epoch_utc": "2026-07-15T19:00:00",
+      "lat_deg": 2.9609,
+      "lon_deg": -101.0138,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.2731,
+      "phase_rad": 3.0898
+    },
+    {
+      "epoch_s": "68700",
+      "epoch_utc": "2026-07-15T19:05:00",
+      "lat_deg": -12.89,
+      "lon_deg": -86.3603,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.9539,
+      "phase_rad": 3.3669
+    },
+    {
+      "epoch_s": "69000",
+      "epoch_utc": "2026-07-15T19:10:00",
+      "lat_deg": -28.7378,
+      "lon_deg": -71.7068,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5436,
+      "phase_rad": 3.6439
+    },
+    {
+      "epoch_s": "69300",
+      "epoch_utc": "2026-07-15T19:15:00",
+      "lat_deg": -44.5764,
+      "lon_deg": -57.0534,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.0261,
+      "phase_rad": 3.921
+    },
+    {
+      "epoch_s": "69600",
+      "epoch_utc": "2026-07-15T19:20:00",
+      "lat_deg": -60.3883,
+      "lon_deg": -42.3999,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.3985,
+      "phase_rad": 4.198
+    },
+    {
+      "epoch_s": "69900",
+      "epoch_utc": "2026-07-15T19:25:00",
+      "lat_deg": -76.079,
+      "lon_deg": -27.7465,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.7088,
+      "phase_rad": 4.475
+    },
+    {
+      "epoch_s": "70200",
+      "epoch_utc": "2026-07-15T19:30:00",
+      "lat_deg": -86.2369,
+      "lon_deg": -13.093,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.753,
+      "phase_rad": 4.7521
+    },
+    {
+      "epoch_s": "70500",
+      "epoch_utc": "2026-07-15T19:35:00",
+      "lat_deg": -71.6161,
+      "lon_deg": 1.5605,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5758,
+      "phase_rad": 5.0291
+    },
+    {
+      "epoch_s": "70800",
+      "epoch_utc": "2026-07-15T19:40:00",
+      "lat_deg": -55.865,
+      "lon_deg": 16.2139,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5834,
+      "phase_rad": 5.3061
+    },
+    {
+      "epoch_s": "71100",
+      "epoch_utc": "2026-07-15T19:45:00",
+      "lat_deg": -40.0421,
+      "lon_deg": 30.8674,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.5559,
+      "phase_rad": 5.5832
+    },
+    {
+      "epoch_s": "71400",
+      "epoch_utc": "2026-07-15T19:50:00",
+      "lat_deg": -24.1999,
+      "lon_deg": 45.5209,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4556,
+      "phase_rad": 5.8602
+    },
+    {
+      "epoch_s": "71700",
+      "epoch_utc": "2026-07-15T19:55:00",
+      "lat_deg": -8.3507,
+      "lon_deg": 60.1743,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": 5.67,
+      "range_rate_km_s": -3.7885,
+      "phase_rad": 6.1372
+    },
+    {
+      "epoch_s": "72000",
+      "epoch_utc": "2026-07-15T20:00:00",
+      "lat_deg": 7.5004,
+      "lon_deg": 74.8278,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": 10.99,
+      "range_rate_km_s": 2.7164,
+      "phase_rad": 0.1311
+    },
+    {
+      "epoch_s": "72300",
+      "epoch_utc": "2026-07-15T20:05:00",
+      "lat_deg": 23.3498,
+      "lon_deg": 89.4813,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.3697,
+      "phase_rad": 0.4081
+    },
+    {
+      "epoch_s": "72600",
+      "epoch_utc": "2026-07-15T20:10:00",
+      "lat_deg": 39.1925,
+      "lon_deg": 104.1347,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5355,
+      "phase_rad": 0.6852
+    },
+    {
+      "epoch_s": "72900",
+      "epoch_utc": "2026-07-15T20:15:00",
+      "lat_deg": 55.0171,
+      "lon_deg": 118.7882,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.575,
+      "phase_rad": 0.9622
+    },
+    {
+      "epoch_s": "73200",
+      "epoch_utc": "2026-07-15T20:20:00",
+      "lat_deg": 70.7759,
+      "lon_deg": 133.4417,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.5695,
+      "phase_rad": 1.2392
+    },
+    {
+      "epoch_s": "73500",
+      "epoch_utc": "2026-07-15T20:25:00",
+      "lat_deg": 85.6695,
+      "lon_deg": 148.0951,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.8252,
+      "phase_rad": 1.5163
+    },
+    {
+      "epoch_s": "73800",
+      "epoch_utc": "2026-07-15T20:30:00",
+      "lat_deg": 76.9089,
+      "lon_deg": 162.7486,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.0204,
+      "phase_rad": 1.7933
+    },
+    {
+      "epoch_s": "74100",
+      "epoch_utc": "2026-07-15T20:35:00",
+      "lat_deg": 61.2349,
+      "lon_deg": 177.4021,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.76,
+      "phase_rad": 2.0703
+    },
+    {
+      "epoch_s": "74400",
+      "epoch_utc": "2026-07-15T20:40:00",
+      "lat_deg": 45.4256,
+      "lon_deg": -167.9445,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.7506,
+      "phase_rad": 2.3474
+    },
+    {
+      "epoch_s": "74700",
+      "epoch_utc": "2026-07-15T20:45:00",
+      "lat_deg": 29.5878,
+      "lon_deg": -153.291,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.599,
+      "phase_rad": 2.6244
+    },
+    {
+      "epoch_s": "75000",
+      "epoch_utc": "2026-07-15T20:50:00",
+      "lat_deg": 13.7403,
+      "lon_deg": -138.6376,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.4098,
+      "phase_rad": 2.9014
+    },
+    {
+      "epoch_s": "75300",
+      "epoch_utc": "2026-07-15T20:55:00",
+      "lat_deg": -2.1106,
+      "lon_deg": -123.9841,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.1737,
+      "phase_rad": 3.1785
+    },
+    {
+      "epoch_s": "75600",
+      "epoch_utc": "2026-07-15T21:00:00",
+      "lat_deg": -17.961,
+      "lon_deg": -109.3306,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8794,
+      "phase_rad": 3.4555
+    },
+    {
+      "epoch_s": "75900",
+      "epoch_utc": "2026-07-15T21:05:00",
+      "lat_deg": -33.8068,
+      "lon_deg": -94.6772,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.5149,
+      "phase_rad": 3.7326
+    },
+    {
+      "epoch_s": "76200",
+      "epoch_utc": "2026-07-15T21:10:00",
+      "lat_deg": -49.6398,
+      "lon_deg": -80.0237,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.0707,
+      "phase_rad": 4.0096
+    },
+    {
+      "epoch_s": "76500",
+      "epoch_utc": "2026-07-15T21:15:00",
+      "lat_deg": -65.4328,
+      "lon_deg": -65.3702,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.5477,
+      "phase_rad": 4.2866
+    },
+    {
+      "epoch_s": "76800",
+      "epoch_utc": "2026-07-15T21:20:00",
+      "lat_deg": -80.9694,
+      "lon_deg": -50.7168,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.0382,
+      "phase_rad": 4.5637
+    },
+    {
+      "epoch_s": "77100",
+      "epoch_utc": "2026-07-15T21:25:00",
+      "lat_deg": -82.0632,
+      "lon_deg": -36.0633,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3733,
+      "phase_rad": 4.8407
+    },
+    {
+      "epoch_s": "77400",
+      "epoch_utc": "2026-07-15T21:30:00",
+      "lat_deg": -66.5934,
+      "lon_deg": -21.4098,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.4533,
+      "phase_rad": 5.1177
+    },
+    {
+      "epoch_s": "77700",
+      "epoch_utc": "2026-07-15T21:35:00",
+      "lat_deg": -50.8062,
+      "lon_deg": -6.7564,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3851,
+      "phase_rad": 5.3948
+    },
+    {
+      "epoch_s": "78000",
+      "epoch_utc": "2026-07-15T21:40:00",
+      "lat_deg": -34.9747,
+      "lon_deg": 7.8971,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2374,
+      "phase_rad": 5.6718
+    },
+    {
+      "epoch_s": "78300",
+      "epoch_utc": "2026-07-15T21:45:00",
+      "lat_deg": -19.1295,
+      "lon_deg": 22.5506,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.9041,
+      "phase_rad": 5.9488
+    },
+    {
+      "epoch_s": "78600",
+      "epoch_utc": "2026-07-15T21:50:00",
+      "lat_deg": -3.2793,
+      "lon_deg": 37.204,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0187,
+      "phase_rad": 6.2259
+    },
+    {
+      "epoch_s": "78900",
+      "epoch_utc": "2026-07-15T21:55:00",
+      "lat_deg": 12.5717,
+      "lon_deg": 51.8575,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.6834,
+      "phase_rad": 0.2197
+    },
+    {
+      "epoch_s": "79200",
+      "epoch_utc": "2026-07-15T22:00:00",
+      "lat_deg": 28.4196,
+      "lon_deg": 66.511,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 2.2662,
+      "phase_rad": 0.4968
+    },
+    {
+      "epoch_s": "79500",
+      "epoch_utc": "2026-07-15T22:05:00",
+      "lat_deg": 44.2585,
+      "lon_deg": 81.1644,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 3.635,
+      "phase_rad": 0.7738
+    },
+    {
+      "epoch_s": "79800",
+      "epoch_utc": "2026-07-15T22:10:00",
+      "lat_deg": 60.0713,
+      "lon_deg": 95.8179,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.1191,
+      "phase_rad": 1.0508
+    },
+    {
+      "epoch_s": "80100",
+      "epoch_utc": "2026-07-15T22:15:00",
+      "lat_deg": 75.7677,
+      "lon_deg": 110.4714,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 4.2706,
+      "phase_rad": 1.3279
+    },
+    {
+      "epoch_s": "80400",
+      "epoch_utc": "2026-07-15T22:20:00",
+      "lat_deg": 86.4202,
+      "lon_deg": 125.1248,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.2625,
+      "phase_rad": 1.6049
+    },
+    {
+      "epoch_s": "80700",
+      "epoch_utc": "2026-07-15T22:25:00",
+      "lat_deg": 71.9304,
+      "lon_deg": 139.7783,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -0.6183,
+      "phase_rad": 1.8819
+    },
+    {
+      "epoch_s": "81000",
+      "epoch_utc": "2026-07-15T22:30:00",
+      "lat_deg": 56.1824,
+      "lon_deg": 154.4317,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.3656,
+      "phase_rad": 2.159
+    },
+    {
+      "epoch_s": "81300",
+      "epoch_utc": "2026-07-15T22:35:00",
+      "lat_deg": 40.3601,
+      "lon_deg": 169.0852,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 1.3248,
+      "phase_rad": 2.436
+    },
+    {
+      "epoch_s": "81600",
+      "epoch_utc": "2026-07-15T22:40:00",
+      "lat_deg": 24.5181,
+      "lon_deg": -176.2613,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5016,
+      "phase_rad": 2.713
+    },
+    {
+      "epoch_s": "81900",
+      "epoch_utc": "2026-07-15T22:45:00",
+      "lat_deg": 8.669,
+      "lon_deg": -161.6079,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.3169,
+      "phase_rad": 2.9901
+    },
+    {
+      "epoch_s": "82200",
+      "epoch_utc": "2026-07-15T22:50:00",
+      "lat_deg": -7.182,
+      "lon_deg": -146.9544,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.0925,
+      "phase_rad": 3.2671
+    },
+    {
+      "epoch_s": "82500",
+      "epoch_utc": "2026-07-15T22:55:00",
+      "lat_deg": -23.0315,
+      "lon_deg": -132.3009,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.8205,
+      "phase_rad": 3.5442
+    },
+    {
+      "epoch_s": "82800",
+      "epoch_utc": "2026-07-15T23:00:00",
+      "lat_deg": -38.8745,
+      "lon_deg": -117.6475,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.493,
+      "phase_rad": 3.8212
+    },
+    {
+      "epoch_s": "83100",
+      "epoch_utc": "2026-07-15T23:05:00",
+      "lat_deg": -54.6997,
+      "lon_deg": -102.994,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.1044,
+      "phase_rad": 4.0982
+    },
+    {
+      "epoch_s": "83400",
+      "epoch_utc": "2026-07-15T23:10:00",
+      "lat_deg": -70.4611,
+      "lon_deg": -88.3405,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.6607,
+      "phase_rad": 4.3753
+    },
+    {
+      "epoch_s": "83700",
+      "epoch_utc": "2026-07-15T23:15:00",
+      "lat_deg": -85.4344,
+      "lon_deg": -73.6871,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.565,
+      "phase_rad": 4.6523
+    },
+    {
+      "epoch_s": "84000",
+      "epoch_utc": "2026-07-15T23:20:00",
+      "lat_deg": -77.2188,
+      "lon_deg": -59.0336,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.3264,
+      "phase_rad": 4.9293
+    },
+    {
+      "epoch_s": "84300",
+      "epoch_utc": "2026-07-15T23:25:00",
+      "lat_deg": -61.5517,
+      "lon_deg": -44.3801,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.2774,
+      "phase_rad": 5.2064
+    },
+    {
+      "epoch_s": "84600",
+      "epoch_utc": "2026-07-15T23:30:00",
+      "lat_deg": -45.7435,
+      "lon_deg": -29.7267,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -4.1476,
+      "phase_rad": 5.4834
+    },
+    {
+      "epoch_s": "84900",
+      "epoch_utc": "2026-07-15T23:35:00",
+      "lat_deg": -29.906,
+      "lon_deg": -15.0732,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.924,
+      "phase_rad": 5.7604
+    },
+    {
+      "epoch_s": "85200",
+      "epoch_utc": "2026-07-15T23:40:00",
+      "lat_deg": -14.0586,
+      "lon_deg": -0.4197,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -3.5236,
+      "phase_rad": 6.0375
+    },
+    {
+      "epoch_s": "85500",
+      "epoch_utc": "2026-07-15T23:45:00",
+      "lat_deg": 1.7922,
+      "lon_deg": 14.2337,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -2.7734,
+      "phase_rad": 0.0313
+    },
+    {
+      "epoch_s": "85800",
+      "epoch_utc": "2026-07-15T23:50:00",
+      "lat_deg": 17.6427,
+      "lon_deg": 28.8872,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": -1.4207,
+      "phase_rad": 0.3084
+    },
+    {
+      "epoch_s": "86100",
+      "epoch_utc": "2026-07-15T23:55:00",
+      "lat_deg": 33.4886,
+      "lon_deg": 43.5406,
+      "alt_km": 300.0,
+      "elevation_from_rover_deg": -90.0,
+      "range_rate_km_s": 0.4753,
+      "phase_rad": 0.5854
+    }
+  ],
+  "smallsat_eclipse_windows": [
+    [
+      6081.025078684263,
+      8914.027552909636
+    ],
+    [
+      13163.531264247695,
+      15996.533738473068
+    ],
+    [
+      20246.037449811127,
+      23079.0399240365
+    ],
+    [
+      27328.54363537456,
+      30161.546109599934
+    ],
+    [
+      34411.049820937995,
+      37244.05229516337
+    ],
+    [
+      41493.55600650143,
+      44326.5584807268
+    ],
+    [
+      48576.06219206486,
+      51409.064666290236
+    ],
+    [
+      55658.5683776283,
+      58491.57085185367
+    ],
+    [
+      62741.07456319173,
+      65574.0770374171
+    ],
+    [
+      69823.58074875516,
+      72656.58322298054
+    ],
+    [
+      76906.08693431859,
+      79739.08940854396
+    ],
+    [
+      83988.59311988202,
+      86400
+    ]
+  ],
+  "orbital_parameters": {
+    "smallsat_period_s": 7082.506185563432,
+    "mro_period_s": 6804.016645440312,
+    "smallsat_altitude_km": 400.0,
+    "mro_altitude_km": 300.0,
+    "smallsat_inclination_deg": 87.0,
+    "mro_inclination_deg": 93.0,
+    "rover_lat_deg": -4.5,
+    "rover_lon_deg": 77.4
+  }
+}

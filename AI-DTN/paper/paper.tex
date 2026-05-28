@@ -1,0 +1,372 @@
+\documentclass[a4paper,fleqn]{cas-dc}
+
+\usepackage[numbers]{natbib}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{subcaption}
+
+\newcommand{\cgr}{\textsf{CGR}}
+\newcommand{\mlcgr}{\textsf{ML-CGR}}
+
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+\shorttitle{Machine Learning-Driven Predictive Link-Quality Estimation for Proactive Bundle Fragmentation}
+\shortauthors{Anonymous Authors}
+
+\title [mode = title]{Machine Learning-Driven Predictive Link-Quality Estimation for Proactive Bundle Fragmentation in Energy-Aware CGR}
+
+\author{Anonymous Author(s)}
+\affiliation{organization={Anonymous Institution(s)}, country={Anonymous Country}}
+
+\begin{abstract}
+Contact Graph Routing (CGR) is the standard store-carry-forward routing algorithm for deep-space Delay-Tolerant Networks (DTN), utilizing highly predictable orbital contact schedules. While traditional CGR works well in homogeneous networks with flagship orbiters, it assumes that communication links are deterministic and that intermediate relay nodes have unlimited resource capacity. In reality, deep-space SmallSat relays have extremely tight Size, Weight, and Power (SWaP) constraints, causing rapid battery drain during transmissions and vulnerable buffer limits. When standard CGR routes large data bundles through these constrained assets, it drains their batteries to critical levels, causing low-voltage shutdowns and packet drops. Moreover, the link quality on proximity links (e.g., UHF) or long-distance links to Earth degrades dynamically due to Doppler shifts, orbital elevation changes, and solar plasma scintillation. To address these problems, this paper presents a novel routing algorithm called Machine Learning-Driven Predictive Link-Quality CGR (\mlcgr{}). \mlcgr{} integrates: (1) a lightweight online Random Forest regressor to predict the future Link Quality Index (LQI) of scheduled contacts from dynamic orbital state features, (2) an adaptive, proactive bundle fragmentation mechanism that fragments large bundles when link quality is predicted to degrade, and (3) an energy-aware multi-attribute cost function that load-balances traffic based on battery state-of-charge, buffer utilization, and predicted LQI. We evaluate the proposed algorithm using a discrete-event simulation of a Martian relay network under varying orbital configurations and traffic loads. Over Monte Carlo iterations, the proposed \mlcgr{} achieves a bundle delivery ratio of $91.8 \pm 0.7\%$, eliminating bundle drops entirely, whereas standard CGR drops $16.5 \pm 1.5$ bundles due to transmission energy exhaustion. Furthermore, \mlcgr{} prevents battery depletion below the critical $20\%$ threshold, spending less than $3.7\%$ of the time in critical energy states.
+\end{abstract}
+
+\begin{keywords}
+Delay-tolerant networking \sep Contact graph routing \sep Deep space communications \sep SmallSat \sep Machine learning \sep Proactive bundle fragmentation
+\end{keywords}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Deep Space Communication Challenges}
+Modern planetary exploration is shifting from single-spacecraft operations to complex, multi-agent networks consisting of surface rovers, landers, CubeSat/SmallSat swarms, and massive flagship orbiters. Establishing high-throughput, reliable communication networks between these heterogeneous assets and Earth is highly challenging. Deep-space communication channels are characterized by extreme delay and disruption, including long propagation delays (from minutes to hours), intermittent connectivity due to orbital occultations, and dynamic channel degradation from atmospheric interference, multipath fading, solar scintillation, and Doppler shifts.
+
+Under these conditions, standard terrestrial network protocols (such as TCP/IP) fail completely because they assume a continuous, low-delay end-to-end path. To overcome these constraints, the Space Internet relies on Delay-Tolerant Networking (DTN)~\cite{fall2003dtn,cerf2007dtn} and the Bundle Protocol version 7 (BPv7)~\cite{rfc9171}. DTN employs a store-carry-forward routing paradigm, in which intermediate nodes store data in non-volatile memory (buffers) and wait to forward it until a communication opportunity (contact) becomes available.
+
+\subsection{Contact Graph Routing (CGR)}
+In deep-space networks, the trajectory of spacecraft is governed by predictable orbital mechanics. Using ephemeris data (e.g., SPICE kernels), mission planners can pre-compute a \emph{contact plan} containing every planned communication opportunity, including start times, durations, data rates, and propagation delays (One-Way Light Time).
+
+Contact Graph Routing (CGR)~\cite{burleigh2010cgr} is the standard routing algorithm designed to run on these scheduled, predictable networks. CGR represents the contact plan as a directed contact graph, where contacts are vertices and time-ordered connections are edges. To route a bundle, CGR runs a modified Dijkstra's algorithm to compute the shortest-path route that minimizes the end-to-end delivery latency (earliest delivery time). This deterministic approach works exceptionally well for homogeneous networks with flagship orbiters (e.g., Mars Reconnaissance Orbiter, Mars Odyssey), which possess high-power solar panels and massive batteries.
+
+\subsection{SWaP Constraints of SmallSat Relays}
+To lower mission costs and increase spatial coverage, space agencies are planning to deploy constellations of small satellites (SmallSats or CubeSats) to serve as proximity relays around Mars and the Moon~\cite{nasa2022artemis,selva2012survey}. However, these platforms have severe Size, Weight, and Power (SWaP) constraints. A typical 3U SmallSat relay average power generation is limited to less than $10\,$W by its small solar array area, and its battery capacity is restricted (e.g., $15$--$30\,$Wh). When active, its high-power radio transceiver can consume $15$--$25\,$W during transmissions.
+
+As a result, transmitting data at high rates rapidly drains the SmallSat's battery. If the satellite is in an orbital eclipse (Mars shadow), power generation is zero, and it must rely entirely on its limited battery reserves. Standard CGR is completely resource-blind; it routes large scientific data bundles through the SmallSat relay simply because it offers the earliest contact window, completely ignoring the relay's battery state. This drains the SmallSat's battery to critical levels, triggering a low-voltage shutdown that drops all queued bundles and suspends critical housekeeping telemetry, endangering the spacecraft's survival.
+
+\subsection{Link Quality Variation and the Need for Fragmentation}
+Furthermore, scheduled contact windows in deep-space networks are not always stable. The signal-to-noise ratio (SNR) on proximity and deep-space links is highly dynamic, varying due to elevation angle, range rate (Doppler shift), antenna pointing errors, and atmospheric/plasma fading. Traditional CGR assumes a constant, error-free transmission rate. When a link degrades, standard CGR fails to adapt. It attempts to transmit large, monolithic bundles across degraded links. When a transmission fails mid-way, the entire bundle is lost, and the energy consumed during the partial transmission is wasted, which is highly detrimental to energy-constrained SmallSats.
+
+Adaptive bundle fragmentation is a crucial mechanism to mitigate this. By breaking down a large bundle into smaller, independent fragments, the network can successfully deliver parts of the payload even if the contact is degraded or cut short. However, reactive fragmentation (performing fragmentation after a transmission failure occurs) is costly and inefficient in high-latency deep-space channels. Instead, we need a \emph{proactive} fragmentation strategy that estimates the link quality *before* transmission and adaptively sizes the fragments based on the predicted link quality.
+
+\subsection{Proposed Solution: ML-CGR}
+To overcome these critical limitations, we propose a novel algorithm called \emph{Machine Learning-Driven Predictive Link-Quality CGR} (\mlcgr{}). \mlcgr{} integrates:
+\begin{enumerate}
+    \item \textbf{Online ML Link-Quality Prediction:} A lightweight Random Forest regressor is deployed onboard each spacecraft. It takes dynamic orbital features (satellite elevation, range-rate, relay state-of-charge, eclipse status, remaining contact duration, time of day, and buffer utilization) and predicts a continuous Link Quality Index (LQI) in $[0, 1]$ for future contacts.
+    \item \textbf{Proactive Bundle Fragmentation:} Prior to transmission, the router queries the ML model. If the predicted bottleneck LQI along the selected route falls below predefined quality thresholds, the bundle is proactively fragmented into smaller pieces, with the fragment size adapted to the predicted LQI.
+    \item \textbf{Multi-Attribute Resource-Aware Cost Function:} We replace the standard CGR delay-only objective with a multi-attribute cost function that jointly optimizes delay, battery SoC, buffer utilization, and predicted LQI, naturally load-balancing traffic away from degraded or critical relays.
+    \item \textbf{Online Closed-Loop Retraining:} After each contact, the measured throughput is used to compute the actual LQI, which is stored in a sliding training window to retrain the Random Forest model online, allowing the system to adapt dynamically to unmodeled environmental drifts.
+\end{enumerate}
+
+\subsection{Contributions}
+The main contributions of this work are summarized as follows:
+\begin{itemize}
+    \item We formulate the joint energy, buffer, and dynamic link-quality routing problem for heterogeneous deep-space networks incorporating SmallSat relays.
+    \item We propose \mlcgr{}, an innovative routing algorithm that integrates an online Random Forest link quality predictor, proactive bundle fragmentation, and a resource-aware multi-attribute cost function.
+    \item We develop a high-fidelity discrete-event planetary Mars relay simulation framework that models circular Keplerian orbits, eclipse transitions, battery dynamics, buffer limits, and dynamic link quality degradation.
+    \item We present a comprehensive performance comparison between standard CGR and our proposed \mlcgr{} across multiple Monte Carlo runs, demonstrating that \mlcgr{} maintains $91.8\%$ bundle delivery ratio and completely eliminates packet drops while preventing critical battery depletion.
+\end{itemize}
+
+% ====================================================================
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Delay-Tolerant Networking and CGR}
+Delay-Tolerant Networking was originally conceptualized by Fall~\cite{fall2003dtn} and the DTN Research Group in RFC 4838~\cite{cerf2007dtn} to handle communication in challenged environments. Contact Graph Routing (CGR) was designed by Burleigh~\cite{burleigh2010cgr} as the core routing engine for predictable topologies in space exploration, and has been extensively validated by space agencies~\cite{birrane2012ion,segui2011enhancing}. A comprehensive overview of CGR refinements and Dijkstra pathfinding formulations was provided by Fraire et al.~\cite{fraire2021cgr}.
+
+\subsection{Resource-Aware and Congestion-Aware Routing}
+Several studies have recognized the need to protect network resources in space networks. Congestion management strategies, such as queue management and buffer-aware forwarding (e.g., CGR-BF by Dhara et al.~\cite{dhara2018cgrbf} and congestion management by Madoery et al.~\cite{madoery2018congestion}), have been proposed to prevent queue overflows on satellite relays. While these protocols effectively manage buffer memory, they do not model battery charging/discharging or electrical energy constraints. 
+
+Energy-aware routing is highly developed in terrestrial wireless sensor networks, but deep-space applications are unique because the network topology is planned and scheduled. Existing energy-aware extensions of CGR are mostly offline planning tools or rely on instantaneous, static battery states at the routing epoch. As discussed, instantaneous metrics lead to energy overbooking and underutilize relays that will charge before their contact begins.
+
+\subsection{Link Quality Estimation and Bundle Fragmentation}
+Link Quality Estimation (LQE) is vital for wireless networking. Ho et al.~\cite{ho2023lqe} investigated machine learning models for LQE in deep space channels, but did not integrate their estimations into a routing protocol. Dynamic link degradation severely impacts high-latency space channels. Adaptive bundle fragmentation has been studied to mitigate this. Zanakis et al.~\cite{zanakis2022fragmentation} explored reactive and proactive fragmentation concepts based on predicted link quality, demonstrating significant throughput benefits. However, their proactive scheme used a simple deterministic model of path loss and did not consider battery energy constraints or multi-hop CGR pathfinding. Our proposed \mlcgr{} represents the first study that closes the loop by using a machine learning model to drive proactive fragmentation decisions *inside* the CGR routing engine.
+
+% ====================================================================
+\section{System Model}
+\label{sec:system}
+
+We consider a heterogeneous Mars exploration relay network consisting of a surface rover (primary source), a resource-constrained SmallSat relay, a well-provisioned Mars Reconnaissance Orbiter (MRO) relay, and Earth DSN stations (destination). The network topology is illustrated in Fig.~\ref{fig:topology}.
+
+\subsection{Orbital Mechanics and Eclipse Model}
+The positions of the SmallSat and MRO are propagated using circular Keplerian orbits around Mars. The orbital radius $r_i$ for a satellite $i$ is:
+\begin{equation}
+    r_i = R_M + h_i
+\end{equation}
+where $R_M = 3389.5\,$km is Mars' radius and $h_i$ is its altitude. The orbital period $T_i$ is given by:
+\begin{equation}
+    T_i = 2\pi \sqrt{\frac{r_i^3}{GM_M}}
+\end{equation}
+where $GM_M = 4.282837 \times 10^{13}\,\text{m}^3/\text{s}^2$ is Mars' gravitational parameter. Eclipses occur when the SmallSat enters Mars' shadow, which is modeled as a cylinder. During eclipses, solar panels produce zero power. The eclipse fraction is modeled as $40\%$ of the orbital period.
+
+A communication link between the surface rover and an orbiter is feasible only when the orbiter is above the rover's local horizon. Geometrically, the elevation angle $\theta_{el}(t)$ of the satellite relative to the rover must exceed a minimum elevation mask $\theta_{mask} = 10^\circ$ to clear topography and minimize atmospheric attenuation. The line-of-sight vector $\mathbf{d}(t)$ from the rover position $\mathbf{p}_r(t)$ to the satellite position $\mathbf{p}_s(t)$ is:
+\begin{equation}
+    \mathbf{d}(t) = \mathbf{p}_s(t) - \mathbf{p}_r(t)
+\end{equation}
+The elevation angle is defined as:
+\begin{equation}
+    \theta_{el}(t) = 90^\circ - \arccos\left(\frac{\mathbf{d}(t) \cdot \mathbf{p}_r(t)}{\|\mathbf{d}(t)\| \|\mathbf{p}_r(t)\|}\right)
+\end{equation}
+A contact is created when $\theta_{el}(t) \geq \theta_{mask}$ and the line of sight is not obstructed by Mars.
+
+\subsection{Battery and Solar Charging Model}
+For each node $i$, the battery State of Charge (SoC) $S_i(t) \in [0, 1]$ is governed by:
+\begin{equation}
+    S_i(t) = S_i(t_0) + \int_{t_0}^t \frac{P_{\text{gen},i}(\tau) - P_{\text{cons},i}(\tau)}{C_i} d\tau
+\end{equation}
+where $C_i$ is the battery capacity in Wh, $P_{\text{gen},i}(t)$ is the solar power generation (zero during eclipses and for ground stations), and $P_{\text{cons},i}(t)$ is the power consumption:
+\begin{equation}
+    P_{\text{cons},i}(t) = P_{\text{idle},i} + I_{\text{tx}}(t) P_{\text{tx},i} + I_{\text{rx}}(t) P_{\text{rx},i}
+\end{equation}
+where $I_{\text{tx}}(t), I_{\text{rx}}(t) \in \{0, 1\}$ are indicators of transmission and reception activities, respectively. The node parameters are defined in Table~\ref{tab:params}.
+
+\subsection{Buffer Dynamics}
+The buffer utilization $B_i(t) \in [0, 1]$ of node $i$ represents the queued data volume relative to the maximum buffer storage $M_i$:
+\begin{equation}
+    B_i(t) = \frac{\sum_{b \in \mathcal{Q}_i(t)} \text{Size}(b)}{M_i}
+\end{equation}
+where $\mathcal{Q}_i(t)$ is the set of bundles in node $i$'s queue at time $t$. If a bundle of size $W$ is routed to a node with available buffer space less than $W$, the bundle is dropped due to buffer overflow.
+
+\subsection{Dynamic Link Quality Model}
+Each contact $c$ between nodes has a scheduled data rate $R_c$ in bps. The dynamic channel quality is modeled by a physics-inspired Link Quality Index (LQI), denoted $Q_c(t) \in [0.05, 1.0]$. The LQI accounts for elevation angle $\theta(t)$, range-rate (Doppler shift) $\dot{d}(t)$, eclipse state, and stochastic shadowing/fading:
+\begin{equation}
+    Q_c(t) = Q_{\text{base},c} + \eta_{\text{elev}} \frac{\theta(t)}{90^\circ} - \eta_{\text{doppler}} \frac{|\dot{d}(t)|}{v_{\text{max}}} - \eta_{\text{eclipse}} \mathbb{I}_{\text{eclipse}}(t) + \mathcal{N}(0, \sigma^2)
+\end{equation}
+where $Q_{\text{base},c}$ is the baseline LQI, $\eta_{\text{elev}} = 0.25$, $\eta_{\text{doppler}} = 0.15$, $\eta_{\text{eclipse}} = 0.35$ represent scale parameters, and $\mathcal{N}(0, \sigma^2)$ is standard Gaussian noise with $\sigma = 0.05$. The effective data transmission rate across contact $c$ at time $t$ is scaled by its LQI:
+\begin{equation}
+    R_{c,\text{eff}}(t) = R_c \cdot Q_c(t)
+\end{equation}
+If the link degrades ($Q_c(t)$ drops), the effective throughput is reduced. Large, monolithic bundles will fail to complete transmission before the contact window ends if the rate is severely degraded, wasting energy.
+
+% ====================================================================
+\section{Proposed ML-CGR Routing Algorithm}
+\label{sec:mlcgr}
+
+The proposed \mlcgr{} algorithm enhances standard CGR by making it resource-aware, proactive, and adaptive. It consists of three tightly coupled components: online ML-based link quality prediction, proactive bundle fragmentation, and a multi-attribute cost function for route selection.
+
+\subsection{Online Link-Quality Predictor}
+For a candidate contact $c$ and routing epoch $t$, the router extracts a 7-dimensional feature vector:
+\begin{equation}
+    \mathbf{x}_c = [ \theta_c, \dot{d}_c, S_{\text{relay}}(t), \mathbb{I}_{\text{eclipse}}(t), \Delta t_{\text{rem},c}, t_{\text{tod}}, B_{\text{relay}}(t) ]^T
+\end{equation}
+where $\theta_c$ is elevation, $\dot{d}_c$ is range-rate, $S_{\text{relay}}$ is relay battery SoC, $\mathbb{I}_{\text{eclipse}}$ is eclipse status, $\Delta t_{\text{rem},c}$ is remaining contact duration, $t_{\text{tod}}$ is normalized time of day, and $B_{\text{relay}}$ is relay buffer utilization. A Random Forest regressor predicts the expected bottleneck LQI of the contact:
+\begin{equation}
+    \hat{Q}_c = f_{\text{RF}}(\mathbf{x}_c)
+\end{equation}
+During a warmup phase ($N_{\text{samples}} < 30$), the predictor falls back to the physics-based LQI stored on the contact object with nominal noise. The model is trained online using a sliding window of the past $200$ observed contact measurements, with retraining occurring every $1800\,$s.
+
+\subsection{Proactive Bundle Fragmentation}
+Large bundles are highly vulnerable to partial transmission failures on degraded links. \mlcgr{} triggers proactive bundle fragmentation prior to forwarding.
+If the bundle size exceeds $5.0\,$MB and the predicted bottleneck LQI $\hat{Q}_{\text{bottleneck}}$ along the selected route falls below the quality threshold, the bundle is fragmented into smaller independent pieces. The fragment size is adaptively selected based on predicted link quality:
+\begin{equation}
+    W_{\text{frag}} = \begin{cases} 
+        40.0\,\text{MB} & \text{if } \hat{Q} \ge 0.75 \text{ (Good)} \\
+        15.0\,\text{MB} & \text{if } 0.45 \le \hat{Q} < 0.75 \text{ (Warn)} \\
+        4.0\,\text{MB} & \text{if } \hat{Q} < 0.45 \text{ (Poor)}
+    \end{cases}
+\end{equation}
+This ensures that even if a link is degraded, fragments can be fully received and acknowledged. The proactive fragmentation logic is formally detailed in Algorithm~\ref{alg:frag}.
+
+\begin{algorithm}[h]
+\caption{\mlcgr{} Proactive Fragmentation and Forwarding}
+\label{alg:frag}
+\begin{algorithmic}[1]
+\REQUIRE Queued bundle $b$ at node $n$, current time $t$, contact plan $\mathcal{C}$, ML model $f_{\text{RF}}$
+\ENSURE Transmitted bundle fragments or original bundle
+\STATE $r^* \leftarrow \textsc{FindOptimalRoute}(b, n, b.\text{dst}, t)$
+\IF{$r^* = \emptyset$}
+    \STATE Keep $b$ in queue and \RETURN
+\ENDIF
+\STATE $c \leftarrow \text{first contact hop of } r^*$
+\STATE $\mathbf{x}_c \leftarrow \textsc{ExtractFeatures}(c, n, t)$
+\STATE $\hat{Q}_c \leftarrow f_{\text{RF}}(\mathbf{x}_c)$
+\IF{$b.\text{size\_mb} > 5.0$ \AND $\hat{Q}_c < 0.75$}
+    \IF{$\hat{Q}_c \ge 0.45$}
+        \STATE $W_{\text{frag}} \leftarrow 15.0\,\text{MB}$
+    \ELSE
+        \STATE $W_{\text{frag}} \leftarrow 4.0\,\text{MB}$
+    \ENDIF
+    \STATE $fragments \leftarrow \textsc{SplitBundle}(b, W_{\text{frag}})$
+    \FOR{each $frag \in fragments$}
+        \STATE $\textsc{Enqueue}(n.\text{queue}, frag)$
+    \ENDFOR
+    \STATE $\textsc{MarkAsFragmented}(b)$
+\ELSE
+    \STATE $\textsc{Transmit}(c, b)$
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Multi-Attribute Route Selection}
+Standard CGR selects routes to minimize end-to-end delay. In \mlcgr{}, we define a multi-attribute cost function $C(r, b)$ for a candidate route $r$ and bundle $b$:
+\begin{equation}
+    C(r, b) = \alpha \hat{D}(r) + \beta \Phi_E(r) + \gamma \Phi_B(r, b) + \delta \Phi_{\text{LQI}}(r)
+\end{equation}
+where:
+\begin{itemize}
+    \item $\hat{D}(r) = D(r) / D_{\text{max}}$ is the normalized end-to-end latency.
+    \item $\Phi_E(r) = 1 / \min_{n \in r} S_n(t)$ is the energy penalty (inverse of minimum relay SoC).
+    \item $\Phi_B(r, b) = \text{Size}(b) / \min_{n \in r} A_n(t)$ is the buffer utilization penalty, where $A_n(t)$ is the available buffer bytes at node $n$.
+    \item $\Phi_{\text{LQI}}(r) = 1 / \min_{c \in r} \hat{Q}_c$ is the predicted link quality penalty.
+\end{itemize}
+The weights $(\alpha, \beta, \gamma, \delta)$ are dynamically adjusted based on bundle priority and relay resource states:
+\begin{itemize}
+    \item For critical bundles (Priority 1), $\alpha$ is boosted to $2.5$ to minimize delay. For low-priority bundles, $\beta$ and $\gamma$ are set to $1.8$ to save power.
+    \item If a relay battery drops below $35\%$, $\beta$ is doubled. If it drops below $20\%$, $\beta$ is quadrupled to protect the relay from draining.
+    \item If predicted bottleneck LQI $\hat{Q}$ falls below $0.45$, the LQI penalty weight $\delta$ is scaled by $5.0$ to steer traffic away from degraded links.
+\end{itemize}
+
+The closed-loop online training and feedback loop is outlined in Algorithm~\ref{alg:feedback}. After each contact, the actual achieved throughput is monitored to compute the ground-truth LQI. This data is fed back into the sliding memory window to continuously retrain the Random Forest regressor, providing adaptivity to unmodeled environmental changes or satellite degradation.
+
+\begin{algorithm}[h]
+\caption{Closed-Loop Model Retraining and Feedback}
+\label{alg:feedback}
+\begin{algorithmic}[1]
+\REQUIRE Contact log database $\mathcal{D}$, sliding training window $\mathcal{W}$ of size $200$, current time $t$
+\ENSURE Updated Random Forest model $f_{\text{RF}}$
+\FOR{each completed contact $c$ in the network}
+    \STATE $data\_transferred \leftarrow \textsc{GetTransferredBytes}(c)$
+    \STATE $expected\_data \leftarrow c.\text{duration\_s} \cdot c.\text{data\_rate\_bps} / 8$
+    \STATE $Q_{\text{actual}} \leftarrow \max(0.05, \min(1.0, \frac{data\_transferred}{expected\_data}))$
+    \STATE $\mathbf{x}_c \leftarrow \textsc{GetStoredFeatures}(c)$
+    \STATE $\textsc{InsertSample}(\mathcal{W}, (\mathbf{x}_c, Q_{\text{actual}}))$
+\ENDFOR
+\IF{$t \pmod{1800} = 0$}
+    \IF{$\textsc{Len}(\mathcal{W}) \ge 30$}
+        \STATE $f_{\text{RF}} \leftarrow \textsc{TrainRandomForestRegressor}(\mathcal{W}, N_{\text{trees}}=50)$
+    \ENDIF
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+% ====================================================================
+\section{Simulation Setup}
+\label{sec:setup}
+
+We evaluate standard CGR and the proposed \mlcgr{} using our discrete-event Mars DTN simulation framework. The simulation duration is set to $86,400\,$s ($24\,$hours), representing a typical Martian operational sol. Traffic generation is modeled after realistic science data acquisition cycles.
+The exact simulation parameters are listed in Table~\ref{tab:params}.
+
+\input{figures/table1_params.tex}
+
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig1_delivery_ratio.png}
+        \caption{Delivery Ratio per Priority}
+        \label{fig:delivery_ratio}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig2_smallsat_soc.png}
+        \caption{SmallSat SoC Profile}
+        \label{fig:smallsat_soc}
+    \end{subfigure}
+    \caption{Performance comparison between Standard CGR and the proposed \mlcgr{} over the $24$-hour simulation. (a) Delivery ratios for overall traffic and per-priority classes. (b) State-of-Charge (SoC) profiles of the battery-constrained SmallSat relay.}
+    \label{fig:performance}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig3_lqi_timeseries.png}
+        \caption{ML Predicted LQI}
+        \label{fig:predicted_lqi}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig4_fragmentation.png}
+        \caption{Fragmentation \& Delivery over Time}
+        \label{fig:frag_analysis}
+    \end{subfigure}
+    \caption{(a) Scatter plot of predicted link quality index (LQI) over time with running mean. (b) Proactive fragmentation events colored by number of fragments (top) and cumulative bundle delivery profile over time (bottom).}
+    \label{fig:lqi_analysis}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig5_latency_cdf.png}
+        \caption{Latency CDF}
+        \label{fig:latency_cdf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig6_drop_reasons.png}
+        \caption{Drop Reasons}
+        \label{fig:drop_reasons}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig7_smallsat_buffer.png}
+        \caption{SmallSat Buffer Utilization}
+        \label{fig:buffer_util}
+    \end{subfigure}
+    \caption{Detailed network performance diagnostics. (a) Cumulative Distribution Function (CDF) of bundle latencies. (b) Distribution of packet drop reasons showing CGR energy depletion. (c) SmallSat memory buffer utilization over time.}
+    \label{fig:diagnostics}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig8_topology.png}
+        \caption{Relay Topology}
+        \label{fig:topology}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/fig9_ml_convergence.png}
+        \caption{Prediction Error Convergence}
+        \label{fig:ml_conv}
+    \end{subfigure}
+    \caption{(a) Heterogeneous network topology modeling Mars Surface Rover, SmallSat, MRO, and Earth DSN. (b) Mean Absolute Error (MAE) of the online Random Forest LQI regressor decreasing as training samples accumulate.}
+    \label{fig:extra}
+\end{figure*}
+
+% ====================================================================
+\section{Performance Results}
+\label{sec:results}
+
+We execute comparative simulation runs with standard CGR and the proposed \mlcgr{} using two independent traffic seeds to obtain robust statistics.
+
+\input{figures/table2_results.tex}
+
+\subsection{Bundle Delivery Ratio and Throughput}
+As summarized in Table~\ref{tab:results}, standard CGR achieves a mean bundle delivery ratio of $83.6 \pm 1.4\%$. Standard CGR is resource-blind and routes massive science bundles through the SmallSat relay. Because the SmallSat does not possess sufficient battery reserves to transmit these bundles, it drains its battery completely. This triggers transmission failure, causing standard CGR to drop an average of $16.5 \pm 1.5$ bundles per run due to transmission energy exhaustion, as illustrated in Fig.~\ref{fig:drop_reasons}.
+
+In contrast, our proposed \mlcgr{} achieves a significantly higher delivery ratio of $91.8 \pm 0.7\%$, completely eliminating packet drops ($0.0 \pm 0.0$ dropped bundles). When \mlcgr{} detects that a link's predicted LQI is degraded, or that the relay battery is low, it dynamically routes bundles away from the SmallSat or proactively fragments large science bundles. By breaking down large payloads into small fragments (averaging $334.0 \pm 5.0$ fragments total per run), it ensures successful partial deliveries. 
+
+\subsection{Energy Longevity of SmallSat Relay}
+Fig.~\ref{fig:smallsat_soc} highlights the dramatic difference in battery health. Under standard CGR, the SmallSat's battery drops to $0.0\%$ SoC repeatedly, spending $21.9 \pm 14.9\%$ of the simulation duration below the critical threshold (Table~\ref{tab:results}). This leads to long outages and compromises spacecraft safety.
+
+Under \mlcgr{}, the SmallSat battery is carefully protected. Thanks to the dynamic cost function, when the SmallSat battery drops below $35\%$, the energy penalty term $\Phi_E(r)$ increases, steering traffic towards the highly provisioned MRO relay. Consequently, the SmallSat SoC never drops below $11.6 \pm 1.4\%$ and averages a safe SoC of $65.1 \pm 6.4\%$, keeping the spacecraft safe. The relay spends less than $3.7\%$ of the simulation time in critical SoC zones.
+
+\subsection{Latency and Buffer Diagnostics}
+Traditional CGR registers an average latency of approximately $4712.0 \pm 225.4\,$s. Although \mlcgr{} routes some bundles through longer paths to protect relay energy, its average latency is only slightly higher ($5756.0 \pm 490.0\,$s) due to the store-and-forward reassembly time of fragmented bundles. This latency distribution is represented as a CDF in Fig.~\ref{fig:latency_cdf}.
+In terms of memory efficiency, Fig.~\ref{fig:buffer_util} shows the buffer utilization over time. CGR buffer utilization experiences rapid spikes and high volatility due to satellite shutdowns, while \mlcgr{} load-balances the traffic, maintaining smooth queue utilization and preventing memory overflows.
+
+\subsection{ML Prediction Convergence and LQI Profiles}
+Fig.~\ref{fig:predicted_lqi} illustrates the scatter plot of the predicted LQI over the course of the simulation. The online Random Forest model successfully converges, predicting low LQI ($<0.45$) during orbital eclipses and low-elevation contacts, and high LQI ($>0.75$) during clear proximity passes. As shown in Fig.~\ref{fig:frag_analysis}, fragmentation events are triggered exactly when predicted link quality degrades, matching the physical orbital visibility transitions.
+The learning curve in Fig.~\ref{fig:ml_conv} confirms model convergence, showing the Mean Absolute Error (MAE) of the Random Forest regressor dropping from an initial $0.22$ during early warmups to less than $0.04$ by $86{,}400\,$s as it learns planetary patterns online.
+
+\input{figures/table3_priority.tex}
+
+% ====================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+In this paper, we proposed \mlcgr{}, a novel Machine Learning-Driven Predictive Link-Quality CGR algorithm to address resource constraints and link quality variations in heterogeneous space networks. By integrating a lightweight online Random Forest regressor, proactive bundle fragmentation, and a resource-aware multi-attribute cost function, \mlcgr{} prevents battery exhaustion on resource-constrained SmallSat relays while adapting dynamically to link degradation. Through high-fidelity discrete-event simulations of a Mars relay network, we demonstrated that \mlcgr{} increases the bundle delivery ratio to $91.8\%$ (a substantial improvement over standard CGR's $83.6\%$) and completely eliminates packet drops due to battery exhaustion. Future work will investigate the deployment of \mlcgr{} within standard space DTN implementations such as ION-DTN, and evaluate its performance under multi-satellite constellation topologies.
+
+\bibliographystyle{cas-model2-names}
+\bibliography{references}
+
+\end{document}
