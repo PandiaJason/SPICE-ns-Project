@@ -44,13 +44,7 @@ To counter these Martian physical challenges, this framework introduces and eval
 │   ├── energy_vs_density.png
 │   └── ...
 └── paper/                     # LaTeX Academic Manuscripts & Publication Pipeline
-    ├── main.tex               # Double-column IEEE Journal formatted manuscript
-    ├── ijuc.tex               # Single-column International Journal of Unconventional Computing (IJUC) manuscript
-    ├── references.bib         # Bibliography database for IEEE manuscript
-    ├── ijuc.bib               # Bibliography database for IJUC manuscript
-    ├── ijuc.bst               # Official IJUC BibTeX style definition
-    ├── main.pdf               # Compiled IEEE manuscript
-    └── ijuc.pdf               # Compiled IJUC manuscript
+
 ```
 
 ---
@@ -63,11 +57,6 @@ Ensure you have Python 3.8+ and the following scientific packages installed:
 pip install numpy pandas matplotlib
 ```
 
-To compile the LaTeX manuscripts locally, we highly recommend **Tectonic**, an automated, self-contained modern TeX engine:
-```bash
-# Ubuntu/Debian
-sudo apt-get install tectonic
-```
 
 ---
 
@@ -95,28 +84,7 @@ This generates professional-grade, publication-ready vector-compliant visual plo
 
 ---
 
-## 📄 5. Compiling the Academic Papers
-
-The paper subdirectory contains two versions of the manuscript optimized for separate publisher formats.
-
-### Compile the IEEE Journal Version
-```bash
-cd paper/
-tectonic --keep-intermediates --keep-logs main.tex
-```
-
-### Compile the International Journal of Unconventional Computing (IJUC) Version
-```bash
-cd paper/
-tectonic --keep-intermediates --keep-logs ijuc.tex
-```
-
-> [!NOTE]
-> The Tectonic compiler automatically downloads all missing styles, compiles BibTeX, resolves citations, and outputs a highly optimized PDF file (`main.pdf` / `ijuc.pdf`). The `--keep-intermediates` flag ensures that `.bbl` and `.aux` files are successfully outputted back into your local workspace.
-
----
-
-## 📊 6. Key Scientific Results
+## 📊 5. Key Scientific Results
 
 Our system simulation models demonstrate several notable findings:
 
