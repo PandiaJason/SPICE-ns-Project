@@ -3,6 +3,7 @@
 [![Language](https://img.shields.io/badge/Language-Python%203.8+-blue.svg)](https://www.python.org/)
 [![Compilation](https://img.shields.io/badge/LaTeX-Tectonic%20%7C%20pdfTeX-brightgreen.svg)](https://tectonic-typesetting.github.io/)
 [![AeroSpace](https://img.shields.io/badge/Domain-Martian%20IoT%20%26%20Nanosatellites-orange.svg)](https://github.com/)
+<img width="2752" height="1536" alt="image" src="https://github.com/user-attachments/assets/f39e7393-a732-47db-8640-2d0f60476dbe" />
 
 An advanced, cross-layer physical-MAC event-driven network simulator and comprehensive academic research pipeline. This project models, simulates, and evaluates the performance of Long Range Wide Area Networks (LoRaWAN) in the hostile Martian environment, comparing standard terrestrial configurations against our **Proposed Martian-Optimized Architecture** (utilizing 433 MHz UHF bands, space-grade Low-Noise Amplifiers (LNAs), active TCXO temperature compensation, and RF-transparent hydrophobic antenna coatings).
 
