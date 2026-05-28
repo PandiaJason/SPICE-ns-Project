@@ -1,6 +1,8 @@
 # Ignore  publication files or directories
 Publicatons/
 DTN/paper/
+AI-DTN/paper/
+IoT-Mars/paper/
 DTN/papers/
 paper/
 papers/
@@ -60,3 +62,4 @@ DTN/results/
 /ns-3.47/DS-SpiceMobilityModel/New/
 
 
+pandoc-3.1.11/
