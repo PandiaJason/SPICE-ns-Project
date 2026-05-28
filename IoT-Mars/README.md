@@ -1,4 +1,4 @@
-# Weather-Resilient Martian LoRaWAN Simulation & Research Pipeline
+# Weather-Resilient Martian LoRaWAN Simulation -  by Jason Pandian
 
 [![Language](https://img.shields.io/badge/Language-Python%203.8+-blue.svg)](https://www.python.org/)
 [![Compilation](https://img.shields.io/badge/LaTeX-Tectonic%20%7C%20pdfTeX-brightgreen.svg)](https://tectonic-typesetting.github.io/)
