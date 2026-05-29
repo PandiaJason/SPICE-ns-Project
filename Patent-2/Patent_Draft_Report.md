@@ -255,7 +255,7 @@ We claim:
     *   a wide-angle wake-up photodiode [201] positioned on an external surface of a spacecraft boundary [104], the wake-up photodiode [201] configured to capture an incoming, low-frequency modulated wake-up laser pulse [102];
     *   a low-power analog front-end comprising a transimpedance amplifier (TIA) [202], a bandpass filter [203], and a threshold comparator [204] electrically coupled to the wake-up photodiode [201], the analog front-end configured to amplify, filter, and digitize the captured wake-up laser pulse into a digitized envelope pulse train;
     *   a solid-state transistor power gate [209] electrically connected between a primary power bus [110] and a gated transceiver power rail [211];
-    *   a main high-speed optical transceiver [210] and a fine-pointing mirror actuation system [109] electrically coupled to the gated transceiver power rail [211], wherein the main high-speed optical transceiver [210] and the fine-pointing mirror system [109] are completely unpowered when the solid-state transistor power gate [209] is in an open state; and
+    *   a main high-speed optical transceiver [210] and a fine-pointing mirror actuation system [109] electrically coupled to the gated transceiver power rail [211], wherein the main high-speed optical transceiver [210] and the fine-pointing mirror actuation system [109] are completely unpowered when the solid-state transistor power gate [209] is in an open state; and
     *   an onboard ultra-low-power (ULP) microcontroller [205] electrically coupled to the comparator [204] and the solid-state transistor power gate [209];
     
     wherein the ULP microcontroller [205] is configured to:
@@ -270,21 +270,21 @@ We claim:
 5.  The system of claim 1, wherein the ULP microcontroller [205] is an ARM Cortex-M based system-on-chip operating at an internal clock frequency of less than 4 MHz during the pattern demodulation step to minimize active wake-up power.
 6.  The system of claim 1, wherein the ULP microcontroller [205] comprises a low-power peripheral interface [206] featuring a GPIO Tasks and Events (GPIOTE) module and a Programmable Peripheral Interconnect (PPI) system configured to route digitized pulses from the comparator [204] directly to a hardware timer without waking the CPU, thereby keeping the CPU suspended during initial preamble pulse counting.
 7.  The system of claim 1, wherein the FSM core [207] is configured to validate the unique hardware key by evaluating a cryptographically signed Manchester-encoded multi-bit sequence.
-8.  The system of claim 1, wherein the FSM core [207] is configured to automatically open the solid-state transistor power gate [209] to sever power to the gated rail [211] upon detecting a session complete signal or the expiration of a hardware watchdog timer, thereby returning the system to the asynchronous deep sleep state [301].
+8.  The system of claim 1, wherein the FSM core [207] is configured to automatically open the solid-state transistor power gate [209] to sever power to the gated transceiver power rail [211] upon detecting a session complete signal or the expiration of a hardware watchdog timer, thereby returning the system to the asynchronous deep sleep state [301].
 9.  A method for asynchronously waking up a deep-space small satellite optical transceiver and gating power, the method comprising:
-    *   maintaining a main high-speed optical transceiver [210] and a fine-pointing mirror system [109] in a completely unpowered state by keeping a solid-state transistor power gate [209] open;
+    *   maintaining a main high-speed optical transceiver [210] and a fine-pointing mirror actuation system [109] in a completely unpowered state by keeping a solid-state transistor power gate [209] open;
     *   maintaining an onboard ultra-low-power (ULP) microcontroller [205] in a hardware-based deep sleep state [301] consuming less than 1.5 microamperes;
     *   capturing, via a wide-angle wake-up photodiode [201], a modulated optical beacon pulse [102];
     *   amplifying and filtering the captured beacon pulse through a low-power analog front-end [202, 203, 204] to generate a digitized envelope pulse train;
-    *   triggering a hardware interrupt in the ULP microcontroller [205] via the digitized envelope pulse train, thereby waking a central processing unit (CPU) of the microcontroller;
+    *   triggering a hardware interrupt in the ULP microcontroller [205] via the digitized envelope pulse train, thereby waking a central processing unit (CPU) of the ULP microcontroller [205];
     *   executing, by the CPU of the ULP microcontroller [205], a finite state machine (FSM) core [207] in physical silicon registers to demodulate the digitized envelope pulse train and extract a decoded beacon pattern;
-    *   validating the decoded beacon pattern against a unique predefined hardware key stored in non-volatile registers of the microcontroller [205]; and
-    *   upon validation, toggling a GPIO control pin [208] of the ULP microcontroller [205] to close the solid-state transistor power gate [209], thereby energizing a gated transceiver power rail [211] to boot up the main high-speed optical transceiver [210] and the fine-pointing mirror system [109] to establish an active inter-satellite data link [103].
+    *   validating the decoded beacon pattern against a unique predefined hardware key stored in non-volatile registers of the ULP microcontroller [205]; and
+    *   upon successful validation, toggling a GPIO control pin [208] of the ULP microcontroller [205] to close the solid-state transistor power gate [209], thereby energizing a gated transceiver power rail [211] to boot up the main high-speed optical transceiver [210] and the fine-pointing mirror actuation system [109] to establish a high-speed data inter-satellite link (ISL) beam [103].
 10. The method of claim 9, wherein the modulated optical beacon pulse [102] is modulated at a carrier frequency of 10 kHz to 50 kHz using amplitude-shift keying (ASK) or pulse-position modulation (PPM).
 11. The method of claim 9, further comprising using a hardware Programmable Peripheral Interconnect (PPI) system [206] within the ULP microcontroller [205] to count incoming digitized pulses and verify a carrier frequency preamble prior to waking the CPU, maintaining the CPU in a low-power standby state during initial signal presence evaluation.
 12. The method of claim 9, further comprising:
     *   monitoring the active inter-satellite data link [103] session using an active hardware watchdog timer; and
-    *   upon session completion or watchdog timer expiration, toggling the GPIO control pin [208] to open the solid-state transistor power gate [209], thereby de-energizing the main high-speed transceiver [210] and returning the system to the deep sleep state [301].
+    *   upon session completion or watchdog timer expiration, toggling the GPIO control pin [208] to open the solid-state transistor power gate [209], thereby de-energizing the main high-speed optical transceiver [210] and returning the system to the deep sleep state [301].
 
 ---
 
