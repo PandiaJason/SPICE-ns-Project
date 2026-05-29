@@ -132,11 +132,9 @@ COMPLETE SPECIFICATION
 A REACTIVE MASKING SYSTEM AND METHOD FOR DEEP SPACE OPTICAL RECEIVERS TO MITIGATE SOLAR BLINDING
 
 2. APPLICANT(S)
-Name: JASON
+Name: Jason Pandian
 Nationality: Indian National
-Address: SPICE-ns-Project, Dept. of Aerospace Engineering,
-         Indian Institute of Space Science and Technology (IIST),
-         Valiamala, Thiruvananthapuram – 695547, Kerala, India.
+Address: Nehru Institute of Technology, Coimbatore, Tamilnadu, India.
 
 3. PREAMBLE TO THE DESCRIPTION
 The following specification particularly describes the invention and the manner in which it is to be performed:
@@ -290,7 +288,7 @@ The following is an overview of the administrative forms drafted in your workspa
 ### Form 1: Application for Grant of Patent
 *   **Purpose:** Formal administrative registration.
 *   **Crucial Sections:**
-    *   *Applicant & Inventor Table:* Labeled with your name (JASON), nationality (Indian), and address at the Indian Institute of Space Science and Technology (IIST).
+    *   *Applicant & Inventor Table:* Labeled with your name (Jason Pandian), nationality (Indian), and address at Nehru Institute of Technology.
     *   *Declarations:* Signed statements certifying ownership and possessorship of the invention.
 
 ### Form 3: Statement and Undertaking Under Section 8
