@@ -1,0 +1,23 @@
+=== MONTE CARLO SIMULATION METRICS SUMMARY (50 TRIALS) ===
+Total Trials: 50
+Model Parameter Count: 1203 weights
+Estimated ROM footprint: 4.81 KB (4812 bytes)
+Average Inference Latency (Host): 0.031410 ms
+Estimated ARM Cortex-M4 Latency: 0.377 ms
+Estimated Energy Consumption: 0.0124 uJ
+Average ROC-AUC Score: 0.9749 +/- 0.0091
+Average F1-Score: 90.52% +/- 5.08%
+Average Precision Score: 90.82% +/- 9.04%
+Average Recall Score: 90.91% +/- 1.99%
+Average Data Downlink Savings: 70.10% +/- 7.54%
+Average Bandwidth Compression Factor: 3.54x +/- 0.84x
+Average False Alarm Rate (FAR): 2.12% +/- 3.15%
+RF-to-Computation Energy Payoff Ratio: 1480434.52x
+
+Detection Delay Stats (minutes):
+ - volt_drop: 0.000 mins +/- 0.000 mins (Max: 0.000 mins)
+ - wheel_lock: 0.000 mins +/- 0.000 mins (Max: 0.000 mins)
+ - cpu_leak: 0.000 mins +/- 0.000 mins (Max: 0.000 mins)
+ - sensor_overheat: 21.090 mins +/- 7.364 mins (Max: 39.500 mins)
+ - magnetorquer_short: 0.000 mins +/- 0.000 mins (Max: 0.000 mins)
+ - comms_drop: 0.000 mins +/- 0.000 mins (Max: 0.000 mins)
