@@ -1,0 +1,229 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\geometry{top=1in,bottom=1in,left=1in,right=1in}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{FORM 2 -- COMPLETE SPECIFICATION}
+\lfoot{APPLICANT: JASON}
+\rfoot{Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\large FORM 2} \\
+    \vspace{0.3cm}
+    \textbf{THE PATENTS ACT, 1970} \\
+    (39 of 1970) \\
+    \& \\
+    \textbf{THE PATENT RULES, 2003} \\
+    \vspace{0.5cm}
+    \textbf{\large COMPLETE SPECIFICATION} \\
+    (See Section 10 and Rule 13) \\
+    \vspace{1cm}
+    
+    \textbf{\Large 1. TITLE OF THE INVENTION} \\
+    \vspace{0.5cm}
+    \textbf{\large A REACTIVE MASKING SYSTEM AND METHOD FOR DEEP SPACE OPTICAL RECEIVERS TO MITIGATE SOLAR BLINDING} \\
+    \vspace{1.5cm}
+    
+    \textbf{\Large 2. APPLICANT(S)} \\
+    \vspace{0.5cm}
+    \begin{tabular}{lll}
+        \textbf{Name} & : & JASON \\
+        \textbf{Nationality} & : & Indian National \\
+        \textbf{Address} & : & SPICE-ns-Project, Dept. of Aerospace Engineering, \\
+                         &   & Indian Institute of Space Science and Technology (IIST), \\
+                         &   & Valiamala, Thiruvananthapuram -- 695547, \\
+                         &   & Kerala, India. \\
+    \end{tabular}
+    \vspace{1.5cm}
+    
+    \textbf{\Large 3. PREAMBLE TO THE DESCRIPTION} \\
+    \vspace{0.5cm}
+    \textit{The following specification particularly describes the invention and the manner in which it is to be performed:}
+\end{center}
+
+\newpage
+
+\section*{FIELD OF THE INVENTION}
+The present disclosure generally relates to the field of deep space optical communications. More particularly, the present invention relates to an active optoelectronic and mechanical reactive masking system and method (also referred to as a "Dynamic Solar Blind") for deep space optical receivers, which dynamically detects solar glare and physical pointing anomalies to actively shield sensitive photon-counting sensors during low-solar-elongation phases (such as Solar Conjunction), thereby maintaining communication link availability and preventing hardware damage.
+
+\section*{BACKGROUND OF THE INVENTION AND PRIOR ART}
+Deep-space laser communications, such as NASA's Deep Space Optical Communications (DSOC) system, operate across millions of kilometers, requiring extremely high-gain optical receivers equipped with sensitive photon-counting sensor arrays, such as Superconducting Nanowire Single-Photon Detectors (SNSPDs) or Photomultiplier Tubes (PMTs). These detectors are designed to register individual photons of an incoming deep-space laser beacon. 
+
+However, when a spacecraft passes close to the Sun from the Earth's perspective---a celestial geometry known as Solar Conjunction or low solar elongation---the optical receiver is forced to point in close angular proximity to the solar disk. The intense, unpolarized solar glare and ambient solar noise overwhelm the optical receiver. This solar noise floods the sensitive photon-counting sensors, blinding them, corrupting the incoming optical data link, and, in severe cases, causing permanent catastrophic thermal and structural damage to the microscopic detector elements.
+
+Prior art methods to mitigate solar blinding in optical receivers primarily rely on:
+\begin{enumerate}
+    \item \textbf{Passive Spectral Bandpass Filters:} These are thin-film optical filters designed to pass only the specific wavelength of the laser beacon (e.g., 1550 nm) and block other wavelengths. However, in-band solar noise (photons matching the beacon wavelength) still passes through, blinding the detector when the angular separation is extremely small.
+    \item \textbf{Passive Mechanical Baffles:} Cylindrical baffles extending from the telescope aperture block stray light entering at oblique angles. However, during low-solar-elongation phases (e.g., angular separation less than 3 degrees), the solar disk is within the direct field of view of the telescope, rendering passive baffles entirely ineffective.
+    \item \textbf{Complete System Shutdown:} To prevent permanent detector damage, existing missions shut down the optical receiver entirely when the solar elongation angle falls below a critical threshold (typically 1.5 to 3 degrees), leading to severe communication blackouts that can last for weeks or months.
+\end{enumerate}
+
+Therefore, there exists a critical technical need for a localized, sensor-driven reactive masking system that can dynamically and selectively mask the intense glare of the Sun over the telescope optics while keeping the optical path of the deep space laser beacon wide open, thereby preserving link availability during low-solar-elongation phases without risking detector destruction.
+
+\section*{OBJECT OF THE INVENTION}
+The primary object of the present invention is to provide a localized, sensor-driven reactive masking system for deep-space optical transceivers that maintains optical link availability during low-solar-elongation phases.
+
+Another object of the present invention is to provide an active, closed-loop optoelectronic and mechanical shutter assembly that dynamically masks solar glare at precise angular vectors while leaving the target laser path unobstructed.
+
+Yet another object of the present invention is to implement an onboard physical microcontroller state machine that processes analog environmental sensor signals in real-time, transitioning between distinct operational states in physical silicon to execute rapid, deterministic hardware protection routines.
+
+A further object of the present invention is to provide a method that continuously monitors solar noise levels and angular separation, dynamically adjusting shutter opacity and micro-steps to mitigate solar blinding.
+
+\section*{SUMMARY OF THE INVENTION}
+The present invention achieves the aforementioned objectives by providing a specialized, hardware-software co-designed structural loop that converts an environmental solar glare anomaly into a physical hardware action. 
+
+In accordance with the present invention, a reactive masking system for a deep space optical receiver comprises:
+\begin{itemize}
+    \item A light/UV sensor array comprising a multi-element monochrome photodiode array positioned adjacent to a telescope optical assembly. The sensor array converts the physical environmental solar glare into a physical analog electrical signal representing solar noise intensity and its angular vector.
+    \item An onboard microcontroller communicatively coupled to the sensor array. The microcontroller comprises an Analog-to-Digital Converter (ADC) that digitizes the analog electrical signal, and a processor that executes a Finite State Machine (FSM) core implemented in physical silicon. The FSM core transitions between distinct operational states based on comparisons of digitized sensor readings with predetermined thresholds stored in physical, non-volatile memory registers.
+    \item A dynamic optical shutter assembly comprising a physical shutter barrier assembly (such as a segmented liquid-crystal cell array or a micro-stepped mechanical occulting disk) driven by a shutter driver. The shutter driver is electrically controlled by a physical digital-to-analog converter (DAC) or PWM drive signal generated by the microcontroller.
+\end{itemize}
+
+During a low-solar-elongation phase, when the solar glare exceeds a first predetermined threshold, the FSM core transitions to a "Dynamic Masking State", causing the microcontroller to generate a specific analog drive signal. This signal drives the physical shutter barrier assembly to dynamically increase its opacity or mechanical position at the exact angular coordinates of the Sun, thereby masking the glare while maintaining an unobstructed path for the deep-space laser beacon. 
+
+Furthermore, if the angular separation drops below a second critical pointing threshold, the FSM core transitions to an "Unaligned Hold State", wherein the microcontroller electronically opens a solid-state transistor switch to physically sever power to the photon-counting detector array, while simultaneously driving the shutter barrier to maximum opacity, physically isolating and protecting the sensitive optics from direct solar destruction.
+
+\section*{BRIEF DESCRIPTION OF THE ACCOMPANYING DRAWINGS}
+To facilitate a comprehensive understanding of the structural layout, electrical configuration, and operational logic of the present invention, reference is made to the accompanying drawings, which form a part of this specification:
+
+\begin{description}
+    \item[FIG. 1] is a high-level structural block diagram of the deep space optical transceiver system equipped with the dynamic solar blind assembly, illustrating the physical hardware-software loop.
+    \item[FIG. 2] is a detailed electronic schematic and optical layout of the sensor readout and shutter actuation interface.
+    \item[FIG. 3] is a state transition diagram of the Finite State Machine (FSM) core executed within the onboard microcontroller.
+    \item[FIG. 4] is a detailed operational flowchart illustrating the control methodology for dynamic solar masking and hardware protection.
+\end{description}
+
+\section*{DETAILED DESCRIPTION OF THE INVENTION}
+Referring now to the drawings, wherein like reference numerals represent identical or corresponding parts throughout the several views, the physical architecture and operation of the reactive masking system are described in detail.
+
+\subsection*{1. System Architecture (FIG. 1 \& FIG. 2)}
+As illustrated in FIG. 1, the system is designed to operate in an outer space environment where a telescope optical assembly [106] receives an incoming deep space laser beacon [102] in close angular proximity to intense solar glare and ambient noise [101]. The telescope optical assembly [106] focuses the received optical signals onto a sensitive photon-counting detector array [107] (such as an array of superconducting nanowire single-photon detectors).
+
+To prevent the solar glare [101] from entering the telescope optics and blinding or destroying the detector array [107], a dynamic solar blind assembly [103] is mounted directly in front of or within the telescope optical path. The dynamic solar blind assembly [103] comprises a light/UV sensor array [104] and a dynamic optical shutter assembly [105].
+
+The light/UV sensor array [104] comprises a plurality of monochrome photodiodes [201] (shown in FIG. 2) optimized for ultraviolet and visible light detection. The sensor array [104] is physically positioned adjacent to the telescope aperture, oriented to face the incoming solar glare [101]. The sensor array [104] generates a physical electrical current (analog readout [109]) proportional to the ambient solar glare intensity.
+
+This physical electrical current is routed to a transimpedance amplifier (TIA) [202] (FIG. 2), which converts the low-level current into a proportional voltage signal. This voltage signal is passed through a low-pass anti-aliasing filter [203] to eliminate high-frequency electromagnetic interference, producing a clean analog signal [209] that represents the physical environmental solar noise.
+
+The analog signal [209] is electrically coupled to the analog input channel of an onboard digital microcontroller [108] (such as an STM32-grade ARM Cortex-M4 or an ESP32-grade dual-core microcontroller). The microcontroller [108] comprises an Analog-to-Digital Converter (ADC) [204] which digitizes the analog signal [209] into a multi-bit digital representation.
+
+The digitized sensor data is processed in real-time by a Finite State Machine (FSM) core [205] executed in the physical silicon processor of the microcontroller [108]. The FSM core [205] monitors the solar noise intensity and the angular separation of the Sun relative to the telescope optical axis (derived from the differential voltage between different photodiodes in the quadrant array [201]).
+
+Based on the FSM state, the microcontroller [108] generates a physical digital-to-analog (DAC) or Pulse-Width Modulation (PWM) drive signal [210] using an onboard DAC/PWM generator [206]. This drive signal [210] is electrically coupled to a liquid crystal opacity driver or a stepper motor controller [207], which physically actuates a shutter barrier assembly [208] inside the dynamic optical shutter assembly [105]. The shutter driver [207] generates the high-voltage AC bias or physical motor steps required to alter the state of the shutter barrier assembly [208], thereby dynamically masking the solar glare [101] while keeping the path for the laser beacon [102] wide open.
+
+The microcontroller [108] also maintains a communicative link [111] with the telescope optical assembly [106] and detector array [107] to receive tracking feedback and dynamically configure detector gate timings to match the shutter actuation.
+
+\subsection*{2. Finite State Machine Operation (FIG. 3)}
+The software logic of the present invention is strictly framed as a physical hardware state machine executed on the silicon processor of the microcontroller [108]. As illustrated in FIG. 3, the FSM core [205] transitions between four distinct, hardware-constrained operational states stored in physical non-volatile memory registers:
+
+\begin{enumerate}
+  \item \textbf{Deep Space Acquisition State [301]:} In this state, the system is actively searching for the deep-space laser beacon [102]. The physical shutter barrier assembly [208] is set to a fully transparent state (minimum opacity) to maximize optical throughput.
+  \item \textbf{Tracking \& Monitoring State [302]:} Once the laser beacon is locked (Transition [T31]), the FSM transitions to State [302]. The microcontroller [108] continuously polls the ADC [204] to monitor the solar noise level. If the laser beacon lock is lost (Transition [T32]), the FSM transitions back to the Acquisition State [301].
+  \item \textbf{Dynamic Masking State [303]:} When the digitized solar noise exceeds a first predetermined threshold ($Th_{noise}$) stored in a non-volatile register (Transition [T33]), the FSM transitions to State [303]. The microcontroller [108] computes the angular vector of the solar glare [101] and transmits a physical drive signal [210] to the driver [207]. The driver [207] applies a localized electrical bias to a specific segment of the liquid-crystal shutter barrier [208], or drives a stepper motor to position a mechanical micro-mask, physically casting a shadow over the solar glare's path into the telescope while leaving the laser beacon path clear. To prevent rapid, destructive oscillation of the shutter under marginal noise conditions, the FSM transitions back to State [302] (Transition [T34]) only when the solar noise level falls below the threshold by a predetermined hysteresis value ($Th_{noise} - Hysteresis$).
+  \item \textbf{Unaligned Hold State [304]:} If the telescope experiences a pointing drift or angular perturbation such that the calculated angular separation between the laser path and the Sun is less than a critical pointing threshold ($Th_{pointing}$) (Transition [T35] or [T37]), the FSM transitions to the Unaligned Hold State [304]. Transitioning to State [304] triggers an immediate, hardwired hardware safety action: the microcontroller [108] outputs a digital low signal to open a solid-state transistor switch (e.g., a MOSFET), physically severing the power line to the high-voltage bias of the photon-counting detector array [107]. Simultaneously, the driver [207] is commanded to set the entire shutter barrier assembly [208] to maximum opacity (fully closed), physically sealing the telescope optics from direct sunlight. The FSM remains in this state until a safe realignment command is received from the ground station or onboard guidance computer (Transition [T36]), resetting the system back to the Acquisition State [301].
+\end{enumerate}
+
+\subsection*{3. Detailed Control Methodology (FIG. 4)}
+FIG. 4 outlines the step-by-step operational method executed by the reactive masking system.
+The method begins at Step [401] with system initialization, where default calibration values and thresholds ($Th_{noise}$, $Th_{pointing}$, $Hysteresis$) are loaded from physical non-volatile EEPROM registers into the processor SRAM.
+
+At Step [402], the microcontroller [108] continuously reads the physical analog electrical readouts [109] generated by the light/UV sensor array [104], digitizing them via the internal multi-channel ADC [204].
+
+At Step [403], the microcontroller processor calculates the real-time ambient solar noise power ($P_{solar}$) and the angular separation ($\theta$) of the Sun relative to the telescope optical axis by evaluating the differential signal levels across the photodiode quadrant array [201].
+
+At Step [404], the FSM core [205] compares the calculated $P_{solar}$ with the first threshold $Th_{noise}$. 
+If $P_{solar} > Th_{noise}$ ("YES" branch), the process flows to Step [405], where the microcontroller [108] transitions to the Dynamic Masking State [303] and dynamically increases the opacity or adjusts the physical mechanical micro-steps of the shutter barrier [208] in the direction of the resolved angular vector to mask the glare.
+If $P_{solar} \le Th_{noise}$ ("NO" branch), the process flows to Step [406], where the microcontroller [108] maintains the shutter barrier [208] in a fully transparent state.
+
+From both Steps [405] and [406], the process flows to Step [407], where the FSM core [205] evaluates whether the angular separation $\theta$ is less than the critical pointing threshold $Th_{pointing}$.
+If $\theta < Th_{pointing}$ ("YES" branch), the process flows to Step [408], where the FSM core [205] activates the Unaligned Hold State [304], physically opening a solid-state switch to sever power to the photon detectors [107] and closing the shutter [208] completely to prevent solar damage.
+If $\theta \ge Th_{pointing}$ ("NO" branch), the process flows to Step [409], and the system continues normal optical data reception.
+The loop continuously repeats, feeding back to the initial sensor readouts to ensure dynamic, real-time protection and link maintenance.
+
+\subsection*{4. Working Embodiments}
+In a first practical embodiment, the shutter barrier assembly [208] comprises a segmented liquid-crystal (LC) array placed at an intermediate conjugate image plane of the telescope optical assembly [106]. The LC array consists of 64 concentric and radial segments, each independently wired to the driver [207]. When the sensor array [104] resolves that the solar glare [101] is entering at a specific angular bearing, the microcontroller [108] computes which segment of the LC array aligns with the solar ray path and applies an AC bias voltage (e.g., 5V RMS at 1 kHz) to that specific segment. This physically transitions the liquid crystals in that segment from a parallel aligned transparent state to a highly scattering, opaque homeotropic or twisted state, casting a localized shadow over the solar glare while the remaining 63 segments remain fully transparent, allowing the deep space laser beacon [102] to pass through unobstructed.
+
+In a second practical embodiment, the shutter barrier assembly [208] comprises a mechanical micro-shutter. The driver [207] comprises a high-precision bipolar stepper motor coupled to a lead screw. The shutter barrier [208] is a physical molybdenum or carbon-composite occulting disk. When solar noise exceeds the threshold, the microcontroller [108] calculates the necessary micro-steps and drives the stepper motor [207] to translate the physical occulting disk across the aperture, blocking the solar path.
+
+Both embodiments demonstrate how the physical inputs from the sensors [104] are converted into physical transformations in the silicon microcontroller [108] and translated into physical, mechanical, or optoelectronic changes in the shutter barrier [208] to achieve the tangible utility of protecting the detectors [107] while maintaining link availability.
+
+\newpage
+
+\section*{WE CLAIM:}
+
+\begin{enumerate}
+    \item A reactive masking system for a deep space optical receiver to maintain communication link availability during low-solar-elongation phases, the system comprising:
+    \begin{itemize}
+        \item a telescope optical assembly [106] configured to focus an incoming deep space laser beacon [102] along an optical path onto a photon-counting detector array [107];
+        \item a dynamic optical shutter assembly [105] positioned along the optical path of the telescope optical assembly [106], the dynamic optical shutter assembly comprising a physical shutter barrier assembly [208] driven by a shutter driver [207];
+        \item a light/UV sensor array [104] comprising a plurality of photodiodes [201] positioned adjacent to the telescope optical assembly [106], the light/UV sensor array [104] configured to generate a physical analog electrical signal [209] representing an intensity and an angular vector of incoming solar glare [101]; and
+        \item an onboard microcontroller [108] comprising an analog-to-digital converter (ADC) [204], a non-volatile memory register, and a processor configured to execute a finite state machine (FSM) core [205] in physical silicon, the onboard microcontroller [108] being electrically coupled to the light/UV sensor array [104] and the shutter driver [207];
+    \end{itemize}
+    wherein the onboard microcontroller [108] is configured to:
+    \begin{itemize}
+        \item digitize the physical analog electrical signal [209] via the ADC [204] to obtain a real-time solar noise value and an angular separation value;
+        \item compare the solar noise value and the angular separation value with predetermined thresholds stored in the non-volatile memory register;
+        \item transition the FSM core [205] from a normal tracking state [302] to a dynamic masking state [303] when the solar noise value exceeds a first predetermined threshold; and
+        \item generate and transmit a physical drive signal [210] to the shutter driver [207] during the dynamic masking state [303], thereby physically adjusting the opacity or mechanical position of the physical shutter barrier assembly [208] to dynamically mask the solar glare [101] while keeping the optical path for the deep space laser beacon [102] open.
+    \end{itemize}
+
+    \item The system of claim 1, wherein the light/UV sensor array [104] comprises a multi-element monochrome photodiode array arranged in a quadrant configuration to resolve the angular vector of the solar glare [101] relative to the optical axis of the telescope optical assembly [106].
+
+    \item The system of claim 1, further comprising a transimpedance amplifier (TIA) [202] and a low-pass anti-aliasing filter [203] electrically coupled between the light/UV sensor array [104] and the ADC [204] of the microcontroller [108] to convert and filter the physical electrical signal prior to digitization.
+
+    \item The system of claim 1, wherein the physical shutter barrier assembly [208] comprises a segmented liquid-crystal cell array, and the shutter driver [207] is an AC voltage bias driver configured to dynamically vary the liquid crystal opacity in discrete spatial segments.
+
+    \item The system of claim 1, wherein the physical shutter barrier assembly [208] comprises a mechanical micro-mask driven by a stepper motor [207] configured to mechanically translate a physical occulting disk across a portion of the telescope aperture in micro-steps.
+
+    \item The system of claim 1, wherein the FSM core [205] is configured to transition from the dynamic masking state [303] back to the normal tracking state [302] only when the solar noise value drops below the first predetermined threshold by a predetermined hysteresis value, preventing rapid oscillation of the shutter barrier assembly [208].
+
+    \item The system of claim 1, wherein the FSM core [205] is configured to transition from the dynamic masking state [303] or the normal tracking state [302] to an unaligned hold state [304] when the angular separation value is less than a second predetermined pointing threshold; and \\
+    wherein transitioning to the unaligned hold state [304] causes the microcontroller [108] to electronically open a solid-state transistor switch, thereby physically severing an electrical power line to the photon-counting detector array [107] and completely closing the physical shutter barrier assembly [208] to prevent permanent optical damage from direct solar exposure.
+
+    \item The system of claim 1, wherein the onboard microcontroller [108] is a radiation-hardened 32-bit ARM Cortex-M4 or dual-core ESP32 microcontroller operating at a clock frequency of at least 80 MHz, configured to execute the FSM core [205] in real-time with a control loop latency of less than 10 milliseconds.
+
+    \item A method for dynamically mitigating solar blinding in a deep space optical receiver using a localized reactive masking system, the method comprising:
+    \begin{itemize}
+        \item receiving an incoming deep space laser beacon [102] through a telescope optical assembly [106] onto a photon-counting detector array [107];
+        \item generating, by a light/UV sensor array [104] comprising a plurality of photodiodes [201], a physical analog electrical signal [209] representing an intensity and an angular vector of incoming solar glare [101];
+        \item digitizing the physical analog electrical signal [209] via an analog-to-digital converter (ADC) [204] of an onboard microcontroller [108] to obtain a real-time solar noise value and an angular separation value;
+        \item comparing, by a processor of the onboard microcontroller [108] executing a finite state machine (FSM) core [205] in physical silicon, the solar noise value and the angular separation value with predetermined thresholds stored in a non-volatile memory register;
+        \item transitioning the FSM core [205] from a normal tracking state [302] to a dynamic masking state [303] when the solar noise value exceeds a first predetermined threshold;
+        \item generating and transmitting, by a digital-to-analog converter (DAC) or PWM generator [206] of the microcontroller [108], a physical drive signal [210] to a shutter driver [207] during the dynamic masking state [303]; and
+        \item physically adjusting, by the shutter driver [207] responding to the drive signal [210], the opacity or mechanical position of a physical shutter barrier assembly [208] positioned along the optical path of the telescope optical assembly [106] to dynamically mask the solar glare [101] while keeping the optical path for the deep space laser beacon [102] open.
+    \end{itemize}
+
+    \item The method of claim 9, wherein physically adjusting the opacity comprises applying an AC bias voltage to a specific spatial segment of a liquid-crystal cell array [208] corresponding to the angular vector of the solar glare [101], creating a localized high-opacity shadow zone while keeping remaining segments of the array in a fully transparent state.
+
+    \item The method of claim 9, wherein physically adjusting the mechanical position comprises driving a stepper motor [207] to translate a mechanical occulting disk [208] across the telescope aperture, aligning the disk's physical shadow with the angular vector of the solar glare [101].
+
+    \item The method of claim 9, further comprising:
+    \begin{itemize}
+        \item transitioning the FSM core [205] to an unaligned hold state [304] when the angular separation value is less than a second predetermined pointing threshold; and
+        \item triggering, by the FSM core [205] in the unaligned hold state [304], a solid-state switch to physically disconnect electrical power from the photon-counting detector array [107] and driving the physical shutter barrier assembly [208] to its maximum opacity state to block all incoming light.
+    \end{itemize}
+
+\end{enumerate}
+
+\newpage
+
+\section*{ABSTRACT OF THE DISCLOSURE}
+\textbf{A REACTIVE MASKING SYSTEM AND METHOD FOR DEEP SPACE OPTICAL RECEIVERS TO MITIGATE SOLAR BLINDING} \\
+\vspace{0.5cm}
+
+A reactive masking system and method are disclosed to maintain communication link availability and protect high-gain optical receivers in deep space optical communication systems during low-solar-elongation phases. The system comprises a telescope optical assembly [106], a photon-counting detector array [107], a dynamic optical shutter assembly [105] with a physical shutter barrier assembly [208] (such as a segmented liquid-crystal cell array or a mechanical occulting disk), and a light/UV sensor array [104]. An onboard microcontroller [108] runs a Finite State Machine (FSM) core [205] in physical silicon. The microcontroller [108] digitizes environmental solar glare signals via an ADC [204]. If solar noise exceeds a threshold, the FSM transitions to a dynamic masking state, generating a drive signal to adjust the shutter opacity or position, dynamically blocking solar glare while keeping the laser beacon path open. If pointing drifts below a critical threshold, the FSM transitions to an unaligned hold state, physically cutting power to the detectors to prevent solar destruction.
+
+\end{document}
