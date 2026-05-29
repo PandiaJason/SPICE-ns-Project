@@ -1,0 +1,68 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+% Set exact PCT / IPO compliant margins
+% Top: 2.5 cm, Bottom: 2.5 cm, Left: 2.5 cm, Right: 1.5 cm
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=1.5cm}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+% Header: Sheet Numbering centered at the top (Mandatory for IPO/PCT)
+\chead{\textbf{SHEET \thepage\ OF 4}}
+
+% Footer: Applicant details and signature line (Placed at the bottom)
+\lfoot{\small \textbf{Jason Pandian} \\ Applicant}
+\rfoot{\small Signature: \rule{4cm}{0.4pt}}
+
+\renewcommand{\headrulewidth}{0pt} % No line at header
+\renewcommand{\footrulewidth}{0pt} % No line at footer
+
+\begin{document}
+
+% Page 1: FIG. 1
+\begin{center}
+    \vspace*{2cm}
+    \includegraphics[width=\textwidth]{figure_1.png}
+    \vspace{2.5cm}
+    
+    \textbf{\large FIG. 1}
+\end{center}
+
+\newpage
+
+% Page 2: FIG. 2
+\begin{center}
+    \vspace*{1.5cm}
+    \includegraphics[width=\textwidth]{figure_2.png}
+    \vspace{2.5cm}
+    
+    \textbf{\large FIG. 2}
+\end{center}
+
+\newpage
+
+% Page 3: FIG. 3
+\begin{center}
+    \vspace*{1.5cm}
+    \includegraphics[width=\textwidth]{figure_3.png}
+    \vspace{2.5cm}
+    
+    \textbf{\large FIG. 3}
+\end{center}
+
+\newpage
+
+% Page 4: FIG. 4
+\begin{center}
+    \vspace*{1.5cm}
+    \includegraphics[width=\textwidth]{figure_4.png}
+    \vspace{2.5cm}
+    
+    \textbf{\large FIG. 4}
+\end{center}
+
+\end{document}
