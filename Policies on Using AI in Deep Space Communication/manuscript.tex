@@ -19,9 +19,6 @@
 \usepackage{hyperref}
 %% The microtype package improves justification and typography
 \usepackage{microtype}
-%% The tikz package for high-quality graphical abstract diagrams
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
 
 \hypersetup{
     colorlinks=true,
@@ -106,56 +103,7 @@ To bridge this operational chasm, space agencies are actively transitioning from
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[
-    scale=0.75,
-    transform shape,
-    font=\sffamily\small,
-    axis/.style={thick, ->, >=stealth, draw=black!80},
-    barTeal/.style={fill=teal!85, draw=teal!95!black, thick},
-    grid/.style={draw=gray!30, dotted, line width=0.5pt}
-]
-    % Grid lines (Y-axis grid)
-    \foreach \y in {20, 40, 60, 80, 100, 120, 140, 160} {
-        \draw [grid] (-0.5, \y*0.04) -- (6.5, \y*0.04);
-        \node [left, font=\scriptsize\sffamily, text=gray!80] at (-0.5, \y*0.04) {\y};
-    }
-    
-    % Axes
-    \draw [axis] (-0.5, 0) -- (6.8, 0) node [right] {Year};
-    \draw [axis] (-0.5, 0) -- (-0.5, 6.8) node [above, align=center, yshift=0.1cm] {Annual Publications on\\ Space-Grade AI \& Telecommunications};
-    
-    % Data bars (spaced 0.6cm apart)
-    \foreach \x/\year/\count in {
-        0.1/2015/8,
-        0.7/2016/14,
-        1.3/2017/19,
-        1.9/2018/28,
-        2.5/2019/39,
-        3.1/2020/52,
-        3.7/2021/67,
-        4.3/2022/84,
-        4.9/2023/108,
-        5.5/2024/132,
-        6.1/2025/154
-    } {
-        % Draw Bar
-        \draw [barTeal] (\x-0.22, 0) rectangle (\x+0.22, \count*0.04);
-        % Value above bar
-        \node [above, font=\tiny\sffamily\bfseries, text=teal!90!black] at (\x, \count*0.04) {\count};
-        % Year below axis
-        \node [below, font=\scriptsize\sffamily, rotate=45, anchor=north east] at (\x, 0) {\year};
-    }
-    
-    % Annotations for key mission milestones
-    \draw [thick, <-, draw=orange!90] (2.5, 39*0.04) -- ++(0.5, 1.4) node [above, align=center, font=\tiny\sffamily, fill=white, draw=orange!50, rounded corners, inner sep=1.5pt] {\textbf{2019: OPS-SAT}\\First orbital CNN};
-    
-    \draw [thick, <-, draw=orange!90] (3.7, 67*0.04) -- ++(-0.5, 1.6) node [above, align=center, font=\tiny\sffamily, fill=white, draw=orange!50, rounded corners, inner sep=1.5pt] {\textbf{2021: Perseverance}\\AutoNav landing};
-    
-    \draw [thick, <-, draw=orange!90] (4.9, 108*0.04) -- ++(-0.8, 1.0) node [left, align=right, font=\tiny\sffamily, fill=white, draw=orange!50, rounded corners, inner sep=1.5pt] {\textbf{2023: Chandrayaan-3}\\Lunar LHDAC loop};
-    
-    \draw [thick, <-, draw=orange!90] (5.5, 132*0.04) -- ++(0.7, -0.8) node [right, align=left, font=\tiny\sffamily, fill=white, draw=orange!50, rounded corners, inner sep=1.5pt] {\textbf{2024: JAXA SLIM}\\Pinpoint landing};
-    
-\end{tikzpicture}
+\includegraphics[width=\columnwidth]{fig_lit_trend.pdf}
 \caption{Exponential expansion of published literature and mission technical briefs on AI/ML deployments in space communications (2015--2025), annotated with critical space agency programmatic milestones.}
 \label{fig:lit_trend}
 \end{figure}
@@ -268,112 +216,7 @@ where $U_{\text{safety}}$ is the safety of the spacecraft, $U_{\text{volume}}$ i
 
 \begin{figure*}[t]
 \centering
-\begin{tikzpicture}[
-    scale=0.8,
-    transform shape,
-    font=\sffamily\small,
-    box/.style={
-        rectangle, 
-        draw=blue!90, 
-        fill=blue!15, 
-        thick, 
-        rounded corners, 
-        align=center, 
-        minimum height=1.2cm,
-        text width=3.3cm
-    },
-    crisis/.style={
-        ellipse, 
-        draw=red!90, 
-        fill=red!15, 
-        thick, 
-        align=center,
-        minimum height=1.0cm,
-        text width=2.8cm
-    },
-    engine/.style={
-        diamond, 
-        draw=orange!90, 
-        fill=orange!15, 
-        thick, 
-        align=center,
-        aspect=2,
-        minimum width=3.0cm,
-        inner sep=1pt
-    },
-    decision/.style={
-        rectangle, 
-        draw=purple!90, 
-        fill=purple!15, 
-        thick, 
-        rounded corners, 
-        align=center, 
-        minimum height=1.2cm,
-        text width=3.3cm
-    },
-    outcomeRed/.style={
-        rectangle, 
-        draw=red!90!black, 
-        fill=red!20, 
-        thick, 
-        rounded corners, 
-        align=center, 
-        minimum height=1.2cm,
-        text width=3.3cm
-    },
-    outcomeTeal/.style={
-        rectangle, 
-        draw=teal!90, 
-        fill=teal!20, 
-        thick, 
-        rounded corners, 
-        align=center, 
-        minimum height=1.2cm,
-        text width=3.3cm
-    },
-    arrow/.style={
-        thick, 
-        -Stealth, 
-        draw=gray!90,
-        line width=1.2pt
-    },
-    labelstyle/.style={
-        font=\sffamily\scriptsize\bfseries,
-        color=black!90
-    }
-]
-    % Level 1: Crisis Input
-    \node [crisis] (storm) at (0,0) {Martian Dust Storm\\ (Crisis Event)};
-    \node [below=0.1cm of storm, font=\scriptsize\itshape, text width=3.8cm, align=center] {Bandwidth drops 500 $\rightarrow$ 50 kbps\\ Power drop 70\%};
-
-    % Level 2: Competing Inputs
-    \node [box, draw=cyan!90, fill=cyan!15] (alpha) at (3.6, 1.8) {\textbf{Payload Alpha (Country A)}\\ High-BW Radar\\ (450 kbps Buffer)};
-    \node [box, draw=magenta!90, fill=magenta!15] (beta) at (3.6, -1.8) {\textbf{Payload Beta (Country B)}\\ Low-BW Spectrometer\\ (50 kbps Circular Buffer)};
-
-    % Level 3: Decision Engine
-    \node [engine] (ai) at (7.1, 0) {AI Comm Manager\\ \scriptsize $U_{\text{mission}} = \sum w_i U_i$};
-    \node [below=0.8cm of ai, font=\scriptsize\bfseries, color=red!90] {Closed-Source Weights $w_i$};
-
-    % Level 4: Triage Decisions
-    \node [decision] (pathA) at (12.2, 1.8) {\textbf{Choice 1: Utilitarian Triage}\\ Downlink Payload Alpha\\ ($w_1 \gg w_2$)};
-    \node [decision] (pathB) at (12.2, -1.8) {\textbf{Choice 2: Rawlsian Triage}\\ Downlink Payload Beta\\ (Fairness Constraint)};
-
-    % Level 5: Outcomes
-    \node [outcomeRed] (outA) at (16.5, 1.8) {\textbf{Systematic Bias}\\ Spectrometer Overwritten\\ \color{red!90!black}\bfseries Country B Data Loss};
-    \node [outcomeTeal] (outB) at (16.5, -1.8) {\textbf{Equitable Access}\\ Radar Buffered\\ \color{teal!90!black}\bfseries All Science Preserved};
-
-    % Connections
-    \draw [arrow] (storm.east) -- (ai.west);
-    \draw [arrow] (alpha.east) -| (ai.north);
-    \draw [arrow] (beta.east) -| (ai.south);
-    
-    \draw [arrow] (ai.east) -- (9.5, 0) -- (9.5, 1.8) node [midway, rotate=90, labelstyle, xshift=10pt, yshift=10pt] {Utilitarian} -- (pathA.west);
-    \draw [arrow] (ai.east) -- (9.5, 0) -- (9.5, -1.8) node [midway, rotate=90, labelstyle, xshift=10pt, yshift=-10pt] {Egalitarian} -- (pathB.west);
-    
-    \draw [arrow] (pathA.east) -- (outA.west);
-    \draw [arrow] (pathB.east) -- (outB.west);
-
-\end{tikzpicture}
+\includegraphics[width=\textwidth]{fig_decision_path.pdf}
 \caption{Decision Path of the Autonomous Communication Manager during the Martian Dust Crisis. The closed-source optimization weights ($w_i$) determine whether Country A's military/engineering telemetry or Country B's scientific climate telemetry is triaged, leading to systematic bias.}
 \label{fig:decision_path}
 \end{figure*}
@@ -424,62 +267,7 @@ This simulation mathematically proves that a policy-driven, egalitarian AI confi
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[
-    scale=0.72,
-    transform shape,
-    font=\sffamily\small,
-    axis/.style={thick, ->, >=stealth, draw=black!80},
-    grid/.style={draw=gray!25, dotted, line width=0.5pt},
-    labelstyle/.style={font=\sffamily\scriptsize}
-]
-    % Grid lines (Y-axis grid)
-    \foreach \y/\pct in {0/0\%, 1/20\%, 2/40\%, 3/60\%, 4/80\%, 5/100\%} {
-        \draw [grid] (0.0, \y) -- (7.0, \y);
-        \node [left, font=\scriptsize\sffamily, text=gray!80] at (-0.1, \y) {\pct};
-    }
-    
-    % Grid lines (X-axis grid)
-    \foreach \x/\val in {0.6/50, 1.8/100, 3.0/200, 4.2/300, 5.4/400, 6.6/500} {
-        \draw [grid] (\x, 0) -- (\x, 5.2);
-        \node [below, font=\scriptsize\sffamily] at (\x, -0.1) {\val};
-    }
-    
-    % Axes
-    \draw [axis] (-0.2, 0) -- (7.2, 0) node [below right, xshift=-0.5cm, yshift=-0.2cm] {Available Bandwidth (kbps)};
-    \draw [axis] (-0.2, 0) -- (-0.2, 5.5) node [midway, above, rotate=90, yshift=0.5cm] {Cumulative Payload Data Survival Rate (\%)};
-    
-    % Data Lines
-    % 1. Rawlsian Spectrometer (Solid Teal with Squares)
-    \draw [thick, teal, mark=square*, mark options={fill=teal}] plot coordinates {
-        (0.6, 5.0) (1.8, 5.0) (3.0, 5.0) (4.2, 5.0) (5.4, 5.0) (6.6, 5.0)
-    };
-    
-    % 2. Utilitarian Spectrometer (Solid Red with Circles)
-    \draw [thick, red!85!black, mark=*] plot coordinates {
-        (0.6, 0.0) (1.8, 0.0) (3.0, 2.0) (4.2, 4.5) (5.4, 5.0) (6.6, 5.0)
-    };
-    
-    % 3. Rawlsian Radar (Dashed Teal with Open Squares)
-    \draw [thick, dashed, teal, mark=square] plot coordinates {
-        (0.6, 1.0) (1.8, 2.0) (3.0, 3.0) (4.2, 4.15) (5.4, 5.0) (6.6, 5.0)
-    };
-    
-    % 4. Utilitarian Radar (Dashed Red with Open Circles)
-    \draw [thick, dashed, red!85!black, mark=o] plot coordinates {
-        (0.6, 0.55) (1.8, 1.1) (3.0, 2.2) (4.2, 4.5) (5.4, 5.0) (6.6, 5.0)
-    };
-    
-    % Custom TikZ Legend (Guaranteed Compile Proof)
-    \begin{scope}[shift={(0.2, 0.35)}]
-        \draw [draw=black!20, fill=white, rounded corners] (0, 0) rectangle (4.4, 1.45);
-        
-        \draw [thick, teal, mark=square*, mark options={fill=teal}] (0.2, 1.25) -- (0.5, 1.25) node [right, font=\tiny\sffamily, text=black] {Rawlsian Spectrometer (Country B)};
-        \draw [thick, red!85!black, mark=*] (0.2, 0.95) -- (0.5, 0.95) node [right, font=\tiny\sffamily, text=black] {Utilitarian Spectrometer (Country B)};
-        \draw [thick, dashed, teal, mark=square] (0.2, 0.65) -- (0.5, 0.65) node [right, font=\tiny\sffamily, text=black] {Rawlsian Radar (Country A)};
-        \draw [thick, dashed, red!85!black, mark=o] (0.2, 0.35) -- (0.5, 0.35) node [right, font=\tiny\sffamily, text=black] {Utilitarian Radar (Country A)};
-    \end{scope}
-    
-\end{tikzpicture}
+\includegraphics[width=\columnwidth]{fig_triage_simulation.pdf}
 \caption{Quantitative performance simulation of competing payload data survival rates under varying available link bandwidths during the Martian Dust Storm, contrasting Benthamite utilitarian triage against Rawlsian maximin triage.}
 \label{fig:triage_simulation}
 \end{figure}
