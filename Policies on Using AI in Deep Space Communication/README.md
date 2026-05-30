@@ -52,10 +52,6 @@ To secure the outer space commons and prevent escalatory spectral disputes, we p
 ├── manuscript.pdf       # Compiled, submission-ready PDF manuscript
 ├── references.bib       # Comprehensive BibTeX bibliography database
 ├── AIPolicy.png         # High-resolution Graphical Abstract image
-├── elsarticle.dtx       # LaTeX class source code
-├── elsarticle.ins       # LaTeX class installer
-├── manifest.txt         # Package manifest listing
-├── elsarticle-harv.bst  # Harvard referencing style guide
 └── README.md            # Project description and repository guide (this file)
 ```
 
