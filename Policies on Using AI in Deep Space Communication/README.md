@@ -43,30 +43,6 @@ To secure the outer space commons and prevent escalatory spectral disputes, we p
 ### 5. Draft United Nations Resolution (Section 7)
 * A complete, structured treaty draft of the proposed **International Code of Practice for Autonomy in Deep Space Telecommunications** under UN COPUOS, establishing edge auditability, cryptographic provenance, and ITU dynamic spectrum sharing registries.
 
----
-
-## 📂 Repository Structure
-
-```directory
-├── manuscript.tex       # Main LaTeX source document (typeset in elsarticle double-column 5p layout)
-├── manuscript.pdf       # Compiled, submission-ready PDF manuscript
-├── references.bib       # Comprehensive BibTeX bibliography database
-├── AIPolicy.png         # High-resolution Graphical Abstract image
-└── README.md            # Project description and repository guide (this file)
-```
-
----
-
-## 🛠️ Compilation and Build
-
-The document is fully optimized for the modern `tectonic` LaTeX compilation engine, which automatically retrieves packages and compiles with XeTeX for superior font rendering and layout integrity.
-
-To compile the manuscript:
-```bash
-tectonic manuscript.tex
-```
-
-This will automatically output a fully typeset, journal-ready `manuscript.pdf` with all TikZ diagrams and graphical abstracts rendered correctly.
 
 ---
 
