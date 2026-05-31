@@ -1,0 +1,17 @@
+# Local gitignore for SatWAKE-UP
+# ------------------------------
+
+# Override global parent ignore pattern for results/ subdirectory
+!results/
+
+# Ignore LaTeX manuscript source, PDF, and all compilation outputs specifically
+results/paper.*
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Ignore large intermediate simulation JSON outputs
+*.json
+results/*.json
