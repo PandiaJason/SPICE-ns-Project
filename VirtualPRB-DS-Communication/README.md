@@ -37,22 +37,22 @@ Measures the alignment between the Earth Ground Station's AI state representatio
 The simulation tracks four critical graphs during a 300-second orbital insertion scenario featuring an unexpected anomaly at $t=90s$ and a reconciliation at $t=130s$.
 
 ### 1. HCI Metrics (SPI, CLI, SA Sync)
-![HCI Metrics Overview](paper/fig_hci_metrics.png)
+![HCI Metrics Overview](fig_hci_metrics.png)
 - **Significance of Min/Max Values:** 
   - **Social Presence Index (SPI):** Operates at a nominal maximum of **95%**, signifying strong psychological connection. During the anomaly, it dips to a minimum of **~80%**, reflecting momentary friction before recovering.
   - **Cognitive Load Index (CLI):** Rests at a nominal minimum of **35%** (effortless operation). It spikes to a maximum of **~75%** during the anomaly when operators must process conflicting data, before easing post-reconciliation.
   - **SA Sync Rate:** Peaks at **99.5%** when Earth and Mars share the same mental model. It hits a minimum of **~79.5%** during the anomaly, showing critical desynchronization.
 
 ### 2. Conversational Latency Illusion
-![Latency Illusion Spike](paper/fig_latency_illusion.png)
+![Latency Illusion Spike](fig_latency_illusion.png)
 - **Significance of Min/Max Values:** The true one-way light delay is over 60 seconds. However, the PTB maintains a perceived latency minimum of just **0.5s** (creating a seamless real-time illusion). When the anomaly breaks the prediction model, the perceived latency hits a maximum spike of **3.5s**, momentarily breaking the illusion until the systems resynchronize.
 
 ### 3. Earth AI Orbital Deviation Error
-![Earth Path Error](paper/fig_earth_path_error.png)
+![Earth Path Error](fig_earth_path_error.png)
 - **Significance of Min/Max Values:** Represents Ground Control's error in estimating the ship's physical state. The minimum (**0%**) implies perfect prediction. The maximum (**~5%**) occurs right before reconciliation, highlighting the extreme danger of executing Earth's stale commands without onboard reality-checking.
 
 ### 4. Mars Cabin Reality Overlay Error
-![Mars Path Error](paper/fig_mars_path_error.png)
+![Mars Path Error](fig_mars_path_error.png)
 - **Significance of Min/Max Values:** Represents the physical divergence between the true onboard path and the pre-planned Deep Space Network target path. The minimum (**0%**) is the baseline, while the maximum (**~6%**) represents the physical consequence of the unmitigated anomaly before the corrective maneuver is authorized by the crew.
 
 ## Understanding the User Interface
