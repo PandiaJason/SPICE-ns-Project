@@ -17,6 +17,9 @@
 \usepackage{booktabs}
 %% The hyperref package provides clickable links
 \usepackage{hyperref}
+%% The orcidlink package renders the ORCID iD badge inline with author names
+%% (Elsevier-accepted approach; see Guide for Authors for Space Policy)
+\usepackage{orcidlink}
 %% The microtype package improves justification and typography
 \usepackage{microtype}
 
@@ -41,15 +44,19 @@
 %% Title, authors and addresses
 \title{Autonomy at the Edge: Governance, Risk, and International Policy Frameworks for\\ AI-Driven Deep Space Communications}
 
-\author[1]{Jason Pandian\corref{cor1}}
+\author[1]{Jason Pandian\,\orcidlink{0000-0003-1702-5186}\corref{cor1}}
 \ead{pandiajason@gmail.com}
+\ead[url]{https://orcid.org/0000-0003-1702-5186}
 \cortext[cor1]{Corresponding author}
 \affiliation[1]{organization={Department of Information Technology, Nehru Institute of Technology},
                 city={Coimbatore}, 
                 state={Tamil Nadu},
                 country={India}}
 
-\author[2]{I. Kala}
+%% NOTE: Add I. Kala's ORCID iD below before submission via Editorial Manager.
+%% Replace 0000-0000-0000-0000 with the actual ORCID iD.
+\author[2]{I. Kala\,\orcidlink{0000-0000-0000-0000}}
+\ead[url]{https://orcid.org/0000-0000-0000-0000}
 \affiliation[2]{organization={Department of Computer Science and Engineering, PSG Institute of Technology and Applied Research},
                 city={Coimbatore}, 
                 state={Tamil Nadu},
@@ -392,7 +399,7 @@ The authors declare that they have no known competing financial interests or per
 This work is not affiliated with, endorsed by, or conducted on behalf of any space agency or organization.
 
 \section*{Declaration of Generative AI and AI-assisted technologies}
-During the preparation of this work, the authors utilized advanced language models solely to enhance the structural flow, technical clarity, and stylistic readability of the manuscript's English prose. The authors have reviewed, verified, and take full responsibility for all content, technical accuracy, and policy recommendations presented herein.
+During the preparation of this work, the authors utilized Gemini 3.5 Flash to enhance the structural flow, technical clarity, and stylistic readability of the manuscript's English prose and used Claude Sonnet 4.6 for preparing vector images used in some diagrams. NotebookLM AI Tool is used to create the image of the Graphical Abstract. The authors have reviewed, verified, and take full responsibility for all content, technical accuracy, and policy recommendations presented herein.
 
 \section*{Funding}
 This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.

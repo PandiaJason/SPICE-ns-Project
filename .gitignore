@@ -67,3 +67,9 @@ pandoc-3.1.11/
 
 # SMOPS2026 paper outputs
 SMOPS2026/papers/
+
+# Ignore anonymized review files and submission assets
+anony*
+cover*
+first*
+manusc*

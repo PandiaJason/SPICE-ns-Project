@@ -8,7 +8,7 @@
 
 \SetPages{0}{0}
 
-\SetVol{58}{2008}
+\SetVol{01}{2026}
 
 \begin{document}
 
@@ -21,7 +21,7 @@ e-mail: pandiajason@gmail.com\\
 $^2$Department of Computer Science and Engineering, PSG Institute of Technology and Applied Research, Coimbatore, Tamil Nadu, India\\
 $^*$Corresponding author}
 
-\Received{Month Day, Year}
+\Received{May 29, 2026}
 \end{Titlepage}
 
 \Abstract{Modern astrometry and planetary science rely heavily on automated toolkits to map celestial coordinates, spacecraft trajectories, and instrument pointing vectors. While NASA's SPICE toolkit is universally adopted for this purpose, its underlying mathematical frameworks---spanning relativistic time transformations, non-linear interpolations, and quaternion algebra---are often treated as a ``black box'' by the observational community. This paper provides a rigorous mathematical survey of the foundational algorithms driving the SPICE kernels (SPK, PCK, CK, FK, and LSK). We explicitly derive the core vector transformation chains, evaluate the precision thresholds of different body-shape models (ellipsoids vs. tessellated meshes), and quantify how numerical truncation and interpolation choices propagate into milliarcsecond-level astrometric uncertainties. This survey serves as a standalone analytical reference for observational astronomers, astrometrists, and mission design engineers seeking to move beyond black-box software application and understand the mathematical foundation of modern observation geometry.}{astrometry -- celestial mechanics -- reference frames -- methods: analytical -- methods: numerical -- ephemerides}
@@ -29,7 +29,7 @@ $^*$Corresponding author}
 \section{Introduction}
 Modern observational astronomy and deep-space planetary exploration demand an unprecedented level of geometric precision. Estimating the coordinate-state of a distant spacecraft, aligning a telescope's instrument boresight with an asteroid, or mapping high-resolution spectrometer data onto a comet's surface requires a rigorous, consistent mathematical framework. For over three decades, the Spacecraft, Planet, Instrument, C-matrix, Events (SPICE) toolkit, developed and maintained by NASA's Navigation and Ancillary Information Facility (NAIF), has served as the international standard for calculating these complex geometric relationships (Acton 1996, Acton \etal 2018).
 
-Despite its ubiquitous adoption, a significant portion of the astronomical community utilizes SPICE as an engineering black box. Astronomical papers frequently cite the software toolkit without detailing the underlying mathematical models, approximations, or coordinate systems. This practice poses a scientific risk, as observational geometry calculations are subject to physical constraints, numerical limits, and modeling approximations that directly impact scientific conclusions (Pajusalu \etal 2022). Furthermore, a point of minor confusion exists in interdisciplinary nomenclature: in electrical engineering, ``SPICE'' refers to the Simulation Program with Integrated Circuit Emphasis, a circuit simulation tool (Miranda 2024), whereas in observational astronomy and planetary science, SPICE represents the geometric information system designed by NAIF.
+Despite its ubiquitous adoption, SPICE is routinely employed in astronomical literature without exposing the underlying geometric assumptions, limiting reproducibility and error accountability. Specifically, the mathematical models, interpolation schemes, and coordinate conventions embedded in SPICE kernels are rarely disclosed in observational papers, even though errors arising from geometric simplifications, boundary condition violations, and numerical truncation can propagate systematically into final scientific inferences (Pajusalu \etal 2022). Furthermore, a point of minor confusion exists in interdisciplinary nomenclature: in electrical engineering, ``SPICE'' refers to the Simulation Program with Integrated Circuit Emphasis, a circuit simulation tool (Miranda 2024), whereas in observational astronomy and planetary science, SPICE represents the geometric information system designed by NAIF.
 
 \begin{figure}[htb]
 \begin{center}

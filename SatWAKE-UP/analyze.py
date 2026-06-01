@@ -47,9 +47,13 @@ plt.rcParams['text.color'] = 'black'
 plt.rcParams['axes.labelcolor'] = 'black'
 plt.rcParams['xtick.color'] = 'black'
 plt.rcParams['ytick.color'] = 'black'
+plt.rcParams['axes.labelsize'] = 14
+plt.rcParams['legend.fontsize'] = 12
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
 
 # Curated high-contrast color palette for white backgrounds
-COLOR_PRIMARY = '#008877'      # Rich Dark Teal (Corrected / Laser Beam)
+COLOR_PRIMARY = '#1e90ff'      # Electric Light Blue (Corrected / Laser Beam)
 COLOR_SECONDARY = '#d62728'    # Crimson Red (Naive / Error)
 COLOR_MARS = '#e2583e'         # Terracotta Orange (Mars)
 COLOR_EARTH = '#1f77b4'        # Deep Royal Blue (Earth)
@@ -192,10 +196,10 @@ def plot_scenario_3d(tx, rx):
                earth_dir_occ[0], earth_dir_occ[1], earth_dir_occ[2],
                length=1800.0, color='#1f77b4', linewidth=1.8, arrow_length_ratio=0.15, label='Direction to Earth')
     
-    ax1.set_xlabel("Mars X (km)", fontsize=9)
-    ax1.set_ylabel("Mars Y (km)", fontsize=9)
-    ax1.set_zlabel("Mars Z (km)", fontsize=9)
-    ax1.legend(loc='lower left', fontsize=8.5, frameon=True, facecolor='white')
+    ax1.set_xlabel("Mars X (km)", fontsize=12)
+    ax1.set_ylabel("Mars Y (km)", fontsize=12)
+    ax1.set_zlabel("Mars Z (km)", fontsize=12)
+    ax1.legend(loc='lower left', fontsize=11, frameon=True, facecolor='white')
     
     max_range = A_KM * 1.3
     ax1.set_xlim(-max_range, max_range)
@@ -262,10 +266,10 @@ def plot_scenario_3d(tx, rx):
                earth_dir_wake[0], earth_dir_wake[1], earth_dir_wake[2],
                length=1800.0, color='#1f77b4', linewidth=1.8, arrow_length_ratio=0.15, label='Direction to Earth')
 
-    ax2.set_xlabel("Mars X (km)", fontsize=9)
-    ax2.set_ylabel("Mars Y (km)", fontsize=9)
-    ax2.set_zlabel("Mars Z (km)", fontsize=9)
-    ax2.legend(loc='lower left', fontsize=8.5, frameon=True, facecolor='white')
+    ax2.set_xlabel("Mars X (km)", fontsize=12)
+    ax2.set_ylabel("Mars Y (km)", fontsize=12)
+    ax2.set_zlabel("Mars Z (km)", fontsize=12)
+    ax2.legend(loc='lower left', fontsize=11, frameon=True, facecolor='white')
     
     ax2.set_xlim(-max_range, max_range)
     ax2.set_ylim(-max_range, max_range)
@@ -315,16 +319,16 @@ def plot_pointing_error(tx, rx):
     # Plot Naive displacement vs Beam Footprint (in km)
     ax1.plot(time_hours, disp_naive, color=COLOR_SECONDARY, linewidth=2.0, label='Strategy A: Naive Tracking (No LT Correction)')
     ax1.plot(time_hours, beam_radius, color=COLOR_PRIMARY, linewidth=1.5, linestyle='--', label='Laser Beam Footprint Radius')
-    ax1.set_ylabel("Displacement at Mars Orbit (km)", color='black', fontsize=11)
+    ax1.set_ylabel("Displacement at Mars Orbit (km)", color='black', fontsize=14)
     ax1.set_title("Pointing Displacement comparison: Naive vs. SPICE Point-Ahead Correction", fontsize=13, weight='bold', pad=10, color='black')
-    ax1.legend(loc='upper right', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black')
+    ax1.legend(loc='upper right', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black', fontsize=12)
     ax1.grid(True)
     
     # Plot Corrected displacement (in meters)
     ax2.plot(time_hours, disp_corrected, color=COLOR_PRIMARY, linewidth=2.0, label='Strategy B: SPICE Point-Ahead Correction')
-    ax2.set_ylabel("Displacement at Mars Orbit (meters)", color='black', fontsize=11)
-    ax2.set_xlabel("Simulation Elapsed Time (hours)", color='black', fontsize=11)
-    ax2.legend(loc='upper right', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black')
+    ax2.set_ylabel("Displacement at Mars Orbit (meters)", color='black', fontsize=14)
+    ax2.set_xlabel("Simulation Elapsed Time (hours)", color='black', fontsize=14)
+    ax2.legend(loc='upper right', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black', fontsize=12)
     ax2.grid(True)
     
     # Shade successful hit periods for corrected beam
@@ -373,16 +377,16 @@ def plot_energy_savings(rx):
     ax1.plot(time_hours, energy_always_kj, color=COLOR_SECONDARY, linewidth=2.2, label='Always-On Active Listening Receiver (Conventional)')
     ax1.plot(time_hours, energy_wob_kj, color=COLOR_PRIMARY, linewidth=2.2, label='Asynchronous Wake-on-Beacon FSM Receiver (Proposed)')
     
-    ax1.set_ylabel("Cumulative Energy Consumption (Kilojoules)", color='black', fontsize=11)
-    ax1.set_xlabel("Simulation Elapsed Time (hours)", color='black', fontsize=11)
+    ax1.set_ylabel("Cumulative Energy Consumption (Kilojoules)", color='black', fontsize=14)
+    ax1.set_xlabel("Simulation Elapsed Time (hours)", color='black', fontsize=14)
     ax1.set_title(f"Cumulative Satellite Energy Budget Savings: {percent_savings:.4f}% preserved", fontsize=14, weight='bold', pad=15, color='black')
-    ax1.legend(loc='upper left', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black')
+    ax1.legend(loc='upper left', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black', fontsize=12)
     ax1.grid(True)
     
     # Inset FSM power timeline
     ax2 = ax1.twinx()
     ax2.plot(time_hours, power_wob, color=COLOR_FSM, alpha=0.3, linewidth=1.0, linestyle=':')
-    ax2.set_ylabel("Active Power State (Watts) [Purple Dotted Line]", color=COLOR_FSM, fontsize=10)
+    ax2.set_ylabel("Active Power State (Watts) [Purple Dotted Line]", color=COLOR_FSM, fontsize=12)
     ax2.tick_params(axis='y', labelcolor=COLOR_FSM)
     
     # Add key results in text box
@@ -479,18 +483,18 @@ def plot_link_budget(tx, rx):
     ax1.plot(time_hours, p_rx_corrected_dbm, color=COLOR_PRIMARY, linewidth=2.0, label='Strategy B: SPICE Corrected Point-Ahead')
     ax1.plot(time_hours, p_rx_naive_dbm, color=COLOR_SECONDARY, linewidth=1.5, label='Strategy A: Naive Tracking')
     ax1.axhline(-110.0, color='gray', linestyle=':', label='Receiver Sensitivity Floor (-110 dBm)')
-    ax1.set_ylabel("Received Optical Power (dBm)", color='black', fontsize=11)
+    ax1.set_ylabel("Received Optical Power (dBm)", color='black', fontsize=14)
     ax1.set_title("Interplanetary Link Budget: Received Optical Power & Electrical SNR at Mars", fontsize=13, weight='bold', pad=10, color='black')
-    ax1.legend(loc='upper right', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black')
+    ax1.legend(loc='upper right', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black', fontsize=12)
     ax1.grid(True)
     
     # 2. SNR Plot
     ax2.plot(time_hours, snr_corrected_db, color=COLOR_PRIMARY, linewidth=2.0, label='Strategy B: SPICE Corrected SNR')
     ax2.plot(time_hours, snr_naive_db, color=COLOR_SECONDARY, linewidth=1.5, label='Strategy A: Naive SNR')
     ax2.axhline(threshold_db, color='darkgreen', linestyle='--', linewidth=1.5, label=f'FSM Detection Threshold ({threshold_db} dB)')
-    ax2.set_ylabel("Electrical Signal-to-Noise Ratio (dB)", color='black', fontsize=11)
-    ax2.set_xlabel("Simulation Elapsed Time (hours)", color='black', fontsize=11)
-    ax2.legend(loc='upper right', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black')
+    ax2.set_ylabel("Electrical Signal-to-Noise Ratio (dB)", color='black', fontsize=14)
+    ax2.set_xlabel("Simulation Elapsed Time (hours)", color='black', fontsize=14)
+    ax2.legend(loc='upper right', frameon=True, facecolor='white', edgecolor='#e0e0e0', labelcolor='black', fontsize=12)
     ax2.grid(True)
     
     # Shade successful hit periods

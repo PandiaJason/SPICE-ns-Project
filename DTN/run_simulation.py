@@ -3,9 +3,9 @@
 ECGR Simulation Runner
 ======================
 
-Executes comparative simulations of standard CGR vs. proposed ECGR algorithm
-for deep-space DTN relay networks. Runs multiple Monte Carlo iterations and
-saves all results for offline analysis.
+Executes comparative simulations of standard CGR vs. baseline ECGR and proposed
+predictive P-ECGR routing algorithms for deep-space DTN relay networks. Runs
+multiple Monte Carlo iterations and saves all results for offline analysis.
 
 Usage:
     python run_simulation.py [--runs N] [--seed S] [--output DIR]
