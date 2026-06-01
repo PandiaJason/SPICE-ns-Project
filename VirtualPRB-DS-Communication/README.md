@@ -96,3 +96,9 @@ The system will start the local Flask server. Open your web browser and navigate
 - **Interactive UI:** A split-screen design mimicking Earth Command and the Mars Cabin.
 - **Live Telemetry:** Dynamic simulation of spacecraft physics, orbital deviations, and thermal loads.
 - **Recording:** Click the **"⏺ Start Recording GIF"** button at the top to capture your own animated demonstrations of the dashboard!
+
+## Summary and Psychological Impact
+
+The Predictive Temporal Bridge (PTB) fundamentally alters how humans experience deep-space exploration. By mathematically projecting Earth's intent forward in time, the PTB creates an environment where Ground Control appears to be working right alongside the astronauts, reacting to events as they unfold rather than minutes later.
+
+This "virtual synchronous" communication model drastically reduces the cognitive load and operational stress on the spacecraft crew. Instead of feeling isolated millions of miles away and constantly second-guessing stale telemetry and delayed commands, the astronauts experience a seamless "co-pilot" dynamic. This maintains a high Social Presence, ensuring the crew feels psychologically supported and socially connected to Earth, thereby turning an otherwise lonely and stressful environment into a cohesive, highly functional, interplanetary team.
