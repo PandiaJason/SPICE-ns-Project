@@ -1,8 +1,12 @@
 # Predictive Temporal Bridge (PTB) Simulation
 
-Welcome to the **Predictive Temporal Bridge (PTB)** project, a deep-space communications simulation framework. The PTB architecture proposes a solution to the fundamental problem of interplanetary communication: **light-time delay**. 
+Welcome to the **Predictive Temporal Bridge (PTB)** project, a deep-space communications simulation framework. 
 
-By utilizing synchronized AI predictive models at both the Earth Command Center and the Mars Spaceship Cabin, the PTB creates a "virtual synchronous" communication interface. This bridges the physical distance by projecting Earth's intent forward in time and allowing the Mars crew to safely reconcile these predictions against their local reality before execution.
+### The Problem in Deep Space Communication
+The fundamental challenge of interplanetary human spaceflight is **light-time delay**. At Mars distances, radio signals can take anywhere from 3 to 22 minutes to travel one-way. This physical constraint shatters the possibility of real-time conversational exchange. Psychologically, this induces severe isolation, high cognitive load, and friction during critical operations because astronauts feel disconnected from Ground Control. A shared mental model (Shared Situational Awareness) breaks down when the two communicating parties are forced to live in different temporal realities—Earth sees the ship's past, and the ship awaits Earth's delayed commands.
+
+### The Proposed PTB Model
+The Predictive Temporal Bridge architecture solves this by creating a "virtual synchronous" communication interface. By utilizing synchronized AI predictive models at both the Earth Command Center and the Mars Spaceship Cabin, the system anticipates the spacecraft's state and projects Earth's communicative intent forward in time. To the Mars crew, Ground Control appears to respond instantly to anomalies as they happen, completely masking the multi-minute lag. This restores the psychological feeling of a real-time "co-pilot" interaction, drastically reducing cognitive strain and restoring social presence. Crucially, the crew retains the agency to safely reconcile these AI predictions against physical reality before executing any commands.
 
 ## The 4 Human-Computer Interaction (HCI) Metrics
 
@@ -28,17 +32,28 @@ Measures the alignment between the Earth Ground Station's AI state representatio
 - **High SA Sync:** Signifies that both endpoints share an identical, compatible mental model of the mission state.
 - **Low SA Sync:** Signifies active divergence or desynchronization between the two reality models, requiring immediate correction to avoid catastrophic command execution.
 
-## Simulation Analytics
+## Simulation Analytics and Metric Graphs
 
-The dashboard calculates these metrics in real-time as anomalies occur. Below is the analytic output demonstrating how the system recovers from a sudden desynchronization event:
+The simulation tracks four critical graphs during a 300-second orbital insertion scenario featuring an unexpected anomaly at $t=90s$ and a reconciliation at $t=130s$.
 
+### 1. HCI Metrics (SPI, CLI, SA Sync)
 ![HCI Metrics Overview](paper/fig_hci_metrics.png)
+- **Significance of Min/Max Values:** 
+  - **Social Presence Index (SPI):** Operates at a nominal maximum of **95%**, signifying strong psychological connection. During the anomaly, it dips to a minimum of **~80%**, reflecting momentary friction before recovering.
+  - **Cognitive Load Index (CLI):** Rests at a nominal minimum of **35%** (effortless operation). It spikes to a maximum of **~75%** during the anomaly when operators must process conflicting data, before easing post-reconciliation.
+  - **SA Sync Rate:** Peaks at **99.5%** when Earth and Mars share the same mental model. It hits a minimum of **~79.5%** during the anomaly, showing critical desynchronization.
 
-*The four primary HCI metrics reacting dynamically to a sudden anomaly and recovering after a successful PTB reconciliation.*
-
+### 2. Conversational Latency Illusion
 ![Latency Illusion Spike](paper/fig_latency_illusion.png)
+- **Significance of Min/Max Values:** The true one-way light delay is over 60 seconds. However, the PTB maintains a perceived latency minimum of just **0.5s** (creating a seamless real-time illusion). When the anomaly breaks the prediction model, the perceived latency hits a maximum spike of **3.5s**, momentarily breaking the illusion until the systems resynchronize.
 
-*A closer look at the Conversational Latency Illusion spiking as the AI pauses to resynchronize reality, before restoring the illusion of real-time communication.*
+### 3. Earth AI Orbital Deviation Error
+![Earth Path Error](paper/fig_earth_path_error.png)
+- **Significance of Min/Max Values:** Represents Ground Control's error in estimating the ship's physical state. The minimum (**0%**) implies perfect prediction. The maximum (**~5%**) occurs right before reconciliation, highlighting the extreme danger of executing Earth's stale commands without onboard reality-checking.
+
+### 4. Mars Cabin Reality Overlay Error
+![Mars Path Error](paper/fig_mars_path_error.png)
+- **Significance of Min/Max Values:** Represents the physical divergence between the true onboard path and the pre-planned Deep Space Network target path. The minimum (**0%**) is the baseline, while the maximum (**~6%**) represents the physical consequence of the unmitigated anomaly before the corrective maneuver is authorized by the crew.
 
 ## Understanding the User Interface
 
