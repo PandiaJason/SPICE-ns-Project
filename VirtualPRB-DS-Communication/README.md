@@ -8,6 +8,28 @@ The fundamental challenge of interplanetary human spaceflight is **light-time de
 ### The Proposed PTB Model
 The Predictive Temporal Bridge architecture solves this by creating a "virtual synchronous" communication interface. By utilizing synchronized AI predictive models at both the Earth Command Center and the Mars Spaceship Cabin, the system anticipates the spacecraft's state and projects Earth's communicative intent forward in time. To the Mars crew, Ground Control appears to respond instantly to anomalies as they happen, completely masking the multi-minute lag. This restores the psychological feeling of a real-time "co-pilot" interaction, drastically reducing cognitive strain and restoring social presence. Crucially, the crew retains the agency to safely reconcile these AI predictions against physical reality before executing any commands.
 
+## Understanding the User Interface
+
+The PTB dashboard is specifically designed to visualize the temporal disconnection and psychological state of the operators through a split-screen interface.
+
+![Dashboard Interface Recording](simulation_record_20260602_011932.gif)
+*Animated demonstration of the PTB dashboard in action.*
+
+### Earth Command Center (Left Panel)
+The left panel represents the view from Ground Control. 
+- **Telemetry Tab:** Shows the delayed, stale telemetry exactly as it is received from Mars ($t - m$).
+- **Trajectory Path Tab:** Visualizes the Earth AI's forward prediction, plotting the ship's projected path to preemptively catch anomalies.
+- **Beam-Pack Command Tab:** Displays the formulation of the correction command that is beamed to the ship.
+
+### Mars Spaceship Cabin (Right Panel)
+The right panel represents the live environment onboard the spacecraft.
+- **Sensors Tab:** Displays the actual, real-time sensor truth ($t$).
+- **Reality Overlay Tab:** This is the core of the PTB. It overlays Earth's incoming predictive model over the true local telemetry. This visual convergence—or divergence during an anomaly—directly correlates to the crew's psychological state. When the lines diverge, **Cognitive Load** and **Latency** spike because the crew realizes Earth is out of sync. When they converge, **Social Presence** and **Shared SA** remain high because the crew trusts Earth's situational awareness.
+- **Reconciliation & Execute Tab:** Allows the Commander to authorize the Earth command, but *only* if the Reality Overlay proves that Earth's mental model safely matches the ship's physical reality. 
+
+### Social/Psychological HUD (Bottom Panel)
+The bottom graph provides a continuous, real-time readout of the 4 HCI metrics. You can directly observe how the crew's psychological state reacts dynamically to the anomaly on the Reality Overlay, and how it recovers once the reconciliation command is executed.
+
 ## The 4 Human-Computer Interaction (HCI) Metrics
 
 To evaluate the psychological and operational impact of the PTB, the simulation continuously models four vital HCI metrics over the mission timeline. These metrics track how effectively the AI masks the latency and reduces operational friction.
@@ -55,27 +77,6 @@ The simulation tracks four critical graphs during a 300-second orbital insertion
 ![Mars Path Error](fig_mars_path_error.png)
 - **Significance of Min/Max Values:** Represents the physical divergence between the true onboard path and the pre-planned Deep Space Network target path. The minimum (**0%**) is the baseline, while the maximum (**~6%**) represents the physical consequence of the unmitigated anomaly before the corrective maneuver is authorized by the crew.
 
-## Understanding the User Interface
-
-The PTB dashboard is specifically designed to visualize the temporal disconnection and psychological state of the operators through a split-screen interface.
-
-![Dashboard Interface Recording](<PLACEHOLDER_FOR_RECORDED_GIF.gif>)
-*Animated demonstration of the PTB dashboard in action. (Replace with your recorded GIF file)*
-
-### Earth Command Center (Left Panel)
-The left panel represents the view from Ground Control. 
-- **Telemetry Tab:** Shows the delayed, stale telemetry exactly as it is received from Mars ($t - m$).
-- **Trajectory Path Tab:** Visualizes the Earth AI's forward prediction, plotting the ship's projected path to preemptively catch anomalies.
-- **Beam-Pack Command Tab:** Displays the formulation of the correction command that is beamed to the ship.
-
-### Mars Spaceship Cabin (Right Panel)
-The right panel represents the live environment onboard the spacecraft.
-- **Sensors Tab:** Displays the actual, real-time sensor truth ($t$).
-- **Reality Overlay Tab:** This is the core of the PTB. It overlays Earth's incoming predictive model over the true local telemetry. This visual convergence—or divergence during an anomaly—directly correlates to the crew's psychological state. When the lines diverge, **Cognitive Load** and **Latency** spike because the crew realizes Earth is out of sync. When they converge, **Social Presence** and **Shared SA** remain high because the crew trusts Earth's situational awareness.
-- **Reconciliation & Execute Tab:** Allows the Commander to authorize the Earth command, but *only* if the Reality Overlay proves that Earth's mental model safely matches the ship's physical reality. 
-
-### Social/Psychological HUD (Bottom Panel)
-The bottom graph provides a continuous, real-time readout of the 4 HCI metrics. You can directly observe how the crew's psychological state reacts dynamically to the anomaly on the Reality Overlay, and how it recovers once the reconciliation command is executed.
 
 ## Running the Simulation
 
