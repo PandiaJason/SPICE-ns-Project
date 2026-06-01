@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Temporal Bridge (PTB) Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #070913;
+            --panel-bg: rgba(13, 17, 33, 0.7);
+            --border-glow: rgba(0, 242, 254, 0.15);
+            --border-glow-accent: rgba(255, 0, 127, 0.15);
+            --cyan: #00f2fe;
+            --magenta: #ff007f;
+            --green: #39ff14;
+            --yellow: #ffd700;
+            --text-main: #e2e8f0;
+            --text-muted: #8a99ad;
+            --glass-blur: blur(12px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #101530 0%, var(--bg-dark) 100%);
+            color: var(--text-main);
+            height: 100vh;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        /* Ambient glowing background circles */
+        .ambient-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, rgba(0,0,0,0) 70%);
+            top: -200px;
+            left: -100px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.04) 0%, rgba(0,0,0,0) 70%);
+            bottom: -200px;
+            right: -100px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .app-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1800px;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .header-title h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--cyan), #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-title p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 25px;
+        }
+
+        .stat-box {
+            text-align: right;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+        }
+
+        .stat-val {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 18px;
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+            margin-top: 1px;
+        }
+
+        .stat-val.magenta {
+            color: var(--magenta);
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+        }
+
+        /* main layout columns */
+        .workspace {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            flex-grow: 1;
+            min-height: 0; /* Let grid cells shrink to fit exactly in viewport */
+        }
+
+        @media (max-width: 1200px) {
+            .workspace {
+                grid-template-columns: 1fr;
+                overflow-y: auto;
+            }
+        }
+
+        .terminal-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            min-height: 0;
+        }
+
+        .terminal-panel.mars {
+            border-color: var(--border-glow-accent);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .panel-title span.indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: var(--cyan);
+            box-shadow: 0 0 8px var(--cyan);
+        }
+
+        .mars .panel-title span.indicator {
+            background-color: var(--magenta);
+            box-shadow: 0 0 8px var(--magenta);
+        }
+
+        .badge {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--cyan);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .mars .badge {
+            background: rgba(255, 0, 127, 0.1);
+            color: var(--magenta);
+            border: 1px solid rgba(255, 0, 127, 0.2);
+        }
+
+        /* grid of sub-widgets inside panels */
+        .widget-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            flex-grow: 1;
+            min-height: 0;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .widget-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .widget {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .widget:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .widget-title {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .telemetry-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .telemetry-row:last-child {
+            border-bottom: none;
+        }
+
+        .telemetry-label {
+            color: var(--text-muted);
+        }
+
+        .telemetry-val {
+            font-family: 'Share Tech Mono', monospace;
+            font-weight: 600;
+        }
+
+        .alert-active {
+            color: var(--magenta) !important;
+            animation: pulse-red 2s infinite;
+        }
+
+        .nominal-active {
+            color: var(--green) !important;
+        }
+
+        @keyframes pulse-red {
+            0% { text-shadow: 0 0 2px rgba(255, 0, 127, 0.2); }
+            50% { text-shadow: 0 0 8px rgba(255, 0, 127, 0.8); }
+            100% { text-shadow: 0 0 2px rgba(255, 0, 127, 0.2); }
+        }
+
+        /* Large command card */
+        .command-card {
+            background: rgba(0, 242, 254, 0.03);
+            border: 1px solid rgba(0, 242, 254, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mars .command-card {
+            background: rgba(255, 0, 127, 0.03);
+            border-color: rgba(255, 0, 127, 0.15);
+        }
+
+        .command-status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .command-desc {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-main);
+        }
+
+        .command-details {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+            color: var(--cyan);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 3px solid var(--cyan);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mars .command-details {
+            color: var(--magenta);
+            border-left-color: var(--magenta);
+        }
+
+        /* Action button */
+        .btn-action {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--cyan) 0%, #0072ff 100%);
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+            font-size: 14px;
+        }
+
+        .btn-action:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .btn-action:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        .btn-action:disabled {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .btn-action.reconciled {
+            background: linear-gradient(135deg, var(--magenta) 0%, #b2005f 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+        }
+
+        .btn-action.reconciled:hover:not(:disabled) {
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.5);
+        }
+
+        /* Tab Navigation styles */
+        .tab-nav {
+            display: flex;
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-btn.active {
+            color: #000;
+            background: var(--cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+        }
+
+        .mars .tab-btn.active {
+            color: #fff;
+            background: var(--magenta);
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            flex-grow: 1;
+            min-height: 0;
+            overflow: hidden;
+            padding-right: 4px;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        /* Trajectory visualization canvas widget */
+        .trajectory-widget {
+            grid-column: span 2;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .canvas-container {
+            position: relative;
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .canvas-legend {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            display: flex;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            pointer-events: none;
+            z-index: 5;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 3px;
+            border-radius: 1px;
+            display: inline-block;
+        }
+
+        .legend-color.actual-earth {
+            background-color: var(--cyan);
+            box-shadow: 0 0 4px var(--cyan);
+        }
+
+        .legend-color.pred-earth {
+            background-color: rgba(0, 242, 254, 0.3);
+            border: 1px dashed rgba(0, 242, 254, 0.8);
+            height: 1px;
+        }
+
+        .legend-color.actual-mars {
+            background-color: var(--magenta);
+            box-shadow: 0 0 4px var(--magenta);
+        }
+
+        .legend-color.pred-mars {
+            background-color: var(--cyan);
+            box-shadow: 0 0 4px var(--cyan);
+        }
+
+        .legend-label {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Social/Psychological presence HUD block */
+        .social-hud {
+            grid-column: span 2;
+            background: linear-gradient(90deg, rgba(0, 242, 254, 0.02) 0%, rgba(255, 0, 127, 0.02) 100%);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            gap: 20px;
+            height: 200px;
+        }
+
+        .hud-graph-container {
+            flex: 0 0 80%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .hud-metrics-container {
+            flex: 0 0 calc(20% - 20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 100%;
+        }
+
+        .hud-metric {
+            text-align: right;
+        }
+
+        .hud-metric-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .hud-metric-val {
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .hud-metric-val.green { color: var(--green); }
+        .hud-metric-val.yellow { color: var(--yellow); }
+        .hud-metric-val.cyan { color: var(--cyan); }
+
+        .log-container {
+            font-family: 'Share Tech Mono', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 10px 15px;
+            overflow-y: auto;
+            font-size: 12px;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex-grow: 1;
+            min-height: 100px;
+        }
+
+        .log-line {
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .log-time {
+            color: var(--cyan);
+            flex-shrink: 0;
+        }
+
+        .log-sender {
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .log-sender.earth { color: var(--cyan); }
+        .log-sender.mars { color: var(--magenta); }
+        .log-sender.ai { color: var(--yellow); }
+
+        .log-text {
+            color: var(--text-main);
+        }
+
+        .log-text.alert {
+            color: var(--magenta);
+        }
+
+        /* Light Theme variables override */
+        body.light-theme {
+            --bg-color: #f0f3f6;
+            --panel-bg: rgba(255, 255, 255, 0.85);
+            --border-glow: rgba(0, 114, 255, 0.15);
+            --border-glow-accent: rgba(214, 0, 107, 0.15);
+            --text-main: #0c1b2d;
+            --text-muted: #53697e;
+            --cyan: #0072ff;
+            --magenta: #d6006b;
+            --yellow: #b58000;
+            background-color: #f0f3f6;
+            background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #e8edf3 100%);
+        }
+
+        body.light-theme .ambient-glow-1 {
+            background: radial-gradient(circle, rgba(0, 114, 255, 0.08) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        body.light-theme .ambient-glow-2 {
+            background: radial-gradient(circle, rgba(214, 0, 107, 0.08) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        body.light-theme .widget {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(0, 0, 0, 0.06);
+        }
+
+        body.light-theme .widget:hover {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-theme .tab-nav {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-theme .command-card {
+            background: rgba(0, 114, 255, 0.02);
+            border-color: rgba(0, 114, 255, 0.1);
+        }
+
+        body.light-theme .mars .command-card {
+            background: rgba(214, 0, 107, 0.02);
+            border-color: rgba(214, 0, 107, 0.1);
+        }
+
+        body.light-theme .log-container {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-theme .canvas-container {
+            background: rgba(255, 255, 255, 0.65);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        body.light-theme .canvas-legend {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        body.light-theme .social-hud {
+            background: rgba(255, 255, 255, 0.8);
+            border-top-color: rgba(0, 0, 0, 0.08);
+        }
+
+        body.light-theme #btn-theme-toggle {
+            background: rgba(0, 0, 0, 0.05) !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+            color: #0c1b2d !important;
+        }
+
+        body.light-theme #btn-export-graphs {
+            background: rgba(214, 0, 107, 0.05) !important;
+            border-color: rgba(214, 0, 107, 0.2) !important;
+            color: #d6006b !important;
+        }
+
+        body.light-theme #btn-reset-timeline {
+            background: rgba(0, 114, 255, 0.05) !important;
+            border-color: rgba(0, 114, 255, 0.2) !important;
+            color: #0072ff !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="app-container">
+        <header>
+            <div class="header-title">
+                <h1>Predictive Temporal Bridge (PTB) Dashboard</h1>
+                <p>Virtual Synchronous Communications Interface for Interplanetary Operations</p>
+                <div style="display: flex; gap: 10px; margin-top: 8px;">
+                    <button id="btn-reset-timeline" class="badge" style="cursor: pointer; border-color: var(--cyan); background: rgba(0, 242, 254, 0.05); font-family: 'Outfit'; font-weight: 600; padding: 4px 12px; transition: all 0.2s;">
+                        🔄 Reset Timeline
+                    </button>
+                    <button id="btn-toggle-recording" class="badge" style="cursor: pointer; border-color: var(--yellow); background: rgba(255, 215, 0, 0.05); font-family: 'Outfit'; font-weight: 600; padding: 4px 12px; transition: all 0.2s; color: var(--yellow);">
+                        ⏺ Start Recording GIF
+                    </button>
+                    <button id="btn-theme-toggle" class="badge" style="cursor: pointer; border-color: var(--text-muted); background: rgba(255, 255, 255, 0.05); font-family: 'Outfit'; font-weight: 600; padding: 4px 12px; transition: all 0.2s;">
+                        🌗 Toggle Theme
+                    </button>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat-box">
+                    <div class="stat-label">Simulated Time</div>
+                    <div id="sim-t-val" class="stat-val">0.0s</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Light-Time Delay (m)</div>
+                    <div id="delay-val" class="stat-val">60.0s</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Reconciliation Window</div>
+                    <div id="window-val" class="stat-val">120.0s</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Link Status</div>
+                    <div id="link-val" class="stat-val green">SYNCHRONIZED</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="workspace">
+            <!-- EARTH COMMAND CENTER PANEL -->
+            <div class="terminal-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span class="indicator"></span>
+                        Earth Command Center (Deep Space Network Ground Node)
+                    </div>
+                    <div class="badge">TX Node E1</div>
+                </div>
+
+                <div class="tab-nav">
+                    <button class="tab-btn active" onclick="switchTab(this, 'earth', 'telemetry')">📊 Telemetry</button>
+                    <button class="tab-btn" onclick="switchTab(this, 'earth', 'trajectory')">📈 Trajectory Path</button>
+                    <button class="tab-btn" onclick="switchTab(this, 'earth', 'control')">⚡ Beam-Pack Command</button>
+                </div>
+
+                <div id="earth-tab-telemetry" class="tab-content active">
+                    <div class="widget-grid" style="overflow: visible; flex-shrink: 0;">
+                        <!-- Stale Telemetry -->
+                        <div class="widget">
+                            <div class="widget-title">Raw Telemetry Received (t - m)</div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Telemetry Age</span>
+                                <span class="telemetry-val" id="earth-tel-age">0.0s ago</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Port Gimbal Temp</span>
+                                <span class="telemetry-val" id="earth-port-temp">78.00°C</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Starboard Gimbal Temp</span>
+                                <span class="telemetry-val" id="earth-stbd-temp">76.00°C</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Thrust Output</span>
+                                <span class="telemetry-val" id="earth-thrust">98.50%</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Trajectory Deviation</span>
+                                <span class="telemetry-val" id="earth-deviation">0.0000%</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Anomaly Sensed</span>
+                                <span class="telemetry-val" id="earth-anomaly-raw">NO</span>
+                            </div>
+                        </div>
+
+                        <!-- AI Forward Projection -->
+                        <div class="widget">
+                            <div class="widget-title">AI Forward Projection (t + m)</div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Projection Target</span>
+                                <span class="telemetry-val" id="earth-proj-target">t + 120s</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Port Gimbal Temp (Est)</span>
+                                <span class="telemetry-val" id="earth-est-port-temp">78.00°C</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Starboard Gimbal Temp (Est)</span>
+                                <span class="telemetry-val" id="earth-est-stbd-temp">76.00°C</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Thrust Output (Est)</span>
+                                <span class="telemetry-val" id="earth-est-thrust">98.50%</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Trajectory Dev (Est)</span>
+                                <span class="telemetry-val" id="earth-est-deviation">0.0000%</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Anomaly Predicted</span>
+                                <span class="telemetry-val" id="earth-anomaly-est">NO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="earth-tab-trajectory" class="tab-content">
+                    <div class="widget trajectory-widget" style="grid-column: span 2; height: 100%; display: flex; flex-direction: column;">
+                        <div class="widget-title">Earth AI Orbital Deviation Predictor</div>
+                        <div class="canvas-container" style="flex-grow: 1; min-height: 200px;">
+                            <div class="canvas-legend">
+                                <div class="legend-item">
+                                    <svg width="24" height="10" viewBox="0 0 24 10" style="flex-shrink:0;overflow:visible">
+                                        <line x1="0" y1="5" x2="24" y2="5" stroke="#00f2fe" stroke-width="3.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="legend-label">Actual Telemetry (t-m)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <svg width="24" height="10" viewBox="0 0 24 10" style="flex-shrink:0;overflow:visible">
+                                        <line x1="0" y1="5" x2="24" y2="5" stroke="#ff3a5c" stroke-width="1.5" stroke-dasharray="5,4" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="legend-label">AI Forward Projection (t+m)</span>
+                                </div>
+                            </div>
+                            <canvas id="earth-canvas" width="800" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="earth-tab-control" class="tab-content">
+                    <!-- Command Card -->
+                    <div class="widget" style="grid-column: span 2;">
+                        <div class="widget-title">Command Bundle Beam-Pack (Intercept at t+m)</div>
+                        <div class="command-card" style="margin-bottom: 0; min-height: 70px; padding: 6px 10px;">
+                            <div class="command-status-header" style="margin-bottom: 2px;">
+                                <span class="badge" id="earth-cmd-type">NOMINAL</span>
+                                <span style="font-size: 11px; color: var(--cyan);" id="earth-cmd-intercept">Target Intercept: t = 0.0s</span>
+                            </div>
+                            <div class="command-desc" id="earth-cmd-desc" style="font-size: 11px; margin-bottom: 4px;">All systems nominal. Spacecraft maintaining baseline burn parameters.</div>
+                            <div class="command-details" id="earth-cmd-details" style="font-size: 10px; padding: 6px 10px;">
+                                <div>• No manual corrections queued.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DSN Ground Log -->
+                    <div class="widget" style="grid-column: span 2; display: flex; flex-direction: column; flex-grow: 1; min-height: 100px; height: 130px; padding: 10px 15px;">
+                        <div class="widget-title" style="margin-bottom: 6px;">DSN Ground Station Chronological Log</div>
+                        <div class="log-container" id="log-box-earth" style="flex-grow: 1; height: 80px;">
+                            <div class="log-line">
+                                <span class="log-time">[00:00:00]</span>
+                                <span class="log-sender ai">SYSTEM</span>
+                                <span class="log-text">DSN telemetry link online. Earth local time sync activated.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MARS SPACECRAFT CABIN PANEL -->
+            <div class="terminal-panel mars">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span class="indicator"></span>
+                        Ares-3 Mars Spaceship Cabin (Primary Avionics Node)
+                    </div>
+                    <div class="badge">RX Node M1</div>
+                </div>
+
+                <div class="tab-nav">
+                    <button class="tab-btn active" onclick="switchTab(this, 'mars', 'telemetry')">📊 Sensors</button>
+                    <button class="tab-btn" onclick="switchTab(this, 'mars', 'trajectory')">📈 Reality Overlay</button>
+                    <button class="tab-btn" onclick="switchTab(this, 'mars', 'action')">⚡ Reconciliation & Execute</button>
+                </div>
+
+                <div id="mars-tab-telemetry" class="tab-content active">
+                    <div class="widget-grid" style="overflow: visible; flex-shrink: 0;">
+                        <!-- Incoming Earth prediction packet -->
+                        <div class="widget">
+                            <div class="widget-title">Intercepted Earth Packet (Arrived now)</div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Packet Creation Clock</span>
+                                <span class="telemetry-val" id="mars-pkt-creation">0.0s</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Est Port Gimbal Temp</span>
+                                <span class="telemetry-val" id="mars-pkt-port-temp">78.00°C</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Est Thrust Output</span>
+                                <span class="telemetry-val" id="mars-pkt-thrust">98.50%</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Est Trajectory Dev</span>
+                                <span class="telemetry-val" id="mars-pkt-deviation">0.0000%</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Earth Command Type</span>
+                                <span class="telemetry-val" id="mars-pkt-cmd-type">NOMINAL</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Suggested AI Action</span>
+                                <span class="telemetry-val" id="mars-pkt-suggested-action">STANDBY</span>
+                            </div>
+                        </div>
+
+                        <!-- Live Spacecraft Sensors -->
+                        <div class="widget">
+                            <div class="widget-title">Live Spacecraft Sensors (True t)</div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Active Spacecraft Clock</span>
+                                <span class="telemetry-val" id="mars-sensor-clock">0.0s</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Port Gimbal Temp</span>
+                                <span class="telemetry-val" id="mars-sensor-port-temp">78.00°C</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Starboard Gimbal Temp</span>
+                                <span class="telemetry-val" id="mars-sensor-stbd-temp">76.00°C</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Thrust Output</span>
+                                <span class="telemetry-val" id="mars-sensor-thrust">98.50%</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Trajectory Deviation</span>
+                                <span class="telemetry-val" id="mars-sensor-deviation">0.0000%</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Onboard Action State</span>
+                                <span class="telemetry-val" id="mars-sensor-action-state">AUTOPILOT STEADY STATE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mars-tab-trajectory" class="tab-content">
+                    <div class="widget trajectory-widget" style="grid-column: span 2; height: 100%; display: flex; flex-direction: column;">
+                        <div class="widget-title">Cabin AI Dual-Path Deviation Reality Overlay</div>
+                        <div class="canvas-container" style="flex-grow: 1; min-height: 200px;">
+                            <div class="canvas-legend">
+                                <div class="legend-item">
+                                    <svg width="24" height="10" viewBox="0 0 24 10" style="flex-shrink:0;overflow:visible">
+                                        <line x1="0" y1="5" x2="24" y2="5" stroke="#ff007f" stroke-width="3.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="legend-label">True Onboard Path (t)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <svg width="24" height="10" viewBox="0 0 24 10" style="flex-shrink:0;overflow:visible">
+                                        <line x1="0" y1="5" x2="24" y2="5" stroke="rgba(0,242,254,0.55)" stroke-width="1.5" stroke-dasharray="5,4" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="legend-label">DSN Target Plan (t-m)</span>
+                                </div>
+                            </div>
+                            <canvas id="mars-canvas" width="800" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mars-tab-action" class="tab-content">
+                    <!-- Reconciliation Engine -->
+                    <div class="widget" style="grid-column: span 2;">
+                        <div class="widget-title">Predictive Intercept Reconciliation Engine</div>
+                        <div class="command-card" style="margin-bottom: 0; min-height: 70px; padding: 6px 10px;">
+                            <div class="command-status-header" style="margin-bottom: 2px;">
+                                <span class="badge" id="mars-recon-status">RECONCILED</span>
+                                <span style="font-size: 11px; color: var(--magenta);" id="mars-recon-deltas">Max Δ Delta: 0.000</span>
+                            </div>
+                            <div class="command-desc" id="mars-recon-rec" style="font-size: 11px; margin-bottom: 4px;">Awaiting telemetry synchronization. Systems matched.</div>
+                            <div class="command-details" id="mars-recon-details" style="font-size: 10px; padding: 6px 10px;">
+                                <div>• Gimbal Dev Delta: 0.00°C</div>
+                                <div>• Thrust Def Delta: 0.00%</div>
+                                <div>• Path Offset Delta: 0.0000%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cabin Local Log -->
+                    <div class="widget" style="grid-column: span 2; display: flex; flex-direction: column; flex-grow: 1; min-height: 100px; height: 160px; padding: 10px 15px;">
+                        <div class="widget-title" style="margin-bottom: 6px;">Ares-3 Avionics & Crew Log</div>
+                        <div class="log-container" id="log-box-mars" style="flex-grow: 1; height: 75px; margin-bottom: 6px;">
+                            <div class="log-line">
+                                <span class="log-time">[00:00:00]</span>
+                                <span class="log-sender ai">SYSTEM</span>
+                                <span class="log-text">Cabin avionics active. Spacecraft clock synchronized to UTC-epoch.</span>
+                            </div>
+                        </div>
+                        <button id="btn-execute" class="btn-action" style="padding: 8px 12px; border-radius: 8px; font-size: 11px; min-height: 30px; width: 100%;" disabled>Execute Interception Correction</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Communication HUD section to address JCMC requirements -->
+        <div class="social-hud">
+            <div class="hud-graph-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                    <div class="widget-title" style="margin-bottom: 0;">PTB Human-Computer Interaction Metrics</div>
+                    <div class="canvas-legend" style="position: relative; top: 0; right: 0; box-shadow: none; background: transparent; border: none; padding: 0;">
+                        <div class="legend-item"><span class="legend-color" style="background:#00f2fe;"></span><span class="legend-label">SPI</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background:#ff007f;"></span><span class="legend-label">CLI</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background:#b58000;"></span><span class="legend-label">Latency</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background:#16a34a;"></span><span class="legend-label">SA Sync</span></div>
+                    </div>
+                </div>
+                <canvas id="hci-canvas" width="1000" height="150" style="flex-grow: 1; border: 1px solid rgba(255,255,255,0.05);"></canvas>
+            </div>
+            <div class="hud-metrics-container">
+                <div class="hud-metric">
+                    <div class="hud-metric-label" style="color:#00f2fe;">Social Presence (SPI)</div>
+                    <div class="hud-metric-val" id="social-presence" style="font-size: 14px; color:#00f2fe;">96% (High)</div>
+                </div>
+                <div class="hud-metric">
+                    <div class="hud-metric-label" style="color:#ff007f;">Cognitive Load (CLI)</div>
+                    <div class="hud-metric-val" id="cognitive-load" style="font-size: 14px; color:#ff007f;">24% (Low)</div>
+                </div>
+                <div class="hud-metric">
+                    <div class="hud-metric-label" style="color:#b58000;">Latency Illusion (Lat)</div>
+                    <div class="hud-metric-val" id="latency-illusion" style="font-size: 14px; color:#b58000;">0.4s (Near-Zero)</div>
+                </div>
+                <div class="hud-metric">
+                    <div class="hud-metric-label" style="color:#16a34a;">Shared SA Sync (SA)</div>
+                    <div class="hud-metric-val" id="sa-sync" style="font-size: 14px; color:#16a34a;">99.8% (Aligned)</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(btnEl, panel, tabName) {
+            const panelEl = btnEl.closest('.terminal-panel');
+            
+            // Deactivate all tab buttons in this panel
+            panelEl.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Deactivate all tab contents in this panel
+            panelEl.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Activate clicked button and target tab
+            btnEl.classList.add('active');
+            const targetContent = document.getElementById(`${panel}-tab-${tabName}`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        }
+
+        const logBoxEarth = document.getElementById('log-box-earth');
+        const logBoxMars = document.getElementById('log-box-mars');
+        const btnExecute = document.getElementById('btn-execute');
+
+        // Circular queues for drawing history curves
+        const earthHistActual = [];
+        const earthHistPred = [];
+        const marsHistActual = [];
+        const marsHistPred = [];
+        
+        const histSpi = [];
+        const histCli = [];
+        const histLat = [];
+        const histSa = [];
+
+        // Canvas drawing
+        const earthCanvas = document.getElementById('earth-canvas');
+        const marsCanvas = document.getElementById('mars-canvas');
+        const ctxEarth = earthCanvas.getContext('2d');
+        const ctxMars = marsCanvas.getContext('2d');
+        const hciCanvas = document.getElementById('hci-canvas');
+        const ctxHci = hciCanvas.getContext('2d');
+
+
+
+        function drawPlot(ctx, width, height, actualData, predData, titleText, colorActual, colorPred) {
+            ctx.clearRect(0, 0, width, height);
+
+            const isLight = document.body.classList.contains('light-theme');
+
+            // Draw center baseline grid line
+            ctx.strokeStyle = isLight ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(0, height / 2);
+            ctx.lineTo(width, height / 2);
+            ctx.stroke();
+
+            // Find maximum deviation to dynamically auto-scale
+            let maxVal = 0.05;
+            actualData.forEach(d => { if (Math.abs(d) > maxVal) maxVal = Math.abs(d); });
+            predData.forEach(d => { if (Math.abs(d) > maxVal) maxVal = Math.abs(d); });
+
+            const scaleY = (height / 2) / maxVal;
+            const stepX = width / 60; // Up to 60 history points
+
+            // Draw Actual Curve FIRST (below estimated) — thick solid line
+            if (actualData.length > 1) {
+                ctx.strokeStyle = colorActual;
+                ctx.lineWidth = 3.5;
+                ctx.setLineDash([]);
+                if (!isLight) {
+                    ctx.shadowColor = colorActual;
+                    ctx.shadowBlur = 6;
+                }
+                ctx.beginPath();
+                for (let i = 0; i < actualData.length; i++) {
+                    const x = i * stepX;
+                    const y = height / 2 - (actualData[i] * scaleY);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                ctx.setLineDash([]);
+            }
+
+            // Draw Predicted/Estimated Curve ON TOP — thin dashed line (always visible over thick actual)
+            if (predData.length > 1) {
+                ctx.strokeStyle = colorPred;
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([5, 4]);
+                ctx.beginPath();
+                for (let i = 0; i < predData.length; i++) {
+                    const x = i * stepX;
+                    const y = height / 2 - (predData[i] * scaleY);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // Scale label
+            ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.4)';
+            ctx.font = '10px Outfit';
+            ctx.fillText(`Scale: +/- ${(maxVal).toFixed(4)}% Dev`, 10, height - 10);
+        }
+
+        function drawHCIPlot(ctx, width, height, dataSpi, dataCli, dataLat, dataSa, currentT) {
+            ctx.clearRect(0, 0, width, height);
+            const isLight = document.body.classList.contains('light-theme');
+            
+            // Define plot area padding
+            const padLeft = 45;
+            const padRight = 10;
+            const padTop = 10;
+            const padBottom = 20;
+            const plotWidth = width - padLeft - padRight;
+            const plotHeight = height - padTop - padBottom;
+
+            // Draw grid lines (horizontal and vertical) within the plot area
+            ctx.strokeStyle = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            // Horizontal lines
+            [0, 0.25, 0.5, 0.75, 1].forEach(pct => {
+                const y = padTop + plotHeight * pct;
+                ctx.moveTo(padLeft, y);
+                ctx.lineTo(padLeft + plotWidth, y);
+            });
+            // Vertical lines
+            for (let i = 0; i <= 6; i++) {
+                const x = padLeft + (plotWidth / 6) * i;
+                ctx.moveTo(x, padTop);
+                ctx.lineTo(x, padTop + plotHeight);
+            }
+            ctx.stroke();
+
+            const stepX = plotWidth / 59; // 60 points means 59 intervals
+
+            function drawLine(data, color, maxScale) {
+                if (data.length < 2) return;
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                for (let i = 0; i < data.length; i++) {
+                    const x = padLeft + i * stepX;
+                    // Invert y: high values at top
+                    let val = Math.max(0, Math.min(maxScale, data[i]));
+                    const y = padTop + plotHeight - (val / maxScale * plotHeight);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+
+            // Latency drawn on 0-10 scale, others 0-100
+            drawLine(dataLat, '#b58000', 10);
+            drawLine(dataCli, '#ff007f', 100);
+            drawLine(dataSpi, '#00f2fe', 100);
+            drawLine(dataSa, '#16a34a', 100);
+
+            // Draw axis labels and scales in the margins
+            ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.4)';
+            ctx.font = '10px Outfit';
+            
+            // Y-axis tick labels
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('100%', padLeft - 5, padTop);
+            ctx.fillText('75%', padLeft - 5, padTop + plotHeight * 0.25);
+            ctx.fillText('50%', padLeft - 5, padTop + plotHeight * 0.5);
+            ctx.fillText('25%', padLeft - 5, padTop + plotHeight * 0.75);
+            ctx.fillText('0%', padLeft - 5, padTop + plotHeight);
+            
+            // Y-axis label (% Scale)
+            ctx.save();
+            ctx.translate(12, padTop + plotHeight / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.textAlign = 'center';
+            ctx.fillText('% Scale', 0, 0);
+            ctx.restore();
+            
+            // X-axis moving time scale
+            if (currentT !== undefined) {
+                // Assuming 60 points at 0.5s per point = 30 seconds of history
+                const startT = Math.max(0, currentT - 30);
+                const midT = Math.max(0, currentT - 15);
+                
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                // Start
+                ctx.textAlign = 'left';
+                ctx.fillText(`t=${startT.toFixed(1)}s`, padLeft, padTop + plotHeight + 5);
+                // Middle
+                ctx.textAlign = 'center';
+                ctx.fillText(`t=${midT.toFixed(1)}s`, padLeft + plotWidth / 2, padTop + plotHeight + 5);
+                // End
+                ctx.textAlign = 'right';
+                ctx.fillText(`t=${currentT.toFixed(1)}s`, padLeft + plotWidth, padTop + plotHeight + 5);
+            }
+        }
+
+        function appendLog(target, timeStr, sender, text, alert = false) {
+            const logBox = target === 'earth' ? logBoxEarth : logBoxMars;
+            if (!logBox) return;
+
+            const line = document.createElement('div');
+            line.className = 'log-line';
+            
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'log-time';
+            timeSpan.textContent = `[${timeStr}]`;
+            
+            const senderSpan = document.createElement('span');
+            senderSpan.className = `log-sender ${sender.toLowerCase()}`;
+            senderSpan.textContent = sender.toUpperCase();
+            
+            const textSpan = document.createElement('span');
+            textSpan.className = `log-text${alert ? ' alert' : ''}`;
+            textSpan.textContent = text;
+            
+            line.appendChild(timeSpan);
+            line.appendChild(senderSpan);
+            line.appendChild(textSpan);
+            
+            logBox.appendChild(line);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        // Establish connection to Server SSE Endpoint
+        const eventSource = new EventSource('/stream');
+
+        let lastTLog = -999;
+        let isAnomalyLogged = false;
+        let isEarthAnomalyLogged = false;
+        let isCorrectionLogged = false;
+        let isEarthCorrectionLogged = false;
+
+        eventSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+
+            // Update stats
+            document.getElementById('sim-t-val').textContent = `${data.t.toFixed(1)}s`;
+            document.getElementById('delay-val').textContent = `${data.m.toFixed(1)}s`;
+            document.getElementById('window-val').textContent = `${(data.m * 2).toFixed(1)}s`;
+
+            // Earth raw telemetry received (sent at t - m)
+            const eRec = data.earth.received;
+            document.getElementById('earth-tel-age').textContent = `${data.m.toFixed(1)}s ago (t = ${eRec.t.toFixed(1)}s)`;
+            document.getElementById('earth-port-temp').textContent = `${eRec.gimbal_port_C.toFixed(2)}°C`;
+            document.getElementById('earth-stbd-temp').textContent = `${eRec.gimbal_stbd_C.toFixed(2)}°C`;
+            document.getElementById('earth-thrust').textContent = `${eRec.thrust_pct.toFixed(2)}%`;
+            document.getElementById('earth-deviation').textContent = `${eRec.traj_dev.toFixed(4)}%`;
+            document.getElementById('earth-anomaly-raw').textContent = eRec.anomaly ? 'YES ⚠' : 'NO ✓';
+
+            // Anomaly styling on Earth
+            if (eRec.anomaly) {
+                document.getElementById('earth-port-temp').className = 'telemetry-val alert-active';
+                document.getElementById('earth-deviation').className = 'telemetry-val alert-active';
+                document.getElementById('earth-anomaly-raw').className = 'telemetry-val alert-active';
+            } else {
+                document.getElementById('earth-port-temp').className = 'telemetry-val nominal-active';
+                document.getElementById('earth-deviation').className = 'telemetry-val nominal-active';
+                document.getElementById('earth-anomaly-raw').className = 'telemetry-val nominal-active';
+            }
+
+            // Earth AI Forward Projection to t + m (intercept window)
+            const ePred = data.earth.predicted;
+            document.getElementById('earth-proj-target').textContent = `t + ${(data.m * 2).toFixed(0)}s (Intercept Target)`;
+            document.getElementById('earth-est-port-temp').textContent = `${ePred.gimbal_port_C.toFixed(2)}°C`;
+            document.getElementById('earth-est-stbd-temp').textContent = `${eRec.gimbal_stbd_C.toFixed(2)}°C`;
+            document.getElementById('earth-est-thrust').textContent = `${ePred.thrust_pct.toFixed(2)}%`;
+            document.getElementById('earth-est-deviation').textContent = `${ePred.traj_dev.toFixed(4)}%`;
+            document.getElementById('earth-anomaly-est').textContent = ePred.anomaly ? 'YES ⚠' : 'NO ✓';
+            
+            if (ePred.anomaly) {
+                document.getElementById('earth-anomaly-est').className = 'telemetry-val alert-active';
+                document.getElementById('earth-est-deviation').className = 'telemetry-val alert-active';
+            } else {
+                document.getElementById('earth-anomaly-est').className = 'telemetry-val nominal-active';
+                document.getElementById('earth-est-deviation').className = 'telemetry-val nominal-active';
+            }
+
+            // Earth command card
+            const eCmd = data.earth.command;
+            const cmdTypeBadge = document.getElementById('earth-cmd-type');
+            cmdTypeBadge.textContent = eCmd.type;
+            cmdTypeBadge.className = eCmd.type === 'CORRECTION' ? 'badge alert-active' : 'badge';
+            document.getElementById('earth-cmd-intercept').textContent = `Target Intercept: t = ${eCmd.intercept_t ? eCmd.intercept_t.toFixed(1) : 0.0}s`;
+            document.getElementById('earth-cmd-desc').textContent = eCmd.type === 'CORRECTION' 
+                ? 'CRITICAL ANOMALY FORWARD-ESTIMATED. Correction profile compiled and beamed.'
+                : 'All spacecraft telemetry pathways predicted to stay within nominal deviation bands.';
+            
+            const cmdDetailsBox = document.getElementById('earth-cmd-details');
+            cmdDetailsBox.innerHTML = '';
+            eCmd.details.forEach(det => {
+                const row = document.createElement('div');
+                row.textContent = `• ${det}`;
+                cmdDetailsBox.appendChild(row);
+            });
+
+            // Mars Cabin Telemetry view
+            const mPkt = data.earth;
+            document.getElementById('mars-pkt-creation').textContent = `${mPkt.received.t.toFixed(1)}s (Clock Delay = ${data.m.toFixed(1)}s)`;
+            document.getElementById('mars-pkt-port-temp').textContent = `${mPkt.predicted.gimbal_port_C.toFixed(2)}°C`;
+            document.getElementById('mars-pkt-thrust').textContent = `${mPkt.predicted.thrust_pct.toFixed(2)}%`;
+            document.getElementById('mars-pkt-deviation').textContent = `${mPkt.predicted.traj_dev.toFixed(4)}%`;
+            
+            const pktCmdType = document.getElementById('mars-pkt-cmd-type');
+            pktCmdType.textContent = mPkt.command.type;
+            pktCmdType.className = mPkt.command.type === 'CORRECTION' ? 'telemetry-val alert-active' : 'telemetry-val nominal-active';
+
+            const pktSuggest = document.getElementById('mars-pkt-suggested-action');
+            if (mPkt.command.type === 'CORRECTION') {
+                pktSuggest.textContent = 'EXECUTE CORRECTION BURN';
+                pktSuggest.className = 'telemetry-val alert-active';
+            } else {
+                pktSuggest.textContent = 'MAINTAIN STEADY BURN';
+                pktSuggest.className = 'telemetry-val nominal-active';
+            }
+
+            // Mars Live sensors
+            const mCab = data.mars.cabin;
+            document.getElementById('mars-sensor-clock').textContent = `${mCab.t.toFixed(1)}s`;
+            document.getElementById('mars-sensor-port-temp').textContent = `${mCab.gimbal_port_C.toFixed(2)}°C`;
+            document.getElementById('mars-sensor-stbd-temp').textContent = `${mCab.gimbal_stbd_C.toFixed(2)}°C`;
+            document.getElementById('mars-sensor-thrust').textContent = `${mCab.thrust_pct.toFixed(2)}%`;
+            document.getElementById('mars-sensor-deviation').textContent = `${mCab.traj_dev.toFixed(4)}%`;
+
+            if (mCab.anomaly) {
+                document.getElementById('mars-sensor-port-temp').className = 'telemetry-val alert-active';
+                document.getElementById('mars-sensor-deviation').className = 'telemetry-val alert-active';
+            } else {
+                document.getElementById('mars-sensor-port-temp').className = 'telemetry-val nominal-active';
+                document.getElementById('mars-sensor-deviation').className = 'telemetry-val nominal-active';
+            }
+
+            const sensorAction = document.getElementById('mars-sensor-action-state');
+            if (data.correction_applied) {
+                sensorAction.textContent = 'RCS RETRO-BURN ACTIVE';
+                sensorAction.className = 'telemetry-val nominal-active';
+            } else if (mCab.anomaly) {
+                sensorAction.textContent = 'AWAITING CREW COMMAND';
+                sensorAction.className = 'telemetry-val alert-active';
+            } else {
+                sensorAction.textContent = 'AUTOPILOT STEADY STATE';
+                sensorAction.className = 'telemetry-val nominal-active';
+            }
+
+            // Mars Reconciliation engine
+            const mRecon = data.mars.reconciliation;
+            const reconBadge = document.getElementById('mars-recon-status');
+            reconBadge.textContent = mRecon.status;
+            reconBadge.className = mRecon.status === 'RECONCILED' ? 'badge nominal-active' : 'badge alert-active';
+
+            const maxDelta = Math.max(...Object.values(mRecon.deltas).map(Math.abs));
+            document.getElementById('mars-recon-deltas').textContent = `Max Δ Delta: ${maxDelta.toFixed(4)}`;
+            document.getElementById('mars-recon-rec').textContent = mRecon.recommendation;
+
+            const reconDetails = document.getElementById('mars-recon-details');
+            reconDetails.innerHTML = '';
+            for (const [key, value] of Object.entries(mRecon.deltas)) {
+                const row = document.createElement('div');
+                const sign = value >= 0 ? '+' : '';
+                row.textContent = `• ${key}: Δ = ${sign}${value.toFixed(4)}`;
+                reconDetails.appendChild(row);
+            }
+
+            // Button trigger control
+            if (mRecon.safe && mPkt.command.type === 'CORRECTION' && !data.correction_applied) {
+                btnExecute.disabled = false;
+                btnExecute.className = 'btn-action reconciled';
+                btnExecute.textContent = 'Authorize Correction Execute';
+            } else if (data.correction_applied) {
+                btnExecute.disabled = true;
+                btnExecute.className = 'btn-action';
+                btnExecute.textContent = 'Correction Transmitted & Fired';
+            } else {
+                btnExecute.disabled = true;
+                btnExecute.className = 'btn-action';
+                btnExecute.textContent = 'All Systems Synchronous';
+            }
+
+            // Dynamic Social HUD Metrics (reconciliation index)
+            const presenceVal = document.getElementById('social-presence');
+            const loadVal = document.getElementById('cognitive-load');
+            const latencyIllusionVal = document.getElementById('latency-illusion');
+            const saSyncVal = document.getElementById('sa-sync');
+
+            if (mCab.anomaly && !data.correction_applied) {
+                presenceVal.textContent = '98% (Elevated)';
+                loadVal.textContent = '48% (Moderate Anomaly)';
+                saSyncVal.textContent = '99.5% (Synchronized)';
+                latencyIllusionVal.textContent = '1.2s (Spike)';
+                
+                histSpi.push(98);
+                histCli.push(48);
+                histLat.push(1.2);
+                histSa.push(99.5);
+            } else if (data.correction_applied) {
+                presenceVal.textContent = '99% (Perfect Partner)';
+                loadVal.textContent = '18% (Low Recovery)';
+                saSyncVal.textContent = '99.9% (Absolute Aligned)';
+                latencyIllusionVal.textContent = '0.5s (Near-Zero)';
+                
+                histSpi.push(99);
+                histCli.push(18);
+                histLat.push(0.5);
+                histSa.push(99.9);
+            } else {
+                presenceVal.textContent = '96% (High)';
+                loadVal.textContent = '22% (Low)';
+                saSyncVal.textContent = '99.8% (Aligned)';
+                latencyIllusionVal.textContent = '0.4s (Near-Zero)';
+                
+                histSpi.push(96);
+                histCli.push(22);
+                histLat.push(0.4);
+                histSa.push(99.8);
+            }
+
+            // Manage circular queue history data for graphics drawing
+            if (earthHistActual.length >= 60) earthHistActual.shift();
+            if (earthHistPred.length >= 60) earthHistPred.shift();
+            if (marsHistActual.length >= 60) marsHistActual.shift();
+            if (marsHistPred.length >= 60) marsHistPred.shift();
+            if (histSpi.length >= 60) histSpi.shift();
+            if (histCli.length >= 60) histCli.shift();
+            if (histLat.length >= 60) histLat.shift();
+            if (histSa.length >= 60) histSa.shift();
+
+            earthHistActual.push(eRec.traj_dev);
+            earthHistPred.push(ePred.traj_dev);
+            marsHistActual.push(mCab.traj_dev);
+            marsHistPred.push(mPkt.predicted.traj_dev);
+
+            // Draw plots
+            drawPlot(ctxEarth, 800, 150, earthHistActual, earthHistPred, "Earth Predictor", '#00f2fe', '#ff3a5c');
+            drawPlot(ctxMars, 800, 150, marsHistActual, marsHistPred, "Cabin Overlay", '#ff007f', '#00f2fe');
+            drawHCIPlot(ctxHci, hciCanvas.width, hciCanvas.height, histSpi, histCli, histLat, histSa, data.t);
+
+            // Logging state changes inside UI
+            const timeStr = new Date().toLocaleTimeString();
+            if (data.t - lastTLog >= 15.0) {
+                lastTLog = data.t;
+                if (!mCab.anomaly) {
+                    appendLog('mars', timeStr, 'ai', 'Predictive baseline model shows stable trajectory. Sync at 99.8%.');
+                    appendLog('earth', timeStr, 'ai', 'DSN incoming tracking: nominal trajectory state verified.');
+                }
+            }
+
+            // Anomaly Sensed Onboard (Mars Frame)
+            if (mCab.anomaly && !isAnomalyLogged) {
+                isAnomalyLogged = true;
+                appendLog('mars', timeStr, 'mars', '⚠ GIMBAL PORT ACTUATOR TEMPERATURE ANOMALY SENSED ONBOARD!', true);
+                appendLog('mars', timeStr, 'ai', 'Local Cabin AI is preparing validation corridor...');
+            }
+
+            // Anomaly Received on Ground (Earth Frame, delayed by m seconds)
+            if (eRec.anomaly && !isEarthAnomalyLogged) {
+                isEarthAnomalyLogged = true;
+                appendLog('earth', timeStr, 'earth', '⚠ DEEP SPACE NETWORK SENSES PORT ACTUATOR THERMAL DEVIATION DOWNLINK!', true);
+                appendLog('earth', timeStr, 'ai', 'Earth Ground Station AI forward-estimates anomaly and compiles offset RCS plan.');
+            }
+
+            // Correction Executed (Mars Frame)
+            if (data.correction_applied && !isCorrectionLogged) {
+                isCorrectionLogged = true;
+                appendLog('mars', timeStr, 'mars', '🚀 Commander Chen executes validated Earth control correction payload!');
+                appendLog('mars', timeStr, 'ai', 'Thrust alignment vectors corrected. RCS offset actively firing.');
+            }
+
+            // Correction Applied Confirmation Received (Earth Frame, delayed by m seconds)
+            if (data.correction_applied && eRec.traj_dev < 0.01 && !isEarthCorrectionLogged) {
+                isEarthCorrectionLogged = true;
+                appendLog('earth', timeStr, 'earth', '📡 Downlink confirmation: Commander Chen applied offset burn successfully!');
+                appendLog('earth', timeStr, 'ai', 'Spacecraft orbital alignment restored. Resuming nominal telemetry tracking.');
+            }
+        };
+
+        // Action execute correction event
+        btnExecute.addEventListener('click', function() {
+            fetch('/correct', { method: 'POST' })
+                .then(r => r.json())
+                .then(res => {
+                    if (res.ok) {
+                        btnExecute.disabled = true;
+                    }
+                });
+        });
+
+        // Cursor Tracking for Recording
+        let mouseX = 0;
+        let mouseY = 0;
+        let isMouseDown = false;
+        let clickRipples = [];
+
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        document.addEventListener('mousedown', e => {
+            isMouseDown = true;
+            clickRipples.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+        });
+
+        document.addEventListener('mouseup', e => {
+            isMouseDown = false;
+        });
+
+        // Recording State Variables
+        let recordInterval = null;
+        let isRecording = false;
+        const btnToggleRecording = document.getElementById('btn-toggle-recording');
+
+        function toggleRecording() {
+            if (!isRecording) {
+                // START RECORDING
+                isRecording = true;
+                btnToggleRecording.innerHTML = '⏹ Stop Recording GIF';
+                
+                recordInterval = setInterval(() => {
+                    if (isRecording) {
+                        html2canvas(document.body, { 
+                            scale: 1, 
+                            logging: false,
+                            useCORS: true,
+                            width: window.innerWidth,
+                            height: window.innerHeight,
+                            windowWidth: window.innerWidth,
+                            windowHeight: window.innerHeight,
+                            backgroundColor: document.body.classList.contains('light-theme') ? '#f0f3f6' : '#070913',
+                            onclone: function(clonedDoc) {
+                                // Add fake cursor to cloned document
+                                const cursor = clonedDoc.createElement('div');
+                                cursor.innerHTML = '<svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L8.5 29L12.5 16.5L23.5 11L1 1Z" fill="white" stroke="black" stroke-width="2"/></svg>';
+                                cursor.style.position = 'fixed';
+                                cursor.style.left = mouseX + 'px';
+                                cursor.style.top = mouseY + 'px';
+                                cursor.style.zIndex = '99999';
+                                cursor.style.pointerEvents = 'none';
+                                cursor.style.transformOrigin = 'top left';
+                                if (isMouseDown) {
+                                    cursor.style.transform = 'scale(0.8)';
+                                }
+                                clonedDoc.body.appendChild(cursor);
+
+                                // Render click ripples
+                                const now = Date.now();
+                                clickRipples = clickRipples.filter(r => now - r.time < 500); 
+                                
+                                clickRipples.forEach(r => {
+                                    const ripple = clonedDoc.createElement('div');
+                                    const progress = (now - r.time) / 500; 
+                                    const size = 10 + progress * 40;
+                                    const opacity = 1 - progress;
+                                    
+                                    ripple.style.position = 'fixed';
+                                    ripple.style.left = (r.x - size/2) + 'px';
+                                    ripple.style.top = (r.y - size/2) + 'px';
+                                    ripple.style.width = size + 'px';
+                                    ripple.style.height = size + 'px';
+                                    ripple.style.border = '3px solid rgba(0, 242, 254, ' + opacity + ')';
+                                    ripple.style.borderRadius = '50%';
+                                    ripple.style.zIndex = '99998';
+                                    ripple.style.pointerEvents = 'none';
+                                    clonedDoc.body.appendChild(ripple);
+                                });
+                            }
+                        }).then(canvas => {
+                            const imgData = canvas.toDataURL('image/jpeg', 0.5);
+                            fetch('/api/record_frame', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ image: imgData })
+                            }).catch(err => console.error("Error sending frame", err));
+                        });
+                    }
+                }, 250); // 4 FPS
+            } else {
+                // STOP RECORDING
+                isRecording = false;
+                clearInterval(recordInterval);
+                
+                const originalText = '⏺ Start Recording GIF';
+                btnToggleRecording.innerHTML = '⏳ Compiling GIF...';
+                btnToggleRecording.disabled = true;
+
+                fetch('/api/stop_recording', { method: 'POST' })
+                    .then(r => r.json())
+                    .then(res => {
+                        btnToggleRecording.disabled = false;
+                        if (res.ok) {
+                            btnToggleRecording.innerHTML = '✅ Saved: ' + res.filename;
+                        } else {
+                            btnToggleRecording.innerHTML = '❌ GIF Error';
+                        }
+                        setTimeout(() => { 
+                            btnToggleRecording.innerHTML = originalText;
+                        }, 4000);
+                    }).catch(e => {
+                        btnToggleRecording.disabled = false;
+                        btnToggleRecording.innerHTML = originalText;
+                    });
+            }
+        }
+
+        btnToggleRecording.addEventListener('click', toggleRecording);
+
+        // Reset simulation event
+        const btnResetTimeline = document.getElementById('btn-reset-timeline');
+        btnResetTimeline.addEventListener('click', function() {
+            fetch('/api/reset')
+                .then(r => r.json())
+                .then(res => {
+                    if (res.ok) {
+                        // Clear circular buffers to restart charts cleanly
+                        earthHistActual.length = 0;
+                        earthHistPred.length = 0;
+                        marsHistActual.length = 0;
+                        marsHistPred.length = 0;
+                        histSpi.length = 0;
+                        histCli.length = 0;
+                        histLat.length = 0;
+                        histSa.length = 0;
+                        isAnomalyLogged = false;
+                        isEarthAnomalyLogged = false;
+                        isCorrectionLogged = false;
+                        isEarthCorrectionLogged = false;
+                        lastTLog = -999;
+                        
+                        logBoxEarth.innerHTML = `
+                            <div class="log-line">
+                                <span class="log-time">[00:00:00]</span>
+                                <span class="log-sender ai">SYSTEM</span>
+                                <span class="log-text">DSN telemetry link online. Earth local time sync activated.</span>
+                            </div>
+                        `;
+                        
+                        logBoxMars.innerHTML = `
+                            <div class="log-line">
+                                <span class="log-time">[00:00:00]</span>
+                                <span class="log-sender ai">SYSTEM</span>
+                                <span class="log-text">Cabin avionics active. Spacecraft clock synchronized to UTC-epoch.</span>
+                            </div>
+                        `;
+                    }
+                });
+        });
+
+        // Export graphs event
+        const btnExportGraphs = document.getElementById('btn-export-graphs');
+        if (btnExportGraphs) {
+            btnExportGraphs.addEventListener('click', function() {
+                const originalText = btnExportGraphs.innerHTML;
+                btnExportGraphs.innerHTML = '⏳ Exporting...';
+                fetch('/api/export_graphs', { method: 'POST' })
+                    .then(r => r.json())
+                    .then(res => {
+                        if (res.ok) {
+                            btnExportGraphs.innerHTML = '✅ Saved to /paper';
+                            setTimeout(() => { btnExportGraphs.innerHTML = originalText; }, 3000);
+                        } else {
+                            btnExportGraphs.innerHTML = '❌ Error';
+                            setTimeout(() => { btnExportGraphs.innerHTML = originalText; }, 3000);
+                        }
+                    });
+            });
+        }
+
+        // Theme Toggle click event listener
+        document.getElementById('btn-theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-theme');
+        });
+
+
+    </script>
+</body>
+</html>
+
