@@ -14,6 +14,10 @@ The PTB dashboard is specifically designed to visualize the temporal disconnecti
 
 ![Dashboard Interface Recording](simulation_record_20260602_011932.gif)
 *Animated demonstration of the PTB dashboard in action.*
+### Dashboard Features:
+- **Interactive UI:** A split-screen design mimicking Earth Command and the Mars Cabin.
+- **Live Telemetry:** Dynamic simulation of spacecraft physics, orbital deviations, and thermal loads.
+- **Recording:** Click the **"⏺ Start Recording GIF"** button at the top to capture your own animated demonstrations of the dashboard!
 
 ### Earth Command Center (Left Panel)
 The left panel represents the view from Ground Control. 
@@ -91,11 +95,6 @@ bash launch.sh display
 
 The system will start the local Flask server. Open your web browser and navigate to:
 **`http://localhost:5000`**
-
-### Dashboard Features:
-- **Interactive UI:** A split-screen design mimicking Earth Command and the Mars Cabin.
-- **Live Telemetry:** Dynamic simulation of spacecraft physics, orbital deviations, and thermal loads.
-- **Recording:** Click the **"⏺ Start Recording GIF"** button at the top to capture your own animated demonstrations of the dashboard!
 
 ## Summary and Psychological Impact
 
