@@ -450,7 +450,55 @@ of the reconciliation command at \(t_\text{recon}\), modeled as:
     \quad t \ge t_\text{recon},
 \end{equation}
 where \(\tau_r\) is the metric-specific recovery time constant, calibrated from the
-simulation data.
+simulation data. Table~\ref{tab:parameters} lists the full set of simulation scenario and model parameters used in this evaluation.
+
+\begin{table}[htbp]
+\centering
+\caption{PTB simulation scenario and model parameters.}
+\label{tab:parameters}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Physical Meaning / Context} \\
+\midrule
+\multicolumn{3}{l}{\textit{Simulation Scenario Parameters}} \\
+\midrule
+$T_\text{sim}$ & 300~s & Total duration of insertion burn \\
+$f_s$ & 2~Hz & Telemetry bus sampling rate \\
+$2m_0$ & 120~s & Initial round-trip delay \\
+$t_\text{anomaly}$ & 90~s & Thermal degradation injection time \\
+$t_\text{recon}$ & 130~s & Onboard command reconciliation time \\
+$\delta_\text{safe}$ & 0.5\% & Trajectory path deviation limit \\
+\midrule
+\multicolumn{3}{l}{\textit{OPFI Metric Parameters}} \\
+\midrule
+$\text{OPFI}_\text{nom}$ & 95\% & Nominal presence fidelity index \\
+$\Delta_\text{OPFI}$ & 15\% & Peak anomaly deviation impact \\
+$\sigma_\text{OPFI}$ & 28.3~s & Anomaly transient window width \\
+$\tau_\text{OPFI}$ & 20~s & Exponential recovery time constant \\
+\midrule
+\multicolumn{3}{l}{\textit{OCLI Metric Parameters}} \\
+\midrule
+$\text{OCLI}_\text{nom}$ & 22\% & Nominal operator cognitive load \\
+$\Delta_\text{OCLI}$ & 53\% & Peak anomaly workload spike \\
+$\sigma_\text{OCLI}$ & 24.5~s & Anomaly transient window width \\
+$\tau_\text{OCLI}$ & 15~s & Workload recovery time constant \\
+\midrule
+\multicolumn{3}{l}{\textit{ECL Metric Parameters}} \\
+\midrule
+$\text{ECL}_\text{nom}$ & 0.5~s & Baseline HMI render latency \\
+$\Delta_\text{ECL}$ & 3.0~s & Peak command latency spike \\
+$\sigma_\text{ECL}$ & 20.0~s & Anomaly transient window width \\
+$\tau_\text{ECL}$ & 10~s & Latency recovery time constant \\
+\midrule
+\multicolumn{3}{l}{\textit{SSA Metric Parameters}} \\
+\midrule
+$\text{SSA}_\text{nom}$ & 99.5\% & Baseline state sync accuracy \\
+$\Delta_\text{SSA}$ & 20\% & Peak anomaly desync impact \\
+$\sigma_\text{SSA}$ & 22.4~s & Anomaly transient window width \\
+$\tau_\text{SSA}$ & 15~s & Sync recovery time constant \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 
 
