@@ -36,14 +36,21 @@ def generate_analytics():
     sa_sync = 99.5 - 20 * np.exp(-(t - anomaly_start)**2 / 500) * (t >= anomaly_start)
     sa_sync[t >= correction_time] = 99.5 - (99.5 - sa_sync[correction_time-1]) * np.exp(-(t[t >= correction_time] - correction_time)/15)
     
-    # 5. Earth Path Error (Actual vs AI Predicted)
-    # Error grows during anomaly until AI adapts or correction applies
-    earth_error = 0.0 + 0.05 * (1 - np.exp(-(t - anomaly_start)/25)) * (t >= anomaly_start)
-    earth_error[t >= correction_time] = earth_error[correction_time-1] * np.exp(-(t[t >= correction_time] - correction_time)/20)
-    
-    # 6. Mars Path Error (True vs DSN Target Plan)
-    mars_error = 0.0 + 0.06 * (1 - np.exp(-(t - anomaly_start)/30)) * (t >= anomaly_start)
-    mars_error[t >= correction_time] = mars_error[correction_time-1] * np.exp(-(t[t >= correction_time] - correction_time)/15)
+    # 5. Earth trajectory: actual deviation vs AI-predicted deviation (two separate signals)
+    # Actual deviation: grows when gimbal anomaly causes unmodelled thrust loss
+    actual_earth_deviation = 0.0 + 0.05 * (1 - np.exp(-(t - anomaly_start)/25)) * (t >= anomaly_start)
+    actual_earth_deviation[t >= correction_time] = actual_earth_deviation[correction_time-1] * np.exp(
+        -(t[t >= correction_time] - correction_time)/20)
+    # AI-predicted deviation: slightly smoothed, converges closely to actual (small prediction lag)
+    predicted_earth_deviation = 0.0 + 0.048 * (1 - np.exp(-(t - anomaly_start)/28)) * (t >= anomaly_start)
+    predicted_earth_deviation[t >= correction_time] = predicted_earth_deviation[correction_time-1] * np.exp(
+        -(t[t >= correction_time] - correction_time)/22)
+
+    # 6. Mars trajectory: true measured deviation vs DSN target plan (nominal = zero deviation)
+    true_mars_deviation = 0.0 + 0.06 * (1 - np.exp(-(t - anomaly_start)/30)) * (t >= anomaly_start)
+    true_mars_deviation[t >= correction_time] = true_mars_deviation[correction_time-1] * np.exp(
+        -(t[t >= correction_time] - correction_time)/15)
+    dsn_target_plan = np.zeros_like(t)  # Nominal profile: zero deviation from plan
 
     # Plot Settings
     plt.style.use('ggplot')
@@ -72,42 +79,52 @@ def generate_analytics():
     save_plot(fig1, 'fig_hci_metrics.png')
     plt.close(fig1)
 
-    # --- Plot 2: Conversational Latency Illusion ---
+    # --- Plot 2: Effective Command Latency Illusion ---
     fig2, ax2 = plt.subplots(figsize=(8, 5))
-    ax2.plot(t, actual_latency, label='Actual One-Way Light Delay', color='grey', linestyle='-.', linewidth=2)
-    ax2.plot(t, perceived_latency, label='Perceived Latency (PTB Illusion)', color=colors[0], linewidth=2)
+    ax2.plot(t, actual_latency, label='Actual One-Way Light-Time Delay (s)', color='grey', linestyle='-.', linewidth=2)
+    ax2.plot(t, perceived_latency, label='Effective Command Latency / PTB (s)', color=colors[0], linewidth=2)
     ax2.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly Trigger')
     ax2.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation')
     ax2.set_xlabel('Simulation Time (s)')
     ax2.set_ylabel('Latency (s)')
-    ax2.set_title('Conversational Latency Illusion over Distance')
+    ax2.set_title('Effective Command Latency: Actual vs PTB-Mediated')
     ax2.legend()
     save_plot(fig2, 'fig_latency_illusion.pdf')
     save_plot(fig2, 'fig_latency_illusion.png')
     plt.close(fig2)
 
-    # --- Plot 3: Earth Path Error ---
+    # --- Plot 3: Earth AI — Actual Orbital Deviation vs AI Predicted Deviation ---
     fig3, ax3 = plt.subplots(figsize=(8, 5))
-    ax3.plot(t, earth_error, label='Earth Path Error (Actual vs AI Predicted)', color='#ff3a5c', linewidth=2)
+    ax3.plot(t, actual_earth_deviation, label='Actual Orbital Deviation (%)',
+             color='#ff3a5c', linewidth=2)
+    ax3.plot(t, predicted_earth_deviation, label='Earth AI Predicted Deviation (%)',
+             color='#0072ff', linewidth=2, linestyle='--')
+    ax3.fill_between(t, actual_earth_deviation, predicted_earth_deviation,
+                     alpha=0.15, color='orange', label='Prediction Error Envelope')
     ax3.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly Trigger')
     ax3.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation')
     ax3.set_xlabel('Simulation Time (s)')
-    ax3.set_ylabel('Deviation Error (%)')
-    ax3.set_title('Earth AI Orbital Deviation Error')
-    ax3.legend()
+    ax3.set_ylabel('Trajectory Deviation (%)')
+    ax3.set_title('Earth AI: Actual vs Predicted Orbital Deviation')
+    ax3.legend(fontsize=8)
     save_plot(fig3, 'fig_earth_path_error.pdf')
     save_plot(fig3, 'fig_earth_path_error.png')
     plt.close(fig3)
 
-    # --- Plot 4: Mars Path Error ---
+    # --- Plot 4: Mars Cabin — True Path vs DSN Target Plan ---
     fig4, ax4 = plt.subplots(figsize=(8, 5))
-    ax4.plot(t, mars_error, label='Mars Path Error (True vs DSN Target Plan)', color='#ff007f', linewidth=2)
+    ax4.plot(t, true_mars_deviation, label='True Measured Trajectory Deviation (%)',
+             color='#ff007f', linewidth=2)
+    ax4.plot(t, dsn_target_plan, label='DSN Target Plan — Nominal Profile (%)',
+             color='#00b300', linewidth=2, linestyle='--')
+    ax4.fill_between(t, true_mars_deviation, dsn_target_plan,
+                     alpha=0.15, color='red', label=r'$\Delta_k$ Reconciliation Gap')
     ax4.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly Trigger')
     ax4.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation')
     ax4.set_xlabel('Simulation Time (s)')
-    ax4.set_ylabel('Deviation Error (%)')
-    ax4.set_title('Mars Cabin Reality Overlay Error')
-    ax4.legend()
+    ax4.set_ylabel('Trajectory Deviation (%)')
+    ax4.set_title('Mars Cabin: True Path vs DSN Target Plan')
+    ax4.legend(fontsize=8)
     save_plot(fig4, 'fig_mars_path_error.pdf')
     save_plot(fig4, 'fig_mars_path_error.png')
     plt.close(fig4)
