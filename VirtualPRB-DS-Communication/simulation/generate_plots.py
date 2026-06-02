@@ -79,31 +79,48 @@ def generate_analytics():
         shutil.copy2(path_base, path_paper)
         print(f"Saved {filename} to {path_base} and {path_paper}")
         
-    # --- Plot 1: HCI Metrics (SPI, CLI, SA Sync) ---
+    # --- Plot 1: HCI / Operational Metrics (SCET x-axis only — all metrics are spacecraft-side) ---
     fig1, ax1 = plt.subplots(figsize=(8, 5))
-    ax1.plot(t, spi, label='Social Presence Index (SPI)', color=colors[0], linewidth=2)
-    ax1.plot(t, cli, label='Cognitive Load Index (CLI)', color=colors[1], linewidth=2)
-    ax1.plot(t, sa_sync, label='Shared SA Sync Rate', color=colors[2], linewidth=2)
-    ax1.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly Trigger')
-    ax1.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation')
-    ax1.set_xlabel('Simulation Time (s)')
+    ax1.plot(t, spi, label='Operator Presence Fidelity Index (OPFI)', color=colors[0], linewidth=2)
+    ax1.plot(t, cli, label='Operator Cognitive Load Index (OCLI)', color=colors[1], linewidth=2)
+    ax1.plot(t, sa_sync, label='State Synchronization Accuracy (SSA)', color=colors[2], linewidth=2)
+    ax1.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly @ SCET T+01:30')
+    ax1.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation @ SCET T+02:10')
+    # Single SCET axis — Earth does not observe these metrics in real-time
+    ax1.xaxis.set_major_formatter(mticker.FuncFormatter(fmt_scet))
+    ax1.set_xlabel('Spacecraft Event Time — SCET (T+MM:SS)')
     ax1.set_ylabel('Percentage (%)')
-    ax1.set_title('PTB Human-Computer Interaction Metrics')
-    ax1.legend()
+    ax1.set_title('PTB Onboard Operational Performance Metrics')
+    ax1.legend(fontsize=8)
     save_plot(fig1, 'fig_hci_metrics.pdf')
     save_plot(fig1, 'fig_hci_metrics.png')
     plt.close(fig1)
 
-    # --- Plot 2: Effective Command Latency Illusion ---
-    fig2, ax2 = plt.subplots(figsize=(8, 5))
-    ax2.plot(t, actual_latency, label='Actual One-Way Light-Time Delay (s)', color='grey', linestyle='-.', linewidth=2)
-    ax2.plot(t, perceived_latency, label='Effective Command Latency / PTB (s)', color=colors[0], linewidth=2)
-    ax2.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly Trigger')
-    ax2.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation')
-    ax2.set_xlabel('Simulation Time (s)')
+    # --- Plot 2: Effective Command Latency — Dual SCET/ERT axes ---
+    # Actual light-time delay is a geometric property (both endpoints); ECL is crew-perceived
+    # Bottom: SCET (crew mission clock), Top: ERT (Earth ground clock = SCET + m)
+    fig2, ax2 = plt.subplots(figsize=(9, 5.5))
+    plt.subplots_adjust(top=0.82)
+    ax2.plot(t, actual_latency, label='Actual One-Way Light-Time Delay — m(t) (s)',
+             color='grey', linestyle='-.', linewidth=2)
+    ax2.plot(t, perceived_latency, label='Effective Command Latency via PTB (s)',
+             color=colors[0], linewidth=2)
+    ax2.fill_between(t, actual_latency, perceived_latency,
+                     alpha=0.10, color='blue', label='PTB Latency Masking Envelope')
+    ax2.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6,
+                label='Anomaly @ SCET T+01:30')
+    ax2.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6,
+                label='Reconciliation @ SCET T+02:10')
+    # Bottom axis: SCET (spacecraft clock — crew perspective)
+    ax2.xaxis.set_major_formatter(mticker.FuncFormatter(fmt_scet))
+    ax2.set_xlabel('Spacecraft Event Time — SCET (T+MM:SS)', labelpad=6)
     ax2.set_ylabel('Latency (s)')
-    ax2.set_title('Effective Command Latency: Actual vs PTB-Mediated')
-    ax2.legend()
+    ax2.set_title('Effective Command Latency: Actual Light-Time vs PTB-Mediated', pad=28)
+    ax2.legend(fontsize=8, loc='upper left')
+    # Top axis: ERT (Earth ground clock — offset by +m)
+    ax2_top = ax2.secondary_xaxis('top')
+    ax2_top.xaxis.set_major_formatter(mticker.FuncFormatter(fmt_ert))
+    ax2_top.set_xlabel('Earth Received Time — ERT (T+MM:SS)', labelpad=8)
     save_plot(fig2, 'fig_latency_illusion.pdf')
     save_plot(fig2, 'fig_latency_illusion.png')
     plt.close(fig2)
