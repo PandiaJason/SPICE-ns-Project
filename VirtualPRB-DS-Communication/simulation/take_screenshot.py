@@ -14,41 +14,39 @@ def capture_screenshots():
     # Wait for server to start
     time.sleep(3)
     
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        # Use a large 1080p resolution to capture the whole UI beautifully
-        page = browser.new_page(viewport={'width': 1920, 'height': 1080})
-        print("Navigating to dashboard...")
-        page.goto('http://localhost:5000')
-        
-        # 1. Nominal State
-        print("Waiting for nominal state (sim t ~30s)...")
-        time.sleep(10)
-        page.screenshot(path=os.path.join(paper_dir, 'fig_web_ui_nominal.png'))
-        print(f"Saved {os.path.join(paper_dir, 'fig_web_ui_nominal.png')}")
-        
-        # 2. Anomaly State
-        print("Waiting for anomaly state (sim t ~105s)...")
-        time.sleep(25)
-        page.screenshot(path=os.path.join(paper_dir, 'fig_web_ui_anomaly.png'))
-        print(f"Saved {os.path.join(paper_dir, 'fig_web_ui_anomaly.png')}")
-        
-        # Execute Correction
-        print("Executing Interception Correction...")
-        page.click('#btn-execute', timeout=5000)
-        
-        # 3. Reconciled State
-        print("Waiting for reconciliation to take effect (sim t ~140s)...")
-        time.sleep(15)
-        page.screenshot(path=os.path.join(paper_dir, 'fig_web_ui_reconciled.png'))
-        print(f"Saved {os.path.join(paper_dir, 'fig_web_ui_reconciled.png')}")
-        
-        browser.close()
-        
-    print("Shutting down server...")
-    server_process.terminate()
-    server_process.wait()
-    print("Screenshots captured successfully.")
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            # Use a large 1080p resolution to capture the whole UI beautifully
+            page = browser.new_page(viewport={'width': 1920, 'height': 1080})
+            print("Navigating to dashboard...")
+            page.goto('http://localhost:5000')
+            
+            # Wait for nominal state (sim t ~15s) with some initial telemetry lines drawn
+            print("Waiting for nominal state (sim t ~15s)...")
+            time.sleep(12)
+            
+            # 1. Dark Theme Screenshot in root
+            dark_path = os.path.join(base_dir, 'ui_screenshot.png')
+            page.screenshot(path=dark_path)
+            print(f"Saved dark theme screenshot to {dark_path}")
+            
+            # 2. Toggle to Light Theme
+            print("Toggling to light theme...")
+            page.click('#btn-theme-toggle', timeout=5000)
+            time.sleep(1) # Wait for theme transition
+            
+            # 3. Light Theme Screenshot in root
+            light_path = os.path.join(base_dir, 'ui_screenshot_light.png')
+            page.screenshot(path=light_path)
+            print(f"Saved light theme screenshot to {light_path}")
+            
+            browser.close()
+    finally:
+        print("Shutting down server...")
+        server_process.terminate()
+        server_process.wait()
+        print("Server shutdown completed.")
 
 if __name__ == '__main__':
     capture_screenshots()
