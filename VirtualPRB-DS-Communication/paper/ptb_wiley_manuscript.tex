@@ -245,11 +245,9 @@ As illustrated in Figure~\ref{fig:ptpu_arch}, the PTPU internal architecture cou
 At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communicates with spacecraft sensors, the PFC, and the Commander's Human-Machine Interface (HMI) dashboard via a universal SpaceWire or MIL-STD-1553 data bus. This isolation ensures that the predictive AI models never directly command thruster actuators without explicit authorization routed through the Commander HMI's reality overlay.
 
 
-% ── 4. Architecture of the Design ───────────────────────────────────────────
-\section{Architecture of the Design}
 
 
-% ── 5. Simulation Design ────────────────────────────────────────────────────
+% ── 4. Simulation Design ────────────────────────────────────────────────────
 \section{Simulation Design}
 \subsection{UI Design}
 The dashboard splits the workspace into two primary columns, establishing a clean visual separation of the communicative partners. Figure~\ref{fig:dashboard} illustrates the high-fidelity split-screen view.
@@ -302,7 +300,7 @@ gradual loss of thrust efficiency and a corresponding trajectory deviation:
 Under raw communication lag, the round-trip delay is initially set at \(2m = 120\) seconds, growing
 by 4 seconds per simulated minute to mimic the changing planetary geometry.
 
-% ── 5.1 Simulation Dynamics and HCI Analysis ────────────────────────────────
+% ── 4.1 Simulation Dynamics and HCI Analysis ────────────────────────────────
 \subsection{Simulation Dynamics and HCI Analysis}
 \subsubsection{Human-Computer Interaction (HCI) Metrics Formulation}
 To quantify the psychological and operational impact of the Predictive Temporal Bridge, the simulation continuously models four vital Human-Computer Interaction (HCI) metrics over the mission timeline $t$. These metrics are mathematically modeled as dynamic responses to the anomaly trigger time ($t_{anomaly} = 90$s) and the subsequent reconciliation time ($t_{recon} = 130$s).
@@ -390,7 +388,7 @@ By utilizing the Social Presence Index and Latency Illusion metrics, we observed
   \label{fig:hci_metrics}
 \end{figure}
 
-% ── 6. Discussion ───────────────────────────────────────────────────────────
+% ── 5. Discussion ───────────────────────────────────────────────────────────
 \section{Discussion}
 
 \subsection{Operational Paradigm Shift: Ground as a Predictive Cloud}
@@ -416,7 +414,7 @@ extreme-latency computer-mediated interfaces:
         the system must immediately escalate to a conservative, locally autonomous operational mode.
 \end{itemize}
 
-% ── 7. Conclusion ────────────────────────────────────────────────────────────
+% ── 6. Conclusion ────────────────────────────────────────────────────────────
 \section{Conclusion}
 
 The Predictive Temporal Bridge (PTB) offers a novel path forward for crewed interplanetary exploration,
