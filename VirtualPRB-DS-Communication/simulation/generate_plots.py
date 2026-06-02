@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 import shutil
 
 def generate_analytics():
@@ -10,10 +11,24 @@ def generate_analytics():
     
     os.makedirs(paper_dir, exist_ok=True)
     
-    # Simulation Time array
+    # Simulation Time array (SCET — Spacecraft Event Time, seconds from burn ignition)
     t = np.linspace(0, 300, 300)
     anomaly_start = 90
     correction_time = 130
+    m_delay = 60  # one-way light-time delay (s): 2m = 120s round-trip
+
+    # Time axis formatters: T+MM:SS Mission Elapsed Time
+    def fmt_scet(x, pos):
+        """Format SCET seconds as T+MM:SS (spacecraft local clock)."""
+        x = int(round(x))
+        if x < 0: return ''
+        return f'T+{x // 60:02d}:{x % 60:02d}'
+
+    def fmt_ert(x, pos):
+        """Format ERT seconds as T+MM:SS (Earth ground clock = SCET + m)."""
+        x = int(round(x + m_delay))
+        if x < 0: return ''
+        return f'T+{x // 60:02d}:{x % 60:02d}'
     
     # 1. Social Presence Index (SPI)
     # Starts at 95%, dips during anomaly, recovers after correction
@@ -94,37 +109,55 @@ def generate_analytics():
     plt.close(fig2)
 
     # --- Plot 3: Earth AI — Actual Orbital Deviation vs AI Predicted Deviation ---
-    fig3, ax3 = plt.subplots(figsize=(8, 5))
+    # X-axis (bottom): Earth Received Time (ERT = SCET + m) — ground station perspective
+    # X-axis (top):    Spacecraft Event Time (SCET) — what epoch on Mars this corresponds to
+    fig3, ax3 = plt.subplots(figsize=(9, 5.5))
+    plt.subplots_adjust(top=0.82)
     ax3.plot(t, actual_earth_deviation, label='Actual Orbital Deviation (%)',
              color='#ff3a5c', linewidth=2)
     ax3.plot(t, predicted_earth_deviation, label='Earth AI Predicted Deviation (%)',
              color='#0072ff', linewidth=2, linestyle='--')
     ax3.fill_between(t, actual_earth_deviation, predicted_earth_deviation,
                      alpha=0.15, color='orange', label='Prediction Error Envelope')
-    ax3.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly Trigger')
-    ax3.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation')
-    ax3.set_xlabel('Simulation Time (s)')
+    ax3.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label=f'Anomaly @ SCET T+01:30')
+    ax3.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label=f'Reconciliation @ SCET T+02:10')
+    # Bottom axis: ERT (Earth ground clock)
+    ax3.xaxis.set_major_formatter(mticker.FuncFormatter(fmt_ert))
+    ax3.set_xlabel('Earth Received Time — ERT (T+MM:SS)', labelpad=6)
     ax3.set_ylabel('Trajectory Deviation (%)')
-    ax3.set_title('Earth AI: Actual vs Predicted Orbital Deviation')
-    ax3.legend(fontsize=8)
+    ax3.set_title('Earth AI: Actual vs Predicted Orbital Deviation', pad=28)
+    ax3.legend(fontsize=8, loc='upper right')
+    # Top axis: SCET (spacecraft clock)
+    ax3_top = ax3.secondary_xaxis('top')
+    ax3_top.xaxis.set_major_formatter(mticker.FuncFormatter(fmt_scet))
+    ax3_top.set_xlabel('Spacecraft Event Time — SCET (T+MM:SS)', labelpad=8)
     save_plot(fig3, 'fig_earth_path_error.pdf')
     save_plot(fig3, 'fig_earth_path_error.png')
     plt.close(fig3)
 
     # --- Plot 4: Mars Cabin — True Path vs DSN Target Plan ---
-    fig4, ax4 = plt.subplots(figsize=(8, 5))
+    # X-axis (bottom): Spacecraft Event Time (SCET) — crew's local mission clock
+    # X-axis (top):    Earth Received Time (ERT = SCET + m) — when Earth sees this epoch
+    fig4, ax4 = plt.subplots(figsize=(9, 5.5))
+    plt.subplots_adjust(top=0.82)
     ax4.plot(t, true_mars_deviation, label='True Measured Trajectory Deviation (%)',
              color='#ff007f', linewidth=2)
     ax4.plot(t, dsn_target_plan, label='DSN Target Plan — Nominal Profile (%)',
              color='#00b300', linewidth=2, linestyle='--')
     ax4.fill_between(t, true_mars_deviation, dsn_target_plan,
                      alpha=0.15, color='red', label=r'$\Delta_k$ Reconciliation Gap')
-    ax4.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly Trigger')
-    ax4.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation')
-    ax4.set_xlabel('Simulation Time (s)')
+    ax4.axvline(x=anomaly_start, color='red', linestyle='--', alpha=0.6, label='Anomaly @ SCET T+01:30')
+    ax4.axvline(x=correction_time, color='green', linestyle='--', alpha=0.6, label='Reconciliation @ SCET T+02:10')
+    # Bottom axis: SCET (spacecraft local clock)
+    ax4.xaxis.set_major_formatter(mticker.FuncFormatter(fmt_scet))
+    ax4.set_xlabel('Spacecraft Event Time — SCET (T+MM:SS)', labelpad=6)
     ax4.set_ylabel('Trajectory Deviation (%)')
-    ax4.set_title('Mars Cabin: True Path vs DSN Target Plan')
-    ax4.legend(fontsize=8)
+    ax4.set_title('Mars Cabin: True Path vs DSN Target Plan', pad=28)
+    ax4.legend(fontsize=8, loc='upper right')
+    # Top axis: ERT (Earth ground clock — offset by +m)
+    ax4_top = ax4.secondary_xaxis('top')
+    ax4_top.xaxis.set_major_formatter(mticker.FuncFormatter(fmt_ert))
+    ax4_top.set_xlabel('Earth Received Time — ERT (T+MM:SS)', labelpad=8)
     save_plot(fig4, 'fig_mars_path_error.pdf')
     save_plot(fig4, 'fig_mars_path_error.png')
     plt.close(fig4)
