@@ -250,29 +250,8 @@ As illustrated in Figure~\ref{fig:ptpu_arch}, the PTPU internal architecture cou
 At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communicates with spacecraft sensors, the PFC, and the Commander's Human-Machine Interface (HMI) dashboard via a universal SpaceWire or MIL-STD-1553 data bus. This isolation ensures that the predictive AI models never directly command thruster actuators without explicit authorization routed through the Commander HMI's reality overlay.
 
 
-% ── 4. Simulation ───────────────────────────────────────────────────────────
-\section{Simulation Framework and Visual Design}
-
-\subsection{Methodology and Scenario Design}
-To evaluate the PTB, we implemented a high-fidelity, web-based interactive simulation. The backend is powered
-by a Python Flask server utilizing Server-Sent Events (SSE) to stream real-time orbital and thermal telemetry
-at 2~Hz, simulating a Mars periapsis-raising orbital insertion burn.
-The client interface is a premium glassmorphic dashboard built using standard HTML5 and CSS3,
-incorporating dynamic HTML5 Canvas rendering for real-time trajectory deviation curves, live
-system logs, and a dedicated Social Presence HUD.
-
-The simulated scenario involves a crewed transit vehicle approaching Mars periapsis. At mission clock
-\(t = 90\)~seconds, a progressive gimbal seal thermal degradation anomaly is injected, causing a
-gradual loss of thrust efficiency and a corresponding trajectory deviation:
-\begin{align}
-  T_{\text{port}}(t) &= T_{\text{nom}}(t) + 12\bigl(1 - e^{-(t-90)/20}\bigr)~^{\circ}\text{C}, \\
-  \eta_{\text{thrust}}(t) &= \eta_{\text{nom}}(t) - 3.2\bigl(1 - e^{-(t-90)/25}\bigr)~\%, \\
-  \delta_{\text{traj}}(t) &= \delta_{\text{nom}}(t) + 0.04\bigl(1 - e^{-(t-90)/30}\bigr)~\%.
-\end{align}
-Under raw communication lag, the round-trip delay is initially set at \(2m = 120\) seconds, growing
-by 4 seconds per simulated minute to mimic the changing planetary geometry.
-
-\subsection{Web Dashboard Visual Architecture}
+% ── 4. Architecture of the Design ───────────────────────────────────────────
+\section{Architecture of the Design}
 The dashboard splits the workspace into two primary columns, establishing a clean visual separation of the communicative partners. Figure~\ref{fig:dashboard} illustrates the high-fidelity split-screen view.
 
 \begin{figure*}[htbp]
@@ -304,7 +283,27 @@ The interface is divided into the following functional panels:
 
 \textit{Note: A complete animated demonstration of the PTB dashboard in action (showing dynamic tabs, anomaly recovery, and reconciliation) is available at our public repository: \url{https://github.com/PandiaJason/SPICE-ns-Project/tree/main/VirtualPRB-DS-Communication}.}
 
-% ── 5. Simulation Dynamics and HCI Analysis ────────────────────────────────
+% ── 5. Simulation Design ────────────────────────────────────────────────────
+\section{Simulation Design}
+To evaluate the PTB, we implemented a high-fidelity, web-based interactive simulation. The backend is powered
+by a Python Flask server utilizing Server-Sent Events (SSE) to stream real-time orbital and thermal telemetry
+at 2~Hz, simulating a Mars periapsis-raising orbital insertion burn.
+The client interface is a premium glassmorphic dashboard built using standard HTML5 and CSS3,
+incorporating dynamic HTML5 Canvas rendering for real-time trajectory deviation curves, live
+system logs, and a dedicated Social Presence HUD.
+
+The simulated scenario involves a crewed transit vehicle approaching Mars periapsis. At mission clock
+\(t = 90\)~seconds, a progressive gimbal seal thermal degradation anomaly is injected, causing a
+gradual loss of thrust efficiency and a corresponding trajectory deviation:
+\begin{align}
+  T_{\text{port}}(t) &= T_{\text{nom}}(t) + 12\bigl(1 - e^{-(t-90)/20}\bigr)~^{\circ}\text{C}, \\
+  \eta_{\text{thrust}}(t) &= \eta_{\text{nom}}(t) - 3.2\bigl(1 - e^{-(t-90)/25}\bigr)~\%, \\
+  \delta_{\text{traj}}(t) &= \delta_{\text{nom}}(t) + 0.04\bigl(1 - e^{-(t-90)/30}\bigr)~\%.
+\end{align}
+Under raw communication lag, the round-trip delay is initially set at \(2m = 120\) seconds, growing
+by 4 seconds per simulated minute to mimic the changing planetary geometry.
+
+% ── 6. Simulation Dynamics and HCI Analysis ────────────────────────────────
 \section{Simulation Dynamics and HCI Analysis}
 \subsection{Human-Computer Interaction (HCI) Metrics Formulation}
 To quantify the psychological and operational impact of the Predictive Temporal Bridge, the simulation continuously models four vital Human-Computer Interaction (HCI) metrics over the mission timeline $t$. These metrics are mathematically modeled as dynamic responses to the anomaly trigger time ($t_{anomaly} = 90$s) and the subsequent reconciliation time ($t_{recon} = 130$s).
@@ -392,7 +391,7 @@ By utilizing the Social Presence Index and Latency Illusion metrics, we observed
   \label{fig:hci_metrics}
 \end{figure}
 
-% ── 6. Discussion ───────────────────────────────────────────────────────────
+% ── 7. Discussion ───────────────────────────────────────────────────────────
 \section{Discussion}
 
 \subsection{Operational Paradigm Shift: Ground as a Predictive Cloud}
