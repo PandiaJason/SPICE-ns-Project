@@ -99,7 +99,16 @@ of the human interlocutors. The human commander on Mars receives ground commands
 instantaneous and perfectly synchronized with their immediate physical state, restoring
 a feeling of synchronous presence.
 
-% ── 2. Theoretical Framework ─────────────────────────────────────────────────
+% ── 2. Related Works ─────────────────────────────────────────────────────────
+\section{Related Works}
+
+The psychological and operational impacts of deep-space communication latency have been extensively documented. Recent studies by \cite{diamond2025} highlight how multi-minute delays between Mars and Earth induce severe mission controller workload, cognitive friction, and interpersonal stress, severely hindering collaborative decision-making. 
+
+To address these latency challenges, the aerospace community has traditionally relied on network-level routing paradigms or predictive mechanical displays. For instance, the Smith Predictor \cite{sheridan1993} and NASA JPL's ``phantom robot'' \cite{bejczy1990} successfully close the mechanical control loop in robotic teleoperation by overlaying predicted kinematic states over delayed video feeds. However, these classical systems treat the human operator in isolation, failing to address the social and conversational desynchronization experienced by human crews.
+
+More recently, research has shifted toward algorithmic mediation. \cite{mavrakis2025} proposed integrating human-in-the-loop AI to tackle space communication challenges, emphasizing the need for intelligent systems that assist rather than replace human operators. Parallel to this, the broader field of AI-Mediated Communication (AI-MC) \cite{hancock2020} explores how intelligent agents can alter interpersonal interactions. While current AI-MC applications primarily focus on content modification (e.g., smart replies) in near-instantaneous networks, the Predictive Temporal Bridge diverges by utilizing AI to synchronize the temporal \textit{delivery} and \textit{context} of information, bridging the physical light-time gap to restore interpersonal co-presence.
+
+% ── 3. Theoretical Framework ─────────────────────────────────────────────────
 \section{Theoretical Framework}
 
 \subsection{Social Presence and Interpersonal Latency in CMC}
@@ -164,7 +173,7 @@ The PTB resolves this temporal asymmetry by utilizing the Earth AI to mathematic
 project Earth's perception forward to the crew's immediate future (\(t + m\)),
 re-establishing a shared temporal anchor and a synchronized mental model.
 
-% ── 3. PTB Architecture ──────────────────────────────────────────────────────
+% ── 4. PTB Architecture ──────────────────────────────────────────────────────
 \section{The Predictive Temporal Bridge Architecture}
 
 The PTB consists of three distinct components: the Mars Broadcast Module, the Earth
@@ -247,7 +256,7 @@ At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communica
 
 
 
-% ── 4. Simulation Design ────────────────────────────────────────────────────
+% ── 5. Simulation Design ────────────────────────────────────────────────────
 \section{Simulation Design}
 \subsection{UI Design}
 The dashboard splits the workspace into two primary columns, establishing a clean visual separation of the communicative partners. Figure~\ref{fig:dashboard} illustrates the high-fidelity split-screen view.
@@ -300,7 +309,7 @@ gradual loss of thrust efficiency and a corresponding trajectory deviation:
 Under raw communication lag, the round-trip delay is initially set at \(2m = 120\) seconds, growing
 by 4 seconds per simulated minute to mimic the changing planetary geometry.
 
-% ── 4.1 Simulation Dynamics and HCI Analysis ────────────────────────────────
+% ── 5.1 Simulation Dynamics and HCI Analysis ────────────────────────────────
 \subsection{Simulation Dynamics and HCI Analysis}
 \subsubsection{Human-Computer Interaction (HCI) Metrics Formulation}
 To quantify the psychological and operational impact of the Predictive Temporal Bridge, the simulation continuously models four vital Human-Computer Interaction (HCI) metrics over the mission timeline $t$. These metrics are mathematically modeled as dynamic responses to the anomaly trigger time ($t_{anomaly} = 90$s) and the subsequent reconciliation time ($t_{recon} = 130$s).
@@ -336,7 +345,7 @@ These metrics dynamically recover to their nominal baseline states exponentially
 
 
 
-% ── 5. Results and Discussion ───────────────────────────────────────────────
+% ── 6. Results and Discussion ───────────────────────────────────────────────
 \section{Results and Discussion}
 
 \subsection{Results}
@@ -419,7 +428,7 @@ extreme-latency computer-mediated interfaces:
         the system must immediately escalate to a conservative, locally autonomous operational mode.
 \end{itemize}
 
-% ── 6. Conclusion ────────────────────────────────────────────────────────────
+% ── 7. Conclusion ────────────────────────────────────────────────────────────
 \section{Conclusion}
 
 The Predictive Temporal Bridge (PTB) offers a novel path forward for crewed interplanetary exploration,
