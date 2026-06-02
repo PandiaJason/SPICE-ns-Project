@@ -116,7 +116,7 @@ def generate_analytics():
     ax2.set_xlabel('Spacecraft Event Time — SCET (T+MM:SS)', labelpad=6)
     ax2.set_ylabel('Latency (s)')
     ax2.set_title('Effective Command Latency: Actual Light-Time vs PTB-Mediated', pad=28)
-    ax2.legend(fontsize=8, loc='upper left')
+    ax2.legend(fontsize=8, loc='upper right')
     # Top axis: ERT (Earth ground clock — offset by +m)
     ax2_top = ax2.secondary_xaxis('top')
     ax2_top.xaxis.set_major_formatter(mticker.FuncFormatter(fmt_ert))
