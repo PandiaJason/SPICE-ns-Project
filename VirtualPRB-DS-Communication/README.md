@@ -12,10 +12,10 @@ The Predictive Temporal Bridge architecture solves this by creating a "virtual s
 
 The PTB dashboard is specifically designed to visualize the temporal disconnection and psychological state of the operators through a split-screen interface.
 
-![Dashboard UI Screenshot](ui_screenshot.png)
+<img src="ui_screenshot.png" width="100%" alt="Dashboard UI Screenshot">
 *High-fidelity split-screen view of the Predictive Temporal Bridge Simulation UI.*
 
-![Dashboard Interface Recording](simulation_record_20260602_090408.gif)
+<img src="simulation_record_20260602_090408.gif" width="100%" alt="Dashboard Interface Recording">
 *Animated demonstration of the PTB dashboard in action (showing dynamic tabs, anomaly recovery, and reconciliation).*
 
 ### Dashboard Features:
