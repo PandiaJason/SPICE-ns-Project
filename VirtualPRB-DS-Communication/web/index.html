@@ -1040,32 +1040,32 @@
         <div class="social-hud">
             <div class="hud-graph-container">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                    <div class="widget-title" style="margin-bottom: 0;">PTB Human-Computer Interaction Metrics</div>
+                    <div class="widget-title" style="margin-bottom: 0;">PTB Onboard Operational Performance Metrics</div>
                     <div class="canvas-legend" style="position: relative; top: 0; right: 0; box-shadow: none; background: transparent; border: none; padding: 0;">
-                        <div class="legend-item"><span class="legend-color" style="background:#00f2fe;"></span><span class="legend-label">SPI</span></div>
-                        <div class="legend-item"><span class="legend-color" style="background:#ff007f;"></span><span class="legend-label">CLI</span></div>
-                        <div class="legend-item"><span class="legend-color" style="background:#b58000;"></span><span class="legend-label">Latency</span></div>
-                        <div class="legend-item"><span class="legend-color" style="background:#16a34a;"></span><span class="legend-label">SA Sync</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background:#00f2fe;"></span><span class="legend-label">OPFI</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background:#ff007f;"></span><span class="legend-label">OCLI</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background:#b58000;"></span><span class="legend-label">ECL</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background:#16a34a;"></span><span class="legend-label">SSA</span></div>
                     </div>
                 </div>
                 <canvas id="hci-canvas" width="1000" height="150" style="flex-grow: 1; border: 1px solid rgba(255,255,255,0.05);"></canvas>
             </div>
             <div class="hud-metrics-container">
                 <div class="hud-metric">
-                    <div class="hud-metric-label" style="color:#00f2fe;">Social Presence (SPI)</div>
-                    <div class="hud-metric-val" id="social-presence" style="font-size: 14px; color:#00f2fe;">96% (High)</div>
+                    <div class="hud-metric-label" style="color:#00f2fe;">Presence Fidelity (OPFI)</div>
+                    <div class="hud-metric-val" id="presence-fidelity" style="font-size: 14px; color:#00f2fe;">96% (High)</div>
                 </div>
                 <div class="hud-metric">
-                    <div class="hud-metric-label" style="color:#ff007f;">Cognitive Load (CLI)</div>
+                    <div class="hud-metric-label" style="color:#ff007f;">Cognitive Load (OCLI)</div>
                     <div class="hud-metric-val" id="cognitive-load" style="font-size: 14px; color:#ff007f;">24% (Low)</div>
                 </div>
                 <div class="hud-metric">
-                    <div class="hud-metric-label" style="color:#b58000;">Latency Illusion (Lat)</div>
-                    <div class="hud-metric-val" id="latency-illusion" style="font-size: 14px; color:#b58000;">0.4s (Near-Zero)</div>
+                    <div class="hud-metric-label" style="color:#b58000;">Effective Latency (ECL)</div>
+                    <div class="hud-metric-val" id="effective-latency" style="font-size: 14px; color:#b58000;">0.4s (Near-Zero)</div>
                 </div>
                 <div class="hud-metric">
-                    <div class="hud-metric-label" style="color:#16a34a;">Shared SA Sync (SA)</div>
-                    <div class="hud-metric-val" id="sa-sync" style="font-size: 14px; color:#16a34a;">99.8% (Aligned)</div>
+                    <div class="hud-metric-label" style="color:#16a34a;">Sync Accuracy (SSA)</div>
+                    <div class="hud-metric-val" id="sync-accuracy" style="font-size: 14px; color:#16a34a;">99.8% (Aligned)</div>
                 </div>
             </div>
         </div>
@@ -1100,10 +1100,10 @@
         const marsHistActual = [];
         const marsHistPred = [];
         
-        const histSpi = [];
-        const histCli = [];
-        const histLat = [];
-        const histSa = [];
+        const histOpfi = [];
+        const histOcli = [];
+        const histEcl = [];
+        const histSsa = [];
 
         // Canvas drawing
         const earthCanvas = document.getElementById('earth-canvas');
@@ -1180,7 +1180,7 @@
             ctx.fillText(`Scale: +/- ${(maxVal).toFixed(4)}% Dev`, 10, height - 10);
         }
 
-        function drawHCIPlot(ctx, width, height, dataSpi, dataCli, dataLat, dataSa, currentT) {
+        function drawHCIPlot(ctx, width, height, dataOpfi, dataOcli, dataEcl, dataSsa, currentT) {
             ctx.clearRect(0, 0, width, height);
             const isLight = document.body.classList.contains('light-theme');
             
@@ -1229,10 +1229,10 @@
             }
 
             // Latency drawn on 0-10 scale, others 0-100
-            drawLine(dataLat, '#b58000', 10);
-            drawLine(dataCli, '#ff007f', 100);
-            drawLine(dataSpi, '#00f2fe', 100);
-            drawLine(dataSa, '#16a34a', 100);
+            drawLine(dataEcl, '#b58000', 10);
+            drawLine(dataOcli, '#ff007f', 100);
+            drawLine(dataOpfi, '#00f2fe', 100);
+            drawLine(dataSsa, '#16a34a', 100);
 
             // Draw axis labels and scales in the margins
             ctx.fillStyle = isLight ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.4)';
@@ -1456,37 +1456,37 @@
                 btnExecute.textContent = 'All Systems Synchronous';
             }
 
-            // Dynamic Social HUD Metrics (reconciliation index)
-            const presenceVal = document.getElementById('social-presence');
+            // Dynamic HUD Metrics (reconciliation index)
+            const presenceVal = document.getElementById('presence-fidelity');
             const loadVal = document.getElementById('cognitive-load');
-            const latencyIllusionVal = document.getElementById('latency-illusion');
-            const saSyncVal = document.getElementById('sa-sync');
+            const latencyIllusionVal = document.getElementById('effective-latency');
+            const saSyncVal = document.getElementById('sync-accuracy');
             const linkVal = document.getElementById('link-val');
 
             if (mCab.anomaly && !ePred.anomaly) {
                 linkVal.textContent = 'DESYNCHRONIZED (ANOMALY)';
                 linkVal.className = 'stat-val red';
-                presenceVal.textContent = '80% (Friction)';
-                loadVal.textContent = '75% (High Stress)';
+                presenceVal.textContent = '80% (Transient Degradation)';
+                loadVal.textContent = '75% (High Workload)';
                 saSyncVal.textContent = '79.5% (Desynchronized)';
-                latencyIllusionVal.textContent = '3.5s (Illusion Broken)';
+                latencyIllusionVal.textContent = '3.5s (Anomaly Window)';
                 
-                histSpi.push(80);
-                histCli.push(75);
-                histLat.push(3.5);
-                histSa.push(79.5);
+                histOpfi.push(80);
+                histOcli.push(75);
+                histEcl.push(3.5);
+                histSsa.push(79.5);
             } else if (data.correction_applied) {
                 linkVal.textContent = 'SYNCHRONIZED';
                 linkVal.className = 'stat-val green';
                 presenceVal.textContent = '99% (Perfect Partner)';
-                loadVal.textContent = '18% (Low Recovery)';
-                saSyncVal.textContent = '99.9% (Absolute Aligned)';
+                loadVal.textContent = '18% (Low Workload)';
+                saSyncVal.textContent = '99.9% (Fully Synchronized)';
                 latencyIllusionVal.textContent = '0.5s (Near-Zero)';
                 
-                histSpi.push(99);
-                histCli.push(18);
-                histLat.push(0.5);
-                histSa.push(99.9);
+                histOpfi.push(99);
+                histOcli.push(18);
+                histEcl.push(0.5);
+                histSsa.push(99.9);
             } else {
                 linkVal.textContent = 'SYNCHRONIZED';
                 linkVal.className = 'stat-val green';
@@ -1495,10 +1495,10 @@
                 saSyncVal.textContent = '99.8% (Aligned)';
                 latencyIllusionVal.textContent = '0.4s (Near-Zero)';
                 
-                histSpi.push(96);
-                histCli.push(22);
-                histLat.push(0.4);
-                histSa.push(99.8);
+                histOpfi.push(96);
+                histOcli.push(22);
+                histEcl.push(0.4);
+                histSsa.push(99.8);
             }
 
             // Manage circular queue history data for graphics drawing
@@ -1506,10 +1506,10 @@
             if (earthHistPred.length >= 60) earthHistPred.shift();
             if (marsHistActual.length >= 60) marsHistActual.shift();
             if (marsHistPred.length >= 60) marsHistPred.shift();
-            if (histSpi.length >= 60) histSpi.shift();
-            if (histCli.length >= 60) histCli.shift();
-            if (histLat.length >= 60) histLat.shift();
-            if (histSa.length >= 60) histSa.shift();
+            if (histOpfi.length >= 60) histOpfi.shift();
+            if (histOcli.length >= 60) histOcli.shift();
+            if (histEcl.length >= 60) histEcl.shift();
+            if (histSsa.length >= 60) histSsa.shift();
 
             earthHistActual.push(eRec.traj_dev);
             earthHistPred.push(ePred.traj_dev);
@@ -1519,7 +1519,7 @@
             // Draw plots
             drawPlot(ctxEarth, 800, 150, earthHistActual, earthHistPred, "Earth Predictor", '#00f2fe', '#ff3a5c');
             drawPlot(ctxMars, 800, 150, marsHistActual, marsHistPred, "Cabin Overlay", '#ff007f', '#00f2fe');
-            drawHCIPlot(ctxHci, hciCanvas.width, hciCanvas.height, histSpi, histCli, histLat, histSa, data.t);
+            drawHCIPlot(ctxHci, hciCanvas.width, hciCanvas.height, histOpfi, histOcli, histEcl, histSsa, data.t);
 
             // Logging state changes inside UI
             const timeStr = new Date().toLocaleTimeString();
@@ -1702,10 +1702,10 @@
                         earthHistPred.length = 0;
                         marsHistActual.length = 0;
                         marsHistPred.length = 0;
-                        histSpi.length = 0;
-                        histCli.length = 0;
-                        histLat.length = 0;
-                        histSa.length = 0;
+                        histOpfi.length = 0;
+                        histOcli.length = 0;
+                        histEcl.length = 0;
+                        histSsa.length = 0;
                         isAnomalyLogged = false;
                         isEarthAnomalyLogged = false;
                         isCorrectionLogged = false;
