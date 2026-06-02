@@ -251,7 +251,7 @@ At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communica
 
 
 % ── 4. Simulation ───────────────────────────────────────────────────────────
-\section{Simulation}
+\section{Simulation Framework and Visual Design}
 
 \subsection{Methodology and Scenario Design}
 To evaluate the PTB, we implemented a high-fidelity, web-based interactive simulation. The backend is powered
@@ -304,6 +304,8 @@ The interface is divided into the following functional panels:
 
 \textit{Note: A complete animated demonstration of the PTB dashboard in action (showing dynamic tabs, anomaly recovery, and reconciliation) is available at our public repository: \url{https://github.com/PandiaJason/SPICE-ns-Project/tree/main/VirtualPRB-DS-Communication}.}
 
+% ── 5. Simulation Dynamics and HCI Analysis ────────────────────────────────
+\section{Simulation Dynamics and HCI Analysis}
 \subsection{Human-Computer Interaction (HCI) Metrics Formulation}
 To quantify the psychological and operational impact of the Predictive Temporal Bridge, the simulation continuously models four vital Human-Computer Interaction (HCI) metrics over the mission timeline $t$. These metrics are mathematically modeled as dynamic responses to the anomaly trigger time ($t_{anomaly} = 90$s) and the subsequent reconciliation time ($t_{recon} = 130$s).
 
@@ -335,8 +337,7 @@ To quantify the psychological and operational impact of the Predictive Temporal 
 
 These metrics dynamically recover to their nominal baseline states exponentially after the correction burn is executed at $t_{recon}$.
 
-% ── 5. Results and Analysis ──────────────────────────────────────────────────
-\section{Results and Analysis}
+
 
 \subsection{System Prediction Accuracy}
 Across multiple runs of the 300-second orbital insertion simulation, the Earth AI's forward-projection
