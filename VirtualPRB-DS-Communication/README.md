@@ -15,9 +15,6 @@ The PTB dashboard is specifically designed to visualize the temporal disconnecti
 <img src="ui_screenshot.png" width="100%" alt="Dashboard UI Screenshot">
 *High-fidelity split-screen view of the Predictive Temporal Bridge Simulation UI.*
 
-<img src="simulation_record_20260602_090408.gif" width="100%" alt="Dashboard Interface Recording">
-*Animated demonstration of the PTB dashboard in action (showing dynamic tabs, anomaly recovery, and reconciliation).*
-
 ### Dashboard Features:
 - **Interactive UI:** A split-screen design mimicking Earth Command and the Mars Cabin.
 - **Live Telemetry:** Dynamic simulation of spacecraft physics, orbital deviations, and thermal loads.
@@ -39,6 +36,11 @@ The right panel represents the live environment onboard the spacecraft.
 
 ### Social/Psychological HUD (Bottom Panel)
 The bottom graph provides a continuous, real-time readout of the 4 HCI metrics. You can directly observe how the crew's psychological state reacts dynamically to the anomaly on the Reality Overlay, and how it recovers once the reconciliation command is executed.
+
+## The Interface in Action
+
+<img src="simulation_record_20260602_090408.gif" width="100%" alt="Dashboard Interface Recording">
+*Animated demonstration of the PTB dashboard in action (showing dynamic tabs, anomaly recovery, and reconciliation).*
 
 ## The 4 Human-Computer Interaction (HCI) Metrics
 
