@@ -33,7 +33,7 @@ The left panel represents the view from Ground Control.
 ### Mars Spaceship Cabin (Right Panel)
 The right panel represents the live environment onboard the spacecraft.
 - **Sensors Tab:** Displays the actual, real-time sensor truth ($t$).
-- **Reality Overlay Tab:** This is the core of the PTB. It overlays Earth's incoming predictive model over the true local telemetry. This visual convergence—or divergence during an anomaly—directly correlates to the crew's psychological state. When the lines diverge, **Cognitive Load** and **Latency** spike because the crew realizes Earth is out of sync. When they converge, **Social Presence** and **Shared SA** remain high because the crew trusts Earth's situational awareness.
+- **Reality Overlay Tab:** This is the core of the PTB. It overlays Earth's incoming predictive model over the true local telemetry. This visual convergence—or divergence during an anomaly—directly correlates to the crew's psychological state. When the lines diverge, **Operator Cognitive Load (OCLI)** and **Effective Command Latency (ECL)** spike because the crew realizes Earth is out of sync. When they converge, **Operator Presence Fidelity (OPFI)** and **State Synchronization Accuracy (SSA)** remain high because the crew trusts Earth's situational awareness.
 - **Reconciliation Tab:** Allows the Commander to authorize the Earth command via the Execute button, but *only* if the Reality Overlay proves that Earth's mental model safely matches the ship's physical reality. 
 - **Cabin Log Tab:** Provides a localized, chronological log of onboard spaceship avionics operations and system states.
 
