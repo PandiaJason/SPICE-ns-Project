@@ -393,11 +393,7 @@ by 4 seconds per simulated minute to mimic the changing planetary geometry.
 % ── 5.1 Simulation Dynamics and HCI Analysis ────────────────────────────────
 \subsection{Simulation Dynamics and Performance Metrics}
 \subsubsection{Operational Performance Metric Formulations}
-To quantify the effectiveness of the PTB across the mission timeline, the simulation
-computes four engineering performance metrics as continuous functions of time \(t\).
-Each metric is modeled as a dynamic perturbation response to the anomaly onset at
-\(t_\text{anomaly} = 90\)~s, followed by exponential recovery upon command reconciliation
-at \(t_\text{recon} = 130\)~s.
+To evaluate the PTB architecture, we propose a novel quantitative evaluation framework comprising four operational performance metrics formulated as continuous functions of time \(t\). While these metrics are grounded in established principles of human-machine interaction (HMI), operator workload, and network control synchronization, we formulate specific continuous mathematical models to capture their transient behaviors under communication lag and anomalous events. Each metric is modeled as a dynamic perturbation response to the anomaly onset at \(t_\text{anomaly} = 90\)~s, followed by exponential recovery upon command reconciliation at \(t_\text{recon} = 130\)~s.
 
 \begin{enumerate}
     \item \textbf{Operator Presence Fidelity Index (OPFI):} Quantifies the degree to which
