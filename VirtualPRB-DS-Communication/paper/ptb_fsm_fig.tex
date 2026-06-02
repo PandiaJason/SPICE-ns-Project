@@ -17,7 +17,7 @@
 
 \path 
     (ingress) edge node[above, font=\footnotesize] {Predictive Cmd $\mathcal{C}$} (dev)
-    (sensor) edge node[right, font=\footnotesize] {Local Telemetry $\mathcal{T}$} (dev)
+    (sensor) edge node[left, font=\footnotesize] {Local Telemetry $\mathcal{T}$} (dev)
     (dev) edge node[above left, font=\footnotesize, align=center] {$\Delta_k < \delta_{\text{safe}}$\\(Match)} (valid)
     (dev) edge node[below left, font=\footnotesize, align=center] {$\Delta_k \ge \delta_{\text{safe}}$\\(Anomaly)} (blocked);
 
