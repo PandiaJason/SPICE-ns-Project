@@ -1443,7 +1443,7 @@
             const latencyIllusionVal = document.getElementById('latency-illusion');
             const saSyncVal = document.getElementById('sa-sync');
 
-            if (mCab.anomaly && !data.correction_applied) {
+            if (!mRecon.safe) {
                 presenceVal.textContent = '80% (Friction)';
                 loadVal.textContent = '75% (High Stress)';
                 saSyncVal.textContent = '79.5% (Desynchronized)';
