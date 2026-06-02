@@ -66,7 +66,7 @@ The simulation tracks four critical graphs during a 300-second orbital insertion
 ![HCI Metrics Overview](fig_hci_metrics.png)
 - **Significance of Min/Max Values:** 
   - **Social Presence Index (SPI):** Operates at a nominal maximum of **95%**, signifying strong psychological connection. During the anomaly, it dips to a minimum of **~80%**, reflecting momentary friction before recovering.
-  - **Cognitive Load Index (CLI):** Rests at a nominal minimum of **35%** (effortless operation). It spikes to a maximum of **~75%** during the anomaly when operators must process conflicting data, before easing post-reconciliation.
+  - **Cognitive Load Index (CLI):** Rests at a nominal minimum of **22%** (effortless operation). It spikes to a maximum of **~75%** during the anomaly when operators must process conflicting data, before easing post-reconciliation.
   - **SA Sync Rate:** Peaks at **99.5%** when Earth and Mars share the same mental model. It hits a minimum of **~79.5%** during the anomaly, showing critical desynchronization.
 
 ### 2. Conversational Latency Illusion

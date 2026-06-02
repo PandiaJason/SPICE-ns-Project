@@ -21,9 +21,9 @@ def generate_analytics():
     spi[t >= correction_time] = 95 - (95 - spi[correction_time-1]) * np.exp(-(t[t >= correction_time] - correction_time)/20)
     
     # 2. Cognitive Load Index (CLI)
-    # Starts at 35%, spikes during anomaly, reduces after correction
-    cli = 35 + 40 * np.exp(-(t - anomaly_start)**2 / 600) * (t >= anomaly_start)
-    cli[t >= correction_time] = 35 + (cli[correction_time-1] - 35) * np.exp(-(t[t >= correction_time] - correction_time)/15)
+    # Starts at 22%, spikes during anomaly, reduces after correction
+    cli = 22 + 53 * np.exp(-(t - anomaly_start)**2 / 600) * (t >= anomaly_start)
+    cli[t >= correction_time] = 22 + (cli[correction_time-1] - 22) * np.exp(-(t[t >= correction_time] - correction_time)/15)
     
     # 3. Conversational Latency Illusion (Perceived vs Actual Latency)
     # Actual latency grows from 60s to ~70s over the sim
