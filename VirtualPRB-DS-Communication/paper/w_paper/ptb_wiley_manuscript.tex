@@ -367,10 +367,6 @@ Effective Command Latency (ECL), and State Synchronization Accuracy (SSA).
 These metrics serve as engineering performance indicators for the PTB's effectiveness in
 maintaining command synchronization and operator workload bounds across the mission timeline.
 
-\textit{Note: A full animated demonstration (anomaly injection, FSM state transitions, and
-reconciliation) is available at the project repository:
-\url{https://github.com/PandiaJason/SPICE-ns-Project/tree/main/VirtualPRB-DS-Communication}.}
-
 The PTB is validated through a high-fidelity software simulation of a crewed orbital insertion
 burn. The simulation server is implemented in Python using a Flask REST backend with Server-Sent
 Events (SSE) for continuous push-streaming of telemetry state at \(f_s = 2\)~Hz, emulating the
@@ -389,6 +385,10 @@ gradual loss of thrust efficiency and a corresponding trajectory deviation:
 \end{align}
 Under raw communication lag, the round-trip delay is initially set at \(2m = 120\) seconds, growing
 by 4 seconds per simulated minute to mimic the changing planetary geometry.
+\textit{Note: A full animated demonstration (anomaly injection, FSM state transitions, and
+reconciliation) is available at the project repository:
+\url{https://github.com/PandiaJason/SPICE-ns-Project/tree/main/VirtualPRB-DS-Communication}.}
+
 
 % ── 5.1 Simulation Dynamics and HCI Analysis ────────────────────────────────
 \subsection{Simulation Dynamics and Performance Metrics}
