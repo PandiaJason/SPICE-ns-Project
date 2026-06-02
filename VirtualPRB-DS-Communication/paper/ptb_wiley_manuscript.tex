@@ -171,12 +171,12 @@ The PTB consists of three distinct components: the Mars Broadcast Module, the Ea
 Predictive Engine, and the Cabin Reconciliation Engine. The overall architecture is
 modeled as a dynamic time-synchronized feedback loop (illustrated in Figure~\ref{fig:ptb_arch}).
 
-\begin{figure*}[htbp]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.85\textwidth]{ptb_arch_fig.pdf}
+    \includegraphics[width=\linewidth]{ptb_arch_fig.pdf}
     \caption{System Architecture of the Predictive Temporal Bridge. The Earth AI forward-projects the ship's state by $2m$ seconds, generating preemptive commands that arrive precisely synchronized with the spacecraft's local time $t+2m$.}
     \label{fig:ptb_arch}
-\end{figure*}
+\end{figure}
 
 
 \subsection{Mars Broadcast Module}
@@ -237,12 +237,12 @@ As illustrated in Figure~\ref{fig:ptpu_arch}, the PTPU internal architecture cou
 
 At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communicates with spacecraft sensors, the PFC, and the Commander's Human-Machine Interface (HMI) dashboard via a universal SpaceWire or MIL-STD-1553 data bus. This isolation ensures that the predictive AI models never directly command thruster actuators without explicit authorization routed through the Commander HMI's reality overlay.
 
-\begin{figure*}[htbp]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.85\textwidth]{ptb_avionics_fig.pdf}
+    \includegraphics[width=\linewidth]{ptb_avionics_fig.pdf}
     \caption{Integration of the PTPU into the broader spacecraft avionics network via the SpaceWire / MIL-STD-1553 bus.}
     \label{fig:avionics_integration}
-\end{figure*}
+\end{figure}
 
 
 
