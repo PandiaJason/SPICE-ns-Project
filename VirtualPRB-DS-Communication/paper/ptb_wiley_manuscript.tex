@@ -247,6 +247,11 @@ At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communica
 
 % ── 4. Architecture of the Design ───────────────────────────────────────────
 \section{Architecture of the Design}
+
+
+% ── 5. Simulation Design ────────────────────────────────────────────────────
+\section{Simulation Design}
+\subsection{UI Design}
 The dashboard splits the workspace into two primary columns, establishing a clean visual separation of the communicative partners. Figure~\ref{fig:dashboard} illustrates the high-fidelity split-screen view.
 
 
@@ -279,8 +284,6 @@ The interface is divided into the following functional panels:
 
 \textit{Note: A complete animated demonstration of the PTB dashboard in action (showing dynamic tabs, anomaly recovery, and reconciliation) is available at our public repository: \url{https://github.com/PandiaJason/SPICE-ns-Project/tree/main/VirtualPRB-DS-Communication}.}
 
-% ── 5. Simulation Design ────────────────────────────────────────────────────
-\section{Simulation Design}
 To evaluate the PTB, we implemented a high-fidelity, web-based interactive simulation. The backend is powered
 by a Python Flask server utilizing Server-Sent Events (SSE) to stream real-time orbital and thermal telemetry
 at 2~Hz, simulating a Mars periapsis-raising orbital insertion burn.
