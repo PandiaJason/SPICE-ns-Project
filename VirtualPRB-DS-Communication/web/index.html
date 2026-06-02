@@ -1444,35 +1444,35 @@
             const saSyncVal = document.getElementById('sa-sync');
 
             if (mCab.anomaly && !data.correction_applied) {
-                presenceVal.textContent = '98% (Elevated)';
-                loadVal.textContent = '48% (Moderate Anomaly)';
-                saSyncVal.textContent = '99.5% (Synchronized)';
-                latencyIllusionVal.textContent = '1.2s (Spike)';
+                presenceVal.textContent = '80% (Friction)';
+                loadVal.textContent = '75% (High Stress)';
+                saSyncVal.textContent = '79.5% (Desynchronized)';
+                latencyIllusionVal.textContent = '3.5s (Illusion Broken)';
                 
-                histSpi.push(98);
-                histCli.push(48);
-                histLat.push(1.2);
-                histSa.push(99.5);
+                histSpi.push(80);
+                histCli.push(75);
+                histLat.push(3.5);
+                histSa.push(79.5);
             } else if (data.correction_applied) {
-                presenceVal.textContent = '99% (Perfect Partner)';
-                loadVal.textContent = '18% (Low Recovery)';
-                saSyncVal.textContent = '99.9% (Absolute Aligned)';
+                presenceVal.textContent = '95% (Recovered)';
+                loadVal.textContent = '35% (Effortless)';
+                saSyncVal.textContent = '99.5% (Synchronized)';
                 latencyIllusionVal.textContent = '0.5s (Near-Zero)';
                 
-                histSpi.push(99);
-                histCli.push(18);
+                histSpi.push(95);
+                histCli.push(35);
                 histLat.push(0.5);
-                histSa.push(99.9);
+                histSa.push(99.5);
             } else {
-                presenceVal.textContent = '96% (High)';
-                loadVal.textContent = '22% (Low)';
-                saSyncVal.textContent = '99.8% (Aligned)';
-                latencyIllusionVal.textContent = '0.4s (Near-Zero)';
+                presenceVal.textContent = '95% (Connected)';
+                loadVal.textContent = '35% (Effortless)';
+                saSyncVal.textContent = '99.5% (Synchronized)';
+                latencyIllusionVal.textContent = '0.5s (Near-Zero)';
                 
-                histSpi.push(96);
-                histCli.push(22);
-                histLat.push(0.4);
-                histSa.push(99.8);
+                histSpi.push(95);
+                histCli.push(35);
+                histLat.push(0.5);
+                histSa.push(99.5);
             }
 
             // Manage circular queue history data for graphics drawing
