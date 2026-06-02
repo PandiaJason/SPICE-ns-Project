@@ -511,8 +511,8 @@ as illustrated in Figure~\ref{fig:latency_illusion}. The physical one-way light-
 \end{figure}
 
 \subsubsection{Operator Workload and Synchronization Metrics}
-The four operational performance metrics (OPFI, OCLI, ECL, SSA) were recorded continuously
-across the 300-second simulation and are plotted in Figure~\ref{fig:hci_metrics}. Key observations:
+The operational performance metrics (OPFI, OCLI, and SSA) were recorded continuously
+across the 300-second simulation and are plotted in Figure~\ref{fig:hci_metrics} (with the fourth metric, ECL, shown separately in Figure~\ref{fig:latency_illusion}). Key observations:
 \begin{enumerate}
   \item \textbf{OCLI Reduction:} Peak operator cognitive load reached 48\% during the unreconciled
         anomaly window (\(90 \le t \le 130\)~s). Following command delivery and FSM transition to
@@ -530,7 +530,7 @@ across the 300-second simulation and are plotted in Figure~\ref{fig:hci_metrics}
         observed, validating the per-channel threshold architecture.
 \end{enumerate}
 
-Figure~\ref{fig:hci_metrics} tracks the transient behavior of these metrics. The anomaly onset at SCET \textsc{T+01:30} (marked by the red vertical dashed line) initiates a localized drop in the State Synchronization Accuracy (SSA, amber curve) and OPFI (blue curve), accompanied by a corresponding spike in OCLI (red curve). Following reconciliation at SCET \textsc{T+02:10} (marked by the green vertical dashed line), all three metrics recover exponentially. Figure~\ref{fig:hci_metrics} provides the full time-series record of all four metrics.
+Figure~\ref{fig:hci_metrics} tracks the transient behavior of these metrics. The anomaly onset at SCET \textsc{T+01:30} (marked by the red vertical dashed line) initiates a localized drop in the State Synchronization Accuracy (SSA, amber curve) and OPFI (blue curve), accompanied by a corresponding spike in OCLI (red curve). Following reconciliation at SCET \textsc{T+02:10} (marked by the green vertical dashed line), all three metrics recover exponentially. Figure~\ref{fig:hci_metrics} provides the full time-series record of these three metrics.
 
 \begin{figure}[!ht]
   \centering
