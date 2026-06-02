@@ -84,13 +84,6 @@ To address these concerns, we draw on Warranting Theory \citep{walther1996}, whi
 
 The PTB is conceptually structured as a time-synchronized, closed-loop mediation model consisting of three core stages:
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{../ui_screenshot.png}
-    \caption{The Predictive Temporal Bridge interface architecture. The left panel shows the Ground Control dashboard displaying delayed telemetry and the forward-projected trajectory path. The right panel shows the spacecraft cabin displaying live telemetry, the Reality Overlay, and the command validation interface.}
-    \label{fig:dashboard}
-\end{figure}
-
 \begin{enumerate}
     \item \textbf{Intent-Enriched State Broadcasting:} At local spacecraft time \(t\), the Cabin AI packages the current physical telemetry along with the crew's operational intent (such as planned maneuvers or tasks) and local system noise bounds. This intent vector provides the necessary context for the predictive models, ensuring that the projection captures planned human actions rather than relying solely on passive physics.
     \item \textbf{Predictive State Projection:} Upon receiving the telemetry packet on Earth, the predictive engine projects the spacecraft's state forward by the round-trip delay time (\(2m\)). Ground controllers review this projected future state on their dashboard, allowing them to formulate and transmit preemptive commands targeted at the future epoch (\(t + 2m\)).
@@ -104,6 +97,13 @@ The PTB is conceptually structured as a time-synchronized, closed-loop mediation
 To evaluate the PTB under operational pressure, we developed an interactive, web-based simulation of a crewed spacecraft performing a critical Mars periapsis-raising orbital insertion burn. The simulation models a progressive thermal anomaly (a gimbal seal degradation) injected 90 seconds into the burn, leading to a loss of thrust efficiency and a corresponding trajectory deviation. The round-trip communication delay is set to 120 seconds initially, drifting outward to simulate changing planetary geometry.
 
 The simulation client renders a split-screen dashboard designed to separate the operational domains of Earth Ground Control (left) and the Mars Crew Cabin (right), as shown in Figure~\ref{fig:dashboard}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../ui_screenshot.png}
+    \caption{The Predictive Temporal Bridge interface architecture. The left panel shows the Ground Control dashboard displaying delayed telemetry and the forward-projected trajectory path. The right panel shows the spacecraft cabin displaying live telemetry, the Reality Overlay, and the command validation interface.}
+    \label{fig:dashboard}
+\end{figure}
 
 The interface components are structured as follows:
 \begin{itemize}
