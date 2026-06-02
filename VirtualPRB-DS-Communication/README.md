@@ -14,6 +14,9 @@ The PTB dashboard is specifically designed to visualize the temporal disconnecti
 
 ![Dashboard Interface Recording](simulation_record_20260602_011932.gif)
 *Animated demonstration of the PTB dashboard in action.*
+![Dashboard UI Screenshot](ui_screenshot.png)
+*High-fidelity split-screen view of the Predictive Temporal Bridge Simulation UI.*
+
 ### Dashboard Features:
 - **Interactive UI:** A split-screen design mimicking Earth Command and the Mars Cabin.
 - **Live Telemetry:** Dynamic simulation of spacecraft physics, orbital deviations, and thermal loads.
@@ -23,13 +26,15 @@ The PTB dashboard is specifically designed to visualize the temporal disconnecti
 The left panel represents the view from Ground Control. 
 - **Telemetry Tab:** Shows the delayed, stale telemetry exactly as it is received from Mars ($t - m$).
 - **Trajectory Path Tab:** Visualizes the Earth AI's forward prediction, plotting the ship's projected path to preemptively catch anomalies.
-- **Beam-Pack Command Tab:** Displays the formulation of the correction command that is beamed to the ship.
+- **Beam-Pack Tab:** Displays the formulation of the correction command that is bundled and beamed to the ship.
+- **DSN Log Tab:** Provides a chronological, technical log of the Deep Space Network's communication state and timeline.
 
 ### Mars Spaceship Cabin (Right Panel)
 The right panel represents the live environment onboard the spacecraft.
 - **Sensors Tab:** Displays the actual, real-time sensor truth ($t$).
 - **Reality Overlay Tab:** This is the core of the PTB. It overlays Earth's incoming predictive model over the true local telemetry. This visual convergence—or divergence during an anomaly—directly correlates to the crew's psychological state. When the lines diverge, **Cognitive Load** and **Latency** spike because the crew realizes Earth is out of sync. When they converge, **Social Presence** and **Shared SA** remain high because the crew trusts Earth's situational awareness.
-- **Reconciliation & Execute Tab:** Allows the Commander to authorize the Earth command, but *only* if the Reality Overlay proves that Earth's mental model safely matches the ship's physical reality. 
+- **Reconciliation Tab:** Allows the Commander to authorize the Earth command via the Execute button, but *only* if the Reality Overlay proves that Earth's mental model safely matches the ship's physical reality. 
+- **Cabin Log Tab:** Provides a localized, chronological log of onboard spaceship avionics operations and system states.
 
 ### Social/Psychological HUD (Bottom Panel)
 The bottom graph provides a continuous, real-time readout of the 4 HCI metrics. You can directly observe how the crew's psychological state reacts dynamically to the anomaly on the Reality Overlay, and how it recovers once the reconciliation command is executed.
