@@ -303,9 +303,9 @@ gradual loss of thrust efficiency and a corresponding trajectory deviation:
 Under raw communication lag, the round-trip delay is initially set at \(2m = 120\) seconds, growing
 by 4 seconds per simulated minute to mimic the changing planetary geometry.
 
-% ── 6. Simulation Dynamics and HCI Analysis ────────────────────────────────
-\section{Simulation Dynamics and HCI Analysis}
-\subsection{Human-Computer Interaction (HCI) Metrics Formulation}
+% ── 5.1 Simulation Dynamics and HCI Analysis ────────────────────────────────
+\subsection{Simulation Dynamics and HCI Analysis}
+\subsubsection{Human-Computer Interaction (HCI) Metrics Formulation}
 To quantify the psychological and operational impact of the Predictive Temporal Bridge, the simulation continuously models four vital Human-Computer Interaction (HCI) metrics over the mission timeline $t$. These metrics are mathematically modeled as dynamic responses to the anomaly trigger time ($t_{anomaly} = 90$s) and the subsequent reconciliation time ($t_{recon} = 130$s).
 
 \begin{enumerate}
@@ -338,7 +338,7 @@ These metrics dynamically recover to their nominal baseline states exponentially
 
 
 
-\subsection{System Prediction Accuracy}
+\subsubsection{System Prediction Accuracy}
 Across multiple runs of the 300-second orbital insertion simulation, the Earth AI's forward-projection
 engine maintained exceptional alignment with physical truth. The mean absolute prediction error for the port
 gimbal thermal profile was \(\overline{|\Delta|} = 1.1\)°C (less than 3\% of the overall anomaly range), while the
@@ -356,7 +356,7 @@ for deep space operations.
   \label{fig:path_error}
 \end{figure*}
 
-\subsection{Reduction in Decision Latency}
+\subsubsection{Reduction in Decision Latency}
 Under standard, non-predicted communication protocols, a gimbal anomaly occurring at \(t=90\)s would not be visible
 to Earth until \(t=150\)s. A manual ground correction would then arrive back at Mars at \(t=210\)s. If the crew
 had to perform manual consultation, decision latency would exceed 120 seconds.
@@ -371,7 +371,7 @@ present on their console, reducing the perceived operational latency to zero.
   \label{fig:latency_illusion}
 \end{figure}
 
-\subsection{Psychological and Social Benefits}
+\subsubsection{Psychological and Social Benefits}
 The simulation demonstrated a dramatic enhancement in simulated crew-ground relationships.
 By utilizing the Social Presence Index and Latency Illusion metrics, we observed that:
 \begin{enumerate}
@@ -391,7 +391,7 @@ By utilizing the Social Presence Index and Latency Illusion metrics, we observed
   \label{fig:hci_metrics}
 \end{figure}
 
-% ── 7. Discussion ───────────────────────────────────────────────────────────
+% ── 6. Discussion ───────────────────────────────────────────────────────────
 \section{Discussion}
 
 \subsection{Operational Paradigm Shift: Ground as a Predictive Cloud}
