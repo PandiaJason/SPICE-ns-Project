@@ -171,6 +171,14 @@ The PTB consists of three distinct components: the Mars Broadcast Module, the Ea
 Predictive Engine, and the Cabin Reconciliation Engine. The overall architecture is
 modeled as a dynamic time-synchronized feedback loop.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{ptb_arch_fig.pdf}
+    \caption{System Architecture of the Predictive Temporal Bridge. The Earth AI forward-projects the ship's state by $2m$ seconds, generating preemptive commands that arrive precisely synchronized with the spacecraft's local time $t+2m$.}
+    \label{fig:ptb_arch}
+\end{figure}
+
+
 \subsection{Mars Broadcast Module}
 At spacecraft time \(t\), the Cabin AI continuously packages the physical state
 \(\mathcal{T}(t)\) along with the crew's operational intent vector \(\vec{I}(t)\) and
@@ -178,6 +186,14 @@ system noise envelopes \(\Sigma(t)\) into a broadcast packet \(\mathcal{B}(t)\):
 \begin{equation}
   \mathcal{B}(t) = \bigl\{\mathcal{T}(t),\; \vec{I}(t),\; \Sigma(t)\bigr\}.
 \end{equation}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{ptb_fsm_fig.pdf}
+    \caption{The Reality Reconciliation Engine Finite State Machine (FSM). The engine mathematically arbitrates between Earth's predicted command and local sensor telemetry.}
+    \label{fig:fsm}
+\end{figure}
+
 The intent vector \(\vec{I}(t)\) is a high-fidelity representation of the crew's current actions,
 planned thruster sequences, and behavioral metrics, providing the Earth AI with the contextual
 constraints necessary for accurate forward projection.
@@ -208,6 +224,38 @@ validates the command as \textsc{Reconciled} and presents it to the commander wi
 recommendation badge. If the deviation is excessive (e.g., due to an unmodeled local event like
 a micrometeoroid strike), the Cabin AI flags the state as \textsc{Delta-High}, blocks auto-execution, and
 recommends manual override.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{ptb_fsm_fig.pdf}
+    \caption{The Reality Reconciliation Engine Finite State Machine (FSM). The engine mathematically arbitrates between Earth's predicted command and local sensor telemetry.}
+    \label{fig:fsm}
+\end{figure}
+
+
+% ── 4. Simulation ───────────────────────────────────────────────────────────
+
+\subsection{Hardware Realization: The Predictive Temporal Processing Unit (PTPU)}
+To ensure deterministic execution and satisfy rigorous Aerospace Technology Journal standards for deep-space avionics, the PTB is physically implemented via a specialized Predictive Temporal Processing Unit (PTPU). The PTPU is a low-power Application-Specific Integrated Circuit (ASIC) that acts as an AI co-processor interfacing directly with the spacecraft's Primary Flight Computer (PFC). 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ptb_ptpu_fig.pdf}
+    \caption{Internal hardware architecture of the PTPU ASIC, highlighting the deterministic RISC-V lockstep CPU and the Neural Matrix Accelerator (NMA).}
+    \label{fig:ptpu_arch}
+\end{figure}
+
+As illustrated in Figure~\ref{fig:ptpu_arch}, the PTPU internal architecture couples a deterministic RISC-V lockstep CPU with a dedicated Neural Matrix Accelerator (NMA) for rapid forward-projection calculations. All PTB logic and kinematic models are immutably flashed onto non-volatile firmware ROM, shielding the reality arbitration algorithms from single-event upsets (SEUs) caused by cosmic radiation. State buffers are held in radiation-hardened SRAM.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{ptb_avionics_fig.pdf}
+    \caption{Integration of the PTPU into the broader spacecraft avionics network via the SpaceWire / MIL-STD-1553 bus.}
+    \label{fig:avionics_integration}
+\end{figure}
+
+At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communicates with spacecraft sensors, the PFC, and the Commander's Human-Machine Interface (HMI) dashboard via a universal SpaceWire or MIL-STD-1553 data bus. This isolation ensures that the predictive AI models never directly command thruster actuators without explicit authorization routed through the Commander HMI's reality overlay.
+
 
 % ── 4. Simulation ───────────────────────────────────────────────────────────
 \section{Simulation}
