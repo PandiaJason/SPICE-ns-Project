@@ -171,12 +171,12 @@ The PTB consists of three distinct components: the Mars Broadcast Module, the Ea
 Predictive Engine, and the Cabin Reconciliation Engine. The overall architecture is
 modeled as a dynamic time-synchronized feedback loop.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{ptb_arch_fig.pdf}
+    \includegraphics[width=0.85\textwidth]{ptb_arch_fig.pdf}
     \caption{System Architecture of the Predictive Temporal Bridge. The Earth AI forward-projects the ship's state by $2m$ seconds, generating preemptive commands that arrive precisely synchronized with the spacecraft's local time $t+2m$.}
     \label{fig:ptb_arch}
-\end{figure}
+\end{figure*}
 
 
 \subsection{Mars Broadcast Module}
@@ -186,13 +186,6 @@ system noise envelopes \(\Sigma(t)\) into a broadcast packet \(\mathcal{B}(t)\):
 \begin{equation}
   \mathcal{B}(t) = \bigl\{\mathcal{T}(t),\; \vec{I}(t),\; \Sigma(t)\bigr\}.
 \end{equation}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.75\textwidth]{ptb_fsm_fig.pdf}
-    \caption{The Reality Reconciliation Engine Finite State Machine (FSM). The engine mathematically arbitrates between Earth's predicted command and local sensor telemetry.}
-    \label{fig:fsm}
-\end{figure}
 
 The intent vector \(\vec{I}(t)\) is a high-fidelity representation of the crew's current actions,
 planned thruster sequences, and behavioral metrics, providing the Earth AI with the contextual
@@ -227,7 +220,7 @@ recommends manual override.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{ptb_fsm_fig.pdf}
+    \includegraphics[width=\linewidth]{ptb_fsm_fig.pdf}
     \caption{The Reality Reconciliation Engine Finite State Machine (FSM). The engine mathematically arbitrates between Earth's predicted command and local sensor telemetry.}
     \label{fig:fsm}
 \end{figure}
@@ -240,19 +233,19 @@ To ensure deterministic execution and satisfy rigorous Aerospace Technology Jour
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{ptb_ptpu_fig.pdf}
+    \includegraphics[width=\linewidth]{ptb_ptpu_fig.pdf}
     \caption{Internal hardware architecture of the PTPU ASIC, highlighting the deterministic RISC-V lockstep CPU and the Neural Matrix Accelerator (NMA).}
     \label{fig:ptpu_arch}
 \end{figure}
 
 As illustrated in Figure~\ref{fig:ptpu_arch}, the PTPU internal architecture couples a deterministic RISC-V lockstep CPU with a dedicated Neural Matrix Accelerator (NMA) for rapid forward-projection calculations. All PTB logic and kinematic models are immutably flashed onto non-volatile firmware ROM, shielding the reality arbitration algorithms from single-event upsets (SEUs) caused by cosmic radiation. State buffers are held in radiation-hardened SRAM.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{ptb_avionics_fig.pdf}
     \caption{Integration of the PTPU into the broader spacecraft avionics network via the SpaceWire / MIL-STD-1553 bus.}
     \label{fig:avionics_integration}
-\end{figure}
+\end{figure*}
 
 At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communicates with spacecraft sensors, the PFC, and the Commander's Human-Machine Interface (HMI) dashboard via a universal SpaceWire or MIL-STD-1553 data bus. This isolation ensures that the predictive AI models never directly command thruster actuators without explicit authorization routed through the Commander HMI's reality overlay.
 
@@ -282,12 +275,12 @@ by 4 seconds per simulated minute to mimic the changing planetary geometry.
 \subsection{Web Dashboard Visual Architecture}
 The dashboard splits the workspace into two primary columns, establishing a clean visual separation of the communicative partners. Figure~\ref{fig:dashboard} illustrates the high-fidelity split-screen view.
 
-\begin{figure}[h]
+\begin{figure*}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../ui_screenshot_light.png}
+    \includegraphics[width=0.95\textwidth]{../ui_screenshot_light.png}
     \caption{The Predictive Temporal Bridge Simulation UI, showing Earth Command (left) and the Mars Spaceship Cabin (right).}
     \label{fig:dashboard}
-\end{figure}
+\end{figure*}
 
 The interface is divided into the following functional panels:
 
@@ -354,14 +347,14 @@ Because these deltas remained well below the safety threshold (\(\delta_{\text{s
 consistently maintained a \textsc{Reconciled} state, confirming the viability of physics-based AI prediction
 for deep space operations.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
   \centering
   \includegraphics[width=0.48\textwidth]{fig_earth_path_error.pdf}
   \hfill
   \includegraphics[width=0.48\textwidth]{fig_mars_path_error.pdf}
   \caption{Comparison of AI Prediction accuracy. (Left) Earth AI Orbital Deviation Error showing the actual vs AI predicted path. (Right) Mars Cabin Reality Overlay Error demonstrating minimal divergence between true path and DSN target plan.}
   \label{fig:path_error}
-\end{figure}
+\end{figure*}
 
 \subsection{Reduction in Decision Latency}
 Under standard, non-predicted communication protocols, a gimbal anomaly occurring at \(t=90\)s would not be visible
@@ -373,7 +366,7 @@ present on their console, reducing the perceived operational latency to zero.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{fig_latency_illusion.pdf}
+  \includegraphics[width=\linewidth]{fig_latency_illusion.pdf}
   \caption{Conversational Latency Illusion. While the actual light-time delay steadily grows, the perceived operational latency experienced by the crew remains near-zero due to the PTB's predictive architecture.}
   \label{fig:latency_illusion}
 \end{figure}
@@ -393,7 +386,7 @@ By utilizing the Social Presence Index and Latency Illusion metrics, we observed
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{fig_hci_metrics.pdf}
+  \includegraphics[width=\linewidth]{fig_hci_metrics.pdf}
   \caption{PTB Human-Computer Interaction Metrics. The graph illustrates the dynamic response of the Social Presence Index (SPI), Cognitive Load Index (CLI), and Shared SA Sync Rate across the simulation timeline, particularly during the anomaly trigger and subsequent reconciliation phase.}
   \label{fig:hci_metrics}
 \end{figure}
