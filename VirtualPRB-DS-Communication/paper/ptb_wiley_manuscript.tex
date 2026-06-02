@@ -203,8 +203,7 @@ the ground command will arrive back at Mars:
 \end{equation}
 where \(f(\cdot)\) represents the physics-based system dynamic equations (including orbital mechanics,
 thermal dissipation, and thruster erosion profiles), and \(\epsilon\) represents the uncertainty bounds.
-Ground controllers review this predicted state on a real-time predictive dashboard, enabling them to
-issue correction commands \(\mathcal{C}\) for anomalies that have not yet physically manifested on the ship.
+Ground controllers review this predicted state on a real-time predictive dashboard (specifically via a Trajectory Path visualization), enabling them to formulate and package preemptive correction commands \(\mathcal{C}\) (via a dedicated Beam-Pack protocol) for anomalies that have not yet physically manifested on the ship.
 
 \subsection{Cabin Reconciliation Engine}
 When the command \(\mathcal{C}\) arrives at Mars at time \(t + 2m\), the Cabin AI compares the actual
@@ -212,11 +211,7 @@ physical telemetry \(\mathcal{T}(t+2m)\) with Earth's prediction \(\hat{\mathcal
 \begin{equation}
   \Delta_k = T_k(t+2m) - \hat{T}_k(t+2m), \quad k \in \text{telemetry channels}.
 \end{equation}
-If the deviation \(\Delta_k\) is within the safe margin (\(\delta_{\text{safe}}\)), the Cabin AI
-validates the command as \textsc{Reconciled} and presents it to the commander with a green
-recommendation badge. If the deviation is excessive (e.g., due to an unmodeled local event like
-a micrometeoroid strike), the Cabin AI flags the state as \textsc{Delta-High}, blocks auto-execution, and
-recommends manual override.
+The engine mathematically arbitrates these states and visually presents the result to the crew through a Reality Overlay interface. If the deviation \(\Delta_k\) is within the safe margin (\(\delta_{\text{safe}}\)), the Cabin AI validates the command as \textsc{Reconciled}, presenting it with a green recommendation badge on the Reconciliation Tab for immediate execution. If the deviation is excessive (e.g., due to an unmodeled local event like a micrometeoroid strike), the Cabin AI flags the state as \textsc{Delta-High} on the Reality Overlay, mechanically blocks auto-execution, and halts the FSM to await a manual override decision.
 
 \begin{figure}[htbp]
     \centering
@@ -253,6 +248,7 @@ At the network level (Figure~\ref{fig:avionics_integration}), the PTPU communica
 % ── 4. Architecture of the Design ───────────────────────────────────────────
 \section{Architecture of the Design}
 The dashboard splits the workspace into two primary columns, establishing a clean visual separation of the communicative partners. Figure~\ref{fig:dashboard} illustrates the high-fidelity split-screen view.
+
 
 \begin{figure*}[htbp]
     \centering
