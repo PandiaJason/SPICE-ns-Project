@@ -481,7 +481,7 @@ Earth AI and the onboard Reality Overlay channels, confirming model validity.
   \includegraphics[width=0.48\textwidth]{fig_earth_path_error.pdf}
   \hfill
   \includegraphics[width=0.48\textwidth]{fig_mars_path_error.pdf}
-  \caption{Comparison of AI Prediction accuracy. (Left) Earth AI Orbital Deviation Error showing the actual vs AI predicted path. (Right) Mars Cabin Reality Overlay Error demonstrating minimal divergence between true path and DSN target plan.}
+  \caption{Prediction accuracy of the Earth AI and the Mars Cabin Reconciliation Engine across the 300-second orbital insertion simulation. Time axes are expressed in Mission Elapsed Time notation T+MM:SS, where MM:SS denotes minutes and seconds elapsed since burn ignition (T+00:00). The bottom axis shows Earth Received Time (ERT) for the left plot and Spacecraft Event Time (SCET) for the right plot; the top axis shows the corresponding opposite-endpoint clock, offset by the one-way light-time delay \(m = 60\)~s. \textbf{Left:} Earth AI forward-projection accuracy. The red solid line shows the actual orbital deviation and the blue dashed line shows the Earth AI's predicted deviation computed \(2m\) seconds ahead; the orange shaded region is the prediction error envelope \(|\Delta_k|\). The anomaly injects at SCET~T+01:30 (ERT~T+02:30); both curves converge rapidly after reconciliation at SCET~T+02:10 (ERT~T+03:10). \textbf{Right:} Mars Cabin Reality Overlay accuracy. The pink solid line shows the true measured trajectory deviation; the green dashed line is the DSN nominal target profile (zero deviation); the red shaded region is the \(\Delta_k\) reconciliation gap, which closes to near-zero immediately after the correction burn at SCET~T+02:10.}
   \label{fig:path_error}
 \end{figure*}
 
@@ -506,7 +506,7 @@ as illustrated in Figure~\ref{fig:latency_illusion}.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\linewidth]{fig_latency_illusion.pdf}
-  \caption{Conversational Latency Illusion. While the actual light-time delay steadily grows, the perceived operational latency experienced by the crew remains near-zero due to the PTB's predictive architecture.}
+  \caption{Effective Command Latency comparison across the 300-second orbital insertion mission. Time axes are in Mission Elapsed Time notation T+MM:SS (minutes:seconds from burn ignition). The bottom axis shows Spacecraft Event Time (SCET)---the crew's local mission clock; the top axis shows Earth Received Time (ERT = SCET~$+m$), the corresponding ground station clock offset by the one-way light-time delay \(m = 60\)~s. The grey dash-dot line shows the actual one-way light-time delay \(m(t)\) growing geometrically from 60~s to $\approx$70~s as Mars recedes. The solid blue line shows the Effective Command Latency (ECL) as experienced by the crew under the PTB: it remains near 0.5~s at baseline (dominated by HMI render latency), spiking briefly to $\approx$3.5~s during the unreconciled anomaly window (SCET~T+01:30 to T+02:10) before recovering. The blue shaded envelope between the two lines quantifies the latency masking margin delivered by the PTB, representing a $>99\%$ reduction in perceived operational latency relative to the 120~s conventional round-trip baseline.}
   \label{fig:latency_illusion}
 \end{figure}
 
@@ -535,7 +535,7 @@ Figure~\ref{fig:hci_metrics} provides the full time-series record of all four me
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\linewidth]{fig_hci_metrics.pdf}
-  \caption{PTB Human-Computer Interaction Metrics. The graph illustrates the dynamic response of the Social Presence Index (SPI), Cognitive Load Index (CLI), and Shared SA Sync Rate across the simulation timeline, particularly during the anomaly trigger and subsequent reconciliation phase.}
+  \caption{PTB onboard operational performance metrics recorded continuously across the 300-second orbital insertion simulation. The x-axis is Spacecraft Event Time (SCET) in Mission Elapsed Time notation T+MM:SS (minutes:seconds from burn ignition, T+00:00). No Earth Received Time (ERT) axis is shown, as all four metrics are onboard spacecraft measurements not simultaneously observable by the ground station. Three metrics are plotted: the Operator Presence Fidelity Index (OPFI, blue)---quantifying the degree to which the Earth predictive model remains aligned with the crew's physical reality; the Operator Cognitive Load Index (OCLI, red)---measuring normalized onboard crew workload; and the State Synchronization Accuracy (SSA, amber)---measuring the fractional agreement between the Earth AI's predicted state \(\hat{\mathcal{T}}(t+2m)\) and the measured state \(\mathcal{T}(t+2m)\) across all telemetry channels. The red dashed vertical line marks anomaly onset at SCET~T+01:30; the green dashed line marks PTB reconciliation at SCET~T+02:10. All three metrics exhibit a transient degradation during the anomaly window and recover exponentially following successful command reconciliation.}
   \label{fig:hci_metrics}
 \end{figure}
 
