@@ -1442,7 +1442,7 @@
             }
 
             // Button trigger control
-            if (mRecon.safe && mPkt.command.type === 'CORRECTION' && !data.correction_applied) {
+            if (mCab.anomaly && mPkt.command.type === 'CORRECTION' && !data.correction_applied) {
                 btnExecute.disabled = false;
                 btnExecute.className = 'btn-action reconciled';
                 btnExecute.textContent = 'Authorize Correction Execute';
