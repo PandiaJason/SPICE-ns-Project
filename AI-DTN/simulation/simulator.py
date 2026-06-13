@@ -222,10 +222,8 @@ class DTNSimulator:
         if self.router_type != "ML-CGR":
             return
 
-        scheduled_bits = contact.data_rate_bps * contact.duration
-        observed_lqi = float(np.clip(
-            actual_bits_sent / max(scheduled_bits, 1.0), 0.05, 1.0
-        ))
+        # The physical LQI of the contact represents the link quality observation
+        observed_lqi = contact.lqi
 
         relay_node = self.nodes.get(contact.source)
         self.router.add_lqi_observation(contact, observed_lqi, relay_node, t)

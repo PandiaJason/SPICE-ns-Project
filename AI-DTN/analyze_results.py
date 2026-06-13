@@ -147,8 +147,6 @@ def fig_fragmentation(ts, out):
     ax1.set_title('(a) Fragmentation Events vs LQI')
 
     if metrics:
-        times = [_f(m['time']) / 3600 for m in metrics]
-        frags = [_f(m.get('fragments_created', 0)) for m in metrics]
         for algo in ['cgr', 'mlcgr']:
             m_data = ts.get(algo, {}).get('metrics_timeseries', [])
             if m_data:
@@ -162,6 +160,39 @@ def fig_fragmentation(ts, out):
     fig.savefig(os.path.join(out, 'fig4_fragmentation.pdf'))
     fig.savefig(os.path.join(out, 'fig4_fragmentation.png'))
     plt.close(fig)
+
+    # Save fig4_top separately
+    fig_top, ax_top = plt.subplots(figsize=(COL_W, 2.2))
+    if events:
+        sc = ax_top.scatter(times, lqis, c=n_frags, cmap='YlOrRd',
+                            s=20, alpha=0.8, vmin=1, vmax=10)
+        plt.colorbar(sc, ax=ax_top, label='N fragments')
+    ax_top.axhline(0.75, color='green', ls='--', lw=0.8)
+    ax_top.axhline(0.45, color='orange', ls='--', lw=0.8)
+    ax_top.set_xlabel('Time (hours)')
+    ax_top.set_ylabel('LQI at Fragmentation')
+    fig_top.tight_layout()
+    fig_top.savefig(os.path.join(out, 'fig4_top.pdf'))
+    fig_top.savefig(os.path.join(out, 'fig4_top.png'))
+    plt.close(fig_top)
+
+    # Save fig4_bottom separately
+    fig_bot, ax_bot = plt.subplots(figsize=(COL_W, 2.2))
+    if metrics:
+        for algo in ['cgr', 'mlcgr']:
+            m_data = ts.get(algo, {}).get('metrics_timeseries', [])
+            if m_data:
+                t = [_f(x['time']) / 3600 for x in m_data]
+                d = [_f(x['bundles_delivered']) for x in m_data]
+                ax_bot.plot(t, d, color=COLORS[algo], label=LABELS[algo])
+    ax_bot.set_xlabel('Time (hours)')
+    ax_bot.set_ylabel('Cumulative Delivered')
+    ax_bot.legend(fontsize=6)
+    fig_bot.tight_layout()
+    fig_bot.savefig(os.path.join(out, 'fig4_bottom.pdf'))
+    fig_bot.savefig(os.path.join(out, 'fig4_bottom.png'))
+    plt.close(fig_bot)
+
     print('  ✓ Fig 4: Fragmentation Analysis')
 
 
