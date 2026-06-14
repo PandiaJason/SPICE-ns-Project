@@ -7,7 +7,7 @@
 [![Status](https://img.shields.io/badge/Manuscript-Acta%20Astronautica%20(Under%20Review)-purple)](https://www.sciencedirect.com/journal/acta-astronautica)
 
 > **Paper:** *A Tri-Temporal Digital Twin Framework for Predictive Command and Control of Deep-Space Human Exploration Systems*  
-> **Authors:** Jason Pandian · Dr. I. Kala  
+> **Authors:** Jason Pandian  
 > **Journal:** Acta Astronautica (Elsevier) — Under Submission  
 
 ---
@@ -175,7 +175,7 @@ If you use this work, please cite:
 @article{pandian2026t3dt,
   title   = {A Tri-Temporal Digital Twin Framework for Predictive Command 
              and Control of Deep-Space Human Exploration Systems},
-  author  = {Pandian, Jason and Kala, I.},
+  author  = {Pandian, Jason},
   journal = {Acta Astronautica},
   year    = {2026},
   note    = {Under Review}
@@ -200,9 +200,7 @@ This work is part of the broader **SPICE-ns Deep-Space Communication Research** 
 Department of Information Technology, Nehru Institute of Technology, Coimbatore, India  
 📧 pandiajason@gmail.com · [ORCID: 0000-0003-1702-5186](https://orcid.org/0000-0003-1702-5186)
 
-**Dr. I. Kala**  
-Department of Computer Science and Engineering, PSG Institute of Technology and Applied Research, Coimbatore, India  
-[ORCID: 0009-0004-9062-1536](https://orcid.org/0009-0004-9062-1536)
+
 
 ---
 
