@@ -70,11 +70,19 @@ By bridging these three temporal zones, ground operators can detect anomalies ea
 
 ![T3DT Mission Control Dashboard](docs/screenshot_overview.png)
 
-*The Tri-Temporal Mission Control Dashboard — showing the three synchronized twin panes (Past, Present, Future), real-time orbital map, subsystem telemetry tabs, anomaly injection controls, and statistical validation panel.*
+*Initial dashboard state — three synchronized twin panes (Past, Present, Future), real-time orbital map, subsystem telemetry tabs, anomaly injection controls, and the statistical validation panel.*
+
+![T3DT Simulation Running](docs/screenshot_running.png)
+
+*Simulation running — mission time advancing with live telemetry, the spacecraft orbiting Mars, and sync parameter residuals updating in real time.*
+
+![T3DT EPS Tab with Battery Degradation](docs/screenshot_eps.png)
+
+*EPS subsystem tab after injecting a Battery Degradation anomaly — showing the SOC drop from ~95% to ~62%, the battery energy curve, and the POWER_SHED command execution in the log.*
 
 ![T3DT Dashboard Demo](docs/dashboard_demo.gif)
 
-*Live simulation demo — the Past Twin (amber) shows stale historical telemetry at T−240s, the Present Twin (blue) shows the dead-reckoned current state with an orbital map, and the Future Twin (purple) projects the state at T+240s to enable preemptive command generation.*
+*Animated walkthrough — overview → simulation running → anomaly injection → TCS tab → EPS tab with battery degradation visible.*
 
 ---
 
@@ -116,7 +124,8 @@ Tri-Temporal-Digital-Twin/
 ├── docs/                     # Dashboard screenshots and animated demo GIF
 │   ├── screenshot_overview.png
 │   ├── screenshot_running.png
-│   ├── screenshot_orbit.png
+│   ├── screenshot_anomaly.png
+│   ├── screenshot_tcs.png
 │   ├── screenshot_eps.png
 │   └── dashboard_demo.gif
 └── README.md                 # This file
