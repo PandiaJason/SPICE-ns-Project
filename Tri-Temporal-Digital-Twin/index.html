@@ -136,29 +136,7 @@
             accent-color: var(--primary);
         }
 
-        .run-pipeline-btn {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            border: none;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            box-shadow: 0 4px 12px var(--success-glow);
-            transition: all 0.2s ease;
-        }
 
-        .run-pipeline-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
-        }
-
-        .run-pipeline-btn:disabled {
-            background: #4b5563;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
 
         main {
             flex: 1;
@@ -464,101 +442,7 @@
             color: var(--primary);
         }
 
-        .figure-viewer {
-            display: flex;
-            gap: 8px;
-            height: 100%;
-        }
 
-        .figure-thumb {
-            width: 75px;
-            height: 100%;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            overflow: hidden;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: all 0.2s ease;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .figure-thumb:hover, .figure-thumb.active {
-            opacity: 1;
-            border-color: var(--primary);
-            box-shadow: 0 0 8px var(--primary-glow);
-        }
-
-        .figure-thumb span {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.8);
-            font-size: 8px;
-            text-align: center;
-            padding: 2px 0;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .figure-main-preview {
-            flex: 1;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background: rgba(0,0,0,0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .figure-main-preview img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        /* Lightbox modal for viewing figures */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(2, 6, 23, 0.95);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-        }
-
-        .lightbox img {
-            max-width: 100%;
-            max-height: 100%;
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            color: white;
-            font-size: 32px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            transition: transform 0.2s ease;
-        }
-
-        .lightbox-close:hover {
-            transform: scale(1.1);
-        }
 
         /* 2D Canvas Style */
         .canvas-container {
@@ -628,9 +512,7 @@
             <button class="sim-control-btn" id="pauseBtn"><i class="fa-solid fa-pause"></i> PAUSE</button>
             <button class="sim-control-btn" id="resetBtn"><i class="fa-solid fa-rotate-left"></i> RESET</button>
             
-            <button class="run-pipeline-btn" id="runPipelineBtn">
-                <i class="fa-solid fa-gears"></i> RUN MANUSCRIPT SIMULATION
-            </button>
+
         </div>
     </header>
 
@@ -1035,37 +917,11 @@
             </div>
         </div>
 
-        <!-- 3. Manuscript Paper Figures Viewer -->
-        <div class="bottom-card">
-            <h3><i class="fa-solid fa-file-image"></i> Manuscript Results Figure Viewer</h3>
-            <div class="figure-viewer">
-                <div class="figure-main-preview" id="mainFigurePreview" onclick="openLightbox()">
-                    <img id="mainFigureImg" src="fig_t3dt_architecture.png" alt="T3DT Architecture">
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 4px; overflow-y: auto;">
-                    <div class="figure-thumb active" onclick="showFigure('fig_t3dt_architecture.png', this)" style="background-image: url('fig_t3dt_architecture.png')"><span>Fig 1</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_operational_timeline.png', this)" style="background-image: url('fig_operational_timeline.png')"><span>Fig 2</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_twin_synchronization.png', this)" style="background-image: url('fig_twin_synchronization.png')"><span>Fig 3</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_orbital_trajectory.png', this)" style="background-image: url('fig_orbital_trajectory.png')"><span>Fig 4</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_thermal_prediction.png', this)" style="background-image: url('fig_thermal_prediction.png')"><span>Fig 5</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_power_prediction.png', this)" style="background-image: url('fig_power_prediction.png')"><span>Fig 6</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_eclss_prediction.png', this)" style="background-image: url('fig_eclss_prediction.png')"><span>Fig 7</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_error_convergence.png', this)" style="background-image: url('fig_error_convergence.png')"><span>Fig 8</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_command_latency.png', this)" style="background-image: url('fig_command_latency.png')"><span>Fig 9</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_anomaly_response.png', this)" style="background-image: url('fig_anomaly_response.png')"><span>Fig 10</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_safety_margin.png', this)" style="background-image: url('fig_safety_margin.png')"><span>Fig 11</span></div>
-                    <div class="figure-thumb" onclick="showFigure('fig_t3dt_workflow.png', this)" style="background-image: url('fig_t3dt_workflow.png')"><span>Fig 12</span></div>
-                </div>
-            </div>
-        </div>
+
 
     </div>
 
-    <!-- Lightbox for full screen image viewing -->
-    <div class="lightbox" id="lightboxModal" onclick="closeLightbox()">
-        <button class="lightbox-close">&times;</button>
-        <img id="lightboxImg" src="" alt="Full Screen Preview">
-    </div>
+
 
     <!-- JS Logic -->
     <script>
@@ -1093,22 +949,7 @@
         }
 
         // Lightbox
-        function showFigure(imgSrc, thumbEl) {
-            document.getElementById('mainFigureImg').src = imgSrc;
-            document.querySelectorAll('.figure-thumb').forEach(t => t.classList.remove('active'));
-            thumbEl.classList.add('active');
-        }
 
-        function openLightbox() {
-            const modal = document.getElementById('lightboxModal');
-            const mainImgSrc = document.getElementById('mainFigureImg').src;
-            document.getElementById('lightboxImg').src = mainImgSrc;
-            modal.style.display = 'flex';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightboxModal').style.display = 'none';
-        }
 
         // ==========================================
         // CLIENT-SIDE REAL-TIME PHYSICS SIMULATION
@@ -1845,103 +1686,12 @@
             }
         });
 
-        // ==========================================
-        // BACKEND PIPELINE TRIGGERS & STATISTICS
-        // ==========================================
-        const runPipelineBtn = document.getElementById('runPipelineBtn');
-        const pipelineProgressBar = document.getElementById('pipelineProgressBar');
-        const pipelineProgressContainer = document.getElementById('pipelineProgressContainer');
 
-        runPipelineBtn.addEventListener('click', () => {
-            runPipelineBtn.disabled = true;
-            pipelineProgressContainer.style.display = 'block';
-            pipelineProgressBar.style.width = '10%';
-            
-            fetch('/api/run_pipeline', { method: 'POST' })
-                .then(res => res.json())
-                .then(data => {
-                    logEvent("SYSTEM: Triggered high-fidelity Python simulation pipeline on server.");
-                    pollPipelineStatus();
-                })
-                .catch(err => {
-                    logEvent("SYSTEM ERROR: Failed to contact web server to trigger pipeline.");
-                    runPipelineBtn.disabled = false;
-                });
-        });
-
-        function pollPipelineStatus() {
-            let progress = 10;
-            const interval = setInterval(() => {
-                fetch('/api/pipeline_status')
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.status === 'running') {
-                            progress = Math.min(95, progress + 5);
-                            pipelineProgressBar.style.width = `${progress}%`;
-                        } else if (data.status === 'completed') {
-                            clearInterval(interval);
-                            pipelineProgressBar.style.width = '100%';
-                            logEvent("SYSTEM: Python simulation and figure generation completed successfully.");
-                            setTimeout(() => {
-                                pipelineProgressContainer.style.display = 'none';
-                                runPipelineBtn.disabled = false;
-                            }, 1000);
-                            loadResults();
-                        } else if (data.status === 'failed') {
-                            clearInterval(interval);
-                            pipelineProgressBar.style.width = '100%';
-                            pipelineProgressBar.style.backgroundColor = varDanger();
-                            logEvent(`SYSTEM ERROR: Pipeline execution failed: ${data.message}`);
-                            setTimeout(() => {
-                                pipelineProgressContainer.style.display = 'none';
-                                runPipelineBtn.disabled = false;
-                            }, 2000);
-                        }
-                    })
-                    .catch(err => {
-                        clearInterval(interval);
-                        pipelineProgressContainer.style.display = 'none';
-                        runPipelineBtn.disabled = false;
-                    });
-            }, 2000);
-        }
-
-        function loadResults() {
-            fetch('/api/results')
-                .then(res => res.json())
-                .then(data => {
-                    // Extract T-Test values using regex
-                    const tstatMatch = data.content.match(/\*\*T-Statistic:\*\* ([\d\.\-]+)/) || data.content.match(/T-Statistic: ([\d\.\-]+)/);
-                    const pvalMatch = data.content.match(/\*\*P-Value:\*\* ([\d\.\-e]+)/) || data.content.match(/P-Value: ([\d\.\-e]+)/);
-                    
-                    if (tstatMatch && pvalMatch) {
-                        const tstat = tstatMatch[1];
-                        const pval = pvalMatch[1];
-                        
-                        document.getElementById('val-tstat').textContent = parseFloat(tstat).toFixed(4);
-                        document.getElementById('val-pval').textContent = parseFloat(pval).toExponential(4);
-                        document.getElementById('val-result').innerHTML = `H₀ Rejected ($p < 0.05$)<br>Safety improvement is highly significant!`;
-                        document.getElementById('val-result').style.color = varSuccess();
-                    } else {
-                        // Attempt fallback matching
-                        document.getElementById('val-tstat').textContent = "6.2912";
-                        document.getElementById('val-pval').textContent = "3.6292e-10";
-                        document.getElementById('val-result').textContent = "H₀ Rejected (p < 0.05)";
-                    }
-                })
-                .catch(err => {
-                    // Default fallback if server not running or files not generated yet
-                    document.getElementById('val-tstat').textContent = "6.2912";
-                    document.getElementById('val-pval').textContent = "3.6292e-10";
-                    document.getElementById('val-result').textContent = "H₀ Rejected (p < 0.05)";
-                });
-        }
 
         // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
             initCharts();
             updateUI();
-            loadResults();
         });
     </script>
 </body>

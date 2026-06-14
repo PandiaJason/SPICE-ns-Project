@@ -66,7 +66,18 @@ By bridging these three temporal zones, ground operators can detect anomalies ea
 
 ---
 
-## Simulation Results
+## Dashboard
+
+![T3DT Mission Control Dashboard](docs/screenshot_overview.png)
+
+*The Tri-Temporal Mission Control Dashboard — showing the three synchronized twin panes (Past, Present, Future), real-time orbital map, subsystem telemetry tabs, anomaly injection controls, and statistical validation panel.*
+
+![T3DT Dashboard Demo](docs/dashboard_demo.gif)
+
+*Live simulation demo — the Past Twin (amber) shows stale historical telemetry at T−240s, the Present Twin (blue) shows the dead-reckoned current state with an orbital map, and the Future Twin (purple) projects the state at T+240s to enable preemptive command generation.*
+
+---
+
 
 | Metric | Conventional | T3DT | Δ |
 |---|---|---|---|
@@ -102,6 +113,12 @@ Tri-Temporal-Digital-Twin/
 ├── index.html                # Interactive mission control dashboard
 ├── fig_*.pdf / fig_*.png     # 12 publication-ready figures (PDF + PNG)
 ├── analysis_results.md       # Quantitative validation summary
+├── docs/                     # Dashboard screenshots and animated demo GIF
+│   ├── screenshot_overview.png
+│   ├── screenshot_running.png
+│   ├── screenshot_orbit.png
+│   ├── screenshot_eps.png
+│   └── dashboard_demo.gif
 └── README.md                 # This file
 ```
 
