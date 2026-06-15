@@ -14,7 +14,7 @@
 
 ## Overview
 
-![T3DT Graphical Abstract](paper/figs/GraphicalAbstract.png)
+![T3DT Graphical Abstract](docs/GraphicalAbstract.png)
 
 Human deep-space exploration missions to Mars face a fundamental operational bottleneck: **round-trip light time (RTLT) delays of 6–44 minutes** render conventional reactive ground control non-viable. By the time Earth receives a telemetry anomaly and transmits a corrective command, the spacecraft state has evolved well beyond the point of safe intervention.
 
