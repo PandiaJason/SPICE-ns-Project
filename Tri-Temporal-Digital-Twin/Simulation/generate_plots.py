@@ -62,39 +62,62 @@ def generate_all_plots():
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.axis('off')
     
-    # Draw boxes
-    def draw_box(ax, text, xy, width, height, color):
+    # Background Segment Containers
+    # Space Segment (Left)
+    space_bg = patches.FancyBboxPatch((0.02, 0.2), 0.22, 0.62, boxstyle="round,pad=0.01",
+                                     linewidth=0, facecolor='#fff5eb', alpha=0.9)
+    ax.add_patch(space_bg)
+    ax.text(0.13, 0.79, "SPACE SEGMENT", ha='center', fontsize=9, weight='bold', color='#c25913')
+    
+    # Transit Delay Channel (Middle)
+    dsn_bg = patches.FancyBboxPatch((0.26, 0.2), 0.18, 0.62, boxstyle="round,pad=0.01",
+                                   linewidth=0, facecolor='#f5f5f5', alpha=0.9)
+    ax.add_patch(dsn_bg)
+    ax.text(0.35, 0.79, "DEEP SPACE NET", ha='center', fontsize=9, weight='bold', color='#555555')
+    
+    # Ground Segment (Right)
+    ground_bg = patches.FancyBboxPatch((0.46, 0.2), 0.52, 0.62, boxstyle="round,pad=0.01",
+                                     linewidth=0, facecolor='#f0f8ff', alpha=0.9)
+    ax.add_patch(ground_bg)
+    ax.text(0.72, 0.79, "GROUND SEGMENT (EARTH)", ha='center', fontsize=9, weight='bold', color='#104e7b')
+    
+    # Draw boxes with filled colors and styling
+    def draw_box(ax, text, xy, width, height, border_color, face_color):
         rect = patches.FancyBboxPatch(xy, width, height, boxstyle="round,pad=0.01",
-                                     linewidth=1.5, edgecolor=color, facecolor='white')
+                                     linewidth=1.5, edgecolor=border_color, facecolor=face_color)
         ax.add_patch(rect)
         ax.text(xy[0] + width/2, xy[1] + height/2, text, ha='center', va='center',
-                fontsize=9, weight='bold', wrap=True)
+                fontsize=9, weight='bold', color='#2b2b2b', wrap=True)
         
-    draw_box(ax, "Spacecraft Sensors\n& Actuators\n(Mars Local Clock t)", (0.05, 0.4), 0.18, 0.2, c_anom)
-    draw_box(ax, "Downlink Telemetry\nDelay Pipe\n(240s Transit)", (0.28, 0.6), 0.16, 0.12, 'gray')
-    draw_box(ax, "Uplink Command\nDelay Pipe\n(240s Transit)", (0.28, 0.28), 0.16, 0.12, 'gray')
+    draw_box(ax, "Spacecraft Sensors\n& Actuators\n(Local Clock t)", (0.04, 0.41), 0.18, 0.2, '#ff7f0e', '#fffdfa')
+    draw_box(ax, "Downlink Telemetry\nDelay Pipe\n(240s Transit)", (0.27, 0.58), 0.16, 0.13, '#7f7f7f', '#fafafa')
+    draw_box(ax, "Uplink Command\nDelay Pipe\n(240s Transit)", (0.27, 0.29), 0.16, 0.13, '#7f7f7f', '#fafafa')
     
-    draw_box(ax, "Past Twin\n(t - 240s)\nState: Telemetry", (0.5, 0.65), 0.16, 0.12, c_t3dt)
-    draw_box(ax, "Present Twin\n(t)\nState: Estimated", (0.5, 0.45), 0.16, 0.12, c_t3dt)
-    draw_box(ax, "Future Twin\n(t + 240s)\nState: Projected", (0.5, 0.25), 0.16, 0.12, c_t3dt)
+    draw_box(ax, "Past Twin\n(t - 240s)\nState: Telemetry", (0.48, 0.62), 0.15, 0.13, '#1f77b4', '#f5faff')
+    draw_box(ax, "Present Twin\n(t)\nState: Estimated", (0.48, 0.44), 0.15, 0.13, '#1f77b4', '#f5faff')
+    draw_box(ax, "Future Twin\n(t + 240s)\nState: Projected", (0.48, 0.26), 0.15, 0.13, '#1f77b4', '#f5faff')
     
-    draw_box(ax, "Reconciliation Engine\n(State & Parameter Calibration)", (0.72, 0.55), 0.22, 0.12, c_nom)
-    draw_box(ax, "Preemptive Command\nGeneration Logic\n(Optimized for t+240s)", (0.72, 0.33), 0.22, 0.12, c_nom)
+    draw_box(ax, "Reconciliation Engine\n(State & Parameter\nCalibration)", (0.72, 0.53), 0.24, 0.13, '#2ca02c', '#f7fff7')
+    draw_box(ax, "Preemptive Command\nGeneration Logic\n(Optimized for t+240s)", (0.72, 0.35), 0.24, 0.13, '#2ca02c', '#f7fff7')
     
     # Draw Arrows
-    ax.annotate("", xy=(0.28, 0.66), xytext=(0.23, 0.55), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.5, 0.71), xytext=(0.44, 0.66), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.72, 0.61), xytext=(0.66, 0.71), arrowprops=dict(arrowstyle="->", lw=1.5, ls='--'))
-    ax.annotate("", xy=(0.58, 0.57), xytext=(0.58, 0.65), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.58, 0.37), xytext=(0.58, 0.45), arrowprops=dict(arrowstyle="->", lw=1.5))
+    # Telemetry flow: Space -> Downlink -> Past Twin
+    ax.annotate("", xy=(0.27, 0.65), xytext=(0.22, 0.55), arrowprops=dict(arrowstyle="->", lw=1.5, color='#444444'))
+    ax.annotate("", xy=(0.48, 0.685), xytext=(0.43, 0.65), arrowprops=dict(arrowstyle="->", lw=1.5, color='#444444'))
     
-    ax.annotate("", xy=(0.72, 0.39), xytext=(0.66, 0.31), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.28, 0.34), xytext=(0.72, 0.39), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.05, 0.5), xytext=(0.28, 0.34), arrowprops=dict(arrowstyle="->", lw=1.5))
+    # Parameter update: Past Twin -> Reconciliation -> Present/Future
+    ax.annotate("", xy=(0.72, 0.6), xytext=(0.63, 0.685), arrowprops=dict(arrowstyle="->", lw=1.5, ls='--', color='#2ca02c'))
+    ax.annotate("", xy=(0.555, 0.57), xytext=(0.555, 0.62), arrowprops=dict(arrowstyle="->", lw=1.5, color='#1f77b4'))
+    ax.annotate("", xy=(0.555, 0.39), xytext=(0.555, 0.44), arrowprops=dict(arrowstyle="->", lw=1.5, color='#1f77b4'))
+    
+    # Command path: Future Twin -> Command Gen -> Uplink -> Spacecraft
+    ax.annotate("", xy=(0.72, 0.41), xytext=(0.63, 0.325), arrowprops=dict(arrowstyle="->", lw=1.5, color='#2ca02c'))
+    ax.annotate("", xy=(0.43, 0.355), xytext=(0.72, 0.41), arrowprops=dict(arrowstyle="->", lw=1.5, color='#444444'))
+    ax.annotate("", xy=(0.22, 0.51), xytext=(0.27, 0.355), arrowprops=dict(arrowstyle="->", lw=1.5, color='#ff7f0e'))
     
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
-    ax.text(0.5, 0.9, "TRI-TEMPORAL DIGITAL TWIN (T3DT) ARCHITECTURE", ha='center', fontsize=14, weight='bold')
+    ax.text(0.5, 0.92, "TRI-TEMPORAL DIGITAL TWIN (T3DT) ARCHITECTURE", ha='center', fontsize=13, weight='bold', color='#1a1a1a')
     save_plot(fig, "fig_t3dt_architecture.pdf")
     save_plot(fig, "fig_t3dt_architecture.png")
     plt.close(fig)
@@ -165,7 +188,10 @@ def generate_all_plots():
     ax.plot(time_subset, future_temp, label="Future Twin (Projected: t + 240s)", color=c_anom, linestyle='-.')
     
     ax.axvline(12.0, color='red', linestyle='--', alpha=0.7)
-    ax.text(12.002, 21.05, "Anomaly Injected @ 12.0h", color='red', fontsize=9)
+    ax.text(12.002, 21.05, "Anomaly Onset @ 12.0h", color='red', fontsize=9)
+    
+    ax.axvline(12.067, color='purple', linestyle=':', alpha=0.7)
+    ax.text(12.069, 21.68, "Reconciliation @ 12.067h", color='purple', fontsize=9)
     
     ax.set_xlabel("Time (Hours)")
     ax.set_ylabel("Cabin Temperature (°C)")
@@ -439,53 +465,74 @@ def generate_all_plots():
     # Figure 12: Overall Architecture Workflow
     # -------------------------------------------------------------------------
     print("Generating Figure 12: Overall Architecture Workflow...")
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 6.5))
     ax.axis('off')
     
+    # Background bands for workflow phases
+    downlink_bg = patches.FancyBboxPatch((0.02, 0.70), 0.96, 0.18, boxstyle="round,pad=0.01",
+                                        linewidth=0, facecolor='#fafafa')
+    ax.add_patch(downlink_bg)
+    ax.text(0.5, 0.855, "PHASE I: TELEMETRY DOWNLINK TRANSIT", ha='center', fontsize=9, weight='bold', color='#555555')
+    
+    ground_bg = patches.FancyBboxPatch((0.02, 0.40), 0.96, 0.26, boxstyle="round,pad=0.01",
+                                      linewidth=0, facecolor='#f0f8ff')
+    ax.add_patch(ground_bg)
+    ax.text(0.5, 0.625, "PHASE II: GROUND DIGITAL TWIN CO-SIMULATION & COMMAND GENERATION", ha='center', fontsize=9, weight='bold', color='#104e7b')
+    
+    uplink_bg = patches.FancyBboxPatch((0.02, 0.10), 0.96, 0.26, boxstyle="round,pad=0.01",
+                                      linewidth=0, facecolor='#fff5eb')
+    ax.add_patch(uplink_bg)
+    ax.text(0.5, 0.325, "PHASE III: COMMAND UPLINK TRANSIT & ONBOARD EXECUTION", ha='center', fontsize=9, weight='bold', color='#c25913')
+    
     # Flowchart boxes
-    def draw_box(ax, text, xy, width, height, color):
+    def draw_box(ax, text, xy, width, height, border_color, face_color):
         rect = patches.FancyBboxPatch(xy, width, height, boxstyle="round,pad=0.01",
-                                     linewidth=1.5, edgecolor=color, facecolor='white')
+                                     linewidth=1.5, edgecolor=border_color, facecolor=face_color)
         ax.add_patch(rect)
         ax.text(xy[0] + width/2, xy[1] + height/2, text, ha='center', va='center',
-                fontsize=9, weight='bold', wrap=True)
+                fontsize=9, weight='bold', color='#2b2b2b', wrap=True)
                 
-    draw_box(ax, "1. Telemetry Packaging\n(Spacecraft packs state & intent)", (0.05, 0.75), 0.22, 0.12, c_t3dt)
-    draw_box(ax, "2. Space-to-Earth DSN\n(240s propagation delay)", (0.35, 0.75), 0.22, 0.12, 'gray')
-    draw_box(ax, "3. Earth Receiving\n(Received state t - 240s)", (0.65, 0.75), 0.22, 0.12, c_t3dt)
+    draw_box(ax, "1. Telemetry Packaging\n(Spacecraft packs state & intent)", (0.05, 0.72), 0.24, 0.11, '#ff7f0e', '#fffdfa')
+    draw_box(ax, "2. Space-to-Earth DSN\n(240s propagation delay)", (0.38, 0.72), 0.24, 0.11, '#7f7f7f', '#fafafa')
+    draw_box(ax, "3. Earth Receiving\n(Received state t - 240s)", (0.71, 0.72), 0.24, 0.11, '#1f77b4', '#f5faff')
     
-    draw_box(ax, "6. Preemptive Command\n(Generated for epoch t+240s)", (0.65, 0.45), 0.22, 0.12, c_nom)
-    draw_box(ax, "5. Future Twin Projection\n(Propagated to t + 240s)", (0.35, 0.45), 0.22, 0.12, c_nom)
-    draw_box(ax, "4. Past/Present Twin Update\n(Propagated to t)", (0.05, 0.45), 0.22, 0.12, c_nom)
+    draw_box(ax, "4. Past/Present Twin Update\n(Propagated to t via calib)", (0.05, 0.44), 0.24, 0.13, '#1f77b4', '#f5faff')
+    draw_box(ax, "5. Future Twin Projection\n(Forward projected to t + 240s)", (0.38, 0.44), 0.24, 0.13, '#1f77b4', '#f5faff')
+    draw_box(ax, "6. Preemptive Command\n(Generated for epoch t+240s)", (0.71, 0.44), 0.24, 0.13, '#2ca02c', '#f7fff7')
     
-    draw_box(ax, "7. Earth-to-Space DSN\n(240s command transmission)", (0.05, 0.15), 0.22, 0.12, 'gray')
-    draw_box(ax, "8. Cabin Reconciliation FSM\n(Check actual vs. prediction)", (0.35, 0.15), 0.22, 0.12, c_anom)
-    draw_box(ax, "9. Synchronous Actuation\n(Executed if AUTH = TRUE)", (0.65, 0.15), 0.22, 0.12, c_anom)
+    draw_box(ax, "7. Earth-to-Space DSN\n(240s command transmission)", (0.05, 0.14), 0.24, 0.13, '#7f7f7f', '#fafafa')
+    draw_box(ax, "8. Cabin Reconciliation FSM\n(Check actual vs. prediction)", (0.38, 0.14), 0.24, 0.13, '#ff7f0e', '#fffdfa')
+    draw_box(ax, "9. Synchronous Actuation\n(Executed if AUTH = TRUE)", (0.71, 0.14), 0.24, 0.13, '#ff7f0e', '#fffdfa')
     
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     
     # Arrows
-    ax.annotate("", xy=(0.35, 0.81), xytext=(0.27, 0.81), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.65, 0.81), xytext=(0.57, 0.81), arrowprops=dict(arrowstyle="->", lw=1.5))
+    # Row 1 Downlink
+    ax.annotate("", xy=(0.38, 0.775), xytext=(0.29, 0.775), arrowprops=dict(arrowstyle="->", lw=1.5, color='#444444'))
+    ax.annotate("", xy=(0.71, 0.775), xytext=(0.62, 0.775), arrowprops=dict(arrowstyle="->", lw=1.5, color='#444444'))
     
-    ax.annotate("", xy=(0.16, 0.57), xytext=(0.76, 0.75), arrowprops=dict(arrowstyle="->", lw=1.5,
-                connectionstyle="arc3,rad=0.2"))
+    # Downlink to Ground processing
+    ax.annotate("", xy=(0.17, 0.57), xytext=(0.83, 0.72), arrowprops=dict(arrowstyle="->", lw=1.5, color='#1f77b4',
+                connectionstyle="arc3,rad=0.15"))
     
-    ax.annotate("", xy=(0.35, 0.51), xytext=(0.27, 0.51), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.65, 0.51), xytext=(0.57, 0.51), arrowprops=dict(arrowstyle="->", lw=1.5))
+    # Row 2 Ground Processing
+    ax.annotate("", xy=(0.38, 0.505), xytext=(0.29, 0.505), arrowprops=dict(arrowstyle="->", lw=1.5, color='#1f77b4'))
+    ax.annotate("", xy=(0.71, 0.505), xytext=(0.62, 0.505), arrowprops=dict(arrowstyle="->", lw=1.5, color='#1f77b4'))
     
-    ax.annotate("", xy=(0.16, 0.27), xytext=(0.76, 0.45), arrowprops=dict(arrowstyle="->", lw=1.5,
-                connectionstyle="arc3,rad=0.2"))
+    # Ground processing to Uplink
+    ax.annotate("", xy=(0.17, 0.27), xytext=(0.83, 0.44), arrowprops=dict(arrowstyle="->", lw=1.5, color='#2ca02c',
+                connectionstyle="arc3,rad=0.15"))
                 
-    ax.annotate("", xy=(0.35, 0.21), xytext=(0.27, 0.21), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.65, 0.21), xytext=(0.57, 0.21), arrowprops=dict(arrowstyle="->", lw=1.5))
+    # Row 3 Uplink & Actuation
+    ax.annotate("", xy=(0.38, 0.205), xytext=(0.29, 0.205), arrowprops=dict(arrowstyle="->", lw=1.5, color='#444444'))
+    ax.annotate("", xy=(0.71, 0.205), xytext=(0.62, 0.205), arrowprops=dict(arrowstyle="->", lw=1.5, color='#444444'))
     
     # Feedback loop arrow back to step 1
-    ax.annotate("", xy=(0.16, 0.75), xytext=(0.76, 0.15), arrowprops=dict(arrowstyle="->", lw=1.5, ls=':',
-                connectionstyle="arc3,rad=-0.3"))
+    ax.annotate("", xy=(0.17, 0.72), xytext=(0.83, 0.14), arrowprops=dict(arrowstyle="->", lw=1.5, ls=':', color='#ff7f0e',
+                connectionstyle="arc3,rad=-0.25"))
                 
-    ax.text(0.5, 0.95, "TRI-TEMPORAL DIGITAL TWIN (T3DT) OPERATIONAL WORKFLOW", ha='center', fontsize=14, weight='bold')
+    ax.text(0.5, 0.94, "TRI-TEMPORAL DIGITAL TWIN (T3DT) OPERATIONAL WORKFLOW", ha='center', fontsize=13, weight='bold', color='#1a1a1a')
     save_plot(fig, "fig_t3dt_workflow.pdf")
     save_plot(fig, "fig_t3dt_workflow.png")
     plt.close(fig)
