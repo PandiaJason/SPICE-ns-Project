@@ -228,7 +228,7 @@ def generate_all_plots():
     # Approach is theta < 0 (first 250 points)
     # Post-insertion is theta >= 0 (last 250 points)
     # Capture ellipse for nominal
-    phi = np.linspace(0, 1.7 * np.pi, 250)
+    phi = np.linspace(0, 2.0 * np.pi, 250)
     x_ell_nom = -2000.0 + 8000.0 * np.cos(phi)
     y_ell_nom = 7745.96 * np.sin(phi)
     x_nom_post = x_ell_nom * np.cos(rot) - y_ell_nom * np.sin(rot)
@@ -262,6 +262,23 @@ def generate_all_plots():
     
     # Mark insertion point
     ax.scatter([x_nom[250]], [y_nom[250]], color='red', marker='x', s=80, zorder=5, label="Insertion Burn Ignition")
+    
+    # Add direction arrows along the trajectories
+    # 1. Approach path (common)
+    ax.annotate("", xy=(x_nom[105], y_nom[105]), xytext=(x_nom[95], y_nom[95]),
+                arrowprops=dict(arrowstyle="-|>", color='#444444', lw=2, mutation_scale=12))
+    
+    # 2. Drift path (Conventional Reactive)
+    ax.annotate("", xy=(x_drift_post[55], y_drift_post[55]), xytext=(x_drift_post[45], y_drift_post[45]),
+                arrowprops=dict(arrowstyle="-|>", color=c_conv, lw=2.5, mutation_scale=12))
+    
+    # 3. Captured Orbit (T3DT - top moving left)
+    ax.annotate("", xy=(x_t3dt_post[65], y_t3dt_post[65]), xytext=(x_t3dt_post[59], y_t3dt_post[59]),
+                arrowprops=dict(arrowstyle="-|>", color=c_t3dt, lw=2, mutation_scale=12))
+                
+    # 4. Captured Orbit (T3DT - bottom moving right)
+    ax.annotate("", xy=(x_t3dt_post[190], y_t3dt_post[190]), xytext=(x_t3dt_post[184], y_t3dt_post[184]),
+                arrowprops=dict(arrowstyle="-|>", color=c_t3dt, lw=2, mutation_scale=12))
     
     ax.set_xlim(-12000, 15000)
     ax.set_ylim(-12000, 12000)
