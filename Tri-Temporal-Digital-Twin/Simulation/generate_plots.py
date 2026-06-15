@@ -301,16 +301,26 @@ def generate_all_plots():
     t_sub = np.array(logs_exp3["time"]) / 3600.0
     ax.plot(t_sub, logs_exp1["cabin_temperature"], label="Conventional Reactive (Delayed Command)", color=c_conv, lw=2)
     ax.plot(t_sub, logs_exp3["cabin_temperature"], label="T3DT Enabled (Synchronous Command)", color=c_t3dt, lw=2)
+    ax.plot(t_sub, logs_exp2["cabin_temperature"], label="Nominal Path (No Anomaly)", color=c_nom, lw=1.5, linestyle=':')
     
     ax.axhline(22.5, color='gray', linestyle=':', label="Advisory Threshold (22.5°C)")
-    ax.axvline(12.0, color='orange', linestyle='--', alpha=0.5, label="Radiator Efficiency Degr. (12.0h)")
+    ax.axvline(12.0, color='red', linestyle='--', alpha=0.7, label="Anomaly Onset (12.0h)")
     
-    ax.set_xlim(11.5, 14.0)
+    # Annotate execution times
+    # In T3DT: Command arrived at 12h + 240s = 12.066h
+    # In Conventional: Command arrived at 12h + 480s = 12.133h
+    ax.scatter([12.066], [logs_exp3["cabin_temperature"][int(12.066 * 3600 / dt)]], color='blue', s=60, zorder=5, marker='o')
+    ax.text(12.08, 22.0, "T3DT Executed", color='blue', fontsize=8)
+    
+    ax.scatter([12.133], [logs_exp1["cabin_temperature"][int(12.133 * 3600 / dt)]], color='red', s=60, zorder=5, marker='o')
+    ax.text(12.15, 22.2, "Conv. Executed", color='red', fontsize=8)
+    
+    ax.set_xlim(11.5, 13.5)
     ax.set_xlabel("Time (Hours)")
     ax.set_ylabel("Cabin Temperature (°C)")
     ax.set_title("Thermal Recovery Response: Scenario A")
     ax.grid(True, linestyle=':', alpha=0.6)
-    ax.legend()
+    ax.legend(loc='upper right')
     save_plot(fig, "fig_thermal_prediction.pdf")
     save_plot(fig, "fig_thermal_prediction.png")
     plt.close(fig)
@@ -423,40 +433,6 @@ def generate_all_plots():
     
     save_plot(fig, "fig_command_latency.pdf")
     save_plot(fig, "fig_command_latency.png")
-    plt.close(fig)
-
-    # -------------------------------------------------------------------------
-    # Figure 10: Anomaly Response Comparison
-    # -------------------------------------------------------------------------
-    print("Generating Figure 10: Anomaly Response Comparison...")
-    fig, ax = plt.subplots(figsize=(8, 4.5))
-    
-    # Plot how fast thermal anomaly is detected and resolved
-    t_sub = np.array(logs_exp3["time"]) / 3600.0
-    ax.plot(t_sub, logs_exp1["cabin_temperature"], label="Conventional (Reaction time: 480s)", color=c_conv, lw=2)
-    ax.plot(t_sub, logs_exp3["cabin_temperature"], label="T3DT Mode (Reaction time: 240s)", color=c_t3dt, lw=2)
-    ax.plot(t_sub, logs_exp2["cabin_temperature"], label="Nominal Path (No Anomaly)", color=c_nom, lw=1.5, linestyle=':')
-    
-    ax.axvline(12.0, color='red', linestyle='--', alpha=0.7)
-    ax.text(11.98, 21.15, "Anomaly\nOnset", color='red', ha='right', fontsize=9)
-    
-    # Annotate execution times
-    # In T3DT: Command arrived at 12h + 240s = 12.066h
-    # In Conventional: Command arrived at 12h + 480s = 12.133h
-    ax.scatter([12.066], [logs_exp3["cabin_temperature"][int(12.066 * 3600 / dt)]], color='blue', s=60, zorder=5, marker='o')
-    ax.text(12.08, 22.0, "T3DT Correction Executed", color='blue', fontsize=8)
-    
-    ax.scatter([12.133], [logs_exp1["cabin_temperature"][int(12.133 * 3600 / dt)]], color='red', s=60, zorder=5, marker='o')
-    ax.text(12.15, 22.2, "Conventional Correction Executed", color='red', fontsize=8)
-    
-    ax.set_xlim(11.9, 13.0)
-    ax.set_xlabel("Time (Hours)")
-    ax.set_ylabel("Cabin Temperature (°C)")
-    ax.set_title("Anomaly Detection and Mitigation Speed Comparison")
-    ax.grid(True, linestyle=':', alpha=0.6)
-    ax.legend()
-    save_plot(fig, "fig_anomaly_response.pdf")
-    save_plot(fig, "fig_anomaly_response.png")
     plt.close(fig)
 
     # -------------------------------------------------------------------------
