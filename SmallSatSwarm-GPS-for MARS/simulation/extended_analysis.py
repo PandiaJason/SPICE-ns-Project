@@ -255,7 +255,7 @@ def run_clock_sync_simulation():
     bias_ns = bias_history * 1e9
     np.savez('data/clock_sync_analysis.npz', time_steps=time_steps, bias_ns=bias_ns, los_visible=los_visible)
     
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 11))
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 5.5))
     
     ax1.plot(time_steps / 3600.0, bias_ns, color='#1f77b4', linewidth=1.2, label='SmallSat Clock Bias')
     vis_diff = np.diff(los_visible.astype(int))
@@ -277,9 +277,10 @@ def run_clock_sync_simulation():
     ax1.axvspan(0, 0, alpha=0.12, color='green', label='Mothership Visible (MARS Active)')
     ax1.axvspan(0, 0, alpha=0.12, color='red', label='Mothership Blocked (CSAC Free Drift)')
     
+    ax1.set_xlabel('Elapsed Time (hours)')
     ax1.set_ylabel('Clock Bias Offset (ns)')
-    ax1.set_title('SmallSat CSAC Clock Bias Over 24-Hour Sol with MARS Calibrations')
-    ax1.legend(loc='upper right')
+    ax1.set_title('(a) CSAC Clock Bias Over 24-Hour Sol')
+    ax1.legend(loc='upper right', fontsize=10.5)
     
     transition_idx = np.where(vis_diff == 1)[0]
     if len(transition_idx) > 0:
@@ -295,8 +296,8 @@ def run_clock_sync_simulation():
         
         ax2.set_xlabel('Elapsed Time (minutes)')
         ax2.set_ylabel('Clock Bias Offset (ns)')
-        ax2.set_title('MARS Sync Convergence Detail (Transition from Outage to Lock)')
-        ax2.legend(loc='upper right')
+        ax2.set_title('(b) Lock Convergence Detail')
+        ax2.legend(loc='upper right', fontsize=10.5)
     else:
         ax2.text(0.5, 0.5, 'No transition found', ha='center', va='center')
         
@@ -311,14 +312,14 @@ def run_clock_sync_simulation():
     
     ax3.set_xlabel('Residual Sync Error (ns)')
     ax3.set_ylabel('Probability Density')
-    ax3.set_title('MARS Protocol Steady-State Clock Residual Error Distribution')
-    ax3.legend(loc='upper right')
+    ax3.set_title('(c) Steady-State Residual Error')
+    ax3.legend(loc='upper right', fontsize=10.5)
     
     plt.tight_layout()
     fig.savefig('../paper/mars_sync_simulation.png', dpi=300, bbox_inches='tight')
     fig.savefig('mars_sync_simulation.png', dpi=300, bbox_inches='tight')
     plt.close(fig)
-    print("Mothership Asymmetric Relational Sync (MARS) Dynamic Simulation completed and plots saved.")
+    print("Mothership Asymmetric Relational Sync (MARS) Dynamic Simulation completed and plots saved as 1x3 (a), (b), and (c).")
 
 def run_power_simulation():
     print("Running SmallSat Power Budget and Battery SoC Simulation...")
