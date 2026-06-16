@@ -20,18 +20,6 @@ The architecture addresses three critical challenges of Martian exploration:
 ```
 SmallSatSwarm-GPS-for MARS/
 ├── README.md                 # Project documentation (this file)
-├── paper/                    # Acta Astronautica LaTeX manuscript files
-│   ├── manuscript.tex        # LaTeX source code of the paper
-│   ├── manuscript.pdf        # Compiled publication-ready PDF document
-│   ├── system_diagram.png    # Conceptual system architecture block diagram
-│   ├── orbit_3d.png          # 3D constellations visualization figure
-│   ├── gdop_visibility.png   # GDOP/Visibility tracking window telemetry
-│   ├── positioning_error.png # EKF convergence and storm fallback comparison
-│   ├── performance_comparison.png # Swarm configurations performance matrix
-│   ├── gdop_heatmap.png      # 2D spatial visibility and GDOP contour map
-│   ├── clock_sensitivity.png # Position drift sensitivity vs. clock stability curves
-│   ├── mars_sync_simulation.png # Dynamic timeline & residual errors of MARS protocol sync
-│   └── power_budget_simulation.png # Solar generation, payload consumption, and battery SoC
 └── simulation/               # Modular Python simulation engine
     ├── parameters.py         # Physics, orbital, and filter noise parameters
     ├── simulator.py          # Core EKF filter and orbital propagator
