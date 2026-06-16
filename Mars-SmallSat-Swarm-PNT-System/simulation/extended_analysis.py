@@ -30,7 +30,7 @@ def run_spatial_gdop_analysis():
     lon_grid = np.linspace(77.5 - 8.0, 77.5 + 8.0, 80)
     
     sat_params = sim.get_constellation_params(6)
-    t = p.t_align
+    t = p.t_align + 100.0  # Offset slightly by 100s from exact zenith alignment to avoid collinearity singularity
     theta_M = p.omega_M * t
     sat_pos_mcmf = []
     
