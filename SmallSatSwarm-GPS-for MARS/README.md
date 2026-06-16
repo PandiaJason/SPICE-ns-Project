@@ -27,16 +27,21 @@ SmallSatSwarm-GPS-for MARS/
 │   ├── orbit_3d.png          # 3D constellations visualization figure
 │   ├── gdop_visibility.png   # GDOP/Visibility tracking window telemetry
 │   ├── positioning_error.png # EKF convergence and storm fallback comparison
-│   └── performance_comparison.png # Swarm configurations performance matrix
+│   ├── performance_comparison.png # Swarm configurations performance matrix
+│   ├── gdop_heatmap.png      # 2D spatial visibility and GDOP contour map
+│   └── clock_sensitivity.png # Position drift sensitivity vs. clock stability curves
 └── simulation/               # Modular Python simulation engine
     ├── parameters.py         # Physics, orbital, and filter noise parameters
     ├── simulator.py          # Core EKF filter and orbital propagator
     ├── run_simulation.py     # Main runner script executing comparisons and plotting
+    ├── extended_analysis.py  # Script for spatial GDOP and clock sensitivity sweeps
     ├── generate_diagram.py   # Script to render the conceptual system block diagram
     ├── orbit_3d.png          # Local copy of the 3D constellation orbit map
     ├── gdop_visibility.png   # Local copy of GDOP and visibility times series
     ├── positioning_error.png # Local copy of the EKF tracking error time series
     ├── performance_comparison.png # Local copy of swarm metrics comparison bar charts
+    ├── gdop_heatmap.png      # Local copy of the 2D spatial GDOP map
+    ├── clock_sensitivity.png # Local copy of the clock sensitivity plot
     └── data/                 # Folder containing generated .npz simulation data
 ```
 
@@ -75,7 +80,18 @@ This script will:
 * Write the statistical summary to `simulation/data/metrics_summary.txt`.
 * Generate and export the four publication-grade figures to **both** `paper/` and `simulation/`.
 
-### 2. Compile the Journal Manuscript
+### 2. Run the Extended Analysis (Optional)
+Execute the advanced spatial GDOP contour and clock drift sensitivity sweeps:
+```bash
+cd simulation
+python3 extended_analysis.py
+```
+This script will:
+* Sweep a 2D spatial grid around Jezero Crater to compute visible satellites and GDOP at the alignment peak.
+* Sweep the rover's clock stability across 9 orders of magnitude to calculate the positioning error drift during the 23.82-hour orbital outage.
+* Generate and export the two new publication-grade figures (`gdop_heatmap.png` and `clock_sensitivity.png`) to **both** `paper/` and `simulation/`.
+
+### 3. Compile the Journal Manuscript
 Build the PDF from the LaTeX source:
 ```bash
 cd paper
