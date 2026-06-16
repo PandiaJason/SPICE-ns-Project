@@ -397,12 +397,13 @@ def run_power_simulation():
         
     np.savez('data/power_analysis.npz', time_steps=time_steps, P_gen=P_gen, P_cons=P_cons, soc=soc_history, is_eclipse=is_eclipse, is_rover_visible=is_rover_visible)
     
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.5))
     
     ax1.plot(time_steps / 3600.0, P_gen, color='#2ca02c', linewidth=1.5, label=r'Solar Power Generation ($P_{\mathrm{gen}}$)')
     ax1.plot(time_steps / 3600.0, P_cons, color='#d62728', linewidth=1.5, label=r'Payload + Bus Consumption ($P_{\mathrm{cons}}$)')
+    ax1.set_xlabel('Elapsed Time (hours)')
     ax1.set_ylabel('Power (Watts)')
-    ax1.set_title('SmallSat Power Generation and Consumption Profile')
+    ax1.set_title('(a) SmallSat Power Generation and Consumption Profile')
     
     ec_diff = np.diff(is_eclipse.astype(int))
     ec_change = np.where(ec_diff != 0)[0]
@@ -421,7 +422,7 @@ def run_power_simulation():
     ax2.set_xlabel('Elapsed Time (hours)')
     ax2.set_ylabel('Battery SoC (%)')
     ax2.set_ylim(40, 105)
-    ax2.set_title('Onboard Battery State of Charge (SoC) over 24-Hour Sol')
+    ax2.set_title('(b) Onboard Battery State of Charge (SoC) over 24-Hour Sol')
     ax2.legend(loc='lower left')
     
     start_t = 0.0
@@ -440,7 +441,7 @@ def run_power_simulation():
     fig.savefig('../paper/power_budget_simulation.png', dpi=300, bbox_inches='tight')
     fig.savefig('power_budget_simulation.png', dpi=300, bbox_inches='tight')
     plt.close(fig)
-    print("SmallSat Power Budget and Battery SoC Simulation completed and plots saved.")
+    print("SmallSat Power Budget and Battery SoC Simulation completed and plots saved as 1x2 (a) and (b).")
 
 if __name__ == '__main__':
     run_spatial_gdop_analysis()
