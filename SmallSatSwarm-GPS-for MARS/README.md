@@ -30,7 +30,8 @@ SmallSatSwarm-GPS-for MARS/
 │   ├── performance_comparison.png # Swarm configurations performance matrix
 │   ├── gdop_heatmap.png      # 2D spatial visibility and GDOP contour map
 │   ├── clock_sensitivity.png # Position drift sensitivity vs. clock stability curves
-│   └── mars_sync_simulation.png # Dynamic timeline & residual errors of MARS protocol sync
+│   ├── mars_sync_simulation.png # Dynamic timeline & residual errors of MARS protocol sync
+│   └── power_budget_simulation.png # Solar generation, payload consumption, and battery SoC
 └── simulation/               # Modular Python simulation engine
     ├── parameters.py         # Physics, orbital, and filter noise parameters
     ├── simulator.py          # Core EKF filter and orbital propagator
@@ -44,6 +45,7 @@ SmallSatSwarm-GPS-for MARS/
     ├── gdop_heatmap.png      # Local copy of the 2D spatial GDOP map
     ├── clock_sensitivity.png # Local copy of the clock sensitivity plot
     ├── mars_sync_simulation.png # Local copy of the MARS protocol sync timeline
+    ├── power_budget_simulation.png # Local copy of the power and battery SoC timeline
     └── data/                 # Folder containing generated .npz simulation data
 ```
 
@@ -92,7 +94,8 @@ This script will:
 * Sweep a 2D spatial grid around Jezero Crater to compute visible satellites and GDOP at the alignment peak.
 * Sweep the rover's clock stability across 9 orders of magnitude to calculate the positioning error drift during the 23.82-hour orbital outage.
 * Run a dynamic 24-hour simulation of the MARS clock synchronization protocol between an LMO satellite and the Mothership to evaluate sync convergence and residual errors.
-* Generate and export the three publication-grade figures (`gdop_heatmap.png`, `clock_sensitivity.png`, and `mars_sync_simulation.png`) to **both** `paper/` and `simulation/`.
+* Run a 24-hour power simulation modeling solar panels (including eclipses) and payload/bus power to evaluate battery State of Charge (SoC).
+* Generate and export the four publication-grade figures (`gdop_heatmap.png`, `clock_sensitivity.png`, `mars_sync_simulation.png`, and `power_budget_simulation.png`) to **both** `paper/` and `simulation/`.
 
 ### 3. Compile the Journal Manuscript
 Build the PDF from the LaTeX source:
