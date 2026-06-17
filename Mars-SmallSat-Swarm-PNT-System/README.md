@@ -1,6 +1,10 @@
 # Dual-Band Hybrid LoRa-based SmallSat Swarm PNT System for Mars Exploration
 
-This repository contains the high-fidelity simulation environment and LaTeX source code for the journal manuscript: **"Dual-Band Hybrid LoRa-based SmallSat Swarm PNT System for Mars Exploration"** (prepared for *Acta Astronautica* submission).
+<p align="center">
+  <img src="assets/graphical_abstract.png" alt="Graphical Abstract" width="100%">
+</p>
+
+This repository contains the high-fidelity Python simulation environment for the **Dual-Band Hybrid LoRa-based SmallSat Swarm PNT System for Mars Exploration**.
 
 The project designs and evaluates a localized Positioning, Navigation, and Timing (PNT) system for Mars surface assets (rovers and IoT sensor grids) utilizing a Low Mars Orbit (LMO) SmallSat swarm, a high-altitude master Mothership, and an atmospheric-adaptive dual-band communications payload.
 
@@ -8,17 +12,21 @@ The project designs and evaluates a localized Positioning, Navigation, and Timin
 
 ## 🌌 System Concept & Key Architecture
 
+<p align="center">
+  <img src="assets/system_diagram.png" alt="System Architecture Diagram" width="100%">
+</p>
+
 The architecture addresses three critical challenges of Martian exploration:
 1. **Severe Weather Attenuation**: High-frequency bands (S-band/X-band) suffer heavy scattering and absorption during global dust storms. Our system dynamically falls back to **UHF (433 MHz) LoRa Chirp Spread Spectrum (CSS)** to penetrate suspended iron-oxide dust.
-2. **Strict SWaP-C Constraints**: Standard GNSS systems require heavy, power-hungry atomic clocks. Our swarm SmallSats utilize low-power Chip-Scale Atomic Clocks (CSAC) synchronized to a master Mothership using the **Mothership Asymmetric Relational Sync (MARS)** protocol.
-3. **Propulsion and Launch Constraints**: Placing satellites in low-altitude Low Mars Orbit (LMO) utilizes atmospheric aerobraking for orbit insertion, saving massive amount of propellant compared to Areostationary orbits.
+2. **Strict SWaP-C Constraints**: Standard GNSS systems require heavy, power-hungry atomic clocks. Our swarm SmallSats utilize low-power Chip-Scale Atomic Clocks (CSAC) synchronized to a master Mothership using the **Mothership Asymmetric Relational Sync (MARS)** protocol. During inevitable occultation outages, the system activates a **Peer-to-Peer (P2P) Consensus Sync failsafe** to mathematically bound inter-satellite clock drift by over 19%.
+3. **Propulsion and Launch Constraints**: Placing satellites in low-altitude Low Mars Orbit (LMO) utilizes atmospheric aerobraking for orbit insertion, saving a massive amount of propellant compared to Areostationary orbits.
 
 ---
 
 ## 📁 Repository Structure
 
 ```
-SmallSatSwarm-GPS-for MARS/
+Mars-SmallSat-Swarm-PNT-System/
 ├── README.md                 # Project documentation (this file)
 └── simulation/               # Modular Python simulation engine
     ├── parameters.py         # Physics, orbital, and filter noise parameters
@@ -26,14 +34,14 @@ SmallSatSwarm-GPS-for MARS/
     ├── run_simulation.py     # Main runner script executing comparisons and plotting
     ├── extended_analysis.py  # Script for spatial GDOP and clock sensitivity sweeps
     ├── generate_diagram.py   # Script to render the conceptual system block diagram
-    ├── orbit_3d.png          # Local copy of the 3D constellation orbit map
-    ├── gdop_visibility.png   # Local copy of GDOP and visibility times series
-    ├── positioning_error.png # Local copy of the EKF tracking error time series
-    ├── performance_comparison.png # Local copy of swarm metrics comparison bar charts
-    ├── gdop_heatmap.png      # Local copy of the 2D spatial GDOP map
-    ├── clock_sensitivity.png # Local copy of the clock sensitivity plot
-    ├── mars_sync_simulation.png # Local copy of the MARS protocol sync timeline
-    ├── power_budget_simulation.png # Local copy of the power and battery SoC timeline
+    ├── orbit_3d.pdf          # High-resolution 3D constellation orbit map
+    ├── gdop_visibility.pdf   # GDOP and visibility times series
+    ├── positioning_error.pdf # EKF tracking error time series
+    ├── performance_comparison.pdf # Swarm metrics comparison bar charts
+    ├── gdop_heatmap.pdf      # 2D spatial GDOP map
+    ├── clock_sensitivity.pdf # Clock sensitivity plot
+    ├── mars_sync_simulation.pdf # MARS protocol sync timeline
+    ├── power_budget_simulation.pdf # Power and battery SoC timeline
     └── data/                 # Folder containing generated .npz simulation data
 ```
 
@@ -49,12 +57,6 @@ Install the required packages using pip:
 pip install numpy matplotlib scipy
 ```
 
-### LaTeX Compiler
-The manuscript compiles using standard LaTeX packages. We recommend [Tectonic](https://tectonic-typesetting.github.io/) for automatic dependency resolution and compilation:
-```bash
-# On Debian/Ubuntu
-sudo apt-get install tectonic
-```
 
 ---
 
@@ -70,7 +72,7 @@ This script will:
 * Run EKF simulations for 4, 6, and 8-satellite dual-band configurations as well as a 6-satellite S-band only configuration.
 * Save the numerical trajectory and estimation data to `simulation/data/`.
 * Write the statistical summary to `simulation/data/metrics_summary.txt`.
-* Generate and export the four publication-grade figures to **both** `paper/` and `simulation/`.
+* Generate and export high-resolution vector PDF figures representing trajectory, GDOP, positioning error, and performance metrics.
 
 ### 2. Run the Extended Analysis (Optional)
 Execute the advanced spatial GDOP contour and clock drift sensitivity sweeps:
@@ -83,15 +85,8 @@ This script will:
 * Sweep the rover's clock stability across 9 orders of magnitude to calculate the positioning error drift during the 23.82-hour orbital outage.
 * Run a dynamic 24-hour simulation of the MARS clock synchronization protocol between an LMO satellite and the Mothership to evaluate sync convergence and residual errors.
 * Run a 24-hour power simulation modeling solar panels (including eclipses) and payload/bus power to evaluate battery State of Charge (SoC).
-* Generate and export the four publication-grade figures (`gdop_heatmap.png`, `clock_sensitivity.png`, `mars_sync_simulation.png`, and `power_budget_simulation.png`) to **both** `paper/` and `simulation/`.
+* Generate and export advanced analytical vector figures (`gdop_heatmap.pdf`, `clock_sensitivity.pdf`, `mars_sync_simulation.pdf`, and `power_budget_simulation.pdf`).
 
-### 3. Compile the Journal Manuscript
-Build the PDF from the LaTeX source:
-```bash
-cd paper
-tectonic manuscript.tex
-```
-This builds `paper/manuscript.pdf`, integrating the latest references, figures, and technical updates.
 
 ---
 
@@ -109,3 +104,13 @@ The simulation propagations assess four configurations over a $24$-hour operatio
 ### Key Findings
 * **The 6-Satellite Swarm is the Sweet Spot**: It achieves the lowest storm-phase RMS positioning error ($7.488$ m) and converges to sub-10m accuracy in **200 seconds** of clear-weather S-band tracking. 
 * **Dual-Band Fallback is Crucial**: While single-band S-band receivers lose lock and drift significantly during the dust storm, the dual-band receiver maintains sub-15m localization throughout the storm by toggling to the resilient 433 MHz UHF LoRa channel.
+
+<p align="center">
+  <img src="assets/gdop_heatmap.png" alt="Spatial GDOP Analysis" width="80%">
+  <br><em>Figure: Spatial GDOP (Geometric Dilution of Precision) highlighting the high-precision navigation zone centered on Jezero Crater.</em>
+</p>
+
+<p align="center">
+  <img src="assets/mars_sync_simulation.png" alt="MARS Clock Sync Simulation" width="100%">
+  <br><em>Figure: Comparative simulation showing the clock drift reduction achieved by activating the Peer-to-Peer Consensus Sync failsafe during Mothership occlusion.</em>
+</p>
