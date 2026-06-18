@@ -1,0 +1,10 @@
+Profile,Engine,WallTime_s,Steps,Speedup,PosError_m,EventError_ms
+Mars,Fixed,0.1352,343,1.0,169759366.75,1920635.732
+Mars,EventDriven,0.0102,13,13.237,9531649.05,0.0
+Mars,Adaptive,0.1479,486,0.914,209999384.02,0.0
+Elliptical,Fixed,0.4201,1077,1.0,36509683214.25,0.0
+Elliptical,EventDriven,0.1014,216,4.144,7353174414.67,0.0
+Elliptical,Adaptive,0.0605,108,6.94,3689335290.1,0.0
+Cislunar,Fixed,7.4619,18901,1.0,1782105441697.38,7975793.5607
+Cislunar,EventDriven,0.4281,685,17.432,56221133603.56,0.0
+Cislunar,Adaptive,0.8242,1722,9.054,159455400575.3,0.0

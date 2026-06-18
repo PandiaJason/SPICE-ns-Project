@@ -1,0 +1,10 @@
+Profile,Engine,Steps,PosError_m
+Mars,Fixed,343,169759366.75102982
+Mars,EventDriven,13,9531649.047702208
+Mars,Adaptive,486,209999384.02198625
+Elliptical,Fixed,1077,36509683214.2451
+Elliptical,EventDriven,216,7353174414.668634
+Elliptical,Adaptive,108,3689335290.0988326
+Cislunar,Fixed,18901,1782105441697.3823
+Cislunar,EventDriven,685,56221133603.56001
+Cislunar,Adaptive,1722,159455400575.30386
