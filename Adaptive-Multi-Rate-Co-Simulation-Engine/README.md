@@ -1,6 +1,6 @@
 # Adaptive Multi-Rate Co-Simulation Engine
 
-This repository contains the source code, simulation engine, and academic manuscript for the research paper: **"The Limits of Discrete-Event Synchronization in Relativistic Deep Space Networks: A Critical Review of Co-Simulation Fidelity"**, prepared for submission to *Simulation Modelling Practice and Theory*.
+This repository contains the source code and simulation engine for evaluating hybrid time-stepping paradigms in deep space network simulations.
 
 ## Project Overview
 
@@ -22,19 +22,15 @@ The custom co-simulation engine evaluates the three synchronization paradigms ag
 
 *   `simulation/` - Python-based simulation engine and orchestrator.
     *   `generate_data.py` - Generates ground-truth astrodynamics and mission profile data.
-    *   `generate_figures.py` - Executes the simulation engine, parses results, and generates vector PDFs for the manuscript.
+    *   `generate_figures.py` - Executes the simulation engine, parses results, and generates graphs.
     *   `data/` - Cached trajectory and profile states.
     *   `graphs/` - Generated output figures.
-*   `paper/` - LaTeX source files for the manuscript.
-    *   `manuscript.tex` - Main article source.
-    *   `images/` - Compiled vector graphics used in the paper.
 
 ## Getting Started
 
 ### Prerequisites
 *   Python 3.8+
 *   NumPy, Pandas, Matplotlib, SciPy
-*   [Tectonic](https://tectonic-typesetting.github.io/) (for compiling the LaTeX manuscript)
 
 ### Running the Simulations
 To run the simulations and generate the output graphs:
@@ -45,15 +41,4 @@ python3 generate_data.py
 python3 generate_figures.py
 ```
 
-This will run the Fixed-Step, Event-Driven, and Adaptive engines against all three mission profiles, outputting the metrics and generating the vector PDFs.
-
-### Compiling the Manuscript
-To compile the manuscript into a production-ready PDF:
-
-```bash
-cd paper
-tectonic manuscript.tex
-```
-
-## Citation
-If you use this benchmark suite or adaptive heuristic in your own research, please cite the forthcoming publication in *Simulation Modelling Practice and Theory*.
+This will run the Fixed-Step, Event-Driven, and Adaptive engines against all three mission profiles and output the execution metrics and graphs.
