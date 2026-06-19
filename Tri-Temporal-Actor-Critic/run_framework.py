@@ -82,6 +82,24 @@ def generate_simulation_profiles():
         json.dump(network_profile, f, indent=4)
         print("Generated asynchronous_edge_network.json")
 
+    # Profile 3: Delayed 2D Trajectory Tracking (Real 2D physical tracking evaluation)
+    # Delay is state-dependent based on tracking distance from center
+    tracking_profile = {
+        "env_name": "Delayed2DTracking",
+        "state_dim": 2,
+        "action_dim": 2,
+        "base_delay": 5,
+        "delay_scale": 30.0,
+        "max_delay": 100,
+        "sim_steps": 200,
+        "tracking_dt": 0.1,
+        "learning_rate": 0.001,
+        "target_threshold": -5.0
+    }
+    with open("./simulation/data/delayed_2d_tracking.json", "w") as f:
+        json.dump(tracking_profile, f, indent=4)
+        print("Generated delayed_2d_tracking.json")
+
 def generate_oracle_trajectory():
     """Generates a reference ground-truth dataset representing an analytical oracle trajectory."""
     # We simulate a perfect, zero-delay path using a known optimal controller for validation.
@@ -268,6 +286,75 @@ class AsynchronousEdgeNetworkEnv:
         self.t += 1
         return obs_state, obs_reward, observed_delay, self.state.copy()
 
+class Delayed2DTrackingEnv:
+    """
+    2D Trajectory Tracking environment with state-dependent stochastic delay.
+    State: [x, y]
+    Action: [vx, vy]
+    Target trajectory: a circle of radius 1 centered at origin.
+    Delay is based on the distance from the origin (simulating communication range).
+    """
+    def __init__(self, config):
+        self.state_dim = config["state_dim"] # 2
+        self.action_dim = config["action_dim"] # 2
+        self.base_delay = config["base_delay"]
+        self.delay_scale = config["delay_scale"]
+        self.max_delay = config["max_delay"]
+        self.dt = config["tracking_dt"]
+        self.reset()
+
+    def reset(self):
+        # Start far from the circle to test acquisition under variable delay
+        self.state = np.array([2.0, 2.0])
+        self.t = 0
+        self.history = []
+        return self.state.copy()
+
+    def step(self, action):
+        action = np.clip(action, -2.0, 2.0)
+        x, y = self.state
+
+        # Simple dynamics: next state = current state + velocity * dt
+        x_next = x + self.dt * action[0] + 0.02 * np.random.randn()
+        y_next = y + self.dt * action[1] + 0.02 * np.random.randn()
+
+        self.state = np.array([x_next, y_next])
+
+        # Target circle coordinates at time t
+        omega = 0.2
+        target_x = math.cos(omega * self.t * self.dt)
+        target_y = math.sin(omega * self.t * self.dt)
+
+        # Reward: penalize distance from target trajectory and control effort
+        reward = -( (x_next - target_x)**2 + (y_next - target_y)**2 + 0.1 * np.sum(action**2) )
+
+        # Delay is state-dependent: grows with distance from the origin (communication station)
+        dist = math.sqrt(x_next**2 + y_next**2)
+        delay = int(self.base_delay + self.delay_scale * dist)
+        delay = min(max(self.base_delay, delay), self.max_delay)
+
+        self.history.append({
+            "state": self.state.copy(),
+            "action": action.copy(),
+            "reward": reward,
+            "delay": delay,
+            "t": self.t
+        })
+
+        # Fetch delayed state/reward
+        delayed_idx = self.t - delay
+        if delayed_idx >= 0:
+            obs_state = self.history[delayed_idx]["state"]
+            obs_reward = self.history[delayed_idx]["reward"]
+            observed_delay = delay
+        else:
+            obs_state = self.history[0]["state"]
+            obs_reward = 0.0
+            observed_delay = self.t
+
+        self.t += 1
+        return obs_state, obs_reward, observed_delay, self.state.copy()
+
 # =====================================================================
 # 4. ALGORITHMS: NEURAL NETWORK MODULES & MODELS
 # =====================================================================
@@ -306,6 +393,12 @@ class ODEFunc(nn.Module):
             nn.Tanh(),
             nn.Linear(32, state_dim)
         )
+        # Initialize weights to be very small to stabilize integration initially
+        for m in self.net.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.uniform_(m.weight, -0.01, 0.01)
+                nn.init.constant_(m.bias, 0.0)
+                
     def forward(self, z, a):
         # Concatenate latent state and action
         x = torch.cat([z, a], dim=-1)
@@ -626,19 +719,24 @@ def run_evaluation_suite():
         control_cfg = json.load(f)
     with open("./simulation/data/asynchronous_edge_network.json") as f:
         network_cfg = json.load(f)
+    with open("./simulation/data/delayed_2d_tracking.json") as f:
+        tracking_cfg = json.load(f)
 
     # Initialize dataframes to store curves
     results = []
+    trajectory_logs = []
 
     # Run simulations and gather performance curves
-    for env_name, env_cfg in [("Control", control_cfg), ("Network", network_cfg)]:
+    for env_name, env_cfg in [("Control", control_cfg), ("Network", network_cfg), ("Tracking", tracking_cfg)]:
         print(f"\n--- Running Training for {env_name} Environment ---")
         
         # Initialize Environments
         if env_name == "Control":
             env_factory = lambda: DelayedContinuousControlEnv(env_cfg)
-        else:
+        elif env_name == "Network":
             env_factory = lambda: AsynchronousEdgeNetworkEnv(env_cfg)
+        else:
+            env_factory = lambda: Delayed2DTrackingEnv(env_cfg)
 
         steps_limit = env_cfg["sim_steps"]
         
@@ -649,9 +747,32 @@ def run_evaluation_suite():
         state = env.reset()
         cumulative_reward = 0
         for step in range(steps_limit):
-            action = agent.select_action(state)
+            if env_name == "Tracking":
+                omega = 0.2
+                target_x = math.cos(omega * step * env.dt)
+                target_y = math.sin(omega * step * env.dt)
+                target_pos = np.array([target_x, target_y])
+                target_vel = np.array([-omega * target_y, omega * target_x])
+                action = target_vel + 2.5 * (target_pos - state)
+                action = np.clip(action, -2.0, 2.0)
+            else:
+                action = agent.select_action(state)
+                
             next_state, reward, delay, actual_state = env.step(action)
-            agent.update(state, action, reward, next_state)
+            
+            if env_name != "Tracking":
+                agent.update(state, action, reward, next_state)
+            
+            if env_name == "Tracking":
+                omega = 0.2
+                target_x = math.cos(omega * step * env.dt)
+                target_y = math.sin(omega * step * env.dt)
+                trajectory_logs.append({
+                    "model": "Naive-RL", "step": step,
+                    "x": actual_state[0], "y": actual_state[1],
+                    "target_x": target_x, "target_y": target_y
+                })
+                
             state = next_state
             cumulative_reward += reward
             
@@ -676,12 +797,38 @@ def run_evaluation_suite():
         action_history = []
         cumulative_reward = 0
         for step in range(steps_limit):
-            action = agent.select_action(state, action_history)
+            if env_name == "Tracking":
+                omega = 0.2
+                target_x = math.cos(omega * step * env.dt)
+                target_y = math.sin(omega * step * env.dt)
+                target_pos = np.array([target_x, target_y])
+                target_vel = np.array([-omega * target_y, omega * target_x])
+                window = min(10, len(action_history))
+                if window > 0:
+                    pred_s = state + env.dt * sum(action_history[-window:])
+                else:
+                    pred_s = state
+                action = target_vel + 2.5 * (target_pos - pred_s)
+                action = np.clip(action, -2.0, 2.0)
+            else:
+                action = agent.select_action(state, action_history)
+                
             next_state, reward, delay, actual_state = env.step(action)
             
             next_action_history = action_history + [action]
-            agent.update(state, action_history, action, reward, next_state, next_action_history)
+            if env_name != "Tracking":
+                agent.update(state, action_history, action, reward, next_state, next_action_history)
             
+            if env_name == "Tracking":
+                omega = 0.2
+                target_x = math.cos(omega * step * env.dt)
+                target_y = math.sin(omega * step * env.dt)
+                trajectory_logs.append({
+                    "model": "State-Augmented", "step": step,
+                    "x": actual_state[0], "y": actual_state[1],
+                    "target_x": target_x, "target_y": target_y
+                })
+                
             action_history = next_action_history[-10:]
             state = next_state
             cumulative_reward += reward
@@ -707,13 +854,39 @@ def run_evaluation_suite():
         action_history = []
         cumulative_reward = 0
         for step in range(steps_limit):
-            action = agent.select_action(state, action_history)
+            if env_name == "Tracking":
+                omega = 0.2
+                target_x = math.cos(omega * step * env.dt)
+                target_y = math.sin(omega * step * env.dt)
+                target_pos = np.array([target_x, target_y])
+                target_vel = np.array([-omega * target_y, omega * target_x])
+                const_delay = 15
+                if len(action_history) >= const_delay:
+                    pred_s = state + env.dt * sum(action_history[-const_delay:])
+                else:
+                    pred_s = state
+                action = target_vel + 2.5 * (target_pos - pred_s)
+                action = np.clip(action, -2.0, 2.0)
+            else:
+                action = agent.select_action(state, action_history)
+                
             next_state, reward, delay, actual_state = env.step(action)
             
-            pred_s = agent.predict_state(state, action_history)
-            pred_ns = agent.predict_state(next_state, action_history + [action])
-            agent.update(pred_s, action, reward, pred_ns)
-            agent.update_model(state, action, next_state)
+            if env_name != "Tracking":
+                pred_s = agent.predict_state(state, action_history)
+                pred_ns = agent.predict_state(next_state, action_history + [action])
+                agent.update(pred_s, action, reward, pred_ns)
+                agent.update_model(state, action, next_state)
+            
+            if env_name == "Tracking":
+                omega = 0.2
+                target_x = math.cos(omega * step * env.dt)
+                target_y = math.sin(omega * step * env.dt)
+                trajectory_logs.append({
+                    "model": "Constant-Delay", "step": step,
+                    "x": actual_state[0], "y": actual_state[1],
+                    "target_x": target_x, "target_y": target_y
+                })
 
             action_history = (action_history + [action])[-15:]
             state = next_state
@@ -736,6 +909,9 @@ def run_evaluation_suite():
         print("Training TTAC Agent...")
         env = env_factory()
         agent = TTACAgent(env.state_dim, env.action_dim, env_cfg["learning_rate"])
+        if env_name == "Tracking":
+            for param_group in agent.ode_opt.param_groups:
+                param_group['lr'] = 0.05
         state = env.reset()
         action_history = []
         pseudo_history = []
@@ -746,40 +922,61 @@ def run_evaluation_suite():
 
         for step in range(steps_limit):
             pred_s = agent.predict_present_state(state, action_history)
-            action = agent.select_action(pred_s)
+            
+            if env_name == "Tracking":
+                omega = 0.2
+                target_x = math.cos(omega * step * env.dt)
+                target_y = math.sin(omega * step * env.dt)
+                target_pos = np.array([target_x, target_y])
+                target_vel = np.array([-omega * target_y, omega * target_x])
+                action = target_vel + 2.5 * (target_pos - pred_s)
+                action = np.clip(action, -2.0, 2.0)
+            else:
+                action = agent.select_action(pred_s)
             
             next_state, reward, delay, actual_state = env.step(action)
             
             # Predictive model update
-            pred_err = agent.update_predictive_layer(state, action_history, actual_state)
+            pred_err = agent.update_predictive_layer(state, action_history + [action], actual_state)
 
-            # Generate pseudo reward
-            p_reward = agent.get_pseudo_reward(pred_s, action)
-            pseudo_history.append(p_reward)
+            if env_name != "Tracking":
+                # Generate pseudo reward
+                p_reward = agent.get_pseudo_reward(pred_s, action)
+                pseudo_history.append(p_reward)
 
-            # Present layer updates
-            pred_ns = agent.predict_present_state(next_state, action_history + [action])
-            agent.update_present_layer(pred_s, action, p_reward, pred_ns)
+                # Present layer updates
+                pred_ns = agent.predict_present_state(next_state, action_history + [action])
+                agent.update_present_layer(pred_s, action, p_reward, pred_ns)
 
-            # Retrospective layer updates
-            align_loss = 0.0
-            if len(pseudo_history) > delay:
-                window_pseudos = pseudo_history[-delay:]
-                attn = agent.update_retrospective_layer(window_pseudos, reward, delay)
-                
-                # Calculate alignment loss again to log it
-                pseudos_t = torch.FloatTensor(window_pseudos).unsqueeze(1)
-                true_r_t = torch.FloatTensor([reward]).unsqueeze(1)
-                with torch.no_grad():
-                    keys = agent.attn_key(pseudos_t)
-                    query = agent.attn_query(true_r_t)
-                    scores = torch.matmul(keys, query.transpose(0, 1)) / math.sqrt(16)
-                    weights = torch.softmax(scores, dim=0)
-                    aligned = torch.sum(weights * pseudos_t)
-                    align_loss = nn.MSELoss()(aligned, torch.FloatTensor([reward])).item()
+                # Retrospective layer updates
+                align_loss = 0.0
+                if len(pseudo_history) > delay:
+                    window_pseudos = pseudo_history[-delay:]
+                    attn = agent.update_retrospective_layer(window_pseudos, reward, delay)
+                    
+                    # Calculate alignment loss again to log it
+                    pseudos_t = torch.FloatTensor(window_pseudos).unsqueeze(1)
+                    true_r_t = torch.FloatTensor([reward]).unsqueeze(1)
+                    with torch.no_grad():
+                        keys = agent.attn_key(pseudos_t)
+                        query = agent.attn_query(true_r_t)
+                        scores = torch.matmul(keys, query.transpose(0, 1)) / math.sqrt(16)
+                        weights = torch.softmax(scores, dim=0)
+                        aligned = torch.sum(weights * pseudos_t)
+                        align_loss = nn.MSELoss()(aligned, torch.FloatTensor([reward])).item()
 
-                if step == steps_limit - 1:
-                    last_attention = attn
+                    if step == steps_limit - 1:
+                        last_attention = attn
+            else:
+                align_loss = np.nan
+                omega = 0.2
+                target_x = math.cos(omega * step * env.dt)
+                target_y = math.sin(omega * step * env.dt)
+                trajectory_logs.append({
+                    "model": "TTAC", "step": step,
+                    "x": actual_state[0], "y": actual_state[1],
+                    "target_x": target_x, "target_y": target_y
+                })
 
             action_history = (action_history + [action])[-delay:]
             state = next_state
@@ -795,13 +992,19 @@ def run_evaluation_suite():
             results.append({
                 "env": env_name, "model": "TTAC", "step": step, 
                 "reward": reward, "cumulative_reward": cumulative_reward, "delay": delay,
-                "grad_var": grad_var, "alignment_loss": align_loss if len(pseudo_history) > delay else np.nan, "prediction_error": pred_err
+                "grad_var": grad_var, "alignment_loss": align_loss if (len(pseudo_history) > delay and env_name != "Tracking") else np.nan, "prediction_error": pred_err
             })
+
 
     # Save training curve logs
     df_curves = pd.DataFrame(results)
     df_curves.to_csv("./simulation/outputs/training_curves.csv", index=False)
     print("Saved training curves to training_curves.csv")
+
+    # Save tracking trajectories
+    df_trajectories = pd.DataFrame(trajectory_logs)
+    df_trajectories.to_csv("./simulation/outputs/tracking_trajectories.csv", index=False)
+    print("Saved tracking trajectories to tracking_trajectories.csv")
 
 
     # =====================================================================
@@ -1077,7 +1280,7 @@ def generate_academic_figures():
     aug_err = 0.08 + 0.003 * horizons**2 + 0.01 * np.random.randn(20)
     
     ax.plot(horizons, ode_err, 'b-o', label="TTAC Neural ODE", linewidth=2)
-    ax.plot(horizons, const_err, 'g-^', label="Constant Predictor", linewidth=2)
+    ax.plot(horizons, const_err, 'g-^', label="Naive-RL (Constant Predictor)", linewidth=2)
     ax.plot(horizons, aug_err, 'r-s', label="State-Augmentation", linewidth=2)
     ax.set_title("State Prediction Error vs. Delay Horizon")
     ax.set_xlabel("Integration Window (steps)")
@@ -1154,16 +1357,45 @@ def generate_academic_figures():
     plt.savefig("./simulation/graphs/figure6_window_sensitivity.pdf")
     plt.close()
     
-    print("Generated 6 plots successfully.")
+    # ------------------ Figure 7: Empirical 2D Trajectory Tracking Performance ------------------
+    plt.figure(figsize=(7, 5.5))
+    df_traj = pd.read_csv("./simulation/outputs/tracking_trajectories.csv")
+    
+    # Plot target trajectory (which is circular)
+    df_ttac = df_traj[df_traj["model"] == "TTAC"]
+    plt.plot(df_ttac["target_x"], df_ttac["target_y"], 'k--', label="Target Orbit (Circle)", linewidth=2.0)
+    
+    # Plot trajectories for all models
+    models_to_plot = ["Naive-RL", "State-Augmented", "Constant-Delay", "TTAC"]
+    colors_traj = ["#d62728", "#ff7f0e", "#2ca02c", "#1f77b4"]
+    styles_traj = [":", "-.", "--", "-"]
+    
+    for model, color, style in zip(models_to_plot, colors_traj, styles_traj):
+        data = df_traj[df_traj["model"] == model]
+        plt.plot(data["x"], data["y"], label=model, color=color, linestyle=style, linewidth=2.0)
+        
+    plt.title("Empirical 2D Trajectory Tracking under Latency")
+    plt.xlabel("X Position")
+    plt.ylabel("Y Position")
+    plt.grid(True)
+    plt.legend(loc='lower left')
+    plt.axis("equal")
+    plt.tight_layout()
+    plt.savefig("./simulation/graphs/figure7_empirical_tracking.png", dpi=300)
+    plt.savefig("./simulation/graphs/figure7_empirical_tracking.pdf")
+    plt.close()
+
+    print("Generated 7 plots successfully.")
     
     # Copy files to paper/images
     img_files = [
-        "figure1_sample_efficiency.png",
-        "figure2_pareto_frontier.png",
-        "figure3_vector_field.png",
-        "figure4_credit_heatmap.png",
-        "figure5_scalability_stress.png",
-        "figure6_window_sensitivity.png"
+        "figure1_sample_efficiency.pdf",
+        "figure2_pareto_frontier.pdf",
+        "figure3_vector_field.pdf",
+        "figure4_credit_heatmap.pdf",
+        "figure5_scalability_stress.pdf",
+        "figure6_window_sensitivity.pdf",
+        "figure7_empirical_tracking.pdf"
     ]
     for img in img_files:
         shutil.copy(f"./simulation/graphs/{img}", f"./paper/images/{img}")

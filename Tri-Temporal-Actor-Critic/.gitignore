@@ -10,3 +10,6 @@ simulation/outputs/
 # Python caching
 __pycache__/
 *.pyc
+
+# Temporary TikZ compilation folder
+tikz_build/
