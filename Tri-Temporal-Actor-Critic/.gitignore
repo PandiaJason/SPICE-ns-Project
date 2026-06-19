@@ -1,0 +1,12 @@
+# Git Ignore for Tri-Temporal Actor-Critic Project
+
+# Ignore the manuscript/paper folder (LaTeX documents and generated assets)
+paper/
+
+# Ignore simulation outputs/configs if necessary
+simulation/data/
+simulation/outputs/
+
+# Python caching
+__pycache__/
+*.pyc
