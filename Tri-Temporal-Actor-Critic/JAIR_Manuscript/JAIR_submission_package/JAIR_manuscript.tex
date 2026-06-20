@@ -1154,7 +1154,9 @@ By the Banach Fixed-Point Theorem, value iteration using $\mathcal{T}_{TT}$ conv
 \end{equation*}
 
 \subsection{Proof of the Policy Gradient Variance Bound under Lipschitz Dynamics}\label{app:sub_variance}
-We provide a detailed proof for Theorem 2. Let the true system dynamics be continuous-time and modeled as:
+We provide a detailed proof for Theorem 2.
+\begin{proof}
+Let the true system dynamics be continuous-time and modeled as:
 \begin{equation*}
     \frac{ds(t')}{dt'} = F(s(t'), u(t'))
 \end{equation*}
@@ -1195,6 +1197,7 @@ Since the policy score function is bounded by $M_\pi$ and the reward alignment m
     \text{Var}(g_{TTAC}) \le \mathbb{E}[\|g_{TTAC}\|^2] \le M_\pi^2 Q_{max}^2 = C < \infty
 \end{equation*}
 which completes the proof.
+\end{proof}
 
 \section{Detailed Dynamical Formulations of Simulation Environments}\label{app:sec_environments}
 We provide the explicit mathematical dynamics for the evaluation environments.
