@@ -59,3 +59,9 @@ To run the full simulation pipeline, training benchmarks, scaling profiles, and 
 python3 run_framework.py
 ```
 Upon completion, metrics will be saved in `simulation/outputs/` and final visual assets will be rendered under `simulation/graphs/`.
+
+---
+
+## 📄 License
+
+This repository is licensed under the **Apache License 2.0**. For details, please see the [LICENSE](LICENSE) file or visit the [Apache License website](http://www.apache.org/licenses/LICENSE-2.0).
