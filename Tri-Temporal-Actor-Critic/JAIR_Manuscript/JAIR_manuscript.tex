@@ -948,10 +948,10 @@ As shown in the plot, the delay-blind Naive-RL agent immediately diverges and fl
 
 \begin{figure*}[!t]
     \centering
-    \includegraphics[width=0.6\textwidth]{images/figure7_empirical_tracking.pdf}
-    \caption{Empirical 2D Trajectory Tracking Performance. Comparison of actual trajectories traced by Naive-RL, State-Augmented, Constant-Delay, and TTAC agents against the target circular orbit under state-dependent feedback delays.}
+    \includegraphics[width=0.9\textwidth]{images/figure7_empirical_tracking.pdf}
+    \caption{Empirical 2D Trajectory Tracking Performance. (a) Full trajectories traced by Naive-RL, State-Augmented, Constant-Delay, and TTAC agents starting from $(2.0, 2.0)$, illustrating baseline divergence and transient tracking acquisition. (b) Zoomed-in target acquisition area ($[-2.2, 2.2]\times[-2.2, 2.2]$) showing near-perfect circular orbit tracking by TTAC under distance-dependent feedback delays, while baselines suffer from phase lag or drift.}
     \label{fig:empirical_tracking}
-    \Description{A 2D spatial plot comparing the trajectories of Naive-RL, State-Augmented, Constant-Delay, and TTAC agents against the target circular reference orbit.}
+    \Description{A 2D spatial plot comparing full trajectories (a) and zoomed circular target tracking (b) of Naive-RL, State-Augmented, Constant-Delay, and TTAC agents against the target circular reference orbit.}
 \end{figure*}
 
 \subsection{Computational Complexity and Scalability Analysis}
