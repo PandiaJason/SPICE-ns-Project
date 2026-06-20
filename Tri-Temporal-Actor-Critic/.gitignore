@@ -2,6 +2,7 @@
 
 # Ignore the manuscript/paper folder (LaTeX documents and generated assets)
 paper/
+JAIR_Manuscript/
 
 # Ignore simulation outputs/configs if necessary
 simulation/data/
