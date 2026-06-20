@@ -786,7 +786,9 @@ def run_evaluation_suite():
             results.append({
                 "env": env_name, "model": "Naive-RL", "step": step, 
                 "reward": reward, "cumulative_reward": cumulative_reward, "delay": delay,
-                "grad_var": grad_var, "alignment_loss": np.nan, "prediction_error": np.nan
+                "grad_var": grad_var, "alignment_loss": np.nan, "prediction_error": np.nan,
+                "queue_backlog": actual_state[0] if env_name == "Network" else np.nan,
+                "congestion": actual_state[3] if env_name == "Network" else np.nan
             })
 
         # Train State-Augmented
@@ -843,7 +845,9 @@ def run_evaluation_suite():
             results.append({
                 "env": env_name, "model": "State-Augmented", "step": step, 
                 "reward": reward, "cumulative_reward": cumulative_reward, "delay": delay,
-                "grad_var": grad_var, "alignment_loss": np.nan, "prediction_error": np.nan
+                "grad_var": grad_var, "alignment_loss": np.nan, "prediction_error": np.nan,
+                "queue_backlog": actual_state[0] if env_name == "Network" else np.nan,
+                "congestion": actual_state[3] if env_name == "Network" else np.nan
             })
 
         # Train Constant Delayed
@@ -902,7 +906,9 @@ def run_evaluation_suite():
             results.append({
                 "env": env_name, "model": "Constant-Delay", "step": step, 
                 "reward": reward, "cumulative_reward": cumulative_reward, "delay": delay,
-                "grad_var": grad_var, "alignment_loss": np.nan, "prediction_error": np.nan
+                "grad_var": grad_var, "alignment_loss": np.nan, "prediction_error": np.nan,
+                "queue_backlog": actual_state[0] if env_name == "Network" else np.nan,
+                "congestion": actual_state[3] if env_name == "Network" else np.nan
             })
 
         # Train TTAC
@@ -992,7 +998,9 @@ def run_evaluation_suite():
             results.append({
                 "env": env_name, "model": "TTAC", "step": step, 
                 "reward": reward, "cumulative_reward": cumulative_reward, "delay": delay,
-                "grad_var": grad_var, "alignment_loss": align_loss if (len(pseudo_history) > delay and env_name != "Tracking") else np.nan, "prediction_error": pred_err
+                "grad_var": grad_var, "alignment_loss": align_loss if (len(pseudo_history) > delay and env_name != "Tracking") else np.nan, "prediction_error": pred_err,
+                "queue_backlog": actual_state[0] if env_name == "Network" else np.nan,
+                "congestion": actual_state[3] if env_name == "Network" else np.nan
             })
 
 
@@ -1142,54 +1150,101 @@ def generate_academic_figures():
     df_curves = pd.read_csv("./simulation/outputs/training_curves.csv")
     df_scaling = pd.read_csv("./simulation/outputs/simulation_metrics.csv")
     
-    # ------------------ Figure 1: Asymptotic Sample Efficiency & Gradient Variance & Alignment Loss ------------------
-    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    # ------------------ Figure 1: Asymptotic Sample Efficiency & Gradient Variance & Alignment Loss (Control Env) ------------------
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
     models = ["TTAC", "State-Augmented", "Constant-Delay", "Naive-RL"]
     colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
     
-    # Row 0: Cumulative Return
-    for idx, env_name in enumerate(["Control", "Network"]):
-        ax = axes[0, idx]
-        df_sub = df_curves[df_curves["env"] == env_name]
-        for model, color in zip(models, colors):
-            data = df_sub[df_sub["model"] == model]
-            ax.plot(data["step"], data["cumulative_reward"], label=model, color=color, linewidth=2)
-        ax.set_title(f"Sample Efficiency on {env_name} Env")
-        ax.set_xlabel("Training Steps")
-        ax.set_ylabel("Cumulative Return")
-        ax.grid(True)
-        if idx == 0:
-            ax.legend()
-            
-    # Row 1 Left: Gradient Variance
-    ax = axes[1, 0]
+    # Left: Cumulative Return
+    ax = axes[0]
     df_sub = df_curves[df_curves["env"] == "Control"]
     for model, color in zip(models, colors):
         data = df_sub[df_sub["model"] == model]
-        # Smooth the gradient variance curve and add a small epsilon to prevent log-zero
-        smoothed = data["grad_var"].rolling(window=10, min_periods=1).mean() + 1e-8
-        ax.plot(data["step"], smoothed, label=model, color=color, linewidth=2)
-    ax.set_title("Policy Gradient Variance comparison (Control)")
+        ax.plot(data["step"], data["cumulative_reward"], label=model, color=color, linewidth=2)
+    ax.set_title("Sample Efficiency on Locomotion Env")
     ax.set_xlabel("Training Steps")
-    ax.set_ylabel("Gradient Variance")
+    ax.set_ylabel("Cumulative Return")
+    ax.grid(True)
+    ax.legend()
+            
+    # Right: Gradient Variance & Alignment Loss
+    ax = axes[1]
+    df_sub = df_curves[df_curves["env"] == "Control"]
+    for model, color in zip(models, colors):
+        data = df_sub[df_sub["model"] == model]
+        smoothed = data["grad_var"].rolling(window=10, min_periods=1).mean() + 1e-8
+        ax.plot(data["step"], smoothed, label=f"{model} Grad Var", color=color, linewidth=2, linestyle=":")
+    
+    # Draw alignment loss on twin axis
+    ax2 = ax.twinx()
+    df_ttac = df_curves[(df_curves["env"] == "Control") & (df_curves["model"] == "TTAC")]
+    smoothed_align = df_ttac["alignment_loss"].rolling(window=10, min_periods=1).mean() + 1e-8
+    ax2.plot(df_ttac["step"], smoothed_align, color="#1f77b4", linewidth=2.5, label="TTAC Alignment Loss")
+    
+    ax.set_title("Variance & Calibration Dynamics (Control)")
+    ax.set_xlabel("Training Steps")
+    ax.set_ylabel("Gradient Variance (dotted)")
     ax.set_yscale('log')
+    ax2.set_ylabel("Alignment Loss (solid)")
+    ax2.set_yscale('log')
     ax.grid(True, which="both", ls="--")
     
-    # Row 1 Right: Alignment Loss
-    ax = axes[1, 1]
-    df_sub = df_curves[(df_curves["env"] == "Control") & (df_curves["model"] == "TTAC")]
-    smoothed_align = df_sub["alignment_loss"].rolling(window=10, min_periods=1).mean() + 1e-8
-    ax.plot(df_sub["step"], smoothed_align, color="#1f77b4", linewidth=2.5, label="TTAC Alignment Loss")
-    ax.set_title("Pseudo-Reward Calibration / Alignment Loss")
-    ax.set_xlabel("Training Steps")
-    ax.set_ylabel("MSE (Aligned vs True Return)")
-    ax.set_yscale('log')
-    ax.grid(True, which="both", ls="--")
-    ax.legend()
+    # Combine legends
+    lines1, labels1 = ax.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax.legend(lines1 + lines2, labels1 + labels2, loc="upper right")
     
     plt.tight_layout()
     plt.savefig("./simulation/graphs/figure1_sample_efficiency.png", dpi=300)
     plt.savefig("./simulation/graphs/figure1_sample_efficiency.pdf")
+    plt.close()
+
+    # ------------------ Figure 8: Asynchronous Edge Network (Congestion Routing) Queue & Latency Dynamics ------------------
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+    
+    # Left: Cumulative Return for Network Env
+    ax = axes[0]
+    df_sub = df_curves[df_curves["env"] == "Network"]
+    for model, color in zip(models, colors):
+        data = df_sub[df_sub["model"] == model]
+        ax.plot(data["step"], data["cumulative_reward"], label=model, color=color, linewidth=2)
+    ax.set_title("Sample Efficiency on Network Env")
+    ax.set_xlabel("Training Steps")
+    ax.set_ylabel("Cumulative Return")
+    ax.grid(True)
+    ax.legend()
+    
+    # Right: Queue Backlog & Feedback Delay over time
+    import matplotlib.lines as mlines
+    ax = axes[1]
+    for model, color in zip(models, colors):
+        data = df_sub[df_sub["model"] == model]
+        smoothed_q = data["queue_backlog"].rolling(window=5, min_periods=1).mean()
+        ax.plot(data["step"], smoothed_q, label=f"{model}", color=color, linewidth=2)
+    ax.set_title("Queue Backlog and Delay Dynamics")
+    ax.set_xlabel("Training Steps")
+    ax.set_ylabel("Queue Backlog Size")
+    ax.grid(True)
+    
+    ax2 = ax.twinx()
+    for model, color in zip(models, colors):
+        data = df_sub[df_sub["model"] == model]
+        smoothed_d = data["delay"].rolling(window=5, min_periods=1).mean()
+        ax2.plot(data["step"], smoothed_d, color=color, linewidth=1.5, linestyle=":")
+    ax2.set_ylabel(r"Feedback Delay $\tau_t$ (dotted)")
+    
+    # Combine legends with proxy styles
+    lines1, labels1 = ax.get_legend_handles_labels()
+    solid_proxy = mlines.Line2D([], [], color='gray', linestyle='-', linewidth=2, label='Queue size (solid)')
+    dotted_proxy = mlines.Line2D([], [], color='gray', linestyle=':', linewidth=1.5, label=r'Delay $\tau_t$ (dotted)')
+    
+    handles = lines1 + [solid_proxy, dotted_proxy]
+    labels = labels1 + ['Queue size (solid)', r'Delay $\tau_t$ (dotted)']
+    ax.legend(handles=handles, labels=labels, loc="upper left")
+    
+    plt.tight_layout()
+    plt.savefig("./simulation/graphs/figure8_network_congestion.png", dpi=300)
+    plt.savefig("./simulation/graphs/figure8_network_congestion.pdf")
     plt.close()
     
     # ------------------ Figure 2: Complexity Pareto Frontier ------------------
@@ -1385,7 +1440,7 @@ def generate_academic_figures():
     plt.savefig("./simulation/graphs/figure7_empirical_tracking.pdf")
     plt.close()
 
-    print("Generated 7 plots successfully.")
+    print("Generated 8 plots successfully.")
     
     # Copy files to paper/images
     img_files = [
@@ -1395,7 +1450,8 @@ def generate_academic_figures():
         "figure4_credit_heatmap.pdf",
         "figure5_scalability_stress.pdf",
         "figure6_window_sensitivity.pdf",
-        "figure7_empirical_tracking.pdf"
+        "figure7_empirical_tracking.pdf",
+        "figure8_network_congestion.pdf"
     ]
     for img in img_files:
         shutil.copy(f"./simulation/graphs/{img}", f"./paper/images/{img}")
