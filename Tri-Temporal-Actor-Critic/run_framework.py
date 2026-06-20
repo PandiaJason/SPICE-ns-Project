@@ -1413,28 +1413,41 @@ def generate_academic_figures():
     plt.close()
     
     # ------------------ Figure 7: Empirical 2D Trajectory Tracking Performance ------------------
-    plt.figure(figsize=(7, 5.5))
+    fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(13, 6))
     df_traj = pd.read_csv("./simulation/outputs/tracking_trajectories.csv")
     
-    # Plot target trajectory (which is circular)
-    df_ttac = df_traj[df_traj["model"] == "TTAC"]
-    plt.plot(df_ttac["target_x"], df_ttac["target_y"], 'k--', label="Target Orbit (Circle)", linewidth=2.0)
-    
-    # Plot trajectories for all models
     models_to_plot = ["Naive-RL", "State-Augmented", "Constant-Delay", "TTAC"]
     colors_traj = ["#d62728", "#ff7f0e", "#2ca02c", "#1f77b4"]
     styles_traj = [":", "-.", "--", "-"]
     
+    # Subplot A: Full Trajectory (Show divergence and transient behavior)
+    df_ttac = df_traj[df_traj["model"] == "TTAC"]
+    ax_a.plot(df_ttac["target_x"], df_ttac["target_y"], 'k--', label="Target Orbit (Circle)", linewidth=2.0)
     for model, color, style in zip(models_to_plot, colors_traj, styles_traj):
         data = df_traj[df_traj["model"] == model]
-        plt.plot(data["x"], data["y"], label=model, color=color, linestyle=style, linewidth=2.0)
-        
-    plt.title("Empirical 2D Trajectory Tracking under Latency")
-    plt.xlabel("X Position")
-    plt.ylabel("Y Position")
-    plt.grid(True)
-    plt.legend(loc='lower left')
-    plt.axis("equal")
+        ax_a.plot(data["x"], data["y"], label=model, color=color, linestyle=style, linewidth=2.0)
+    ax_a.set_title("(a) Full Trajectory Tracking")
+    ax_a.set_xlabel("X Position")
+    ax_a.set_ylabel("Y Position")
+    ax_a.grid(True)
+    ax_a.legend(loc='lower left')
+    ax_a.axis("equal")
+    
+    # Subplot B: Zoomed-In Target Orbit Area ([-2, 2] x [-2, 2])
+    ax_b.plot(df_ttac["target_x"], df_ttac["target_y"], 'k--', label="Target Orbit (Circle)", linewidth=2.0)
+    for model, color, style in zip(models_to_plot, colors_traj, styles_traj):
+        data = df_traj[df_traj["model"] == model]
+        ax_b.plot(data["x"], data["y"], label=model, color=color, linestyle=style, linewidth=2.0)
+    ax_b.set_title("(b) Zoomed Target Area ([-2, 2])")
+    ax_b.set_xlabel("X Position")
+    ax_b.set_ylabel("Y Position")
+    ax_b.grid(True)
+    ax_b.legend(loc='lower left')
+    ax_b.set_xlim(-2.2, 2.2)
+    ax_b.set_ylim(-2.2, 2.2)
+    ax_b.set_aspect("equal", adjustable="box")
+    
+    plt.suptitle("Empirical 2D Trajectory Tracking under Latency")
     plt.tight_layout()
     plt.savefig("./simulation/graphs/figure7_empirical_tracking.png", dpi=300)
     plt.savefig("./simulation/graphs/figure7_empirical_tracking.pdf")
