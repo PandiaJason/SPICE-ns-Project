@@ -153,9 +153,10 @@ def create_tikz4_content():
     \draw[arrow] (r2) -- node[below right, label] {Delayed $\tau_3(Q_3)$} (dst);
     
     % Feedback loop
-    \draw[arrow, dashed, draw=red!80] (r0.west) -- ++(-1.0, 0) |- node[pos=0.8, left, label] {Delayed State\\$Q_2(t-\tau_t)$} (ctrl.west);
-    \draw[arrow, dashed, draw=red!80] (r1.west) -- ++(-0.7, 0) |- (ctrl.west);
-    \draw[arrow, dashed, draw=red!80] (r2.west) -- ++(-0.4, 0) |- (ctrl.west);
+    \coordinate (bus) at ([xshift=-1.0cm]r0.west);
+    \draw[arrow, dashed, draw=red!80] (r0.west) -- (bus) |- node[pos=0.85, left, label] {Delayed State\\$Q_2(t-\tau_t)$} (ctrl.west);
+    \draw[dashed, draw=red!80] (r1.west) -- (r1.west -| bus);
+    \draw[dashed, draw=red!80] (r2.west) -- (r2.west -| bus);
     
     \draw[arrow, draw=blue!80] (ctrl.east) -| ++(1.0, 1.5) |- node[pos=0.8, above right, label] {Action $a_t$\\Routing Weights} (src.south);
     
