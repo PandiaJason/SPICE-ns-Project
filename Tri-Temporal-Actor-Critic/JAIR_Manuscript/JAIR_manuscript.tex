@@ -91,7 +91,7 @@
 
 \maketitle
 
-\section{Introduction}
+\section{Introduction}\label{sec:intro}
 Reinforcement learning (RL), a paradigm within machine learning concerned with sequential decision-making through environment interaction, has achieved remarkable success across diverse application areas, including robotic control, cyber-physical systems, autonomous driving, and network optimization. However, a major bottleneck preventing its widespread deployment in real-world environments is the presence of feedback latency, making learning from delayed reinforcement a core challenge in sequential decision-making \citep{kaelbling1996reinforcement}. In practical applications, control commands and system feedback are rarely instantaneous; instead, they are subject to delays arising from transmission overhead, queuing, sensor computation, and processing bottlenecks. Remote aerospace vehicle guidance, packet routing over high-congested edge network interfaces, and high-frequency robotic control are classic examples where feedback is delayed.
 
 In the literature, Delayed Markov Decision Processes (Delayed-MDPs) have been proposed to study these challenges. Traditionally, researchers assume that the delay is constant or drawn from a stationary, state-independent distribution \citep{katsikopoulos2003markov, ramstedt2019realtime}, and systematic benchmarks have begun classifying delayed rewards as a fundamental dimension of agent hardness and brittleness \citep{rajan2023mdp}. Although these assumptions simplify mathematical analysis and permit straightforward extensions of standard Bellman equations, they fail to represent the characteristics of real-world control systems. In realistic scenarios, feedback delays are highly volatile, non-uniform, and directly coupled to the current state of the system. For instance, in an autonomous continuous locomotion, joint friction or rapid maneuvers can trigger sudden spikes in actuator or sensor processing latency. In network routing, local network congestion leads to exponential queuing delays, meaning that feedback might arrive out-of-order, or be delayed indefinitely.
@@ -171,9 +171,9 @@ In this paper, we present the \textbf{Tri-Temporal Actor-Critic (TTAC)} framewor
     \item We evaluate TTAC across locomotion control, edge packet routing, and a closed-loop 2D trajectory tracking task under dynamic, variable latency. We demonstrate that TTAC significantly outperforms state-augmented and constant-delay baselines, achieving up to a 65-fold reduction in tracking MSE during high-delay transient acquisition phases.
 \end{itemize}
 
-The rest of this paper is structured as follows. Section 2 establishes the formal mathematical foundations of delayed MDPs. Section 3 details the core architecture and components of the TTAC framework, including the Tri-Temporal alignment operator. Section 4 provides theoretical analyses, convergence proofs, and variance bounds. Section 5 presents the algorithmic pseudocode. Section 6 describes decentralized multi-agent extensions. Section 7 details the experimental setup and baselines. Section 8 analyzes empirical results and discusses computational complexity and scalability. Section 9 concludes the paper. Finally, extensive derivations, qualitative analyses, and hyperparameters are detailed in the Appendices.
+The rest of this paper is structured as follows. Section~\ref{sec:foundations} establishes the formal mathematical foundations of delayed MDPs. Section~\ref{sec:architecture} details the core architecture and components of the TTAC framework, including the Tri-Temporal alignment operator. Section~\ref{sec:theory} provides theoretical analyses, convergence proofs, and variance bounds. Section~\ref{sec:algorithm} presents the algorithmic pseudocode. Section~\ref{sec:extensions} describes decentralized multi-agent extensions. Section~\ref{sec:experimental} details the experimental setup and baselines. Section~\ref{sec:results} analyzes empirical results and discusses computational complexity and scalability. Section~\ref{sec:conclusion} concludes the paper. Finally, extensive derivations, qualitative analyses, and hyperparameters are detailed in the Appendices.
 
-\section{Foundations of Delayed Markov Decision Processes}
+\section{Foundations of Delayed Markov Decision Processes}\label{sec:foundations}
 We begin by establishing the formal notation and mathematical properties of delayed reinforcement learning. In a standard, delay-free environment, a system is modeled as a Markov Decision Process (MDP) defined by the quintuple $\mathcal{M} = (\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$, where $\mathcal{S}$ is the state space, $\mathcal{A}$ is the action space, $\mathcal{P}(s' \mid s, a)$ is the transition probability distribution, $\mathcal{R}(s, a)$ is the reward function, and $\gamma \in [0, 1)$ is the temporal discount factor. The goal of the agent is to learn a policy $\pi(a \mid s)$ that maximizes the expected cumulative discounted return $J(\pi) = \mathbb{E} \left[ \sum_{t=0}^{\infty} \gamma^t r_t \right]$.
 
 In delayed settings, the agent does not receive immediate feedback. Instead, the state observed at step $t$ corresponds to some historical state, and the reward arrives after a variable delay, as illustrated in the tri-temporal timeline diagram of Figure~\ref{fig:delayed_mdp_timeline}.
@@ -203,7 +203,7 @@ where $s_{t-\tau_t}$ is the latest received state observation and $\{a_{t-\tau_t
 
 While state augmentation maps the delayed system back into a standard MDP, it introduces a severe dimensional challenge.
 
-\begin{lemma}
+\begin{lemma}\label{lem:augmentation_complexity}
 Let the state space $\mathcal{S}$ and action space $\mathcal{A}$ be discrete with cardinalities $|\mathcal{S}|$ and $|\mathcal{A}|$, respectively. Under state augmentation with a delay horizon $\tau$, the cardinality of the augmented state space $\mathcal{S}_{aug}$ scales exponentially:
 \begin{equation}
     |\mathcal{S}_{aug}| = |\mathcal{S}| \cdot |\mathcal{A}|^{\tau}
@@ -227,7 +227,7 @@ Let $s^{aug}_t \in \mathcal{S}_{aug}$ be represented as the tuple $\left( s_{t -
 This completes the proof.
 \end{proof}
 
-This exponential scaling in discrete spaces and linear scaling in continuous spaces represents the "curse of latency." For large delays, training standard RL agents on $s^{aug}$ is virtually impossible due to sample inefficiency and parameter explosion.
+This exponential scaling in discrete spaces and linear scaling in continuous spaces represents the ``curse of latency.'' For large delays, training standard RL agents on $s^{aug}$ is virtually impossible due to sample inefficiency and parameter explosion.
 
 \subsection{Information-Theoretic Boundaries of Non-Uniform and Out-of-Order Delays}
 In non-uniform delayed settings, the delay $\tau_t$ varies at each time step. Let observations arrive at the agent in a scrambled sequence. Under this setting, the agent receives a set of observations $\mathcal{O}_t = \{ (s_{t' - \tau_{t'}}, a_{t'}, r_{t'}) \}$ that arrive at time $t$. The information-theoretic boundary is defined by the maximum entropy of the state sequence given the observable history.
@@ -241,7 +241,7 @@ Let $\mathcal{H}_t = \{ \mathcal{O}_0, \mathcal{O}_1, \dots, \mathcal{O}_t \}$ b
 
 We formalize the information decay rate under latency by analyzing the transition dynamics as a Markov chain. Let the transition operator be $P(s_{t+1} \mid s_t, a_t)$. In the absence of delay, the Shannon entropy of the state at time $t$ given the observation history is zero (assuming deterministic state observations). Under delay $\tau_t$, the observed state is $s_{t-\tau_t}$, and the current state $s_t$ must be estimated.
 
-\begin{lemma}[Entropy Growth under Feedback Delay]
+\begin{lemma}[Entropy Growth under Feedback Delay]\label{lem:entropy_growth}
 Let the system dynamics be ergodic with a unique stationary distribution $p^*(s)$ and marginal entropy $H^*(s) = -\int_{\mathcal{S}} p^*(s) \log p^*(s) ds$. Under a feedback delay $\tau_t$, the conditional entropy of the current state $s_t$ given the latest received state $s_{t-\tau_t}$ satisfies:
 \begin{equation}
     H(s_t \mid s_{t-\tau_t}) \le H(s_t \mid s_{t-\tau_t-1})
@@ -277,7 +277,7 @@ which completes the proof.
 
 This result mathematically models the physical consequence of delay: as latency grows, the feedback becomes uninformative, and control commands act as open-loop disturbances. The Predictive Layer in TTAC counters this information decay by modeling the state transitions using the Neural ODE, which restricts the prediction distribution $p(\hat{s}_t \mid s_{t-\tau_t}, \{a_{k}\})$ and bounds the entropy growth.
 
-\section{Tri-Temporal Actor-Critic Core Architecture}
+\section{Tri-Temporal Actor-Critic Core Architecture}\label{sec:architecture}
 The core design of the Tri-Temporal Actor-Critic (TTAC) framework is to bypass the dimensionality bottleneck of state augmentation by decoupling learning across three parallel temporal layers. Rather than concatenating past actions into a large history vector, TTAC represents the transition dynamics as a continuous-time differential equation and aligns rewards retrospectively using non-local attention. This design ensures that all neural networks (policy, value, and generative model) operate on flat, constant-dimensional inputs $\mathcal{O}(1)$.
 
 Before detailing the TTAC architecture, we briefly recall the standard Actor-Critic framework in reinforcement learning. An Actor-Critic agent separates policy behavior from state evaluation. The \textit{Actor} (parameterized by $\theta$) selects actions according to a policy $\pi_\theta(a \mid s)$ to maximize the expected long-term return, while the \textit{Critic} (parameterized by $\phi$) evaluates the actor's choices by estimating the state value function $V_\phi(s)$. These networks interact in a continuous feedback loop: the Critic computes the temporal difference (TD) error or advantage signal $A(s, a) = r + \gamma V_\phi(s') - V_\phi(s)$, which is backpropagated to the Actor to reinforce beneficial decisions (positive advantage) or suppress suboptimal choices (negative advantage). Standard Actor-Critic assumes zero feedback delay; when delays are introduced, this feedback loop breaks down, which motivates our tri-temporal decomposition.
@@ -381,7 +381,7 @@ where $\mathbf{E}_{align}(s)$ is the expected reward alignment error:
 
 By adjusting the value updates with $\mathbf{E}_{align}$, the policy gradient can be updated using local predictions while guaranteeing convergence to the true value function of the delayed MDP.
 
-\begin{theorem}[Tri-Temporal Alignment Policy Gradient Theorem]
+\begin{theorem}[Tri-Temporal Alignment Policy Gradient Theorem]\label{thm:policy_gradient}
 Under the TTAC framework, the policy gradient of the expected return $J(\pi_\theta)$ with respect to policy parameters $\theta$ is given by:
 \begin{equation}
     \nabla_\theta J(\pi_\theta) = \mathbb{E}_{s \sim \rho^\pi, a \sim \pi} \left[ \nabla_\theta \log \pi_\theta(a \mid s) \left( Q^{\pi}(s, a) - \mathbf{E}_{align}(s, a) \right) \right]
@@ -417,7 +417,7 @@ Using the identity $\nabla_\theta \pi(a \mid s) = \pi(a \mid s) \nabla_\theta \l
 This completes the proof.
 \end{proof}
 
-\section{Theoretical Analysis and Optimization Guarantees}
+\section{Theoretical Analysis and Optimization Guarantees}\label{sec:theory}
 We present formal mathematical proofs showing that the Tri-Temporal Actor-Critic (TTAC) framework preserves stable convergence and bounded variance under state-dependent, non-uniform, and unbounded feedback delays.
 
 \subsection{Convergence of the Tri-Temporal Bellman Operator}
@@ -428,7 +428,7 @@ To show that value iteration converges to a unique fixed point under TTAC, we an
 
 We establish that this operator is a contraction mapping under the infinity norm by showing that it satisfies Blackwell's sufficiency conditions for contractive operators.
 
-\begin{lemma}[Contraction Mapping of $\mathcal{T}_{TT}$]
+\begin{lemma}[Contraction Mapping of $\mathcal{T}_{TT}$]\label{lem:contraction}
 If the expected reward alignment error is bounded such that $\|\mathbf{E}_{align}\|_\infty \le \epsilon$, then the operator $\mathcal{T}_{TT}$ is a contraction mapping under the infinity norm:
 \begin{equation}
     \| \mathcal{T}_{TT} V_1 - \mathcal{T}_{TT} V_2 \|_\infty \le \gamma \| V_1 - V_2 \|_\infty
@@ -476,7 +476,7 @@ This completes the proof. The detailed derivation and algebraic expansions suppo
 \subsection{Policy Gradient Variance Bounds under Infinite Delay Horizons}
 In history-tracking or state-augmented models, the policy gradient relies on multi-step state-action trajectories. We now prove that the variance of the policy gradient under TTAC remains bounded even as the delay horizon $\tau_t \to \infty$.
 
-\begin{theorem}[Variance Bounding Theorem]
+\begin{theorem}[Variance Bounding Theorem]\label{thm:variance_bounding}
 Let $\tau_t \sim \mathcal{P}_\tau(\cdot \mid s_t, a_t)$ be the state-dependent delay. Under the TTAC framework, the variance of the policy gradient estimator remains bounded by a finite constant $C < \infty$ as the delay horizon approaches infinity:
 \begin{equation}
     \left. \lim_{\tau_t \to \infty} \text{Var}(\nabla_\theta J(\pi_\theta)) \le C < \infty \right.
@@ -523,7 +523,7 @@ This constant $C$ is independent of the delay horizon $\tau_t$, establishing tha
 \subsection{Value Function Error Bounds under Latent Dynamics Approximation}
 During practical optimization, the Predictive Layer dynamics model $f_\omega$ is trained to approximate the true environment transitions, but some modeling error $\epsilon_{ode}$ remains. We now bound the error of the value function approximation $V^\phi$ resulting from this latent prediction error.
 
-\begin{theorem}[Value Function Approximation Error Bound]
+\begin{theorem}[Value Function Approximation Error Bound]\label{thm:value_error_bound}
 Let the true transition dynamics be $\mathcal{P}(s' \mid s, a)$ and the predicted dynamics from the Neural ODE solver be $\hat{\mathcal{P}}(s' \mid s, a)$. Assume that the model error is bounded under the total variation distance for all state-action pairs:
 \begin{equation}
     D_{TV}\left( \mathcal{P}(\cdot \mid s, a) \;\middle\|\; \hat{\mathcal{P}}(\cdot \mid s, a) \right) \le \epsilon_{ode}
@@ -581,7 +581,7 @@ which completes the proof.
 \subsection{Policy Optimization and Monotonic Improvement Guarantees}
 In this subsection, we prove that updating the policy parameter $\theta$ using the Tri-Temporal Alignment Policy Gradient guarantees monotonic improvement of the true environmental return.
 
-\begin{theorem}[Monotonic Policy Improvement Theorem]
+\begin{theorem}[Monotonic Policy Improvement Theorem]\label{thm:policy_improvement}
 Let $\pi_\theta$ be the current policy and $\pi_{\theta'}$ be the updated policy obtained via a step of size $\alpha$ along the Tri-Temporal policy gradient $g_{TTAC}$: $\theta' = \theta + \alpha g_{TTAC}$. If the expected reward alignment error is bounded such that $\|\mathbf{E}_{align}\|_\infty \le \epsilon$, then for a sufficiently small step size $\alpha$, the true expected return satisfies:
 \begin{equation}
     J(\pi_{\theta'}) \ge J(\pi_\theta) + \alpha \| g_{TTAC} \|^2 - \mathcal{O}(\alpha^2) - \frac{2 \gamma \epsilon}{(1-\gamma)^2}
@@ -628,7 +628,7 @@ For a step size $\alpha$ chosen such that the second-order Taylor term is domina
 This establishes that as the reward alignment error $\epsilon \to 0$ (which is achieved by the Retrospective Layer optimization), the policy update guarantees monotonic improvement in expected return, concluding the proof.
 \end{proof}
 
-\section{Algorithmic Implementation and Pseudocode}
+\section{Algorithmic Implementation and Pseudocode}\label{sec:algorithm}
 We now present the complete algorithmic implementation of the Tri-Temporal Actor-Critic (TTAC) framework. The algorithm decomposes into three concurrent execution paths corresponding to the Present, Predictive, and Retrospective Layers.
 
 Algorithm~\ref{alg:ttac_main} details the main training loop of the TTAC agent. The agent interacts with the environment in real time, storing delayed transitions in a prioritized experience replay buffer $\mathcal{D}$ and immediately updating the policy and value networks using generative pseudo-rewards.
@@ -700,7 +700,7 @@ Algorithm~\ref{alg:attention_align} details the retrospective attention alignmen
 \end{algorithmic}
 \end{algorithm}
 
-\section{Extensions to Decentralized Multi-Agent Systems}
+\section{Extensions to Decentralized Multi-Agent Systems}\label{sec:extensions}
 While the standard TTAC framework is formulated for single-agent systems, many real-world delayed control tasks are inherently multi-agent in nature. For instance, in cooperative multi-robot systems or distributed edge traffic scheduling, multiple agents must make local decisions based on delayed state and action information from other agents. In this section, we extend the TTAC framework to Decentralized Multi-Agent settings (MA-TTAC).
 
 \subsection{Decentralized Cooperative Delayed MDP (Dec-CD-MDP)}
@@ -740,7 +740,7 @@ We define the Multi-Agent Tri-Temporal Bellman Operator $\mathcal{T}_{MA}$ actin
 \end{equation}
 We now prove that the operator $\mathcal{T}_{MA}$ converges to a unique joint value fixed point under localized delay profiles.
 
-\begin{theorem}[Multi-Agent Tri-Temporal Contraction Theorem]
+\begin{theorem}[Multi-Agent Tri-Temporal Contraction Theorem]\label{thm:ma_contraction}
 Let $\mathcal{F}$ be a monotonic value-mixing function satisfying $\frac{\partial \mathcal{F}}{\partial V_i} \ge 0$ for all $i$, and assume $\mathcal{F}$ is sub-additive and linear with respect to constant additions: $\mathcal{F}(V_1 + c, \dots, V_N + c) = \mathcal{F}(V_1, \dots, V_N) + \gamma_m c$ for some constant $\gamma_m \ge 0$. Then the Multi-Agent Tri-Temporal Bellman Operator $\mathcal{T}_{MA}$ is a contraction mapping under the infinity norm with contraction factor $\gamma \in [0, 1)$:
 \begin{equation}
     \| \mathcal{T}_{MA} U_{joint} - \mathcal{T}_{MA} V_{joint} \|_\infty \le \gamma \| U_{joint} - V_{joint} \|_\infty
@@ -776,7 +776,7 @@ We verify Blackwell's sufficiency conditions for the joint operator $\mathcal{T}
 Since both Blackwell conditions are satisfied, the joint operator $\mathcal{T}_{MA}$ is a contraction mapping under the supremum norm. By the Banach Fixed-Point Theorem, value iteration using $\mathcal{T}_{MA}$ converges to a unique joint value function fixed point $V_{joint}^*$. This convergence guarantees that cooperative decentralized policy optimization under variable feedback latencies converges to a stable joint Nash Equilibrium.
 \end{proof}
 
-\section{Experimental Methodology and Baseline Taxonomy}
+\section{Experimental Methodology and Baseline Taxonomy}\label{sec:experimental}
 In this section, we present a systematic empirical evaluation to validate the performance, sample efficiency, and scalability of the Tri-Temporal Actor-Critic (TTAC) framework. We evaluate the proposed architecture across three distinct cyber-physical simulation environments: continuous locomotion control (HalfCheetah), network-congested edge packet routing, and a safety-critical 2D trajectory tracking task. Each environment is configured with state-dependent, variable, and unbounded feedback latency profiles to challenge the control stability of the agents. We compare the tracking performance and learning dynamics of TTAC against three representative baselines representing different handling paradigms of feedback delay: delay-blind model-free control, state-augmented history tracking, and constant-delay approximations. Through these experiments, we demonstrate that TTAC maintains high sample efficiency, robust path tracking, and bounded policy gradient variance under extreme delay conditions.
 
 \subsection{Evaluation Environments}
@@ -899,7 +899,7 @@ Target Update Rate $\tau_{target}$ & 0.005 & Hidden Units (MLP) & [256, 256] \\
 \end{small}
 \end{table}
 
-\section{Empirical Results and Performance Evaluation}
+\section{Empirical Results and Performance Evaluation}\label{sec:results}
 In this section, we present a comprehensive empirical analysis of the Tri-Temporal Actor-Critic (TTAC) framework. We analyze the learning dynamics, asymptotic performance, computational complexity, and ablation characteristics of TTAC across our three benchmark tasks: continuous robot locomotion (HalfCheetah), software-defined network edge routing, and continuous 2D orbit tracking. We demonstrate that TTAC successfully addresses the challenges of state-dependent, variable latency by comparing its performance against standard delay-blind, state-augmented, and constant-delay baselines. Our analysis is structured as follows: first, we evaluate the task-specific performance and delay robustness across our three diverse simulation environments; second, we investigate the quantitative computational complexity, parameter memory overhead, and qualitative edge hardware deployment guidelines of the framework; third, we perform systematic ablation studies to isolate the contribution of each core layer; and finally, we discuss the alignment between our continuous-time theoretical formulations and discrete-time simulation implementation. To ensure statistical robustness and reproducibility, all training curves and quantitative results are computed over $N=5$ independent runs with distinct random seed initializations, and performance metrics are reported as mean $\pm$ standard deviation ($\pm$ SD). An extended qualitative analysis of agent trajectories for all three tasks is provided in Appendix~\ref{app:sec_qualitative}.
 
 \begin{figure*}[!t]
@@ -1045,14 +1045,14 @@ Using Zero-Order Hold (ZOH) instead of Cubic Splines increases the reconstructio
 We discuss the relationship between the idealized mathematical models formulated in our theorems and the concrete simulation implementation used for benchmarking:
 \begin{itemize}
     \item \textbf{Continuous-Time Formulation vs. Discrete Integration Steps:}
-    Theorem 2 assumes a continuous-time system dynamics function $F(s(t'), u(t'))$ and continuous action interpolation $\mathbf{u}(t')$. In the implementation, physical environments operate at discrete intervals ($dt = 0.1\,$s). The action interpolation is modeled step-wise using a zero-order hold (ZOH) across the discrete historical actions stored in the queue. This introduces a minor discretization error of order $\mathcal{O}(dt)$ in the integration path. Empirically, the Dormand-Prince solver's adaptive step-size mechanism absorbs this discontinuity, maintaining a global reconstruction error within the user-specified tolerance ($10^{-4}$), aligning with the bounded error $\epsilon_{ode}$ required by Theorem 3.
+    Theorem~\ref{thm:variance_bounding} assumes a continuous-time system dynamics function $F(s(t'), u(t'))$ and continuous action interpolation $\mathbf{u}(t')$. In the implementation, physical environments operate at discrete intervals ($dt = 0.1\,$s). The action interpolation is modeled step-wise using a zero-order hold (ZOH) across the discrete historical actions stored in the queue. This introduces a minor discretization error of order $\mathcal{O}(dt)$ in the integration path. Empirically, the Dormand-Prince solver's adaptive step-size mechanism absorbs this discontinuity, maintaining a global reconstruction error within the user-specified tolerance ($10^{-4}$), aligning with the bounded error $\epsilon_{ode}$ required by Theorem~\ref{thm:value_error_bound}.
     \item \textbf{Infinite Horizon bounds vs. Capped Delay Windows:}
-    While Theorem 2 establishes that the policy gradient variance is bounded by $C < \infty$ as the delay horizon $\tau_t \to \infty$, the practical implementation caps the maximum delay at $\tau_{max} = 100$ (in the trajectory tracking task) and $\tau_{max} = 150$ (in the locomotion task) to prevent memory allocation overflows in the replay buffers. The retrospective attention window is similarly bounded by a sliding window $W = 128$. This truncation prevents attention entropy dilution (as analyzed in Appendix~\ref{app:sec_retrospective_sensitivity}, specifically Appendix~\ref{app:sub_oversizing}) while capturing over $95\%$ of the causal reward signal, maintaining the empirical policy gradient variance at a stable, low value.
+    While Theorem~\ref{thm:variance_bounding} establishes that the policy gradient variance is bounded by $C < \infty$ as the delay horizon $\tau_t \to \infty$, the practical implementation caps the maximum delay at $\tau_{max} = 100$ (in the trajectory tracking task) and $\tau_{max} = 150$ (in the locomotion task) to prevent memory allocation overflows in the replay buffers. The retrospective attention window is similarly bounded by a sliding window $W = 128$. This truncation prevents attention entropy dilution (as analyzed in Appendix~\ref{app:sec_retrospective_sensitivity}, specifically Appendix~\ref{app:sub_oversizing}) while capturing over $95\%$ of the causal reward signal, maintaining the empirical policy gradient variance at a stable, low value.
     \item \textbf{Contraction Mappings vs. Non-Tabular Function Approximation:}
-    Lemma 2 proves that the Tri-Temporal Bellman Operator $\mathcal{T}_{TT}$ is a contraction mapping, ensuring convergence to a unique fixed point $V^*$. In practice, deep neural networks (MLPs) are used as function approximators for $V_\phi$ and $\pi_\theta$. Standard deep reinforcement learning challenges (non-stationarity, sample correlation, and local minima) mean that the optimization path deviates from the monotonic convergence of tabular value iteration. However, the introduction of target networks ($\tau_{target} = 0.005$) and the Adam optimizer stabilizes the parameters, mirroring the theoretical convergence behavior.
+    Lemma~\ref{lem:contraction} proves that the Tri-Temporal Bellman Operator $\mathcal{T}_{TT}$ is a contraction mapping, ensuring convergence to a unique fixed point $V^*$. In practice, deep neural networks (MLPs) are used as function approximators for $V_\phi$ and $\pi_\theta$. Standard deep reinforcement learning challenges (non-stationarity, sample correlation, and local minima) mean that the optimization path deviates from the monotonic convergence of tabular value iteration. However, the introduction of target networks ($\tau_{target} = 0.005$) and the Adam optimizer stabilizes the parameters, mirroring the theoretical convergence behavior.
 \end{itemize}
 
-\section{Conclusion and Future Directions}
+\section{Conclusion and Future Directions}\label{sec:conclusion}
 We presented Tri-Temporal Actor-Critic (TTAC), a generative framework for reinforcement learning under state-dependent, non-uniform, and unbounded feedback delays. By decoupling optimization across Present, Predictive, and Retrospective temporal layers, TTAC achieves sample efficiency and constant network input dimensions. 
 
 Our framework builds upon a rich history of delayed RL and continuous-time control. While classical JMLR works such as Delayed Q-learning \citep{strehl2009reinforcement} established sample complexity bounds for finite MDPs, they did not address continuous-time settings with state-dependent delays. TTAC extends this line of research to high-dimensional continuous systems. By incorporating continuous-time Neural ODE structures, akin to survival estimation networks \citep{tang2022soden}, we reconstruct states over irregular and dynamic delays. Furthermore, our attention-based Retrospective Layer offers a direct temporal alignment mechanism, advancing credit routing methods such as successor-based temporal abstractions \citep{machado2023temporal} and generative sub-policy controllers \citep{ghadirzadeh2022training}.
@@ -1082,7 +1082,7 @@ This work is not affiliated with, endorsed by, or conducted on behalf of any spa
 \appendix
 
 \section{Extensive Mathematical Proofs and Theoretical Guarantees}\label{app:sec_proofs}
-In this appendix, we provide the complete, step-by-step mathematical proofs for the convergence and stability theorems presented in Section 4.
+In this appendix, we provide the complete, step-by-step mathematical proofs for the convergence and stability theorems presented in Section~\ref{sec:theory}.
 
 \subsection{Detailed Contraction Proof of the Tri-Temporal Bellman Operator}\label{app:sub_contraction}
 We establish that the Tri-Temporal Bellman Operator $\mathcal{T}_{TT}$ defined on the Banach space of bounded value functions $(\mathcal{B}(\mathcal{S}), \|\cdot\|_\infty)$ satisfies Blackwell's sufficiency conditions for contraction mappings.
@@ -1095,7 +1095,7 @@ Let $\mathcal{T}: \mathcal{B}(\mathcal{S}) \to \mathcal{B}(\mathcal{S})$ be an o
 \end{enumerate}
 then $\mathcal{T}$ is a contraction mapping with contraction factor $\gamma$ under the infinity norm.
 
-\begin{lemma}[Monotonicity of $\mathcal{T}_{TT}$]
+\begin{lemma}[Monotonicity of $\mathcal{T}_{TT}$]\label{lem:monotonicity_proof}
 Let $V, U \in \mathcal{B}(\mathcal{S})$ be two value functions satisfying $V(s) \le U(s)$ for all $s \in \mathcal{S}$. Then:
 \begin{equation}
     \left( \mathcal{T}_{TT} V \right)(s) \le \left( \mathcal{T}_{TT} U \right)(s) \quad \forall s \in \mathcal{S}
@@ -1123,7 +1123,7 @@ Since $\gamma \ge 0$, we have:
 This establishes monotonicity.
 \end{proof}
 
-\begin{lemma}[Discounting of $\mathcal{T}_{TT}$]
+\begin{lemma}[Discounting of $\mathcal{T}_{TT}$]\label{lem:discounting_proof}
 For any value function $V \in \mathcal{B}(\mathcal{S})$ and constant $c \ge 0$:
 \begin{equation}
     \left( \mathcal{T}_{TT} (V + c) \right)(s) \le \left( \mathcal{T}_{TT} V \right)(s) + \gamma c \quad \forall s \in \mathcal{S}
@@ -1154,7 +1154,7 @@ By the Banach Fixed-Point Theorem, value iteration using $\mathcal{T}_{TT}$ conv
 \end{equation*}
 
 \subsection{Proof of the Policy Gradient Variance Bound under Lipschitz Dynamics}\label{app:sub_variance}
-We provide a detailed proof for Theorem 2.
+We provide a detailed proof for Theorem~\ref{thm:variance_bounding}.
 \begin{proof}
 Let the true system dynamics be continuous-time and modeled as:
 \begin{equation*}
@@ -1334,7 +1334,7 @@ The choice of numerical ordinary differential equation (ODE) solver in the Predi
 
 Let the system dynamics be governed by $\frac{d\mathbf{z}(t')}{dt'} = f_\omega(\mathbf{z}(t'), \mathbf{u}(t'))$. For a numerical solver with local truncation error of order $p$, the error at step size $h$ is $\mathcal{O}(h^{p+1})$. Over an integration horizon of length $\tau_t$, the total number of steps is $N_s = \tau_t / h$.
 
-\begin{theorem}[Global Error Accumulation in Fixed-Step Solvers]
+\begin{theorem}[Global Error Accumulation in Fixed-Step Solvers]\label{thm:ode_global_error}
 Let $f_\omega$ be Lipschitz continuous in $\mathbf{z}$ with Lipschitz constant $L_f$. For a fixed-step solver of order $p$ and step size $h$, the accumulated global reconstruction error $\mathbf{e}(t) = \mathbf{z}_N - s(t)$ over a delay horizon $\tau_t$ satisfies:
 \begin{equation}
     \| \mathbf{e}(t) \| \le \frac{K h^p}{L_f} \left( \exp\left( L_f \tau_t \right) - 1 \right)
@@ -1383,7 +1383,7 @@ The Retrospective Layer uses a sliding attention window of size $W$ to align del
 \subsection{Under-sizing Bias (Truncation Error)}\label{app:sub_undersizing}
 If $W$ is smaller than the active delay horizon $\tau_t$, the true causal rewards are truncated from the window.
 
-\begin{theorem}[Truncation Bias of the Value Function]
+\begin{theorem}[Truncation Bias of the Value Function]\label{thm:truncation_bias}
 Let the true delay at step $t$ be $\tau_t$. If the attention window size satisfies $W < \tau_t$, the reward alignment loss is bounded away from zero:
 \begin{equation}
     \min_{\psi, W_q, W_k} \mathcal{L}_{align} \ge \mathbb{E} \left[ \left\| \sum_{j=t-\tau_t}^{t-W-1} \mathcal{A}_{t, j} \hat{r}_j \right\|^2 \right]
@@ -1472,7 +1472,7 @@ In a delayed setting, the agent does not have access to the current state $s_t$,
 \end{align}
 where $L_{f_\omega}, L_{g_\omega}$ represent the Lie derivatives computed using the Predictive Layer Neural ODE model dynamics, and $\beta_{safe}(\epsilon_{ode})$ is a safety margin offset that compensates for the reconstruction error.
 
-\begin{theorem}[Delay-Compensated Safety Guarantee]
+\begin{theorem}[Delay-Compensated Safety Guarantee]\label{thm:safety_guarantee}
 Assume the Predictive Layer reconstruction error is bounded such that $\|s_t - \hat{s}_t\| \le \epsilon_{ode}$ for all $t$. If the safety barrier function $h$ is Lipschitz continuous with constant $L_h$, and the Lie derivatives are Lipschitz continuous with constants $L_{Lf}$ and $L_{Lg}$, then choosing the safety margin offset as:
 \begin{equation}
     \beta_{safe}(\epsilon_{ode}) = \left( L_{Lf} + L_{Lg} \|u\|_{max} + L_h L_\alpha \right) \epsilon_{ode}
