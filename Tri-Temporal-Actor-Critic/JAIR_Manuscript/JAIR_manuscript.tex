@@ -176,7 +176,7 @@ The rest of this paper is structured as follows. Section 2 establishes the forma
 \section{Foundations of Delayed Markov Decision Processes}
 We begin by establishing the formal notation and mathematical properties of delayed reinforcement learning. In a standard, delay-free environment, a system is modeled as a Markov Decision Process (MDP) defined by the quintuple $\mathcal{M} = (\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$, where $\mathcal{S}$ is the state space, $\mathcal{A}$ is the action space, $\mathcal{P}(s' \mid s, a)$ is the transition probability distribution, $\mathcal{R}(s, a)$ is the reward function, and $\gamma \in [0, 1)$ is the temporal discount factor. The goal of the agent is to learn a policy $\pi(a \mid s)$ that maximizes the expected cumulative discounted return $J(\pi) = \mathbb{E} \left[ \sum_{t=0}^{\infty} \gamma^t r_t \right]$.
 
-In delayed settings, the agent does not receive immediate feedback. Instead, the state observed at step $t$ corresponds to some historical state, and the reward arrives after a variable delay.
+In delayed settings, the agent does not receive immediate feedback. Instead, the state observed at step $t$ corresponds to some historical state, and the reward arrives after a variable delay, as illustrated in the tri-temporal timeline diagram of Figure~\ref{fig:delayed_mdp_timeline}.
 
 \begin{definition}
 A State-Dependent, Non-Uniform, and Unbounded Delayed Markov Decision Process (SD-NU-UDMDP) is a tuple $\mathcal{M}_{delay} = (\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma, \mathcal{P}_\tau)$, where the feedback latency $\tau_t \in \mathbb{N}^+$ at step $t$ is governed by a state-dependent distribution:
@@ -282,7 +282,7 @@ The core design of the Tri-Temporal Actor-Critic (TTAC) framework is to bypass t
 
 Before detailing the TTAC architecture, we briefly recall the standard Actor-Critic framework in reinforcement learning. An Actor-Critic agent separates policy behavior from state evaluation. The \textit{Actor} (parameterized by $\theta$) selects actions according to a policy $\pi_\theta(a \mid s)$ to maximize the expected long-term return, while the \textit{Critic} (parameterized by $\phi$) evaluates the actor's choices by estimating the state value function $V_\phi(s)$. These networks interact in a continuous feedback loop: the Critic computes the temporal difference (TD) error or advantage signal $A(s, a) = r + \gamma V_\phi(s') - V_\phi(s)$, which is backpropagated to the Actor to reinforce beneficial decisions (positive advantage) or suppress suboptimal choices (negative advantage). Standard Actor-Critic assumes zero feedback delay; when delays are introduced, this feedback loop breaks down, which motivates our tri-temporal decomposition.
 
-The TTAC framework bridges this delay gap by decomposing the actor-critic feedback loop into three parallel layers, mapped directly to the temporal progression of information:
+The TTAC framework bridges this delay gap by decomposing the actor-critic feedback loop into three parallel layers, mapped directly to the temporal progression of information (as illustrated in Figure~\ref{fig:ttac_architecture}):
 \begin{enumerate}
     \item \textbf{The Past (Predictive Layer):} The agent only receives confirmed feedback corresponding to the remote entity's past state $s_{t-\tau_t}$. To bridge this delay, the Predictive Layer integrates a Continuous-Time Neural ODE forward over the interval $[t-\tau_t, t]$ using in-flight actions to predict the unobserved present state $\hat{s}_t$.
     \item \textbf{The Present (Present Layer):} Using the predicted present state $\hat{s}_t$, the Actor selects actions in real-time, and both Actor and Critic perform instantaneous updates using a localized generative pseudo-reward estimator $\mathcal{G}_\psi$ that predicts immediate virtual rewards.
@@ -631,7 +631,7 @@ This establishes that as the reward alignment error $\epsilon \to 0$ (which is a
 \section{Algorithmic Implementation and Pseudocode}
 We now present the complete algorithmic implementation of the Tri-Temporal Actor-Critic (TTAC) framework. The algorithm decomposes into three concurrent execution paths corresponding to the Present, Predictive, and Retrospective Layers.
 
-Algorithm 1 details the main training loop of the TTAC agent. The agent interacts with the environment in real time, storing delayed transitions in a prioritized experience replay buffer $\mathcal{D}$ and immediately updating the policy and value networks using generative pseudo-rewards.
+Algorithm~\ref{alg:ttac_main} details the main training loop of the TTAC agent. The agent interacts with the environment in real time, storing delayed transitions in a prioritized experience replay buffer $\mathcal{D}$ and immediately updating the policy and value networks using generative pseudo-rewards.
 
 \begin{algorithm}[h]
 \caption{Tri-Temporal Actor-Critic (TTAC) Training Loop}
@@ -642,7 +642,7 @@ Algorithm 1 details the main training loop of the TTAC agent. The agent interact
 \STATE Initialize networks with random weights.
 \STATE Initialize history buffer $\mathcal{H} \leftarrow \emptyset$.
 \FOR{each training step $t = 1, \dots, T$}
-    \STATE Reconstruct predicted current state $\hat{s}_t$ from delayed observation $s_{t-\tau_t}$ via Algorithm 2.
+    \STATE Reconstruct predicted current state $\hat{s}_t$ from delayed observation $s_{t-\tau_t}$ via Algorithm~\ref{alg:ode_adjoint}.
     \STATE Select action $a_t \sim \pi_\theta(\cdot \mid \hat{s}_t)$ and execute $a_t$ in the environment.
     \STATE Generate virtual pseudo-reward $\hat{r}_t = \mathcal{G}_\psi(\hat{s}_t, a_t)$.
     \STATE Compute instantaneous TD error: $\delta_t = \hat{r}_t + \gamma V_\phi(\hat{s}_{t+1}) - V_\phi(\hat{s}_t)$.
@@ -653,14 +653,14 @@ Algorithm 1 details the main training loop of the TTAC agent. The agent interact
     \STATE \quad $\theta \leftarrow \theta + \eta_{actor} \nabla_\theta \log \pi_\theta(a_t \mid \hat{s}_t) \hat{A}_t^{TT}$
     \IF{delayed observation $(s_t, r_t, \tau_t)$ arrives}
         \STATE Store transition $(s_{t-\tau_t}, \{a_{t-\tau_t}, \dots, a_{t-1}\}, s_t, r_t)$ in replay buffer $\mathcal{D}$.
-        \STATE Update Predictive Neural ODE parameters $\omega$ via Adjoint sensitivity in Algorithm 2.
-        \STATE Update Pseudo-reward parameters $\psi$ and attention projections $W_q, W_k$ in Algorithm 3.
+        \STATE Update Predictive Neural ODE parameters $\omega$ via Adjoint sensitivity in Algorithm~\ref{alg:ode_adjoint}.
+        \STATE Update Pseudo-reward parameters $\psi$ and attention projections $W_q, W_k$ in Algorithm~\ref{alg:attention_align}.
     \ENDIF
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm 2 outlines the trajectory integration and adjoint sensitivity backpropagation. When a delayed state observation arrives, the Predictive Layer integrates the dynamics function forward to compute the reconstruction loss, then integrates the adjoint state backward to compute the parameter gradients.
+Algorithm~\ref{alg:ode_adjoint} outlines the trajectory integration and adjoint sensitivity backpropagation. When a delayed state observation arrives, the Predictive Layer integrates the dynamics function forward to compute the reconstruction loss, then integrates the adjoint state backward to compute the parameter gradients.
 
 \begin{algorithm}[h]
 \caption{Predictive Layer Trajectory Integration and Adjoint Sensitivity}
@@ -681,7 +681,7 @@ Algorithm 2 outlines the trajectory integration and adjoint sensitivity backprop
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm 3 details the retrospective attention alignment update. It projects historical rewards and pseudo-rewards, calculates the attention matrix over the sliding window, and updates the pseudo-reward estimator parameters.
+Algorithm~\ref{alg:attention_align} details the retrospective attention alignment update. It projects historical rewards and pseudo-rewards, calculates the attention matrix over the sliding window, and updates the pseudo-reward estimator parameters.
 
 \begin{algorithm}[h]
 \caption{Retrospective Layer Attention Alignment Update}
