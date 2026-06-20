@@ -83,7 +83,7 @@ def create_tikz2_content():
     \draw[arrow] (present.north) -- ++(0,0.5) -| node[pos=0.25, above=2pt, font=\footnotesize] {Action $a_t$} (env.north);
     
     % Retrospective inputs and feedback
-    \draw[arrow] (env.south) |- node[pos=0.4, above=2pt, font=\footnotesize] {Delayed Return $R_t$} (retrospective.west);
+    \draw[arrow] (env.south) |- node[pos=0.4, right=4pt, font=\footnotesize] {Delayed Return $R_t$} (retrospective.west);
     
     \draw[arrow, dashed, draw=red!80] (retrospective.north) -- node[left=6pt, font=\footnotesize, align=right] {Update $\mathcal{G}_\psi$ parameters $\psi$\\and correct $Q^\pi - \mathbf{E}_{align}$} (present.south);
     
@@ -175,10 +175,16 @@ def build_pdf(name, content):
     try:
         subprocess.run(["tectonic", f"{name}.tex"], check=True, cwd=build_dir)
         pdf_src = os.path.join(build_dir, f"{name}.pdf")
-        pdf_dest = f"./paper/images/{name}.pdf"
+        
+        pdf_dest_paper = f"./paper/images/{name}.pdf"
         os.makedirs("./paper/images", exist_ok=True)
-        shutil.copy(pdf_src, pdf_dest)
-        print(f"Successfully compiled and copied to {pdf_dest}")
+        shutil.copy(pdf_src, pdf_dest_paper)
+        
+        pdf_dest_jair = f"./JAIR_Manuscript/images/{name}.pdf"
+        os.makedirs("./JAIR_Manuscript/images", exist_ok=True)
+        shutil.copy(pdf_src, pdf_dest_jair)
+        
+        print(f"Successfully compiled and copied to destinations")
     except Exception as e:
         print(f"Error compiling {name}.tex: {e}")
 
