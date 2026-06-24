@@ -91,7 +91,7 @@ The pseudo-reward parameters $\psi$ and attention matrices $W_q, W_k$ are traine
 $$\mathcal{L}_{align}(\psi, W_q, W_k) = \frac{1}{B} \sum_{b=1}^B \left\| R_b - \sum_{j=b-\tau_b}^{b} \mathcal{A}_{b, j} \hat{r}_j \right\|_2^2$$
 
 ### 1.3 Theoretical Convergence & Variance Guarantees
-The TTAC framework is backed by three core mathematical proofs (detailed in Section 4 of the [JAIR Manuscript](JAIR_Manuscript/JAIR_manuscript.tex)):
+The TTAC framework is backed by three core mathematical proofs:
 
 1. **Contraction Mapping Theorem**: We define the Tri-Temporal Bellman Operator $\mathcal{T}_{TT}$ and prove it satisfies Blackwell's conditions (monotonicity and discounting), ensuring it converges to a unique fixed point value function $V^*$ under non-uniform delays.
 2. **Policy Gradient Variance Bounding**: Under Lipschitz dynamics, policy gradient variance is proved to be bounded even under infinite delay horizons:
