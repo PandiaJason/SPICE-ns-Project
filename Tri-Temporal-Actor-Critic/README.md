@@ -20,10 +20,10 @@ The TTAC framework coordinates three layers operating concurrently:
    * When delayed physical rewards $r_t$ eventually arrive in the future at step $t + \tau_t$, this layer performs causal credit assignment using a retrospective attention mechanism.
 
 ### System Diagram
-![TTAC System Architecture](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/tikz_architecture.png)
+![TTAC System Architecture](simulation/graphs/tikz_architecture.png)
 
 ### Chronological Information Flow & Delay Windows
-![TTAC Timeline Delay Windows](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/tikz_timeline.png)
+![TTAC Timeline Delay Windows](simulation/graphs/tikz_timeline.png)
 
 ---
 
@@ -91,7 +91,7 @@ The pseudo-reward parameters $\psi$ and attention matrices $W_q, W_k$ are traine
 $$\mathcal{L}_{align}(\psi, W_q, W_k) = \frac{1}{B} \sum_{b=1}^B \left\| R_b - \sum_{j=b-\tau_b}^{b} \mathcal{A}_{b, j} \hat{r}_j \right\|_2^2$$
 
 ### 1.3 Theoretical Convergence & Variance Guarantees
-The TTAC framework is backed by three core mathematical proofs (detailed in Section 4 of the [JAIR Manuscript](file:///home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/JAIR_Manuscript/JAIR_manuscript.tex)):
+The TTAC framework is backed by three core mathematical proofs (detailed in Section 4 of the [JAIR Manuscript](JAIR_Manuscript/JAIR_manuscript.tex)):
 
 1. **Contraction Mapping Theorem**: We define the Tri-Temporal Bellman Operator $\mathcal{T}_{TT}$ and prove it satisfies Blackwell's conditions (monotonicity and discounting), ensuring it converges to a unique fixed point value function $V^*$ under non-uniform delays.
 2. **Policy Gradient Variance Bounding**: Under Lipschitz dynamics, policy gradient variance is proved to be bounded even under infinite delay horizons:
@@ -104,7 +104,7 @@ The TTAC framework is backed by three core mathematical proofs (detailed in Sect
 
 ## 2. 💻 Simulation Code & Implementation
 
-The core simulation pipeline is implemented in [run_framework.py](file:///home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/run_framework.py). Below is a guide to the key components.
+The core simulation pipeline is implemented in [run_framework.py](run_framework.py). Below is a guide to the key components.
 
 ### 2.1 The 2D Trajectory Tracking Environment
 The `Delayed2DTrackingEnv` class (lines 289–357 of `run_framework.py`) simulates a point-mass agent moving in a 2D plane trying to track a circular target orbit under range-dependent propagation delay.
@@ -201,7 +201,7 @@ Below are the empirical findings from evaluations on the 2D Trajectory Tracking 
 ### 3.1 Spatial 2D Orbit Tracking Performance
 All agents are initialized at $(2.0, 2.0)$, far from the target circular orbit, testing their ability to acquire the target and maintain stable control under distance-dependent feedback delays.
 
-![Empirical 2D Trajectory Tracking](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/figure7_empirical_tracking.png)
+![Empirical 2D Trajectory Tracking](simulation/graphs/figure7_empirical_tracking.png)
 *Figure 7: (a) Full trajectories traced by the agents during target acquisition. (b) Zoomed target tracking area showing circular orbit tracking under range-dependent delays.*
 
 | Metric | Naive-RL (Delay-Blind) | State-Augmented (H=10) | Constant-Delay ($\bar{\tau}=15$) | TTAC (Ours) |
@@ -221,7 +221,7 @@ All agents are initialized at $(2.0, 2.0)$, far from the target circular orbit, 
 #### A. State Prediction Accuracy
 TTAC's continuous-time Neural ODE predictive model is evaluated against the implicit predictors of the baselines over escalating integration windows (delay depths).
 
-![Credit Heatmap & Prediction MSE](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/figure4_credit_heatmap.png)
+![Credit Heatmap & Prediction MSE](simulation/graphs/figure4_credit_heatmap.png)
 *Figure 4: (Left) Retrospective attention weights $\mathcal{A}$ mapping delayed reward feedback back to historical actions. (Right) State Prediction Error (MSE) vs. Integration Window (delay depth).*
 
 * **Naive-RL (Constant Predictor)** has an error that scales linearly with the delay depth.
@@ -231,7 +231,7 @@ TTAC's continuous-time Neural ODE predictive model is evaluated against the impl
 #### B. Computational Complexity & Pareto Frontier
 We map the trade-off between value estimation error (Mean Squared Error) and wall-clock execution time per step.
 
-![Complexity Pareto Frontier](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/figure2_pareto_frontier.png)
+![Complexity Pareto Frontier](simulation/graphs/figure2_pareto_frontier.png)
 *Figure 2: Scatter plot of value estimation error vs. compute execution time per step.*
 
 * State-augmented networks require larger input vectors as the delay horizon grows. This increases compute time quadratically per optimization step.
@@ -240,7 +240,7 @@ We map the trade-off between value estimation error (Mean Squared Error) and wal
 #### C. Memory Complexity & Stress Testing
 We stress-test the models by scaling feedback delays up to 5,000 steps.
 
-![Scalability & Memory Complexity](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/figure5_scalability_stress.png)
+![Scalability & Memory Complexity](simulation/graphs/figure5_scalability_stress.png)
 *Figure 5: (Left) Asymptotic convergence error vs. delay depth. (Right) Parameter memory footprint scaling in kilobytes.*
 
 * **TTAC** maintains a constant $\mathcal{O}(1)$ parameter memory footprint (~8.4 KB) because the Neural ODE's parameter size $\omega$ is independent of the integration length. It remains stable even under 5,000 steps of delay.
@@ -249,7 +249,7 @@ We stress-test the models by scaling feedback delays up to 5,000 steps.
 #### D. Attention Window Sensitivity
 We evaluate the sensitivity of reward alignment to the retrospective attention window size $W$.
 
-![Window Sensitivity](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/figure6_window_sensitivity.png)
+![Window Sensitivity](simulation/graphs/figure6_window_sensitivity.png)
 *Figure 6: Alignment loss (blue, solid) and final policy return (orange, dashed) vs. attention window size $W$.*
 
 * The optimal window size is $W = 128$, which matches the expected maximum delay horizon of the environment.
