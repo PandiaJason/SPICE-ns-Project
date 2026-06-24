@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """PTB Simulation — Flask SSE Backend.  Run: python3 server.py"""
-import json, math, time, threading
+import json, math, time, threading, random
 from flask import Flask, Response, jsonify, send_from_directory, request
 import os
 import base64
@@ -57,14 +57,38 @@ def cabin_state(t):
     return s
 
 def predict(recv, m):
-    t_pred = recv['t'] + 2*m
+    t_base = recv['t']
+    t_pred = t_base + 2*m
     p = nominal(t_pred)
+    
+    # Earth AI propagates forward starting from the received state (which is noisy)
     if recv.get('anomaly'):
-        dt = t_pred - ANOMALY_T
-        p['gimbal_port_C'] = round(p['gimbal_port_C'] + 10*(1-math.exp(-dt/20)), 2)
-        p['thrust_pct']    = round(p['thrust_pct']    - 3.0*(1-math.exp(-dt/25)), 2)
-        p['traj_dev']      = round(p['traj_dev']      + 0.035*(1-math.exp(-dt/30)), 4)
-        p['anomaly'] = True
+        dt_base = t_base - ANOMALY_T
+        dt_pred = t_pred - ANOMALY_T
+        
+        # Calculate expected change from t_base to t_pred based on Earth's estimation model (mismatch: 10 vs 12, etc.)
+        delta_temp_base = 10.0 * (1.0 - math.exp(-dt_base / 20.0))
+        delta_temp_pred = 10.0 * (1.0 - math.exp(-dt_pred / 20.0))
+        temp_change = delta_temp_pred - delta_temp_base
+        
+        delta_thrust_base = -3.0 * (1.0 - math.exp(-dt_base / 25.0))
+        delta_thrust_pred = -3.0 * (1.0 - math.exp(-dt_pred / 25.0))
+        thrust_change = delta_thrust_pred - delta_thrust_base
+        
+        delta_dev_base = 0.035 * (1.0 - math.exp(-dt_base / 30.0))
+        delta_dev_pred = 0.035 * (1.0 - math.exp(-dt_pred / 30.0))
+        dev_change = delta_dev_pred - delta_dev_base
+        
+        p['gimbal_port_C'] = round(recv['gimbal_port_C'] + temp_change, 2)
+        p['thrust_pct']    = round(recv['thrust_pct'] + thrust_change, 2)
+        p['traj_dev']      = round(recv['traj_dev'] + dev_change, 4)
+        p['anomaly']       = True
+    else:
+        # Nominal propagation: track basic nominal changes
+        p['gimbal_port_C'] = round(recv['gimbal_port_C'] + 0.04 * (2.0*m), 2)
+        p['gimbal_stbd_C'] = round(recv['gimbal_stbd_C'] + 0.02 * (2.0*m), 2)
+        p['thrust_pct']    = round(recv['thrust_pct'] - 0.01 * (2.0*m), 2)
+        p['traj_dev']      = recv['traj_dev']
     p['t'] = round(t_pred, 1)
     return p
 
@@ -96,26 +120,103 @@ def reconcile(cabin, pred, cmd):
 # ── SSE stream ────────────────────────────────────────────────────────────
 def event_stream():
     try:
+        # Initialize dynamic metrics state
+        ocli = 22.0
+        opfi = 96.0
+        ecl = 0.4
+        ssa = 99.8
+        last_t = None
+        
         while True:
             t = sim_t()
             m = delay(t)
+            
+            # Handle timeline reset detection
+            if last_t is None or t < last_t:
+                ocli = 22.0
+                opfi = 96.0
+                ecl = 0.4
+                ssa = 99.8
+                dt_step = 0.5
+            else:
+                dt_step = t - last_t
+            last_t = t
+
             t_recv = max(0, t - m)
-            recv   = cabin_state(t_recv)
+            
+            # Add measurement noise to the telemetry received by Earth
+            recv_clean = cabin_state(t_recv)
+            recv = dict(recv_clean)
+            if t_recv >= ANOMALY_T:
+                recv['gimbal_port_C'] = round(recv['gimbal_port_C'] + random.gauss(0, 0.15), 2)
+                recv['gimbal_stbd_C'] = round(recv['gimbal_stbd_C'] + random.gauss(0, 0.10), 2)
+                recv['thrust_pct']    = round(recv['thrust_pct']    + random.gauss(0, 0.08), 2)
+                recv['traj_dev']      = round(recv['traj_dev']      + random.gauss(0, 0.001), 4)
+            else:
+                recv['gimbal_port_C'] = round(recv['gimbal_port_C'] + random.gauss(0, 0.05), 2)
+                recv['gimbal_stbd_C'] = round(recv['gimbal_stbd_C'] + random.gauss(0, 0.05), 2)
+                recv['thrust_pct']    = round(recv['thrust_pct']    + random.gauss(0, 0.04), 2)
+                recv['traj_dev']      = round(recv['traj_dev']      + random.gauss(0, 0.0002), 4)
+
             pred   = predict(recv, m)
             cmd    = build_command(pred, m)
             cab    = cabin_state(t)
             recon  = reconcile(cab, pred, cmd)
 
+            # Calculate metrics dynamically based on reconciliation FSM
+            max_d = max(abs(v) for v in recon['deltas'].values()) if recon['deltas'] else 0
+            safe = recon['safe']
+            
+            if not safe:  # DELTA_HIGH state (blocked)
+                ocli_target = 75.0
+                ecl_target = 2.0 * m
+                ssa_target = max(60.0, 99.5 - max_d * 50.0)
+                opfi_target = max(65.0, 95.0 - max_d * 30.0)
+            elif correction_applied_at[0] is not None:  # RECONCILED after correction
+                ocli_target = 18.0
+                ecl_target = 0.5
+                ssa_target = 99.9
+                opfi_target = 99.0
+            else:  # Nominal RECONCILED state
+                ocli_target = 22.0
+                ecl_target = 0.4
+                ssa_target = 99.8
+                opfi_target = 96.0
+                
+            # Filter dynamics (exponential decay towards target states)
+            alpha_ocli = 1.0 - math.exp(-dt_step / 15.0)
+            alpha_ecl  = 1.0 - math.exp(-dt_step / 8.0)
+            alpha_ssa  = 1.0 - math.exp(-dt_step / 10.0)
+            alpha_opfi = 1.0 - math.exp(-dt_step / 12.0)
+            
+            ocli += (ocli_target - ocli) * alpha_ocli
+            ecl  += (ecl_target - ecl) * alpha_ecl
+            ssa  += (ssa_target - ssa) * alpha_ssa
+            opfi += (opfi_target - opfi) * alpha_opfi
+            
+            # Add minor Gaussian fluctuations to final reported metrics
+            ocli_noise = max(10.0, min(100.0, ocli + random.gauss(0, 0.4)))
+            opfi_noise = max(10.0, min(100.0, opfi + random.gauss(0, 0.3)))
+            ssa_noise  = max(10.0, min(100.0, ssa + random.gauss(0, 0.1)))
+            ecl_noise  = max(0.1, min(100.0, ecl + random.gauss(0, 0.02)))
+            
+            metrics = dict(
+                ocli=round(ocli_noise, 1),
+                opfi=round(opfi_noise, 1),
+                ecl=round(ecl_noise, 2),
+                ssa=round(ssa_noise, 2)
+            )
+
             payload = json.dumps(dict(
                 t=round(t,1), m=round(m,1),
                 earth=dict(received=recv, predicted=pred, command=cmd),
                 mars=dict(cabin=cab, reconciliation=recon),
+                metrics=metrics,
                 correction_applied=correction_applied_at[0] is not None,
             ))
             yield f"data: {payload}\n\n"
             time.sleep(0.5)
     except GeneratorExit:
-        # Clean exit when browser disconnects or closes tab
         pass
 
 @app.route('/stream')

@@ -1463,42 +1463,70 @@
             const saSyncVal = document.getElementById('sync-accuracy');
             const linkVal = document.getElementById('link-val');
 
-            if (mCab.anomaly && !ePred.anomaly) {
-                linkVal.textContent = 'DESYNCHRONIZED (ANOMALY)';
-                linkVal.className = 'stat-val red';
-                presenceVal.textContent = '80% (Transient Degradation)';
-                loadVal.textContent = '75% (High Workload)';
-                saSyncVal.textContent = '79.5% (Desynchronized)';
-                latencyIllusionVal.textContent = '3.5s (Anomaly Window)';
-                
-                histOpfi.push(80);
-                histOcli.push(75);
-                histEcl.push(3.5);
-                histSsa.push(79.5);
-            } else if (data.correction_applied) {
-                linkVal.textContent = 'SYNCHRONIZED';
-                linkVal.className = 'stat-val green';
-                presenceVal.textContent = '99% (Perfect Partner)';
-                loadVal.textContent = '18% (Low Workload)';
-                saSyncVal.textContent = '99.9% (Fully Synchronized)';
-                latencyIllusionVal.textContent = '0.5s (Near-Zero)';
-                
-                histOpfi.push(99);
-                histOcli.push(18);
-                histEcl.push(0.5);
-                histSsa.push(99.9);
+            if (data.metrics) {
+                const opfi = data.metrics.opfi;
+                const ocli = data.metrics.ocli;
+                const ecl = data.metrics.ecl;
+                const ssa = data.metrics.ssa;
+
+                presenceVal.textContent = `${opfi.toFixed(1)}% (${opfi > 95 ? 'High' : opfi > 85 ? 'Moderate' : 'Transient Degradation'})`;
+                loadVal.textContent = `${ocli.toFixed(1)}% (${ocli < 30 ? 'Low' : ocli < 60 ? 'Moderate' : 'High Workload'})`;
+                saSyncVal.textContent = `${ssa.toFixed(2)}% (${ssa > 98 ? 'Aligned' : 'Desynchronized'})`;
+                latencyIllusionVal.textContent = `${ecl.toFixed(2)}s (${ecl < 1.0 ? 'Near-Zero' : 'Anomaly Window'})`;
+
+                if (mCab.anomaly && !ePred.anomaly) {
+                    linkVal.textContent = 'DESYNCHRONIZED (ANOMALY)';
+                    linkVal.className = 'stat-val red';
+                } else if (data.correction_applied) {
+                    linkVal.textContent = 'SYNCHRONIZED';
+                    linkVal.className = 'stat-val green';
+                } else {
+                    linkVal.textContent = 'SYNCHRONIZED';
+                    linkVal.className = 'stat-val green';
+                }
+
+                histOpfi.push(opfi);
+                histOcli.push(ocli);
+                histEcl.push(ecl);
+                histSsa.push(ssa);
             } else {
-                linkVal.textContent = 'SYNCHRONIZED';
-                linkVal.className = 'stat-val green';
-                presenceVal.textContent = '96% (High)';
-                loadVal.textContent = '22% (Low)';
-                saSyncVal.textContent = '99.8% (Aligned)';
-                latencyIllusionVal.textContent = '0.4s (Near-Zero)';
-                
-                histOpfi.push(96);
-                histOcli.push(22);
-                histEcl.push(0.4);
-                histSsa.push(99.8);
+                if (mCab.anomaly && !ePred.anomaly) {
+                    linkVal.textContent = 'DESYNCHRONIZED (ANOMALY)';
+                    linkVal.className = 'stat-val red';
+                    presenceVal.textContent = '80% (Transient Degradation)';
+                    loadVal.textContent = '75% (High Workload)';
+                    saSyncVal.textContent = '79.5% (Desynchronized)';
+                    latencyIllusionVal.textContent = '3.5s (Anomaly Window)';
+                    
+                    histOpfi.push(80);
+                    histOcli.push(75);
+                    histEcl.push(3.5);
+                    histSsa.push(79.5);
+                } else if (data.correction_applied) {
+                    linkVal.textContent = 'SYNCHRONIZED';
+                    linkVal.className = 'stat-val green';
+                    presenceVal.textContent = '99% (Perfect Partner)';
+                    loadVal.textContent = '18% (Low Workload)';
+                    saSyncVal.textContent = '99.9% (Fully Synchronized)';
+                    latencyIllusionVal.textContent = '0.5s (Near-Zero)';
+                    
+                    histOpfi.push(99);
+                    histOcli.push(18);
+                    histEcl.push(0.5);
+                    histSsa.push(99.9);
+                } else {
+                    linkVal.textContent = 'SYNCHRONIZED';
+                    linkVal.className = 'stat-val green';
+                    presenceVal.textContent = '96% (High)';
+                    loadVal.textContent = '22% (Low)';
+                    saSyncVal.textContent = '99.8% (Aligned)';
+                    latencyIllusionVal.textContent = '0.4s (Near-Zero)';
+                    
+                    histOpfi.push(96);
+                    histOcli.push(22);
+                    histEcl.push(0.4);
+                    histSsa.push(99.8);
+                }
             }
 
             // Manage circular queue history data for graphics drawing
