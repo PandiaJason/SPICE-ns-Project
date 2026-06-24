@@ -8,29 +8,22 @@ TTAC resolves these latency challenges by decoupling learning and execution acro
 
 ## 🗺️ Architectural Overview
 
-The TTAC framework separates state estimation, real-time control, and reward credit assignment into three concurrent layers, visualized below:
+The TTAC framework coordinates three layers operating concurrently:
 
-```mermaid
-graph TD
-    subgraph Past [Predictive Layer: Past to Present]
-        s_delayed["Delayed Observation s(t - \tau_t)"] --> |Initial State| ODE["Neural ODE Solver (Dormand-Prince)"]
-        action_hist["Action History H_past"] --> |Cubic Spline Interpolation| ODE
-        ODE --> |Forward Integration| s_reconstructed["Predicted Present State \hat{s}_t"]
-    end
+1. **Predictive Layer (Past $\rightarrow$ Present)**: 
+   * Reconstructs the true, unobserved current environment state $s_t$ by projecting forward from the oldest unconfirmed observation $s_{t-\tau_t}$ using the history of in-flight actions $\mathcal{H}_{past} = \{a_{t-\tau_t}, \dots, a_{t-1}\}$.
+   * Leverages a continuous-time Neural ODE solver.
+2. **Present Layer (Present)**:
+   * Selects action $a_t$ based on the reconstructed state estimate.
+   * Calculates immediate policy updates using local, generative pseudo-rewards to maintain smooth gradient propagation without waiting for delayed environmental signals.
+3. **Retrospective Layer (Future $\rightarrow$ Present)**:
+   * When delayed physical rewards $r_t$ eventually arrive in the future at step $t + \tau_t$, this layer performs causal credit assignment using a retrospective attention mechanism.
 
-    subgraph Present [Present Layer: Real-Time Execution]
-        s_reconstructed --> |State Estimate| Policy["Present Policy \pi_\theta(a_t | \hat{s}_t)"]
-        s_reconstructed --> |State Estimate| Critic["Present Value V_\phi(\hat{s}_t)"]
-        s_reconstructed & action["Selected Action a_t"] --> PseudoReward["Pseudo-Reward Estimator \mathcal{G}_\psi(\hat{s}_t, a_t)"]
-        PseudoReward --> |Virtual Reward \hat{r}_t| CriticUpdate["TD-Error Optimization"]
-    end
+### System Diagram
+![TTAC System Architecture](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/tikz_architecture.png)
 
-    subgraph Future [Retrospective Layer: Future to Present]
-        r_delayed["Delayed True Reward r_t"] --> |Feedback Arrives| Attention["Retrospective Attention Alignment"]
-        PseudoRewardHist["Historical Pseudo-Rewards"] --> Attention
-        Attention --> |Query-Key Weighting| RewardCalibration["Calibration Loss & Parameter Update"]
-    end
-```
+### Chronological Information Flow & Delay Windows
+![TTAC Timeline Delay Windows](/home/jason/SPICE-ns-Project/Tri-Temporal-Actor-Critic/simulation/graphs/tikz_timeline.png)
 
 ---
 
