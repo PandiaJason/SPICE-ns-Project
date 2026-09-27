@@ -10,6 +10,7 @@
 > *Jason Pandian¹ and I. Kala²*  
 > ¹ Department of Information Technology, Nehru Institute of Technology, Coimbatore, Tamil Nadu, India  
 > ² Department of Computer Science and Engineering, PSG Institute of Technology and Applied Research, Coimbatore, Tamil Nadu, India  
+> *(Manuscript submitted and currently under peer review at Simulation Modelling Practice and Theory, Elsevier)*  
 
 ---
 
@@ -283,13 +284,12 @@ python3 simulation/run_scalability.py
 If you utilize this simulation engine, benchmarks, or datasets in your research, please cite our manuscript:
 
 ```bibtex
-@article{pandian2026limits,
-  title     = {The Limits of Discrete-Event Synchronization in Interplanetary Network Simulation: A Critical Review of Co-Simulation Fidelity},
-  author    = {Pandian, Jason and Kala, I.},
-  journal   = {Simulation Modelling Practice and Theory},
-  year      = {2026},
-  publisher = {Elsevier},
-  url       = {https://github.com/PandiaJason/SPICE-ns-Project/tree/main/Adaptive-Multi-Rate-Co-Simulation-Engine}
+@unpublished{pandian2026limits,
+  title  = {The Limits of Discrete-Event Synchronization in Interplanetary Network Simulation: A Critical Review of Co-Simulation Fidelity},
+  author = {Pandian, Jason and Kala, I.},
+  note   = {Manuscript submitted to Simulation Modelling Practice and Theory (under review)},
+  year   = {2026},
+  url    = {https://github.com/PandiaJason/SPICE-ns-Project/tree/main/Adaptive-Multi-Rate-Co-Simulation-Engine}
 }
 ```
 
