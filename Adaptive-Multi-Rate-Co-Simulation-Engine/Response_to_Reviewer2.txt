@@ -6,142 +6,90 @@ Manuscript Title: The Limits of Discrete-Event Synchronization in
                   Interplanetary Network Simulation: A Critical Review 
                   of Co-Simulation Fidelity
 Authors:          Jason Pandian and I. Kala
-Journal:          Simulation Modelling Practice and Theory / Elsevier
+Journal:          Simulation Modelling Practice and Theory (Elsevier)
 
-We sincerely thank Reviewer 2 for the constructive assessment, thorough 
-literature critique, and valuable recommendations. In response to your feedback, 
-we have substantially modernized our literature review (expanding the bibliography 
-from 22 to 39 citations), explicitly delineated our original contributions 
-against foundational co-simulation surveys, corrected our comparative claims 
-regarding ns-3, and cleaned up figure typography and formatting.
-
-Below is our detailed point-by-point response detailing all revisions made in 
-the revised manuscript.
+We sincerely thank Reviewer 2 for the positive evaluation of our work, the 
+insightful literature critique, and the constructive recommendations. Below 
+are our concise, point-by-point responses detailing all revisions made.
 
 ----------------------------------------------------------------------
-COMMENT 1: Literature Currency & State of the Art
+COMMENT 1:
 "The state of the art is too old. Only two references after 2020 out of 22 ... 
 either the problem is not actual or the authors have not performed a fair 
 review of the literature."
 
 RESPONSE:
-We acknowledge this valid critique. We have conducted a comprehensive literature 
+We acknowledge this valid critique. We have performed a comprehensive literature 
 expansion, increasing the total bibliography from 22 to 39 references. The 17 
 newly added citations cover recent peer-reviewed articles and authoritative 
-standards from 2017–2024, focusing on space digital twins, modern DTN standards, 
-and Cislunar relativistic timekeeping.
+standards from 2017 to 2024 (with 62% published between 2017 and 2024, including 
+14 citations from 2020 to 2024).
 
-CHANGES MADE IN MANUSCRIPT:
-- Bibliography expanded to 39 references (62% published between 2017 and 2024; 
-  14 citations from 2020–2024).
-- Section 2.1: Integrated FMI 3.0 multi-rate clock features (Junghanns et al., 
-  2021) and the ACM Computing Surveys co-simulation review (Gomes et al., 2018).
+CHANGES MADE:
+- Section 2.1: Integrated FMI 3.0 multi-rate clock specifications (Junghanns 
+  et al., 2021) and the Gomes et al. survey (2018).
 - Section 2.2: Added 6G satellite digital twins (Mao et al., IEEE Network 2024), 
   SAGIN simulation platforms (Cheng et al., 2020), Hypatia constellation 
   simulation (Kassing et al., 2020), and space interoperability standards 
   (Crues et al., 2022).
-- Section 2.4: Added Bundle Protocol Version 7 standards (RFC 9171, 2022; 
-  CCSDS 734.20-B-1, 2024), NASA LunaNet architecture (2020, 2023), CGR 
-  routing tutorials and uncertain contact plans (Fraire et al., 2021; 
-  Madoery et al., 2018), and GNSS optical ISL contact planning (Nardin et al., 
-  2022).
+- Section 2.4: Added modern DTN standards: RFC 9171 BPv7 (2022), CCSDS 
+  734.20-B-1 (2024), NASA LunaNet architecture (2020, 2023), and Contact Graph 
+  Routing (CGR) contact plan studies (Fraire et al., 2021; Madoery et al., 2018).
 - Section 2.5: Integrated the White House OSTP Coordinated Lunar Time policy 
-  (April 2024), relativistic lunar clock rate formulations (Ashby & Patla, 
-  Astron. J. 2024), and Cislunar NRHO orbit maintenance (Davis et al., 2017).
+  (April 2024), relativistic lunar clock rate models (Ashby & Patla, Astron. 
+  J. 2024), and Cislunar NRHO orbit navigation (Davis et al., 2017).
 
 ----------------------------------------------------------------------
-COMMENT 2: Delineation of Original Contributions Against Prior Art
+COMMENT 2:
 "The authors should clearly state which parts of the adaptive multi-rate 
 cosimulation approach is really their original contribution, notably 
 against references 19 [Gomes et al.] and 20 [Schweiger et al.]."
 
 RESPONSE:
 We thank the reviewer for highlighting the need for clearer attribution. We 
-have added a dedicated subsection explicitly delineating our original 
-contributions across four distinct axes against Gomes et al. [19] and 
-Schweiger et al. [20].
+added Section 1.3 explicitly delineating our original contributions against 
+Gomes et al. [19] and Schweiger et al. [20] across four distinct axes:
 
-CHANGES MADE IN MANUSCRIPT:
-- Added Section 1.3 ("Scope, Original Contributions, and Relation to Prior Work", 
-  lines 131–138), delineating:
-  1. Continuous-Discrete Cross-Domain Coupling: Gomes et al. and Schweiger 
-     et al. address continuous-continuous DAE-to-DAE coupling (e.g., automotive 
-     and power systems). Our work solves the fundamentally distinct problem 
-     of coupling continuous astrodynamics ODE integrators to discrete-event 
-     (DEVS) network packet queues across CCSDS ModCod switching thresholds.
-  2. Predictive Look-Ahead vs. Reactive Rollback: Standard co-simulation master 
-     algorithms surveyed in [20] handle event zero-crossings via reactive ODE 
-     state rollbacks. In contrast, our engine proactively contracts the coupling 
-     interval ahead of line-of-sight occultations and SNR gradients, eliminating 
-     event timing delay without rollback computation.
-  3. Domain-Specific Multi-Rate Regimes with Event Guards: We formulate an 
-     astrodynamics-aware step hierarchy (DT_MIN = 1.0 s, DT_COAST = 600 s, 
-     DT_BLACKOUT = 3600 s) combined with a predictive boundary event guard 
-     that prevents boundary overshoot and step chatter.
-  4. Relativistic Spacetime Limits: We formally derive the theoretical 
-     simultaneity and proper-time drift bounds (Fidelity Gaps 2 & 3) that are 
-     absent from existing co-simulation literature.
+1. Continuous-Discrete Cross-Domain Coupling: Prior frameworks focus on 
+   continuous DAE-to-DAE coupling (e.g., automotive/power systems). We solve 
+   the problem of coupling continuous astrodynamics ODE integrators to 
+   discrete-event (DEVS) network queues across CCSDS ModCod switching thresholds.
+2. Predictive Look-Ahead vs. Reactive Rollback: Standard co-simulation master 
+   algorithms surveyed in [20] handle event zero-crossings via costly ODE state 
+   rollbacks. Our engine proactively contracts coupling intervals ahead of 
+   occultations and SNR gradients, eliminating event delay without rollback 
+   computation.
+3. Domain-Specific Multi-Rate Regimes with Event Guards: We formulate an 
+   astrodynamics-specific step hierarchy (1 s micro-stepping, 600 s coasting, 
+   3600 s blackout) paired with predictive boundary event guards that prevent 
+   boundary overshoot and step chattering.
+4. Relativistic Spacetime Limits: We formally derive the theoretical 
+   simultaneity and proper-time drift bounds absent from terrestrial 
+   co-simulation literature.
 
-----------------------------------------------------------------------
-COMMENT 3: Correction of Inaccurate Claims Regarding ns-3 in Table 1
-"Table 1 claims that ns-3 'assumes zero/constant propagation delay'. This is 
-factually incorrect, as ns-3 includes explicit propagation delay models such 
-as ConstantSpeedPropagationDelayModel. Overstating limitations of standard tools 
-damages the credibility of the review."
-
-RESPONSE:
-We thank the reviewer for pointing out this inaccurate statement. We have 
-revised Table 1 and Section 2 to accurately articulate the true limitations 
-of ns-3 and similar discrete-event network simulators when applied to deep space:
-- ns-3 accurately models speed-of-light propagation delays between static or 
-  kinematically simplified node pairs.
-- However, ns-3 lacks relativistic frame transformations (TCB/TCG/TDB proper-time 
-  mappings) and does not natively integrate dynamical orbital ephemerides 
-  (SPICE kernels) with look-ahead synchronization.
-- Consequently, network simulators require external astrodynamic ephemeris 
-  traces, creating the cross-domain synchronization dilemma investigated in 
-  this paper.
-
-CHANGES MADE IN MANUSCRIPT:
-- Table 1 (line 144): Replaced "Assumes zero/constant propagation delay" with:
-  "Lacks relativistic frame transformations and dynamic orbital ephemerides 
-   (SPICE look-ahead synchronization)."
-- Section 2.2 (lines 175–190): Clarified the exact boundary between ns-3's 
-  discrete networking capabilities and the continuous astrodynamics solver.
+CHANGES MADE:
+- Added Section 1.3 ("Scope, Original Contributions, and Relation to Prior Work") 
+  clearly articulating these four differentiating axes.
+- Revised Table 1 to accurately position the toolchain, removing the previous 
+  statement that ns-3 assumes zero propagation delay and clarifying that ns-3 
+  lacks relativistic frame transformations and dynamic SPICE ephemeris look-ahead.
 
 ----------------------------------------------------------------------
-COMMENT 4: Figure Formatting and Canvas Cleanliness
-"Figure captions should be under the figures... Some figures appear to have 
-duplicate titles and overlapping axis text."
+COMMENT 3:
+"Figure captions should be under the figures ..."
 
 RESPONSE:
 We agree with the reviewer. The visual overlap occurred because title text 
-generated via Python's matplotlib `fig.suptitle()` was rendered directly on 
-the PDF image canvas, appearing above the graphic while the LaTeX caption 
+generated via Python's matplotlib fig.suptitle() was rendered directly on top 
+of the PDF graphic canvas, appearing above the float while the LaTeX caption 
 appeared below.
 
-CHANGES MADE IN MANUSCRIPT:
-- Removed all embedded `fig.suptitle()` titles from `simulation/generate_figures.py`.
-- Regenerated all six vector figure PDFs (Figures 1–6) with clean canvas margins 
-  and harmonious color palettes.
-- Formatted `manuscript.tex` so that all captions are typeset exclusively below 
-  each figure float using Elsevier's native `cas-sc.cls` float specifications.
-- Verified that all figures render cleanly without any text overlap or label 
+CHANGES MADE:
+- Removed all embedded fig.suptitle() titles from simulation/generate_figures.py.
+- Regenerated all six vector figure PDFs (Figures 1 to 6) with clean canvas margins.
+- Formatted manuscript.tex so that all captions are typeset exclusively below 
+  each figure float using native cas-sc.cls formatting.
+- Verified that all figures render cleanly without any title overlap or text 
   clipping.
-
-----------------------------------------------------------------------
-COMMENT 5: Codebase Availability and Benchmark Reproducibility
-"The authors should ensure that all simulation scripts, profiles, and data 
-are accessible for peer validation."
-
-RESPONSE:
-The entire simulation suite has been updated and published open-source. All 
-source code, ground-truth mission profiles (Mars occultation, Molniya Doppler, 
-and Cislunar NRHO DTN), benchmark execution scripts, and figure generation 
-pipelines are available on GitHub:
-    https://github.com/PandiaJason/SPICE-ns-Project/tree/main/Adaptive-Multi-Rate-Co-Simulation-Engine
-
-The repository includes a detailed README with sparse checkout instructions, 
-mathematical derivations, benchmark reproducibility instructions, and CSV data.
 
 ======================================================================

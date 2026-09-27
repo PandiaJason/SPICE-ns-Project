@@ -6,297 +6,217 @@ Manuscript Title: The Limits of Discrete-Event Synchronization in
                   Interplanetary Network Simulation: A Critical Review 
                   of Co-Simulation Fidelity
 Authors:          Jason Pandian and I. Kala
-Journal:          Simulation Modelling Practice and Theory / Elsevier
+Journal:          Simulation Modelling Practice and Theory (Elsevier)
 
-We sincerely thank Reviewer 1 for the rigorous, insightful, and constructive 
-critique of our manuscript. In response to your comments, we have substantially 
-improved the mathematical formulations, corrected the error metrics, resolved 
-internal analytical contradictions, addressed the Mars performance bottleneck, 
-expanded our benchmarks to 500 nodes, and updated all figures and tables. 
-
-Below is our detailed point-by-point response detailing all revisions made in 
-the revised manuscript.
+We sincerely thank Reviewer 1 for the thorough, constructive, and valuable 
+critique. Below are our concise, point-by-point responses detailing all 
+revisions made in the updated manuscript and codebase.
 
 ----------------------------------------------------------------------
-COMMENT 1: Speedup Reporting & Claims in the Abstract and Table 3
+COMMENT 1:
 "The abstract states that the 'adaptive stepping achieves speedup factors 
-of up to 17.5x over fixed-step baselines'. However, Table 3 and Figure 6(b) 
-explicitly show that the ~17.4x speedup was achieved by the Event-Driven 
+of up to 17.5x over fixed-step baselines'. However, Table 3 and Figure 7(b) 
+explicitly show that the 17.48x speedup was achieved by the Event-Driven 
 baseline engine on the Cislunar profile, whereas the proposed Adaptive 
 engine achieved only a 9.02x speedup. Claiming the performance metric of 
 a baseline method as the achievement of the proposed method is a critical 
-error in scientific reporting."
+error in scientific reporting. The abstract and conclusion must be corrected 
+to accurately reflect the 9.02x peak speedup of the adaptive method."
 
 RESPONSE:
-We thank the reviewer for identifying this reporting error. We have thoroughly 
-corrected all occurrences across the manuscript, abstract, highlights, and 
-figures. In the revised manuscript and updated benchmark suite:
+We thank the reviewer for catching this reporting error. We have thoroughly 
+corrected all occurrences across the manuscript. In our updated benchmark 
+suite:
 - The peak speedup achieved by our proposed Adaptive engine is 9.68x on the 
-  Cislunar profile (12.3x reduction in integration step count), 7.00x on the 
-  Elliptical profile, and 5.18x on the Mars occultation profile.
-- The 17.39x (rounded to 17.4x) speedup is explicitly and unambiguously 
-  attributed to the Event-Driven baseline.
-- Furthermore, we now explicitly discuss why the Event-Driven baseline's 17.4x 
-  speedup comes at an unacceptably severe penalty to physical fidelity (it 
-  accumulates over 7,200 km higher trajectory drift during blackouts).
+  Cislunar profile (achieving a 12.3x reduction in integration steps), 7.00x 
+  on the Elliptical profile, and 5.18x on Mars.
+- The ~17.4x speedup is now explicitly and solely attributed to the 
+  Event-Driven baseline.
+- Furthermore, we now explicitly explain why Event-Driven's 17.4x speedup 
+  comes at an unacceptably severe accuracy penalty: freezing physics updates 
+  during communication blackouts causes over 7,200 km of trajectory drift, 
+  whereas Adaptive matches continuous ground-truth physical accuracy.
 
-CHANGES MADE IN MANUSCRIPT:
-- Abstract (line 52): Updated speedup claims to state up to 9.68x over 
-  fixed-step baselines (and 5.18x on Mars, 7.00x on elliptical orbits).
-- Highlights (line 65): Corrected to: "The adaptive method bounds event error 
-  to zero and yields up to 9.68x speedup on Cislunar profiles (7.00x on 
-  Elliptical, 5.18x on Mars)."
-- Section 4.3 (line 568): Clarified that Event-Driven achieves 17.39x speedup 
-  but incurs severe trajectory drift, whereas Adaptive delivers 9.68x speedup 
-  while matching continuous ground-truth physical accuracy.
-- Figure 6(b) Caption & Discussion (lines 613, 628): Explicitly distinguished 
-  Event-Driven speedup (17.4x) from Adaptive speedup (9.68x).
-- Conclusion (Section 5, line 634): Updated to state speedups of up to 9.68x.
+CHANGES MADE:
+- Abstract, Highlights, Table 3, Section 4.3, Figure 6(b) caption, and 
+  Conclusion have been corrected to state the exact speedups (9.68x Cislunar, 
+  7.00x Elliptical, 5.18x Mars) and attribute 17.4x strictly to Event-Driven.
 
 ----------------------------------------------------------------------
-COMMENT 2: Formulation of Error Metric (Unphysical 10^12 m Position Error)
-"The position tracking errors reported for the Cislunar and Elliptical profiles 
-are astronomical (1.78 x 10^12 m on Cislunar and 3.65 x 10^10 m on Elliptical). 
-These values are physically impossible for numerical drift over a 13-day arc 
-and exceed planetary orbital distances. This reveals that the metric is an 
-unweighted discrete sum of step errors, meaning that the error scales directly 
-with the step count (18,901 steps for fixed-step) rather than reflecting 
-physical trajectory divergence. A rigorous time-averaged error metric is 
-required."
-
-RESPONSE:
-We are deeply grateful to the reviewer for highlighting this critical 
-methodological flaw. The reviewer is completely correct: our original 
-prototype summed per-step Euclidean distances without weighting by step 
-duration dt_k or normalizing by the total arc duration T. Consequently, the 
-Fixed-Step baseline was heavily penalized solely because it took 18,901 steps, 
-generating an unphysical 1.78 x 10^12 m error artifact.
-
-We have completely reformulated the trajectory tracking error in the engine 
-and manuscript to the standard continuous time-weighted Mean Absolute Error 
-(MAE):
-    \bar{\epsilon}_{pos} = \frac{1}{T} \int_0^T \|\mathbf{r}_{sim}(t) - \mathbf{r}_{ref}(t)\| dt 
-                         \approx \frac{1}{T} \sum_{k=1}^K e_k \Delta t_k
-
-Under this time-weighted formulation:
-1. The error values are expressed in true physical units (km), completely 
-   eliminating the 10^12 m artifact.
-2. In Cislunar, Fixed-Step achieves 94,286.8 km (9.43 x 10^7 m), and Adaptive 
-   achieves 94,371.2 km (9.44 x 10^7 m), preserving continuous baseline 
-   fidelity within 0.09%.
-3. In contrast, the Event-Driven baseline drifts to 101,558.9 km (1.02 x 10^8 m) 
-   because it freezes physics updates during the multi-day blackout, 
-   accumulating an authentic >7,200 km physical drift penalty.
-
-CHANGES MADE IN MANUSCRIPT:
-- Section 4.1, Equation (31): Defined the continuous time-weighted position 
-  error metric \bar{\epsilon}_{pos} = \frac{1}{T} \sum e_k \Delta t_k.
-- Table 3 (line 551): Replaced all unweighted error figures with true 
-  time-weighted position errors in meters:
-  * Mars: Fixed = 4.94 x 10^5 m, Event-Driven = 5.63 x 10^5 m, Adaptive = 5.27 x 10^5 m.
-  * Elliptical: Fixed = 3.39 x 10^7 m, Event-Driven = 3.40 x 10^7 m, Adaptive = 3.41 x 10^7 m.
-  * Cislunar: Fixed = 9.43 x 10^7 m, Event-Driven = 1.02 x 10^8 m, Adaptive = 9.44 x 10^7 m.
-- Regenerated Figure 3 (Accuracy/Pareto panel), Figure 4 (Error time series), 
-  Figure 5 (Cumulative error), and Figure 6 (Heatmap) using the time-weighted metric.
-- Section 4.3.3 (lines 626–628): Added detailed discussion explaining the 
-  physical divergence of Event-Driven during blackout arcs.
-
-----------------------------------------------------------------------
-COMMENT 3: Violation of Analytical Event Error Bound (eps_net <= Delta t_fixed)
-"The manuscript analytically proves in Equation (21) that the boundary timing 
-error for fixed-step synchronization is strictly bounded by the step size: 
-eps_net <= Delta t_fixed = 60 s. However, Table 3 reports fixed-step event 
-errors of 1,920 s (1.92 x 10^6 ms) on Mars and 7,980 s (7.98 x 10^6 ms) on 
-Cislunar. This glaring contradiction between the mathematical theorem and 
-the empirical results invalidates the evaluation."
-
-RESPONSE:
-We thank the reviewer for catching this internal discrepancy. The cause of 
-this contradiction was an error in our benchmark logging script: rather than 
-measuring the detection delay of true geometric link state transitions 
-(ingress/egress epochs), the script had recorded the cumulative packet drop 
-intervals throughout extended blackout windows. 
-
-We have corrected the logging pipeline to evaluate the exact link-state 
-boundary transition timing error relative to the set of ground-truth critical 
-epochs T_crit:
-    \epsilon_{net} = \frac{1}{|\mathcal{T}_{crit}|} \sum_{t_c \in \mathcal{T}_{crit}} \min_{\hat{t}_e \in \hat{\mathcal{T}}} |\hat{t}_e - t_c|
-
-Under this rigorous metric:
-- For Fixed-Step (Delta t = 60 s), the empirical event timing error is 
-  30,095.7 ms (~30.1 s) on Mars and 32,686.5 ms (~32.7 s) on Cislunar. 
-  Both values are strictly bounded by Delta t_fixed = 60.0 s, in exact 
-  agreement with Equation (21).
-- For Adaptive and Event-Driven engines, the event error is 0.00 ms, 
-  confirming exact boundary interception.
-
-CHANGES MADE IN MANUSCRIPT:
-- Section 4.1, Equation (32): Defined the critical link state transition 
-  detection error \epsilon_{net}.
-- Table 3: Updated Event Error entries:
-  * Mars: Fixed = 3.01 x 10^4 ms (30.1 s), Event-Driven = 0.00 ms, Adaptive = 0.00 ms.
-  * Elliptical: Fixed = 0.00 ms, Event-Driven = 0.00 ms, Adaptive = 0.00 ms.
-  * Cislunar: Fixed = 3.27 x 10^4 ms (32.7 s), Event-Driven = 0.00 ms, Adaptive = 0.00 ms.
-- Section 4.3.2 (lines 591–595): Added analytical discussion demonstrating 
-  that the empirical boundary errors (30.1 s and 32.7 s) precisely match the 
-  theoretical bound eps_net <= Delta t_fixed.
-
-----------------------------------------------------------------------
-COMMENT 4: Mars Profile Slowdown (0.77x) and Boundary Overshoot
-"Table 3 indicates that the Adaptive engine was slower than the Fixed-Step 
-baseline on the Mars profile (0.77x speedup, wall time 0.1744s vs 0.1342s, 
-requiring 486 steps vs 345 steps). If the adaptive engine causes a slowdown 
-on a canonical planetary mission, its general applicability is questionable."
-
-RESPONSE:
-We thank the reviewer for this critical observation. We conducted a deep 
-investigation into the simulation trace of the Mars profile and identified the 
-underlying mechanism: the original heuristic contracted the step size near 
-occultation boundaries, but lacked a boundary-intercept guard. As a result, 
-the proposed steps repeatedly overshot the exact ingress/egress epochs, 
-triggering successive step contractions and boundary chattering.
-
-To resolve this, we implemented a predictive boundary event-guard rule in the 
-orchestrator (simulation/engine.py):
-    \Delta t_k = \min\left(\Delta t_{prop}, \; t_{next\_event} - t_k\right)
-
-Whenever the spacecraft enters an anticipation window of an upcoming line-of-sight 
-boundary, the orchestrator contracts Delta t to match the exact remaining time 
-to the transition epoch. Once the transition is logged, the step size expands 
-directly to DT_BLACKOUT (3600 s) during total eclipse or DT_COAST (600 s) during 
-clear line of sight.
-
-RESULTS:
-- Adaptive steps on Mars dropped from 486 steps to just 52 steps (an 89% 
-  step reduction).
-- Mars wall-clock time decreased to 0.0263 s, transforming the former 0.77x 
-  slowdown into a robust 5.18x speedup over Fixed-Step (0.1360 s).
-- Boundary timing error remained strictly at 0.00 ms.
-
-CHANGES MADE IN MANUSCRIPT:
-- Section 3.4, Equation (20): Formulated the predictive event-guard rule.
-- Table 3: Updated Mars Adaptive metrics to 52 steps, 0.0263 s wall time, 
-  and 5.18x speedup.
-- Section 4.3.2: Discussed the elimination of boundary chatter and the 
-  resulting 5.18x speedup on Mars.
-- Figure 2(a): Updated the Mars step-sequence plot showing clean, single-point 
-  micro-stepping at boundaries without chattering.
-
-----------------------------------------------------------------------
-COMMENT 5: Pareto Incoherence (Event-Driven Dominating Adaptive)
-"Under the previous data, Event-Driven had lower position error than Adaptive 
-on Mars and Elliptical profiles, while achieving 13x–17x speedups. If pure 
-Event-Driven achieves both higher speed and lower error, the Adaptive method 
-is Pareto-dominated and lacks practical justification."
-
-RESPONSE:
-We agree with the reviewer. The apparent Pareto dominance of Event-Driven was 
-an artifact of the flawed unweighted step-sum metric: because Event-Driven took 
-only 13 steps on Mars, summing error across 13 samples produced an artificially 
-lower number than summing error across 486 steps.
-
-Under our new continuous time-weighted error metric (Eq. 31), the true physical 
-behavior is revealed:
-- On Cislunar, Event-Driven accumulates 101,558.9 km error (>7,200 km higher 
-  than continuous propagation) because freezing physics updates during the 
-  8-day blackout causes severe orbital divergence.
-- Adaptive achieves 94,371.2 km, maintaining strict continuous orbital fidelity 
-  (matching Fixed-Step's 94,286.8 km) while executing 9.68x faster in 1,537 steps 
-  instead of 18,901 steps.
-- As demonstrated in the revised Pareto Frontier (Figure 3(a)), Adaptive 
-  occupies the optimal lower-left frontier, establishing genuine Pareto 
-  optimality: it delivers continuous-grade orbital fidelity with event-grade 
-  computational efficiency.
-
-CHANGES MADE IN MANUSCRIPT:
-- Section 4.3 (lines 570–571) and Figure 3(a): Re-plotted the Pareto frontier 
-  using time-weighted MAE vs. step count, clearly showing Adaptive on the 
-  optimal Pareto frontier.
-- Added Section 4.3.3 explaining the physical drift mechanism of Event-Driven 
-  simulators during communication blackouts.
-
-----------------------------------------------------------------------
-COMMENT 6: Relativistic Proper-Time Scope and Placement
+COMMENT 2:
 "In Section 3.5, the authors present Equations 17 through 19 detailing 
 Relativistic Proper-Time Propagation. However, the authors admit in 
 Section 1.4 and Section 6 that resolving relativistic clock bias (Gap 3) 
-is beyond the scope of their current heuristic. Including complex 
-mathematical models in the 'System Modeling' section that are not actually 
-implemented in the CoSimOrchestrator is misleading."
+is beyond the scope of their current heuristic and remains an open challenge. 
+Including complex mathematical models in the 'System Modeling' section 
+that are not actually implemented in the CoSimOrchestrator is misleading. 
+This section should be moved to a 'Theoretical Background' or integrated 
+into the 'Future Work' discussion to clearly separate what has been 
+theorized from what has been empirically simulated."
 
 RESPONSE:
-We completely agree. Equations 17–19 were derived to establish the theoretical 
-fidelity ceiling (Fidelity Gap 3) of co-simulation, rather than active runtime 
-routines. We have relocated these equations to the Introduction (Section 1.1) 
-as part of the formal theoretical problem derivation, with an explicit 
-disclaimer clarifying the simulation scope.
+We agree with the reviewer. Equations 17-19 quantify the theoretical physics 
+limits (Fidelity Gap 3) rather than active runtime routines of the orchestrator. 
+We have removed Section 3.5 from System Modeling and relocated these equations 
+to the Introduction (Section 1.1) as part of the theoretical problem formulation.
 
-CHANGES MADE IN MANUSCRIPT:
-- Relocated relativistic metric equations to Section 1.1 (Equations 1–3).
-- Added explicit "Note on Simulation Scope and Prototype Architecture" 
-  (lines 116–118) clarifying that the benchmarked prototype operates in 
-  coordinate time (TDB), while Equations 1–3 establish the theoretical ceiling 
-  for future proper-time-aware architectures.
+CHANGES MADE:
+- Removed Section 3.5 from System Modeling.
+- Relocated the equations to Section 1.1 (Equations 1-3) to formally define the 
+  theoretical proper-time drift ceiling.
+- Added an explicit scope note stating that our prototype orchestrator couples 
+  in coordinate time (TDB), while Equations 1-3 serve as the mathematical 
+  blueprint for future proper-time-aware architectures.
 
 ----------------------------------------------------------------------
-COMMENT 7: Discrete CCSDS VCM vs. Continuous Shannon Capacity
-"Real-world deep space links rely on discrete Variable Coding and Modulation 
-(VCM) schemes defined by specific CCSDS standards. Treating capacity as a 
-continuous logarithmic curve may artificially smooth out the discrete 
-step-changes in throughput."
+COMMENT 3:
+"The results in Table 3 indicate that the Adaptive engine is actually 
+slower than the Fixed-Step baseline for the Mars profile, recording a 
+speedup factor of 0.77x (wall time of 0.1744s vs 0.1342s). While Section 5.4 
+briefly attributes this to the overhead of 'frequent step contractions and 
+ODE solver restarts near the ingress and egress boundaries', a high-tier 
+journal requires a more rigorous analysis of this limitation. The authors 
+should expand on the boundary conditions and event densities under which 
+their adaptive orchestrator becomes a computational bottleneck."
 
 RESPONSE:
-We agree with the reviewer. We have implemented a discrete CCSDS Variable 
-Coding and Modulation (VCM) staircase model mapped to hardware SNR thresholds, 
-while retaining the continuous Shannon curve as an upper theoretical envelope.
+We thank the reviewer for this critical observation. We analyzed the Mars 
+trace and found the root cause: the previous heuristic contracted step sizes 
+near occultation boundaries but lacked a boundary-intercept guard, causing 
+repeated step overshoots and high-frequency chattering.
 
-CHANGES MADE IN MANUSCRIPT:
-- Section 3.2 (lines 270–287): Added discrete ModCod staircase formulation 
-  (Equation 8) mapping SNR thresholds to operational bitrates compliant with 
-  CCSDS 131.2-B-1 and CCSDS 231.0-B-1.
-- Discussed how discrete ModCod transitions reinforce the need for adaptive 
-  stepping to avoid missing threshold crossing epochs.
+To solve this, we implemented a predictive boundary event guard in the engine 
+(simulation/engine.py):
+    dt = min(dt_proposed, t_next_event - t)
+
+The step size proactively contracts to land exactly on the event boundary, 
+eliminating overshoot. Quiescent blackout and coasting arcs then expand 
+cleanly up to 3600 s and 600 s. 
+
+RESULTS:
+- Adaptive steps on Mars dropped from 486 steps to just 52 steps.
+- Mars execution time dropped to 0.0263 s, turning the former 0.77x slowdown 
+  into a 5.18x speedup over Fixed-Step (0.1360 s), with zero boundary chatter 
+  and 0.0 ms event detection error.
+
+CHANGES MADE:
+- Implemented the predictive boundary event guard rule in simulation/engine.py 
+  and documented it in Section 3.4 (Equation 20).
+- Updated Table 3 with the new Mars metrics (52 steps, 5.18x speedup).
+- Added an analytical bottleneck analysis in Section 4.3.2 deriving the 
+  mathematical step-count relationship between event density and solver overhead.
 
 ----------------------------------------------------------------------
-COMMENT 8: Constellation Scalability (Expanded to 500 Nodes)
-"This conclusion is drawn from a benchmark of only 3 to 30 spacecraft nodes. 
-A 30-node network is insufficiently small to confidently claim O(1) or 
-sub-linear routing/computational complexity for large swarms."
+COMMENT 4:
+"In Section 4.3, the authors verify their discrete engine's logical correctness 
+by comparing the simulation output against a numerical integration using a 
+'very fine reference step size' (\Delta t_{ref} = 0.01s). The authors should 
+clarify if this validation holds true under extreme network load conditions 
+(e.g., massive packet flooding during a brief line-of-sight window), and how 
+the adaptive engine prevents missing micro-events that might occur between 
+the 1.0-second DT_MIN lower bound."
+
+RESPONSE:
+We have clarified both the extreme network load validation and sub-second 
+micro-event handling in Section 3.4 and Section 4.3:
+1. Discrete Network Independence: Network packet arrivals and queue drain 
+   events are processed through discrete queue operations. Under packet flooding, 
+   the queue tracks discrete drops and custody releases without altering the 
+   macro physical step.
+2. Micro-Event Interception: The event-guard rule enforces that if a scheduled 
+   network event or line-of-sight transition occurs before the proposed step 
+   dt, the orchestrator contracts dt to match the exact remaining time to that 
+   event. This guarantees that no micro-events are skipped between macro steps.
+
+CHANGES MADE:
+- Added text in Section 3.4 explaining how the predictive event guard contracts 
+  to intercept micro-events exactly at their event epochs.
+- Added validation discussion in Section 4.3 confirming zero drop discrepancy 
+  against the fine-step reference (dt = 0.01 s) under line-of-sight packet bursts.
+
+----------------------------------------------------------------------
+COMMENT 5:
+"Equation 11 calculates dynamic channel capacity using a modified continuous 
+Shannon limit approximation. However, real-world deep space links rely on 
+discrete Variable Coding and Modulation (VCM) schemes defined by specific 
+CCSDS standards (e.g., LDPC or Turbo codes). Treating capacity as a continuous 
+logarithmic curve may artificially smooth out the discrete step-changes in 
+throughput that occur when a physical radio switches modulation schemes. The 
+authors should either implement a realistic, step-based ModCod threshold model 
+or rigorously justify why the continuous Shannon fluid approximation is 
+sufficient for a study focused on high-fidelity discrete-event synchronization."
+
+RESPONSE:
+We agree with the reviewer. While continuous Shannon capacity provides a 
+theoretical upper envelope, real deep space transceivers switch modulation 
+and coding schemes at discrete SNR thresholds. We have implemented a discrete 
+CCSDS ModCod staircase model mapped to hardware SNR thresholds.
+
+CHANGES MADE:
+- Added Equation 8 in Section 3.2 formulating the discrete ModCod mapping table 
+  (QPSK, 8PSK, 16APSK, 32APSK with LDPC codes) compliant with CCSDS 131.2-B-1 
+  and CCSDS 231.0-B-1.
+- Retained the continuous Shannon curve strictly as an analytical upper bound.
+- Added discussion explaining how discrete ModCod transitions reinforce the 
+  need for adaptive stepping, as fixed steps miss switching boundaries.
+
+----------------------------------------------------------------------
+COMMENT 6:
+"In Section 5.4.1, the authors claim the engine demonstrates scalability for 
+'large satellite swarms' because the execution time growth is sub-linear. 
+However, this conclusion is drawn from a benchmark of only 3 to 30 spacecraft 
+nodes (Figure 4b). A 30-node network is insufficiently small to confidently 
+claim O(1) or sub-linear routing/computational complexity for 'large' swarms. 
+The authors should either expand the scalability test to a genuinely large 
+network (e.g., 100–500 nodes) or restrict their claims specifically to 
+small-scale relay networks."
 
 RESPONSE:
 We have substantially expanded the empirical scalability benchmark by more 
 than an order of magnitude, testing constellation sizes from 10 to 500 
-spacecraft nodes on the 13-day Cislunar NRHO mission arc.
+spacecraft nodes over the full 13-day Cislunar NRHO mission arc.
 
 RESULTS:
 - Evaluated node counts: [10, 50, 100, 200, 300, 400, 500].
 - CPU runtime scaled from 0.789 s for 10 nodes to 6.353 s for 500 nodes.
 - A 50-fold expansion in network node count incurred only an 8.0-fold runtime 
-  increase, demonstrating strictly sub-linear growth far below the linear O(N) 
-  reference curve.
+  increase, growing far below the linear O(N) reference curve. This confirms 
+  that discrete queue management does not bottleneck continuous orbital 
+  propagation.
 
-CHANGES MADE IN MANUSCRIPT:
-- Section 4.3.1 (lines 588–590): Updated Scalability Analysis with 10–500 node 
-  results.
+CHANGES MADE:
+- Section 4.3.1: Updated Scalability Analysis with 10 to 500 node results.
 - Figure 1(b): Re-plotted scalability curve from 10 to 500 nodes against O(N) 
   and O(N^2) reference baselines.
 
 ----------------------------------------------------------------------
-COMMENT 9: Discrete DTN Queue vs. Fluid Approximation
+COMMENT 7:
 "Equation (13) models DTN buffer occupancy as a continuous fluid flow based 
-on bitrates. The DTN Bundle Protocol (RFC 5050/9171) operates on discrete 
-bundles, not continuous data flows."
+on bitrates. However, the DTN Bundle Protocol (RFC 5050/9171) referenced by 
+the authors operates on discrete bundles, not continuous data flows. A fluid 
+approximation masks actual discrete queueing dynamics, such as bundle 
+fragmentation, discrete custody transfer acknowledgments, and packet 
+boundaries, which are critical to protocol accuracy. The authors need to 
+clarify if their DiscreteEngine actually processes discrete network packets 
+or merely integrates flow rates. If it is a fluid model, claims regarding 
+high-fidelity protocol simulation should be significantly tempered."
 
 RESPONSE:
 We agree with the reviewer. We have replaced the fluid model with a discrete 
-packet queue summation and clarified the scope of the networking model.
+packet queue summation and clarified the scope of our network model.
 
-CHANGES MADE IN MANUSCRIPT:
-- Section 3.3 (lines 295–303): Reformulated buffer occupancy as a discrete 
-  summation over queued packets (Equation 9) with explicit MTU bounding 
-  (1024 bytes) and integer byte allowances.
-- Added explicit DTN scope disclaimer stating that the engine models queue 
-  and custody storage dynamics for temporal synchronization, rather than 
-  serving as a full-stack RFC 5050/9171 protocol emulator.
+In the updated engine, buffer occupancy is tracked by summing discrete queued 
+packets with explicit 1024-byte MTU boundaries, integer byte allocations, and 
+discrete custody transfer events. We also clarified that the engine models 
+temporal queue occupancy and custody handover timing for co-simulation 
+synchronization, rather than acting as a full-stack RFC 5050/9171 network emulator.
+
+CHANGES MADE:
+- Reformulated buffer occupancy as a discrete summation over queued packets 
+  (Equation 9) in Section 3.3.
+- Added scope clarification in Section 3.3 regarding queue abstraction versus 
+  full-stack protocol emulation.
+- Retained the continuous fluid equation strictly as an analytical reference 
+  baseline in Section 4.3 for verification.
 
 ======================================================================
