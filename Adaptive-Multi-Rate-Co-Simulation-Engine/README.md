@@ -214,16 +214,26 @@ Adaptive-Multi-Rate-Co-Simulation-Engine/
 
 ### Setup Instructions
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/PandiaJason/SPICE-ns-Project.git
-cd SPICE-ns-Project/Adaptive-Multi-Rate-Co-Simulation-Engine
+#### 1. Clone Only the Co-Simulation Engine (Sparse Checkout)
+To download **only** this engine directory without cloning the entire multi-project repository:
 
-# 2. (Optional) Create and activate a clean virtual environment
+```bash
+git clone --depth 1 --filter=blob:none --sparse https://github.com/PandiaJason/SPICE-ns-Project.git
+cd SPICE-ns-Project
+git sparse-checkout set Adaptive-Multi-Rate-Co-Simulation-Engine
+cd Adaptive-Multi-Rate-Co-Simulation-Engine
+```
+
+*(Alternatively, if you prefer a full repository clone: `git clone https://github.com/PandiaJason/SPICE-ns-Project.git && cd SPICE-ns-Project/Adaptive-Multi-Rate-Co-Simulation-Engine`)*
+
+#### 2. (Optional) Create and Activate Virtual Environment
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
-# 3. Install required dependencies
+#### 3. Install Required Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
