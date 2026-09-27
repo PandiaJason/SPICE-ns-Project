@@ -23,6 +23,7 @@ The custom co-simulation engine evaluates the three synchronization paradigms ag
 *   `simulation/` - Python-based simulation engine and orchestrator.
     *   `generate_data.py` - Generates ground-truth astrodynamics and mission profile data.
     *   `generate_figures.py` - Executes the simulation engine, parses results, and generates graphs.
+    *   `run_scalability.py` - Runs the 10-to-500 node scalability stress test and updates performance panels.
     *   `data/` - Cached trajectory and profile states.
     *   `graphs/` - Generated output figures.
 
@@ -41,4 +42,9 @@ python3 generate_data.py
 python3 generate_figures.py
 ```
 
-This will run the Fixed-Step, Event-Driven, and Adaptive engines against all three mission profiles and output the execution metrics and graphs.
+To run the extended scalability benchmark (10 to 500 nodes):
+```bash
+python3 run_scalability.py
+```
+
+This will run the Fixed-Step, Event-Driven, and Adaptive engines against all three mission profiles and output the execution metrics, scalability curves, and graphs.

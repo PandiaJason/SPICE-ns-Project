@@ -131,7 +131,7 @@ def gen_cislunar():
         if contact[i]==1 and contact[i-1]==0 and buf[i]>1e6:
             custody.append({"time_s":float(t[i]),"buffer_bytes":float(buf[i]),"owlt_s":float(owlt[i])})
 
-    nodes = list(range(3,31,3))
+    nodes = [10, 50, 100, 200, 300, 400, 500]
     return {
         "mission":"Lunar Gateway NRHO – DTN Bundle Protocol",
         "constants":{"mu_moon":MU_MOON,"mu_earth":MU_EARTH,"d_moon_m":d_moon,

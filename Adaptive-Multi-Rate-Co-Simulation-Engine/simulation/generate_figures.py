@@ -63,12 +63,15 @@ DPI = 300
 
 
 def save(fig, name_base):
+    else_dir = os.path.join(ROOT, "..", "else_paper")
     for ext in [".png", ".pdf"]:
         name = name_base + ext
         path_g = os.path.join(GRAPH_DIR, name)
         path_p = os.path.join(IMG_DIR,   name)
         fig.savefig(path_g, dpi=DPI, bbox_inches="tight")
         shutil.copy(path_g, path_p)
+        if os.path.exists(else_dir):
+            shutil.copy(path_g, os.path.join(else_dir, name))
     plt.close(fig)
     print(f"  ✓ {name_base} (.png, .pdf)")
 
@@ -96,9 +99,6 @@ def fig_perf_panel():
     df_s = pd.read_csv(os.path.join(OUT_DIR, "scalability_metrics.csv"))
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-    fig.suptitle(
-        "Figure 1 — Computational Performance: CPU Execution Time and Scalability",
-        fontsize=12, fontweight="bold", y=1.01)
 
     # ── (a) CPU Time grouped bar ──────────────────────────────────────────────
     x = np.arange(len(PROFILES))
@@ -168,9 +168,6 @@ def fig_temporal_panel():
     b_buf     = buf_df["buf_bytes"].values / 1e6
 
     fig = plt.figure(figsize=(15, 8))
-    fig.suptitle(
-        "Figure 2 — Temporal Dynamics: Adaptive Step Sizing (Mars) and DTN Buffer Evolution (Cislunar)",
-        fontsize=12, fontweight="bold", y=0.96)
 
     gs = gridspec.GridSpec(2, 2, figure=fig,
                            height_ratios=[1.2, 1], hspace=0.35, wspace=0.25)
@@ -245,9 +242,6 @@ def fig_accuracy_panel():
     df_p = pd.read_csv(os.path.join(OUT_DIR, "pareto_data.csv"))
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-    fig.suptitle(
-        "Figure 3 — Accuracy–Efficiency Trade-offs: Pareto Frontier and Normalised Error Breakdown",
-        fontsize=12, fontweight="bold", y=1.01)
 
     # ── (a) Pareto frontier ───────────────────────────────────────────────────
     for eng in ENGINES:
@@ -325,9 +319,6 @@ def fig_error_timeseries():
     t_units = ["h",  "h",  "days"]
 
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    fig.suptitle(
-        r"Figure 4 — Per-Step Position Error $\epsilon_{pos}(t)$ vs. Simulation Time",
-        fontsize=12, fontweight="bold", y=1.01)
 
     for ax, prof, tdiv, tunit in zip(axes, PROFILES, t_divs, t_units):
         for eng in ENGINES:
@@ -358,9 +349,6 @@ def fig_cumulative_error():
     t_units = ["h",  "h",  "days"]
 
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    fig.suptitle(
-        "Figure 5 — Cumulative Integrated Position Error Growth",
-        fontsize=12, fontweight="bold", y=1.01)
 
     for ax, prof, tdiv, tunit in zip(axes, PROFILES, t_divs, t_units):
         for eng in ENGINES:
@@ -408,9 +396,6 @@ def fig_error_heatmap():
             spd_mat[i, j] = row["Speedup"].values[0]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-    fig.suptitle(
-        "Figure 6 — Error and Speedup Heatmap: Engine × Profile Summary",
-        fontsize=12, fontweight="bold")
 
     for ax, mat, cmap, title, fmt in [
         (ax1, pos_mat, "YlOrRd",

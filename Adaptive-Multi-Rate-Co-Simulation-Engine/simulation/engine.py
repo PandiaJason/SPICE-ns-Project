@@ -114,8 +114,8 @@ class DiscreteEngine:
             self._buf_used -= pkt.size_bytes
             self.pkts_sent += 1
             sent.append(pkt)
-        for p in sent:
-            self._queue.remove(p)
+        if sent:
+            self._queue = self._queue[len(sent):]
 
     # ── Public API ────────────────────────────────────────────────────────────
     def inject_traffic(self, n_pkts: int, now: float):
