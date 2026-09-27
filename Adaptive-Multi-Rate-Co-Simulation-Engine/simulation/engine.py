@@ -218,31 +218,39 @@ class CoSimOrchestrator:
         return rx, ry
 
     def _adaptive_dt(self, t: float, state: np.ndarray) -> float:
-        """Predictive look-ahead step selector.
+        """Predictive look-ahead step selector with boundary event guard.
         Contracts dt near critical events; expands during cruise or blackout.
-        The key novelty: proximity window only triggers when t IS NEAR an event,
-        not globally whenever future events exist.
+        Guarantees that integration never overshoots upcoming transition boundaries.
         """
-        if self.crit_times.size > 0:
-            dists      = np.abs(self.crit_times - t)
-            dt_nearest = float(np.min(dists))   # seconds to nearest event
-            if dt_nearest < 60.0:
-                return self.DT_MIN              # 1 ms – active ingress/egress
-            if dt_nearest < 600.0:
-                return min(self.DT_NOM, dt_nearest / 10.0)  # graduated ramp
-
         los = self._interp_los(t)
         snr = self._interp_snr(t)
 
         if los == 0:
-            return self.DT_BLACKOUT             # 1 h coast during blackout
-        if snr < 5.0:
-            return self.DT_NOM                  # degraded link — 1 s steps
-        t_fut   = min(t + 120.0, self.t_end - 1.0)
-        snr_fut = float(np.interp(t_fut, self.gt_t, self.gt_snr))
-        if abs(snr_fut - snr) > 5.0:
-            return self.DT_NOM                  # rapid SNR gradient
-        return self.DT_COAST                    # stable cruise — 10 min steps
+            dt = self.DT_BLACKOUT
+        elif snr < 5.0:
+            dt = self.DT_NOM
+        else:
+            t_fut = min(t + 120.0, self.t_end - 1.0)
+            snr_fut = float(np.interp(t_fut, self.gt_t, self.gt_snr))
+            if abs(snr_fut - snr) > 5.0:
+                dt = self.DT_NOM
+            else:
+                dt = self.DT_COAST
+
+        # Enforce Event Guard: contract near upcoming critical events and never overshoot!
+        if self.crit_times.size > 0:
+            fut = self.crit_times[self.crit_times > t]
+            if fut.size > 0:
+                t_next = fut[0]
+                dt_to_next = t_next - t
+                if dt_to_next < 60.0:
+                    dt = min(dt, max(self.DT_MIN, dt_to_next))
+                elif dt_to_next < 600.0:
+                    dt = min(dt, dt_to_next / 5.0)
+                else:
+                    dt = min(dt, dt_to_next - 60.0)
+
+        return max(dt, self.DT_MIN)
 
     # ── Run strategies ────────────────────────────────────────────────────────
     def _run(self, strategy: str, n_nodes: int = 1) -> SimResult:
@@ -259,8 +267,9 @@ class CoSimOrchestrator:
         state[3] = v0   # tangential velocity along y for circular approx
 
         t    = 0.0
-        cum_pos_err = 0.0
-        cum_evt_err = 0.0
+        integral_pos_err = 0.0
+        prev_los = self._interp_los(0)
+        trans_times = []
         dt_seq      = []
         buf_seq     = []
         pos_err_seq = []
@@ -301,26 +310,31 @@ class CoSimOrchestrator:
             # ── Metrics ───────────────────────────────────────────────────
             rx, ry = self._ref_pos(t + dt)
             pos_err = math.sqrt((state[0]-rx)**2 + (state[1]-ry)**2)
-            cum_pos_err += pos_err
+            integral_pos_err += pos_err * dt
+
+            # Transition detection
+            if los != prev_los:
+                trans_times.append(t + dt)
+                prev_los = los
 
             dt_seq.append((t, dt))
             buf_seq.append((t + dt, self.net.buf_bytes()))
             pos_err_seq.append((t + dt, pos_err))
-            cum_err_seq.append((t + dt, cum_pos_err))
+            cum_err_seq.append((t + dt, integral_pos_err / max(t + dt, 1e-9)))
             t += dt
             steps += 1
 
-        # Event timestamp error
-        for ev_net in self.net.events:
-            if ev_net["type"] in ("drop","bitrate_change","custody") \
-                    and self.crit_times.size > 0:
-                nearest = float(np.min(np.abs(self.crit_times - ev_net["t"])))
-                cum_evt_err += nearest * 1000   # s → ms
+        # Transition event timing error (in ms)
+        if self.crit_times.size > 0 and len(trans_times) > 0:
+            evt_errs = [min(abs(tr - ct) for tr in trans_times) for ct in self.crit_times]
+            mean_evt_ms = float(np.mean(evt_errs)) * 1000.0
+        else:
+            mean_evt_ms = 0.0
 
         res.wall_time_s    = time.perf_counter() - t0_wall
         res.steps          = steps
-        res.pos_error_m    = cum_pos_err
-        res.event_error_ms = cum_evt_err / max(1, len(self.net.events))
+        res.pos_error_m    = integral_pos_err / max(t, 1e-9)
+        res.event_error_ms = round(mean_evt_ms, 4)
         res.dt_sequence    = dt_seq
         res.buf_sequence   = buf_seq
         res.pos_err_seq    = pos_err_seq

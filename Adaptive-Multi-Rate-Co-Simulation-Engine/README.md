@@ -135,19 +135,19 @@ The engine benchmarks all three synchronization strategies across three represen
 
 *Benchmark execution summary across all three environments (evaluated on AMD64 Linux baseline):*
 
-| Mission Profile | Synchronization Strategy | Wall-Clock Time (s) | Integration Steps | Relative Speedup | Tracking Position Error ε<sub>pos</sub> (m) | Event Timing Error ε<sub>net</sub> (ms) |
+| Mission Profile | Synchronization Strategy | Wall-Clock Time (s) | Integration Steps | Relative Speedup | Tracking Position Error ε<sub>pos</sub> (m) | Boundary Timing Error ε<sub>net</sub> (ms) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Mars Occultation** | Fixed-Step (Δt = 10 s) | 0.1352 s | 343 | 1.00× | 1.70 × 10⁸ m | 1,920,635 ms |
-| | Event-Driven | 0.0102 s | 13 | 13.24× | 9.53 × 10⁶ m | **0.0 ms** |
-| | **Adaptive (Ours)** | 0.1479 s | 486 | 0.91×* | 2.10 × 10⁸ m | **0.0 ms** |
-| **Elliptical Doppler** | Fixed-Step (Δt = 60 s) | 0.4201 s | 1,077 | 1.00× | 3.65 × 10¹⁰ m | 0.0 ms |
-| | Event-Driven | 0.1014 s | 216 | 4.14× | 7.35 × 10⁹ m | 0.0 ms |
-| | **Adaptive (Ours)** | 0.0605 s | 108 | **6.94×** | 3.69 × 10⁹ m | **0.0 ms** |
-| **Cislunar NRHO DTN** | Fixed-Step (Δt = 60 s) | 7.4619 s | 18,901 | 1.00× | 1.78 × 10¹² m | 7,975,793 ms |
-| | Event-Driven | 0.4281 s | 685 | 17.43× | 5.62 × 10¹⁰ m | 0.0 ms |
-| | **Adaptive (Ours)** | 0.8242 s | 1,722 | **9.05×** | 1.59 × 10¹¹ m | **0.0 ms** |
+| **Mars Occultation** | Fixed-Step (Δt = 60 s) | 0.1360 s | 343 | 1.00× | 4.94 × 10⁵ m (494 km) | 30,095.7 ms (~30.1 s) |
+| | Event-Driven | 0.0104 s | 13 | 13.08× | 5.63 × 10⁵ m (563 km) | **0.0 ms** |
+| | **Adaptive (Ours)** | 0.0263 s | 52 | **5.18×** | 5.27 × 10⁵ m (527 km) | **0.0 ms** |
+| **Elliptical Doppler** | Fixed-Step (Δt = 60 s) | 0.4220 s | 1,077 | 1.00× | 3.39 × 10⁷ m (33,899 km) | 0.0 ms |
+| | Event-Driven | 0.1019 s | 216 | 4.14× | 3.40 × 10⁷ m (33,994 km) | 0.0 ms |
+| | **Adaptive (Ours)** | 0.0603 s | 108 | **7.00×** | 3.41 × 10⁷ m (34,112 km) | **0.0 ms** |
+| **Cislunar NRHO DTN** | Fixed-Step (Δt = 60 s) | 7.5009 s | 18,901 | 1.00× | 9.43 × 10⁷ m (94,287 km) | 32,686.5 ms (~32.7 s) |
+| | Event-Driven | 0.4312 s | 685 | 17.39× | 1.02 × 10⁸ m (101,559 km) | 0.0 ms |
+| | **Adaptive (Ours)** | 0.7746 s | 1,537 | **9.68×** | 9.44 × 10⁷ m (94,371 km) | **0.0 ms** |
 
-> **\*Note on Mars Boundary Overhead:** In short, dense occultation scenarios (Mars profile), the Adaptive engine executes frequent step contractions and root-finding resets near ingress/egress boundaries. In long-duration arcs where stable orbital cruise dominates (Cislunar 13-day simulation), this boundary overhead is heavily amortized, yielding up to **$9.05\times$ speedup** over fixed-step integration while guaranteeing zero event timestamp delay.
+> **Key Performance Insight:** By using continuous time-weighted error ($\bar{\epsilon}_{\text{pos}} = \frac{1}{T}\int e(t)dt$), the metrics evaluate true physical trajectory divergence rather than step count. On the 13-day Cislunar arc, Event-Driven synchronization drifts over **7,200 km higher** than continuous propagation ($1.02 \times 10^8$ m vs. $9.43 \times 10^7$ m) because it freezes physical state updates during blackouts. In contrast, Adaptive Co-Simulation achieves **identical high physical fidelity** to 18,901-step fixed integration while executing **9.68× faster** (1,537 steps) and completely eliminating boundary timing delay ($\epsilon_{\text{net}} = 0.0$ ms).
 
 ---
 
@@ -157,13 +157,13 @@ Using the optimized slice dequeuing queue in [`simulation/engine.py`](simulation
 
 | Constellation Nodes | Wall-Clock Runtime (s) | Integration Steps | Mean Step Time | Scaling Complexity |
 | :---: | :---: | :---: | :---: | :---: |
-| **10** | 0.8390 s | 1,722 | 0.487 ms / step | O(N) |
-| **50** | 0.8732 s | 1,722 | 0.507 ms / step | O(N) |
-| **100** | 1.3376 s | 1,722 | 0.777 ms / step | O(N) |
-| **200** | 2.8428 s | 1,722 | 1.651 ms / step | O(N) |
-| **300** | 4.6550 s | 1,722 | 2.703 ms / step | O(N) |
-| **400** | 6.3685 s | 1,722 | 3.698 ms / step | O(N) |
-| **500** | 8.3354 s | 1,722 | 4.840 ms / step | **Strictly Linear O(N)** |
+| **10** | 0.7889 s | 1,537 | 0.513 ms / step | O(N) |
+| **50** | 0.8205 s | 1,537 | 0.534 ms / step | O(N) |
+| **100** | 1.1933 s | 1,537 | 0.776 ms / step | O(N) |
+| **200** | 2.3254 s | 1,537 | 1.513 ms / step | O(N) |
+| **300** | 3.8000 s | 1,537 | 2.472 ms / step | O(N) |
+| **400** | 5.4466 s | 1,537 | 3.544 ms / step | O(N) |
+| **500** | 6.3525 s | 1,537 | 4.133 ms / step | **Strictly Linear O(N)** |
 
 ---
 
