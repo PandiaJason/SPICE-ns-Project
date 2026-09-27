@@ -76,13 +76,13 @@ Deep-space communication regimes present a fundamental structural trilemma that 
 
 The co-simulation suite provides full reference implementations and comparative benchmarks for three time-stepping paradigms:
 
-| Metric / Feature | Fixed-Step ($\Delta t = \text{const}$) | Pure Event-Driven | Adaptive Multi-Rate Co-Simulation (Proposed) |
+| Metric / Feature | Fixed-Step (Δt = const) | Pure Event-Driven | Adaptive Multi-Rate Co-Simulation (Proposed) |
 | :--- | :--- | :--- | :--- |
-| **Time Advancement** | Rigid lockstep march: $t_{k+1} = t_k + \Delta t_{\text{fixed}}$ | Jumps directly to next discrete event: $t_{k+1} = t_{\text{event}}$ | Dynamic continuum: $\Delta t \in [\Delta t_{\min}, \Delta t_{\max}]$ governed by physical gradient |
+| **Time Advancement** | Rigid lockstep march: <code>t<sub>k+1</sub> = t<sub>k</sub> + Δt<sub>fixed</sub></code> | Jumps directly to next discrete event: <code>t<sub>k+1</sub> = t<sub>event</sub></code> | Dynamic continuum: <code>Δt ∈ [Δt<sub>min</sub>, Δt<sub>max</sub>]</code> governed by physical gradient |
 | **Orbital State Updates** | Uniformly recomputed at every step | Updated only upon packet generation or contact boundary | Integrated continuously with adaptive local truncation error control |
 | **Boundary Crossing** | Coarse detection (suffers from intra-step boundary aliasing) | Unaware of non-event physical state transitions between packets | **Bisection zero-crossing localization** detects exact geometric threshold |
-| **Computational Cost** | High ($O(T / \Delta t_{\min})$), dominated by quiescent cruise phases | Minimal wall-clock time, but unbounded positional drift | **Balanced & Amortized**: contracts near boundaries, accelerates during cruise |
-| **Event Error ($\epsilon_{\text{net}}$)** | Non-zero ($> 10^3$ s if $\Delta t$ is coarse) | Zero on scheduled events; undefined during blackouts | **Strictly Zero ($0.0$ s)** via root-finding boundary refinement |
+| **Computational Cost** | High (<code>O(T / Δt<sub>min</sub>)</code>), dominated by quiescent cruise phases | Minimal wall-clock time, but unbounded positional drift | **Balanced & Amortized**: contracts near boundaries, accelerates during cruise |
+| **Event Error (ε<sub>net</sub>)** | Non-zero (> 1,000 s if Δt is coarse) | Zero on scheduled events; undefined during blackouts | **Strictly Zero (0.0 s)** via root-finding boundary refinement |
 
 ---
 
@@ -135,17 +135,17 @@ The engine benchmarks all three synchronization strategies across three represen
 
 *Benchmark execution summary across all three environments (evaluated on AMD64 Linux baseline):*
 
-| Mission Profile | Synchronization Strategy | Wall-Clock Time (s) | Integration Steps | Relative Speedup | Tracking Position Error $\epsilon_{\text{pos}}$ (m) | Event Timing Error $\epsilon_{\text{net}}$ (ms) |
+| Mission Profile | Synchronization Strategy | Wall-Clock Time (s) | Integration Steps | Relative Speedup | Tracking Position Error ε<sub>pos</sub> (m) | Event Timing Error ε<sub>net</sub> (ms) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Mars Occultation** | Fixed-Step ($\Delta t = 10$ s) | 0.1352 s | 343 | $1.00\times$ | $1.70 \times 10^8$ m | 1,920,635 ms |
-| | Event-Driven | 0.0102 s | 13 | $13.24\times$ | $9.53 \times 10^6$ m | **0.0 ms** |
-| | **Adaptive (Ours)** | 0.1479 s | 486 | $0.91\times$* | $2.10 \times 10^8$ m | **0.0 ms** |
-| **Elliptical Doppler** | Fixed-Step ($\Delta t = 60$ s) | 0.4201 s | 1,077 | $1.00\times$ | $3.65 \times 10^{10}$ m | 0.0 ms |
-| | Event-Driven | 0.1014 s | 216 | $4.14\times$ | $7.35 \times 10^9$ m | 0.0 ms |
-| | **Adaptive (Ours)** | 0.0605 s | 108 | **$6.94\times$** | $3.69 \times 10^9$ m | **0.0 ms** |
-| **Cislunar NRHO DTN** | Fixed-Step ($\Delta t = 60$ s) | 7.4619 s | 18,901 | $1.00\times$ | $1.78 \times 10^{12}$ m | 7,975,793 ms |
-| | Event-Driven | 0.4281 s | 685 | $17.43\times$ | $5.62 \times 10^{10}$ m | 0.0 ms |
-| | **Adaptive (Ours)** | 0.8242 s | 1,722 | **$9.05\times$** | $1.59 \times 10^{11}$ m | **0.0 ms** |
+| **Mars Occultation** | Fixed-Step (Δt = 10 s) | 0.1352 s | 343 | 1.00× | 1.70 × 10⁸ m | 1,920,635 ms |
+| | Event-Driven | 0.0102 s | 13 | 13.24× | 9.53 × 10⁶ m | **0.0 ms** |
+| | **Adaptive (Ours)** | 0.1479 s | 486 | 0.91×* | 2.10 × 10⁸ m | **0.0 ms** |
+| **Elliptical Doppler** | Fixed-Step (Δt = 60 s) | 0.4201 s | 1,077 | 1.00× | 3.65 × 10¹⁰ m | 0.0 ms |
+| | Event-Driven | 0.1014 s | 216 | 4.14× | 7.35 × 10⁹ m | 0.0 ms |
+| | **Adaptive (Ours)** | 0.0605 s | 108 | **6.94×** | 3.69 × 10⁹ m | **0.0 ms** |
+| **Cislunar NRHO DTN** | Fixed-Step (Δt = 60 s) | 7.4619 s | 18,901 | 1.00× | 1.78 × 10¹² m | 7,975,793 ms |
+| | Event-Driven | 0.4281 s | 685 | 17.43× | 5.62 × 10¹⁰ m | 0.0 ms |
+| | **Adaptive (Ours)** | 0.8242 s | 1,722 | **9.05×** | 1.59 × 10¹¹ m | **0.0 ms** |
 
 > **\*Note on Mars Boundary Overhead:** In short, dense occultation scenarios (Mars profile), the Adaptive engine executes frequent step contractions and root-finding resets near ingress/egress boundaries. In long-duration arcs where stable orbital cruise dominates (Cislunar 13-day simulation), this boundary overhead is heavily amortized, yielding up to **$9.05\times$ speedup** over fixed-step integration while guaranteeing zero event timestamp delay.
 
@@ -157,13 +157,13 @@ Using the optimized slice dequeuing queue in [`simulation/engine.py`](simulation
 
 | Constellation Nodes | Wall-Clock Runtime (s) | Integration Steps | Mean Step Time | Scaling Complexity |
 | :---: | :---: | :---: | :---: | :---: |
-| **10** | 0.8390 s | 1,722 | 0.487 ms / step | $O(N)$ |
-| **50** | 0.8732 s | 1,722 | 0.507 ms / step | $O(N)$ |
-| **100** | 1.3376 s | 1,722 | 0.777 ms / step | $O(N)$ |
-| **200** | 2.8428 s | 1,722 | 1.651 ms / step | $O(N)$ |
-| **300** | 4.6550 s | 1,722 | 2.703 ms / step | $O(N)$ |
-| **400** | 6.3685 s | 1,722 | 3.698 ms / step | $O(N)$ |
-| **500** | 8.3354 s | 1,722 | 4.840 ms / step | **Strictly Linear $O(N)$** |
+| **10** | 0.8390 s | 1,722 | 0.487 ms / step | O(N) |
+| **50** | 0.8732 s | 1,722 | 0.507 ms / step | O(N) |
+| **100** | 1.3376 s | 1,722 | 0.777 ms / step | O(N) |
+| **200** | 2.8428 s | 1,722 | 1.651 ms / step | O(N) |
+| **300** | 4.6550 s | 1,722 | 2.703 ms / step | O(N) |
+| **400** | 6.3685 s | 1,722 | 3.698 ms / step | O(N) |
+| **500** | 8.3354 s | 1,722 | 4.840 ms / step | **Strictly Linear O(N)** |
 
 ---
 
@@ -271,9 +271,9 @@ python3 simulation/run_scalability.py
 | Figure | Filename | Description |
 | :---: | :--- | :--- |
 | **Fig. 1** | [`fig1_perf_panel.pdf`](simulation/graphs/fig1_perf_panel.pdf) | **Computational Performance:** (a) CPU runtime grouped by paradigm and profile; (b) Linear scalability across 10 to 500 constellation nodes. |
-| **Fig. 2** | [`fig2_temporal_panel.pdf`](simulation/graphs/fig2_temporal_panel.pdf) | **Temporal Dynamics:** Step size $\Delta t$ contracting near atmospheric/occultation ingress (Mars) and DTN bundle buffer accumulation over multi-day blackouts (Cislunar). |
+| **Fig. 2** | [`fig2_temporal_panel.pdf`](simulation/graphs/fig2_temporal_panel.pdf) | **Temporal Dynamics:** Step size Δt contracting near atmospheric/occultation ingress (Mars) and DTN bundle buffer accumulation over multi-day blackouts (Cislunar). |
 | **Fig. 3** | [`fig3_accuracy_panel.pdf`](simulation/graphs/fig3_accuracy_panel.pdf) | **Accuracy–Efficiency Trade-offs:** (a) Pareto frontier demonstrating optimality of adaptive co-simulation; (b) Component error breakdown. |
-| **Fig. 4** | [`fig4_error_timeseries.pdf`](simulation/graphs/fig4_error_timeseries.pdf) | **Tracking Error Time Series:** Per-step instantaneous position error $\epsilon_{\text{pos}}(t)$ for Fixed-Step, Event-Driven, and Adaptive engines across all three mission regimes. |
+| **Fig. 4** | [`fig4_error_timeseries.pdf`](simulation/graphs/fig4_error_timeseries.pdf) | **Tracking Error Time Series:** Per-step instantaneous position error ε<sub>pos</sub>(t) for Fixed-Step, Event-Driven, and Adaptive engines across all three mission regimes. |
 | **Fig. 5** | [`fig5_cumulative_error.pdf`](simulation/graphs/fig5_cumulative_error.pdf) | **Cumulative Trajectory Drift:** Integrated orbital error accumulation over time showing how fixed-step errors compound exponentially across long arcs. |
 | **Fig. 6** | [`fig6_error_heatmap.pdf`](simulation/graphs/fig6_error_heatmap.pdf) | **Summary Heatmap:** Normalized relative position error matrix and speedup factor matrix comparing all engines against the ground truth. |
 
