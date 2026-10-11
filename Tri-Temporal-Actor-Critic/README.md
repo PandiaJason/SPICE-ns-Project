@@ -199,20 +199,21 @@ def update_retrospective_layer(self, history_pseudo_rewards, true_reward, delay)
 Below are the empirical findings from evaluations on the 2D Trajectory Tracking environment and complexity benchmarks.
 
 ### 3.1 Spatial 2D Orbit Tracking Performance
-All agents are initialized at $(2.0, 2.0)$, far from the target circular orbit, testing their ability to acquire the target and maintain stable control under distance-dependent feedback delays.
+All agents are initialized at $(2.0, 2.0)$, far from the target circular orbit, communicating with an offset base station at $(-1.5, -1.5)$. As the agent orbits the unit circle, range-dependent latency dynamically fluctuates between $17$ and $35$ steps per cycle, testing orbit acquisition and non-uniform delay robustness.
 
 ![Empirical 2D Trajectory Tracking](simulation/graphs/figure7_empirical_tracking.png)
-*Figure 7: (a) Full trajectories traced by the agents during target acquisition. (b) Zoomed target tracking area showing circular orbit tracking under range-dependent delays.*
+*Figure 7: (a) Full trajectories traced by the agents during target acquisition relative to the offset base station at $(-1.5, -1.5)$. (b) Zoomed target tracking area showing circular orbit tracking under range-dependent dynamic delays.*
 
 | Metric | Naive-RL (Delay-Blind) | State-Augmented (H=10) | Constant-Delay ($\bar{\tau}=15$) | TTAC (Ours) |
 | :--- | :---: | :---: | :---: | :---: |
-| **Tracking MSE** | 265.94 | 65.21 | 9.79 | **0.15** |
-| **Control Stability** | Diverges immediately | Severe drift & oscillation | Phase lag / Under-compensated | **Stable acquisition** |
+| **Overall Tracking MSE** | 22.25 | 2.17 | 0.51 | **0.10** |
+| **Steady-State Orbit MSE** | 24.84 | 2.19 | 0.42 | **0.04** |
+| **Control Stability** | Diverges immediately | Destabilizes outside frame | Severe phase lag & overshoot ($y \approx 1.8$) | **Locks onto circle** |
 
-* **Naive-RL** has no delay compensation and immediately flies off, causing complete control divergence.
-* **State-Augmented** is constrained by its action history capacity. Because it only tracks 10 actions, it misses up to 90 steps of history when the delay spikes to 100, leading to severe tracking drift.
-* **Constant-Delay** assumes a constant delay of 15 steps. Because the true delay varies dynamically between 35 and 89 steps, it under-compensates, resulting in a phase lag and orbit tracking errors.
-* **TTAC** dynamically integrates the continuous dynamics over the exact varying delay window at each step, reconstructing the present state with high fidelity and tracking the circular orbit near-perfectly.
+* **Naive-RL** has no delay compensation and immediately flies off, causing complete control divergence (MSE = 22.25).
+* **State-Augmented** is constrained by its action history capacity ($H=10$). When delay surges to 35 steps, it misses over 70% of history, violently destabilizing outside the frame (MSE = 2.17).
+* **Constant-Delay** assumes a constant delay of 15 steps. Because true delay oscillates between 17 and 35 steps, it under-compensates at peak delay, resulting in substantial phase lag and outward overshoot (MSE = 0.51).
+* **TTAC** dynamically integrates continuous dynamics over the exact varying delay window at each step, reconstructing the present state with high fidelity and tracking the circular orbit near-perfectly (overall MSE = 0.10, steady-state orbit MSE = 0.04).
 
 ---
 
