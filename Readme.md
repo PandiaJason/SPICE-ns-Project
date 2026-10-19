@@ -68,16 +68,17 @@ In the future, we plan to incrementally implement other aspects necessary to sim
 - ⌛ SPICE-ns MAC Model
 - ⌛ SPICE-ns Spectrum Model
 - ⌛ SPICE-ns Antenna Model
-- ⌛ SPICE-ns Propagation Model
+- ✅ SPICE-ns Propagation Models (Deep-Space Optical DS-OptiC & Radio Propagation Models, ICNS3 2026)
 - ⌛ SPICE-ns Obstacle Model
-- ✅ SPICE-ns Mobility Model
+- ✅ SPICE-ns Mobility Model (SPICE Ephemerides Integration)
+- ✅ SPICE-ns Multi-Rate Co-Simulation Engine (Adaptive Temporal Synchronization, SMPT Elsevier)
 - ⌛ SPICE-ns Energy Model
 - ✅ SPICE-ns Visualization Tools
 
    
 ### 🚀 Project Status 
 
-As a first step, we have successfully implemented a mobility model, propagation models for SPICE-ns, and the proposal has been presented in WNS3 2024, Spain and ICNS-3 2025, Japan. This represents the PhD proposal of Jason Pandian, the maintainer of this repository and project.
+We have successfully implemented and validated core SPICE-ns modules including the deep-space mobility model, adaptive multi-rate co-simulation orchestrator, and high-frequency propagation models. Research outputs have been presented at **WNS3 2024** (Spain), **ICNS-3 2025** (Japan), and accepted for lightning talk and poster presentations at **ICNS3 2026** (University of Naples Federico II, Italy). This represents the PhD research of Jason Pandian, the maintainer of this repository and project.
 
 ---
 
@@ -98,3 +99,22 @@ For quick setup, execution of Monte Carlo simulations, and generating/analyzing 
 
 
 
+
+---
+
+## 🚀 Adaptive Multi-Rate Co-Simulation Engine & Elsevier Manuscript
+
+We have released the complete research implementation, benchmark datasets, Elsevier submission package, and ICNS3 2026 Lightning Talk presentation for our paper:  
+**"The Limits of Discrete-Event Synchronization in Interplanetary Network Simulation: A Critical Review of Co-Simulation Fidelity"**  
+*(Under Peer Review at **Simulation Modelling Practice and Theory**, Elsevier)*
+
+The complete co-simulation engine, benchmark scripts, and publication artifacts are located in the **[`Adaptive-Multi-Rate-Co-Simulation-Engine/`](./Adaptive-Multi-Rate-Co-Simulation-Engine/)** directory.
+
+### 🌟 Key Highlights:
+* **The Interplanetary Simulation Trilemma:** Resolving the architectural clash between continuous astrodynamics ($n$-body gravitational dynamics, relativistic proper time dilation) and discrete-event network schedulers (ns-3, OMNeT++).
+* **Adaptive Multi-Rate Co-Simulation Orchestrator:** Dynamic step-size controller with predictive boundary zero-crossing event localization achieving **up to 9.02× wall-clock speedup** and eliminating event timing error ($\epsilon_{\text{net}} = 0.0$ ms).
+* **Large-Scale Constellation Scalability:** Rigorously stress-tested across 10 to 500 spacecraft nodes with sublinear $O(N)$ execution scaling.
+* **Elsevier Submission Package ([`else_paper/`](./Adaptive-Multi-Rate-Co-Simulation-Engine/else_paper/)):** Full manuscript PDF, LaTeX sources, cover letter, rebuttal responses to reviewers, and high-resolution figures.
+* **ICNS3 2026 Presentation ([`ICNS3_2026_Poster.pdf`](./Adaptive-Multi-Rate-Co-Simulation-Engine/ICNS3_2026_Poster.pdf)):** 2-page landscape poster and 5-minute lightning talk proposal.
+
+For full benchmarks, installation, and reproducing publication figures, please refer to the **[Adaptive-Multi-Rate-Co-Simulation-Engine README](./Adaptive-Multi-Rate-Co-Simulation-Engine/README.md)**.
