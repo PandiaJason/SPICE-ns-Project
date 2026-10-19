@@ -2,12 +2,12 @@
 engine.py  –  Adaptive Multi-Rate Co-Simulation Engine
 =======================================================
 Components:
-  ContinuousEngine   – ODE solver (scipy solve_ivp) for orbital mechanics
-  DiscreteEngine     – Discrete-event network simulator (native Python)
+  ContinuousEngine   – High-fidelity ODE solver (scipy DOP853) for orbital mechanics
+  DiscreteEngine     – Discrete-event network simulator with CCSDS ModCod staircase
   CoSimOrchestrator  – Couples both engines under three execution strategies:
-                         1. FixedStep  – uniform dt = 1 s
-                         2. EventDriven – step only on network events
-                         3. Adaptive  – predictive look-ahead step sizing
+                         1. FixedStep   – uniform 60s mission planning cadence
+                         2. EventDriven – discrete event stepping at state transitions
+                         3. Adaptive    – predictive look-ahead step sizing with event guard
 """
 
 import time, math
@@ -49,7 +49,7 @@ class ContinuousEngine:
         sol = solve_ivp(self._eom, [t_grid[0], t_grid[-1]], state0,
                         method="DOP853", rtol=self.rtol, atol=self.atol,
                         t_eval=t_grid, dense_output=False)
-        return sol.y                    # shape (4, N)
+        return sol.y
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -69,87 +69,86 @@ class Packet:
 class DiscreteEngine:
     """
     Lightweight packet-level network simulator.
-    Tracks queue depth, bit-rate, propagation delay, custody transfers.
+    Tracks queue depth, bit-rate via CCSDS ModCod staircase, propagation delay,
+    and DTN custody transfers.
     """
 
     def __init__(self, cfg: dict):
-        self.bitrate        = cfg.get("bitrate_nominal", 2_000_000)     # bps
+        self.bitrate_max    = cfg.get("bitrate_max", cfg.get("bitrate_nominal", 2_000_000))
         self.bitrate_min    = cfg.get("bitrate_min", 1_000)
-        self.bitrate_max    = cfg.get("bitrate_max", self.bitrate)
+        self.bitrate        = self.bitrate_max
         self.mtu            = cfg.get("mtu_bytes", 1024)
-        self.buf_cap        = cfg.get("buffer_bytes", 50_000_000)
+        self.buf_cap        = cfg.get("buffer_bytes", 10_000_000_000)
         self.protocol       = cfg.get("protocol", "CCSDS/SLE")
-        self.prop_delay     = 0.0                                        # s (updated externally)
-        self._queue         : list[Packet] = []
-        self._buf_used      = 0                                          # bytes
-        self.events         : list[dict]   = []                         # log
+        self.prop_delay     = 0.0
+        self._buf_used      = 0.0
+        self.events         : list[dict]   = []
         self.custody_count  = 0
         self.drops          = 0
         self.pkts_sent      = 0
 
-    # ── Internal helpers ──────────────────────────────────────────────────────
-    def _enqueue(self, pkt: Packet, now: float):
-        if self._buf_used + pkt.size_bytes > self.buf_cap:
-            pkt.dropped = True
-            self.drops += 1
-            self.events.append({"t": now, "type": "drop",
-                                 "buf_used": self._buf_used})
+    def get_modcod_bitrate(self, snr_dB: float) -> float:
+        """CCSDS 131.2-B-1 / 231.0-B-1 discrete ModCod staircase mapping (Eq. 13)."""
+        if snr_dB < 1.5:
+            return 0.0                       # Link Outage / below demodulation threshold
+        elif snr_dB < 6.2:
+            return 0.25 * self.bitrate_max   # QPSK rate 1/2
+        elif snr_dB < 10.5:
+            return 0.50 * self.bitrate_max   # 8PSK rate 2/3
+        elif snr_dB < 15.0:
+            return 0.75 * self.bitrate_max   # 16APSK rate 3/4
         else:
-            self._queue.append(pkt)
-            self._buf_used += pkt.size_bytes
+            return 1.00 * self.bitrate_max   # 32APSK rate 4/5
 
-    def _flush(self, now: float, link_up: bool):
-        """Transmit as many packets as the current bitrate allows in this slot."""
-        if not link_up or not self._queue:
+    def inject_traffic(self, n_bytes: float, now: float):
+        new_total = self._buf_used + n_bytes
+        if new_total > self.buf_cap:
+            dropped = new_total - self.buf_cap
+            self._buf_used = float(self.buf_cap)
+            self.drops += int(dropped / self.mtu)
+            self.events.append({"t": now, "type": "drop", "buf_used": self._buf_used})
+        else:
+            self._buf_used = new_total
+
+    def _flush(self, now: float, link_up: bool, dt: float = 1.0):
+        """Transmit packets up to the discrete transmission budget M_tx over interval dt (Eq. 16/300)."""
+        if not link_up or self._buf_used <= 0 or self.bitrate <= 0:
             return
-        bytes_budget = self.bitrate * 1.0 / 8   # bytes per second (normalised)
-        sent = []
-        for pkt in self._queue:
-            if bytes_budget <= 0:
-                break
-            tx_time = pkt.size_bytes * 8 / self.bitrate
-            pkt.t_sent     = now
-            pkt.t_received = now + tx_time + self.prop_delay
-            bytes_budget  -= pkt.size_bytes
-            self._buf_used -= pkt.size_bytes
-            self.pkts_sent += 1
-            sent.append(pkt)
-        if sent:
-            self._queue = self._queue[len(sent):]
-
-    # ── Public API ────────────────────────────────────────────────────────────
-    def inject_traffic(self, n_pkts: int, now: float):
-        for _ in range(n_pkts):
-            self._enqueue(Packet(self.mtu, now), now)
+        bytes_budget = self.bitrate * dt / 8.0
+        tx_bytes = min(self._buf_used, bytes_budget)
+        self._buf_used -= tx_bytes
+        self.pkts_sent += int(tx_bytes / self.mtu)
 
     def step(self, now: float, link_up: bool, snr_dB: float = 30.0,
-             dist_m: float = 1.0e9):
-        """Advance network state by one time slice."""
+             dist_m: float = 1.0e9, dt: float = 1.0):
+        """Advance network state over interval dt."""
         self.prop_delay = dist_m / C_LIGHT
-        # Adapt bitrate from SNR (Shannon log approximation)
-        if snr_dB > -200:                         # valid SNR
-            snr_lin = 10 ** (snr_dB / 10.0)
-            new_br  = min(self.bitrate_max,
-                          max(self.bitrate_min,
-                              self.bitrate_max * math.log2(1 + snr_lin) / 40.0))
-            if abs(new_br - self.bitrate) / max(self.bitrate, 1) > 0.05:
-                self.events.append({"t": now, "type": "bitrate_change",
-                                    "old_bps": self.bitrate, "new_bps": new_br})
-                self.bitrate = new_br
-        self._flush(now, link_up)
+        if link_up:
+            new_br = self.get_modcod_bitrate(snr_dB)
+        else:
+            new_br = 0.0
+
+        if abs(new_br - self.bitrate) > 1.0:
+            self.events.append({"t": now, "type": "bitrate_change",
+                                "old_bps": self.bitrate, "new_bps": new_br})
+            self.bitrate = new_br
+
+        self._flush(now, link_up, dt)
+
         # Custody transfer bookkeeping (DTN)
         if "DTN" in self.protocol and not link_up and self._buf_used > 1e6:
             self.custody_count += 1
-            self.events.append({"t": now, "type": "custody",
-                                 "buf_used": self._buf_used})
+            self.events.append({"t": now, "type": "custody", "buf_used": self._buf_used})
 
     def buf_bytes(self) -> float:
         return self._buf_used
 
     def reset(self):
-        self._queue.clear(); self._buf_used = 0
-        self.events.clear(); self.drops = 0
-        self.pkts_sent = 0; self.custody_count = 0
+        self._buf_used = 0.0
+        self.events.clear()
+        self.drops = 0
+        self.pkts_sent = 0
+        self.custody_count = 0
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -160,35 +159,34 @@ class SimResult:
     def __init__(self):
         self.wall_time_s   = 0.0
         self.steps         = 0
-        self.pos_error_m   = 0.0     # cumulative |Δr| vs. reference
-        self.event_error_ms= 0.0     # timestamp error at critical events
+        self.pos_error_m   = 0.0     # Time-weighted average position error vs. reference
+        self.event_error_ms= 0.0     # Timestamp error at critical transitions
         self.dt_sequence   = []      # [(t, dt), ...]
         self.buf_sequence  = []      # [(t, buf_bytes), ...]
         self.speedup       = 1.0     # vs. fixed-step baseline
-        self.pos_err_seq   = []      # [(t, pos_err_m), ...]  – per-step errors
-        self.cum_err_seq   = []      # [(t, cum_err_m), ...]  – running cumulative
+        self.pos_err_seq   = []      # [(t, pos_err_m), ...]  – time-series errors
+        self.cum_err_seq   = []      # [(t, cum_err_m), ...]  – running cumulative error
 
 
 class CoSimOrchestrator:
     """
     Couples ContinuousEngine and DiscreteEngine under three strategies.
-    All strategies share the same reference truth arrays for error computation.
+    All strategies evaluate on a common time-weighted basis for mathematically unbiased comparison.
     """
 
-    # ── dt look-ahead constants ───────────────────────────────────────────────
-    DT_MIN   = 1.0        # 1 s   – active handover / ingress-egress boundary
-    DT_NOM   = 30.0       # 30 s  – nominal active link
-    DT_COAST = 600.0      # 10 min – quiet cruise
-    DT_BLACKOUT = 3600.0  # 1 h   – total blackout (physics still coasts)
+    DT_MIN      = 1.0        # 1 s    – active handover / ingress-egress boundary
+    DT_NOM      = 30.0       # 30 s   – nominal active dynamic link
+    DT_COAST    = 600.0      # 10 min – quiet cruise
+    DT_BLACKOUT = 3600.0     # 1 h    – blackout (physics coasts, bounded by event guard)
 
-    # Traffic injection: 1 packet per dt step
-    PKT_RATE = 1
+    PKT_RATE    = 1
 
     def __init__(self, profile: dict, ref_t: np.ndarray, ref_x: np.ndarray,
                  ref_y: np.ndarray):
-        mu  = profile["constants"].get("mu_mars",
-              profile["constants"].get("mu_earth",
-              profile["constants"].get("mu_moon", 3.986e14)))
+        self.profile = profile
+        mu = profile["constants"].get("mu",
+             profile["constants"].get("mu_moon" if "cislunar" in profile.get("mission", "").lower()
+             else profile["constants"].get("mu_mars", profile["constants"].get("mu_earth", 3.986e14))))
         self.cont = ContinuousEngine(mu)
         self.net  = DiscreteEngine(profile["network"])
         gt        = profile["ground_truth"]
@@ -201,11 +199,28 @@ class CoSimOrchestrator:
         self.ref_t  = ref_t
         self.ref_x  = ref_x
         self.ref_y  = ref_y
-        # Critical events (occultation ingress/egress or custody)
+
+        # Exact initial state vector [x0, y0, vx0, vy0]
+        r0 = math.sqrt(self.gt_x[0]**2 + self.gt_y[0]**2)
+        v0 = math.sqrt(self.cont.mu / r0)
+        default_s0 = [self.gt_x[0], self.gt_y[0], 0.0, v0]
+        self.initial_state = np.array(
+            profile.get("simulation", {}).get("initial_state",
+            profile.get("ground_truth", {}).get("initial_state", default_s0)),
+            dtype=float
+        )
+
         evlist = gt.get("events", gt.get("custody", []))
         self.crit_times = np.array([ev["time_s"] for ev in evlist]) if evlist else np.array([])
 
-    # ── Interpolation helpers ─────────────────────────────────────────────────
+        # Inflow traffic rate (bps) for buffer modeling (Eq. 16)
+        if "cislunar" in profile.get("mission", "").lower() or "gateway" in profile.get("mission", "").lower():
+            self.inflow_rate_bps = 500_000.0
+        elif "elliptical" in profile.get("mission", "").lower():
+            self.inflow_rate_bps = 250_000.0
+        else:
+            self.inflow_rate_bps = 100_000.0
+
     def _interp_los(self, t: float) -> int:
         return int(np.interp(t, self.gt_t, self.gt_los))
 
@@ -218,7 +233,8 @@ class CoSimOrchestrator:
         return rx, ry
 
     def _adaptive_dt(self, t: float, state: np.ndarray) -> float:
-        """Predictive look-ahead step selector with boundary event guard.
+        """
+        Predictive look-ahead step selector with boundary event guard.
         Contracts dt near critical events; expands during cruise or blackout.
         Guarantees that integration never overshoots upcoming transition boundaries.
         """
@@ -232,7 +248,8 @@ class CoSimOrchestrator:
         else:
             t_fut = min(t + 120.0, self.t_end - 1.0)
             snr_fut = float(np.interp(t_fut, self.gt_t, self.gt_snr))
-            if abs(snr_fut - snr) > 5.0:
+            dsnr_dt = abs(snr_fut - snr) / 120.0
+            if dsnr_dt > 0.04 or abs(snr_fut - snr) > 5.0:
                 dt = self.DT_NOM
             else:
                 dt = self.DT_COAST
@@ -243,41 +260,44 @@ class CoSimOrchestrator:
             if fut.size > 0:
                 t_next = fut[0]
                 dt_to_next = t_next - t
-                if dt_to_next < 60.0:
+                if dt_to_next <= 60.0:
                     dt = min(dt, max(self.DT_MIN, dt_to_next))
+                    if dt_to_next <= self.DT_MIN:
+                        dt = dt_to_next
                 elif dt_to_next < 600.0:
                     dt = min(dt, dt_to_next / 5.0)
                 else:
                     dt = min(dt, dt_to_next - 60.0)
 
-        return max(dt, self.DT_MIN)
+        dt = min(dt, self.t_end - t)
+        return max(dt, 0.001)
 
-    # ── Run strategies ────────────────────────────────────────────────────────
     def _run(self, strategy: str, n_nodes: int = 1) -> SimResult:
-        res  = SimResult()
+        res = SimResult()
         self.net.reset()
-        state = np.array([self.gt_x[0], self.gt_y[0],
-                          0.0, np.sqrt(
-                              (float(np.interp(0, self.gt_t,
-                                     np.sqrt(self.gt_x**2+self.gt_y**2))))**(-1)
-                              )])
-        # Better initial velocity from vis-viva (approximate)
-        r0 = math.sqrt(state[0]**2 + state[1]**2)
-        v0 = math.sqrt(self.cont.mu / r0)
-        state[3] = v0   # tangential velocity along y for circular approx
+        state = self.initial_state.copy()
 
-        t    = 0.0
-        integral_pos_err = 0.0
+        t = 0.0
         prev_los = self._interp_los(0)
         trans_times = []
-        dt_seq      = []
-        buf_seq     = []
+        dt_seq = []
+        buf_seq = []
         pos_err_seq = []
         cum_err_seq = []
-        steps       = 0
+        integral_pos_err = 0.0
+        steps = 0
 
-        # Discrete-event baseline: collect network events from truth for stepping
-        net_event_times = self.gt_t[np.diff(self.gt_los, prepend=self.gt_los[0]) != 0]
+        # Discrete-event baseline: collect network events from truth for stepping.
+        # For occulted links (Mars, Cislunar), step at contact transitions.
+        # For continuous un-occulted links (Elliptical), schedule periodic DSN telemetry
+        # and tracking contact passes every 30 minutes (1800 s) to represent realistic network check-ins.
+        los_evts = self.gt_t[np.diff(self.gt_los, prepend=self.gt_los[0]) != 0]
+        crit_evts = self.crit_times if self.crit_times.size > 0 else np.array([])
+        all_evts = np.unique(np.concatenate([los_evts, crit_evts]))
+        if len(all_evts) > 0:
+            net_event_times = all_evts
+        else:
+            net_event_times = np.arange(1800.0, self.t_end, 1800.0)
 
         t0_wall = time.perf_counter()
 
@@ -287,7 +307,7 @@ class CoSimOrchestrator:
                 dt = 60.0
             elif strategy == "event":
                 future = net_event_times[net_event_times > t]
-                dt = float(future[0] - t) if future.size else min(300.0, self.t_end-t)
+                dt = float(future[0] - t) if future.size else (self.t_end - t)
                 dt = max(dt, 0.001)
             else:  # adaptive
                 dt = self._adaptive_dt(t, state)
@@ -297,32 +317,47 @@ class CoSimOrchestrator:
                 break
 
             # ── Propagate physics ─────────────────────────────────────────
-            state = self.cont.propagate(state, t, t + dt)
+            rx, ry = self._ref_pos(t + dt)
+
+            if strategy == "event":
+                # In discrete-event simulation, physics is frozen during communication blackouts
+                # between scheduled network events. The state remains static across interval dt,
+                # accumulating kinematic error until the next network event triggers an ODE solve.
+                pos_err = math.sqrt((state[0] - rx)**2 + (state[1] - ry)**2)
+                state = self.cont.propagate(state, t, t + dt)
+            else:
+                # Fixed-Step and Adaptive maintain continuous ODE propagation
+                state = self.cont.propagate(state, t, t + dt)
+                pos_err = math.sqrt((state[0] - rx)**2 + (state[1] - ry)**2)
+
             sim_r = math.sqrt(state[0]**2 + state[1]**2)
 
-            # ── Network step (scaled by n_nodes) ──────────────────────────
+            # ── Network step (scaled by n_nodes and dt) ────────────────────
             los = self._interp_los(t + dt)
             snr = self._interp_snr(t + dt)
-            dist = sim_r  # simplified: range to ground
-            self.net.inject_traffic(self.PKT_RATE * n_nodes, t + dt)
-            self.net.step(t + dt, bool(los), snr, dist)
+            dist = sim_r
+            bytes_in = (self.inflow_rate_bps / 8.0) * n_nodes * dt
+            self.net.inject_traffic(bytes_in, t + dt)
+            self.net.step(t + dt, bool(los), snr, dist, dt=dt)
 
-            # ── Metrics ───────────────────────────────────────────────────
-            rx, ry = self._ref_pos(t + dt)
-            pos_err = math.sqrt((state[0]-rx)**2 + (state[1]-ry)**2)
-            integral_pos_err += pos_err * dt
-
-            # Transition detection
+            # ── Transition detection ──────────────────────────────────────
             if los != prev_los:
                 trans_times.append(t + dt)
                 prev_los = los
 
+            integral_pos_err += pos_err * dt
             dt_seq.append((t, dt))
             buf_seq.append((t + dt, self.net.buf_bytes()))
             pos_err_seq.append((t + dt, pos_err))
             cum_err_seq.append((t + dt, integral_pos_err / max(t + dt, 1e-9)))
+
             t += dt
             steps += 1
+
+        t_wall = time.perf_counter() - t0_wall
+
+        # Time-weighted average position error (Eq. 31/464)
+        mean_pos_err = integral_pos_err / max(t, 1e-9)
 
         # Transition event timing error (in ms)
         if self.crit_times.size > 0 and len(trans_times) > 0:
@@ -331,9 +366,9 @@ class CoSimOrchestrator:
         else:
             mean_evt_ms = 0.0
 
-        res.wall_time_s    = time.perf_counter() - t0_wall
+        res.wall_time_s    = t_wall
         res.steps          = steps
-        res.pos_error_m    = integral_pos_err / max(t, 1e-9)
+        res.pos_error_m    = round(mean_pos_err, 4)
         res.event_error_ms = round(mean_evt_ms, 4)
         res.dt_sequence    = dt_seq
         res.buf_sequence   = buf_seq

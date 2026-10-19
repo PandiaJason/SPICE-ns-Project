@@ -1,3 +1,14 @@
 paper/
-else_paper/
 transform.py
+!else_paper/
+!else_paper/**
+*.aux
+*.abs
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+slide_preview*.png
+slides_preview*.png
+test_foot_preview*.png

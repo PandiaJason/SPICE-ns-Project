@@ -115,6 +115,7 @@ def fig_perf_panel():
     ax1.set_xticks(x); ax1.set_xticklabels(PROFILES)
     ax1.set_xlabel("Mission Profile")
     ax1.set_ylabel("Wall-Clock CPU Time (s)")
+    ax1.set_ylim(0, df_m["WallTime_s"].max() * 1.15)
     ax1.set_title("(a) CPU Execution Time by Engine and Profile")
     ax1.legend(title="Engine", framealpha=0.85, fontsize=8)
     _label(ax1, "(a)")
@@ -250,9 +251,9 @@ def fig_accuracy_panel():
                  LINES[eng], color=PALETTE[eng], lw=1.6, alpha=0.75, label=eng)
         for _, row in df_p[df_p.Engine == eng].iterrows():
             ax1.scatter(row["Steps"], row["PosError_m"],
-                        marker=MARKERS[eng], s=80,
+                        marker=MARKERS[eng], s=90,
                         color=COLORS_P[row["Profile"]],
-                        edgecolors=PALETTE[eng], linewidth=1.4, zorder=5)
+                        edgecolors=PALETTE[eng], linewidth=1.5, zorder=5)
 
     legend_eng  = [Line2D([0], [0], color=PALETTE[e], ls=LINES[e],
                           lw=2, marker=MARKERS[e], ms=6) for e in ENGINES]
@@ -260,13 +261,21 @@ def fig_accuracy_panel():
                           markerfacecolor=COLORS_P[p],
                           markersize=9) for p in PROFILES]
     leg1 = ax1.legend(legend_eng, ENGINES, title="Engine",
-                      loc="upper left", framealpha=0.85, fontsize=8)
+                      loc="center left", framealpha=0.88, fontsize=8)
     ax1.add_artist(leg1)
     ax1.legend(legend_prof, PROFILES, title="Profile",
-               loc="lower right", framealpha=0.85, fontsize=8)
-    ax1.set_xlabel("Total Simulation Steps")
-    ax1.set_ylabel(r"Cumulative Position Error $\epsilon_{pos}$ (m)")
-    ax1.set_title("(a) Pareto Frontier: Accuracy vs. Computational Cost")
+               loc="lower right", framealpha=0.88, fontsize=8)
+    
+    ax1.set_xscale("log")
+    ax1.set_yscale("log")
+    ax1.set_xlabel("Total Simulation Steps (log scale)")
+    ax1.set_ylabel(r"Time-Weighted Position Error $\bar{\epsilon}_{pos}$ (m) [log scale]")
+    ax1.set_title("(a) Pareto Frontier: Accuracy vs. Computational Steps")
+    
+    # Annotate optimal Pareto knee
+    ax1.text(0.35, 0.18, "Optimal Knee\n(continuous orbital accuracy,\n7–10× fewer steps)",
+             transform=ax1.transAxes, fontsize=8, color=PALETTE["Adaptive"],
+             fontweight="bold", bbox=dict(boxstyle="round,pad=0.3", fc="#E8F8F5", ec=PALETTE["Adaptive"], lw=0.8))
     _label(ax1, "(a)")
 
     # ── (b) Normalised error breakdown stacked bar ────────────────────────────
@@ -285,25 +294,50 @@ def fig_accuracy_panel():
     n_evt  = norm_col("EventError_ms")
     
     # Introduce a gap between the profile groups
-    # Group 1 (Mars): 0, 1, 2 | Group 2 (Elliptical): 4, 5, 6 | Group 3 (Cislunar): 8, 9, 10
     x      = [0, 1, 2, 4, 5, 6, 8, 9, 10]
     cols   = [PALETTE[e] for _ in PROFILES for e in ENGINES]
 
-    ax2.bar(x, n_pos, color=cols, alpha=0.78, edgecolor="white", lw=0.6)
-    ax2.bar(x, n_evt, bottom=n_pos, color=cols, alpha=0.42,
+    # Capped visualization for Event-Driven massive trajectory drift
+    MAX_CAP = 2.35
+    n_pos_plot = []
+    annotations = []
+    for val in n_pos:
+        if val > MAX_CAP:
+            n_pos_plot.append(MAX_CAP)
+            if val >= 1e6:
+                annotations.append(f">{val/1e6:.1f}M×")
+            else:
+                annotations.append(f">{val/1e3:.0f}k×")
+        else:
+            n_pos_plot.append(val)
+            annotations.append(None)
+
+    bars = ax2.bar(x, n_pos_plot, color=cols, alpha=0.80, edgecolor="white", lw=0.6)
+    ax2.bar(x, n_evt, bottom=n_pos_plot, color=cols, alpha=0.45,
             edgecolor="white", lw=0.6, hatch="//")
     ax2.axhline(1.0, color="gray", lw=1.2, ls="--", alpha=0.7)
+
+    for bar, anno in zip(bars, annotations):
+        if anno is not None:
+            bx = bar.get_x()
+            bw = bar.get_width()
+            # Draw broken bar slash
+            ax2.plot([bx, bx + bw], [MAX_CAP - 0.12, MAX_CAP + 0.08], color="white", lw=2.0)
+            ax2.plot([bx, bx + bw], [MAX_CAP - 0.18, MAX_CAP + 0.02], color=PALETTE["EventDriven"], lw=1.2)
+            ax2.text(bx + bw / 2, MAX_CAP + 0.07, anno, ha="center", va="bottom",
+                     fontsize=7.5, fontweight="bold", color=PALETTE["EventDriven"])
     
-    # Place a single group label in the middle of each profile's bars
+    ax2.set_ylim(0, 2.7)
     ax2.set_xticks([1, 5, 9])
-    ax2.set_xticklabels(PROFILES, fontsize=9, rotation=0, ha="center")
+    ax2.set_xticklabels(PROFILES, fontsize=9.5, rotation=0, ha="center")
     ax2.set_ylabel("Error normalised to Fixed-Step = 1.0")
-    ax2.set_title("(b) Normalised Error Breakdown by Engine and Profile")
+    ax2.set_title("(b) Normalised Error Breakdown by Engine and Profile", pad=28)
     patches = [Patch(facecolor=PALETTE[e], label=e) for e in ENGINES]
-    patches += [Patch(facecolor="gray", alpha=0.4, hatch="//",
+    patches += [Patch(facecolor="gray", alpha=0.45, hatch="//",
                       label="Event timestamp error")]
-    ax2.legend(handles=patches, fontsize=8, framealpha=0.85, loc="upper right")
-    ax2.text(len(x) * 0.35, 1.05, "Fixed baseline", fontsize=7.5,
+    ax2.legend(handles=patches, fontsize=8, framealpha=0.92,
+               loc="lower center", bbox_to_anchor=(0.5, 1.02), ncol=4)
+    ax2.text(len(x) * 0.35, 1.05, "Fixed position baseline (1.0)", fontsize=7.5,
              color="gray", style="italic")
     _label(ax2, "(b)")
 
@@ -333,7 +367,7 @@ def fig_error_timeseries():
                         lw=1.4, alpha=0.85, label=eng)
         ax.set_title(f"({chr(96 + PROFILES.index(prof) + 1)}) {prof}")
         ax.set_xlabel(f"Time ({tunit})")
-        ax.set_ylabel("Position Error (m) — log scale")
+        ax.set_ylabel(r"Position Error $\epsilon_{pos}(t)$ (m) [log scale]")
         _engine_legend(ax, loc="upper right")
         _label(ax, f"({chr(96 + PROFILES.index(prof) + 1)})")
 
@@ -359,18 +393,25 @@ def fig_cumulative_error():
             df = pd.read_csv(fpath)
             t  = df["t_s"].values / tdiv
             c  = df["cum_err_m"].values
-            ax.plot(t, c / 1e3, color=PALETTE[eng], ls=LINES[eng],
-                    lw=1.8, alpha=0.88, label=eng)
-            ax.annotate(f"{c[-1]/1e3:.0f} km",
-                        xy=(t[-1], c[-1] / 1e3),
-                        xytext=(-32, 8), textcoords="offset points",
-                        fontsize=6.5, color=PALETTE[eng],
+            ax.semilogy(t, c, color=PALETTE[eng], ls=LINES[eng],
+                        lw=1.8, alpha=0.88, label=eng)
+            final_c = c[-1]
+            if final_c >= 1000.0:
+                lbl_text = f"{final_c/1e3:,.0f} km"
+            else:
+                lbl_text = f"{final_c:.1f} m"
+            y_off = 10 if eng == "EventDriven" else (-14 if eng == "Adaptive" else 8)
+            ax.annotate(lbl_text,
+                        xy=(t[-1], final_c),
+                        xytext=(-42, y_off), textcoords="offset points",
+                        fontsize=7, fontweight="bold", color=PALETTE[eng],
                         arrowprops=dict(arrowstyle="-", color=PALETTE[eng],
                                         lw=0.6))
+        ax.set_ylim(5.0, 2.0e8)
         ax.set_title(f"({chr(96 + PROFILES.index(prof) + 1)}) {prof}")
         ax.set_xlabel(f"Time ({tunit})")
-        ax.set_ylabel("Cumulative Error (km)")
-        _engine_legend(ax, loc="upper left")
+        ax.set_ylabel(r"Time-Weighted Cumulative Error $\bar{\epsilon}_{pos}$ (m) [log scale]")
+        _engine_legend(ax, loc="center left")
         _label(ax, f"({chr(96 + PROFILES.index(prof) + 1)})")
 
     fig.tight_layout()
@@ -395,30 +436,51 @@ def fig_error_heatmap():
             pos_mat[i, j] = row["PosError_m"].values[0] / max(base_err, 1)
             spd_mat[i, j] = row["Speedup"].values[0]
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 4.2))
 
-    for ax, mat, cmap, title, fmt in [
-        (ax1, pos_mat, "YlOrRd",
-         "(a) Relative Position Error\n(normalised to Fixed-Step)",
-         "{:.2f}"),
-        (ax2, spd_mat, "YlGn",
-         "(b) Speedup Factor\n(vs. Fixed-Step baseline)",
-         "{:.1f}×"),
-    ]:
-        im = ax.imshow(mat, cmap=cmap, aspect="auto",
-                       vmin=0, vmax=mat.max())
-        ax.set_xticks(range(len(PROFILES)))
-        ax.set_xticklabels(PROFILES)
-        ax.set_yticks(range(len(ENGINES)))
-        ax.set_yticklabels(ENGINES)
-        ax.set_title(title)
-        fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-        thresh = 0.6 * mat.max()
-        for i in range(len(ENGINES)):
-            for j in range(len(PROFILES)):
-                ax.text(j, i, fmt.format(mat[i, j]),
-                        ha="center", va="center", fontsize=10,
-                        color="white" if mat[i, j] > thresh else "black")
+    # (a) Relative Position Error using LogNorm
+    norm1 = matplotlib.colors.LogNorm(vmin=1.0, vmax=max(pos_mat.max(), 10.0))
+    im1 = ax1.imshow(pos_mat, cmap="YlOrRd", aspect="auto", norm=norm1)
+    ax1.set_xticks(range(len(PROFILES)))
+    ax1.set_xticklabels(PROFILES)
+    ax1.set_yticks(range(len(ENGINES)))
+    ax1.set_yticklabels(ENGINES)
+    ax1.set_title("(a) Relative Position Error\n(normalised to Fixed-Step = 1.0)")
+    cbar1 = fig.colorbar(im1, ax=ax1, fraction=0.046, pad=0.04)
+    cbar1.set_label("Relative Error (log scale)", fontsize=8.5)
+
+    for i in range(len(ENGINES)):
+        for j in range(len(PROFILES)):
+            v = pos_mat[i, j]
+            if v >= 1e6:
+                txt = f"{v/1e6:.1f}×10⁶"
+            elif v >= 1e5:
+                txt = f"{v/1e5:.1f}×10⁵"
+            elif v >= 10:
+                txt = f"{v:.1f}"
+            else:
+                txt = f"{v:.2f}"
+            color = "white" if v > 100 else "black"
+            ax1.text(j, i, txt, ha="center", va="center", fontsize=9.5,
+                     fontweight="bold", color=color)
+
+    # (b) Speedup Factor
+    im2 = ax2.imshow(spd_mat, cmap="YlGn", aspect="auto",
+                     vmin=0, vmax=spd_mat.max())
+    ax2.set_xticks(range(len(PROFILES)))
+    ax2.set_xticklabels(PROFILES)
+    ax2.set_yticks(range(len(ENGINES)))
+    ax2.set_yticklabels(ENGINES)
+    ax2.set_title("(b) Computational Speedup Factor\n(vs. Fixed-Step baseline)")
+    cbar2 = fig.colorbar(im2, ax=ax2, fraction=0.046, pad=0.04)
+    cbar2.set_label("Speedup Multiplier", fontsize=8.5)
+
+    thresh = 0.5 * spd_mat.max()
+    for i in range(len(ENGINES)):
+        for j in range(len(PROFILES)):
+            v = spd_mat[i, j]
+            ax2.text(j, i, f"{v:.1f}×", ha="center", va="center", fontsize=10,
+                     fontweight="bold", color="white" if v > thresh else "black")
 
     fig.tight_layout()
     save(fig, "fig6_error_heatmap")

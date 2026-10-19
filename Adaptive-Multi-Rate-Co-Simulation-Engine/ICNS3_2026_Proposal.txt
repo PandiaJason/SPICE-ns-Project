@@ -1,0 +1,70 @@
+================================================================================
+ICNS3 - 2026 - LIGHTNING TALK PROPOSAL
+================================================================================
+
+Title: The Limits of Discrete-Event Schedulers in Interplanetary Network Simulation: Why Deep Space Breaks Conventional DES Paradigms
+
+Alternative Title: Rethinking Discrete-Event Simulation for Interplanetary Networks: Fundamental Synchronization Limits in Long-Delay Regimes
+
+Names and Affiliations of the Presenter:
+   Jason Pandian 
+   Assistant Professor, Department of Information Technology,
+   Nehru Institute of Technology, Coimbatore, Tamil Nadu, India
+   Email: pandiajason@gmail.com
+
+Presentation Mode: Virtual Presentation (or In-Person subject to travel/visa)
+
+================================================================================
+The Abstract (Word count: 196 words -- strictly < 200 words)
+================================================================================
+Conventional Discrete-Event Simulation (DES) frameworks, such as ns-3, assume that
+network states evolve exclusively via instantaneous, causal state transitions
+triggered by discrete event queue pops. While highly effective for terrestrial and
+near-Earth topologies, this paradigm collapses in deep space, where network
+topology is a continuous function of time G(t) governed by n-body gravitational
+motion, multi-minute light-time delays (up to 24 min on Mars), and planetary
+occultations.
+
+Standard DES faces an unavoidable dilemma: pure event-driven scheduling freezes
+orbital dynamics during communication blackouts, accumulating over 30,970 km in
+unphysical trajectory drift that severely distorts received power (by 6.2 to 14.1 dB)
+and induces ModCod rate switching errors; conversely, fixed-step synchronization
+introduces tens of seconds in boundary quantization delay (epsilon_net up to 32.7 s)
+and massive computational waste. Furthermore, multi-minute propagation delays break
+static delay modeling, requiring iterative light-cone solving for causal arrival
+scheduling.
+
+This lightning talk presents a critical architectural evaluation of DES fidelity in
+interplanetary networking. We report empirical Pareto frontiers demonstrating
+5.43x to 9.90x speedups with zero boundary error (epsilon_net = 0.00 ms) across three
+canonical space profiles, verify sublinear scalability to 500 nodes, and propose
+three concrete blueprints to extend ns-3 for solar-system-scale simulation.
+
+================================================================================
+5-MINUTE LIGHTNING TALK TIMING & STRUCTURE (8 CONTENT SLIDES):
+================================================================================
+- [0:00 - 0:35] Slide 1: Core DES Abstraction vs. Deep Space Reality (Continuous G(t),
+                         Causal Inversion & Iterative Light-Cone Equation)
+- [0:35 - 1:10] Slide 2: The DES Synchronization Dilemma (Fixed-Step vs Event-Driven,
+                         The Incompatibility Theorem, >30,970 km Blackout Drift)
+- [1:10 - 1:50] Slide 3: Multi-Rate Co-Simulation Engine Architecture (SPICE/ODE
+                         Coupling, Adaptive Step Controller, Predictive Boundary Guard)
+- [1:50 - 2:30] Slide 4: Empirical Pareto Frontier & Cross-Profile Metrics (Mars,
+                         Molniya, Cislunar benchmarks, 5.43x-9.90x Speedup, epsilon=0 ms)
+- [2:30 - 3:10] Slide 5: Long-Arc Trajectory Drift Across Regimes (Blackout coordinate
+                         freezing, 3 canonical regimes, drift suppressed to 13.3-32.7 m)
+- [3:10 - 3:55] Slide 6: How Astrodynamics Errors Invalidate Network Metrics (Section 5.5:
+                         6.2-14.1 dB margin collapse, ModCod phantom throughput, DTN
+                         custody timer desync, and masked onboard buffer overflows)
+- [3:55 - 4:35] Slide 7: Three Architectural Blueprints for ns-3 (Iterative light-cone
+                         delay, predictive boundary guarding, relativistic proper-time)
+- [4:35 - 5:00] Slide 8: Technical Summary, Elsevier SIMPAT Review Status & Open-Source Artifacts
+
+================================================================================
+ASSOCIATED WORK:
+"The Limits of Discrete-Event Synchronization in Interplanetary Network Simulation: A Critical Review of Co-Simulation Fidelity"
+Submitted & Under Peer Review at: Simulation Modelling Practice and Theory (Elsevier)
+
+OPEN-SOURCE CODE & BENCHMARK ARTIFACTS:
+https://github.com/PandiaJason/SPICE-ns-Project/tree/main/Adaptive-Multi-Rate-Co-Simulation-Engine
+================================================================================
