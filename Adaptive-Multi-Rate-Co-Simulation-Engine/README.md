@@ -14,8 +14,7 @@
 
 <div align="center">
 
-[![Manuscript PDF](https://img.shields.io/badge/Manuscript-PDF%20(Full%20Paper)-red?style=for-the-badge&logo=adobeacrobatreader)](else_paper/manuscript.pdf)
-[![Highlighted Revision](https://img.shields.io/badge/Manuscript-Highlighted%20PDF-orange?style=for-the-badge&logo=adobeacrobatreader)](else_paper/revised_manuscript_highlighted.pdf)
+[![Manuscript PDF](https://img.shields.io/badge/Manuscript-PDF%20(Full%20Paper)-red?style=for-the-badge&logo=adobeacrobatreader)](manuscript.pdf)
 [![Elsevier Package](https://img.shields.io/badge/Elsevier%20SMPT-Submission%20Package-blue?style=for-the-badge)](else_paper/)
 [![ICNS3 2026 Poster](https://img.shields.io/badge/ICNS3%202026-Conference%20Poster%20(PDF)-darkgreen?style=for-the-badge)](ICNS3_2026_Poster.pdf)
 [![ICNS3 Slides](https://img.shields.io/badge/ICNS3%20Slides-PDF%20Presentation-purple?style=for-the-badge)](ICNS3_2026_Slides.pdf)
@@ -51,17 +50,7 @@
 ### 1. Elsevier Submission Package ([`else_paper/`](else_paper/))
 This repository provides the complete, self-contained submission package under active peer review at **Simulation Modelling Practice and Theory (Elsevier)**:
 
-- 📄 **[Full Manuscript (Clean PDF)](else_paper/manuscript.pdf)** ([Alternative Link: `revised_manuscript.pdf`](else_paper/revised_manuscript.pdf)) — Complete revised 28-page research article detailing mathematical formulations, continuous time-weighted error metrics ($\bar{\epsilon}_{\text{pos}}$), predictive event guarding, and empirical benchmarks across three canonical deep-space profiles.
-- 📑 **[Revised Manuscript with Highlighted Changes (PDF)](else_paper/revised_manuscript_highlighted.pdf)** — Colored margin annotations and text-level highlighting showing all revisions addressing Reviewer 1, Reviewer 2, and Reviewer Astra critiques.
-- 📝 **[LaTeX Source (`cas-sc`)](else_paper/manuscript.tex)** & **[Highlighted Source](else_paper/manuscript_highlighted.tex)** — Full Elsevier CAS single-column LaTeX source tree including TikZ architectures, pgfplots, and styling macros.
-- ✉️ **[Cover Letter (PDF)](else_paper/cover_letter.pdf)** ([Alternative Link: `revision_cover_letter.pdf`](else_paper/revision_cover_letter.pdf)) & **[LaTeX Source](else_paper/cover_letter.tex)** — Official revised submission cover letter sent to the journal editorial board.
-- 📦 **[Complete Submission Package Archive (ZIP)](else_paper/revised_ManuscriptSource.zip)** — Full self-contained LaTeX source, style files, biblio, and high-res vector figures bundled for journal production.
-- 📋 **[Point-by-Point Reviewer Responses](else_paper/)**:
-  - [Response to Reviewer 1 (Error Metrics & Boundary Guarding)](else_paper/Response_to_Reviewer1.txt)
-  - [Response to Reviewer 2 (Scalability & Implementation Details)](else_paper/Response_to_Reviewer2.txt)
-  - [Response to Reviewer ChatGPTAstra (Physical Accuracy, Event-Driven ZOH & Cross-Domain Implications)](else_paper/Response_to_Reviewer_ChatGPTAstra.txt)
-  - [Consolidated Master Response to All Reviewers](else_paper/Response_to_Reviewers.txt)
-- 📊 **[Publication Figures (`else_paper/`)](else_paper/)** — High-resolution 300 DPI PNGs and vector PDFs for all six manuscript figures and system architecture schematics.
+- 📄 **[Full Manuscript (Clean PDF)](manuscript.pdf)** ([Alternative Link: `revised_manuscript.pdf`](else_paper/revised_manuscript.pdf)) — Complete revised 28-page research article detailing mathematical formulations, continuous time-weighted error metrics ($\bar{\epsilon}_{\text{pos}}$), predictive event guarding, and empirical benchmarks across three canonical deep-space profiles.
 
 ### 2. ICNS3 2026 Lightning Talk & Conference Poster
 Accepted / prepared for presentation at the **International Conference on ns-3 (ICNS3 - 2026)**:
@@ -237,6 +226,7 @@ Adaptive-Multi-Rate-Co-Simulation-Engine/
 ├── README.md                           # Comprehensive documentation and benchmark overview
 ├── requirements.txt                    # Python runtime dependencies
 ├── run_all.py                          # Master pipeline orchestrator (end-to-end execution)
+├── manuscript.pdf                      # Clean peer-reviewed revised manuscript (SMPT, Elsevier)
 ├── ICNS3_2026_Poster.pdf               # 2-Page Landscape Poster (ICNS3 2026 Lightning Talk)
 ├── ICNS3_2026_Poster.tex               # Poster LaTeX source code (TikZ/tcolorbox)
 ├── ICNS3_2026_Slides.pdf               # 6-Slide Lightning Talk Presentation (PDF)
@@ -247,18 +237,7 @@ Adaptive-Multi-Rate-Co-Simulation-Engine/
 ├── poster_preview-{1,2}.png            # Rendered high-res previews of the poster
 │
 ├── else_paper/                         # Complete Elsevier Submission Package
-│   ├── manuscript.pdf                  # Clean peer-reviewed revised manuscript (SMPT, Elsevier)
-│   ├── revised_manuscript_highlighted.pdf # Manuscript with highlighted revision changes
-│   ├── revision_cover_letter.pdf       # Submission revision cover letter
-│   ├── revised_ManuscriptSource.zip    # Full bundled Elsevier source archive
-│   ├── manuscript.tex                  # Elsevier LaTeX source (cas-sc format)
-│   ├── manuscript_highlighted.tex      # LaTeX source with colored revision highlights
-│   ├── cover_letter.tex                # Cover letter LaTeX source
-│   ├── Response_to_Reviewer1.txt       # Rebuttal to Reviewer 1 (Error metric & event guarding)
-│   ├── Response_to_Reviewer2.txt       # Rebuttal to Reviewer 2 (Scalability & implementation)
-│   ├── Response_to_Reviewer_ChatGPTAstra.txt # Rebuttal to Reviewer Astra (ZOH drift & cross-domain impact)
-│   ├── Response_to_Reviewers.txt       # Consolidated master rebuttal to all reviewers
-│   └── fig*.{pdf,png}                  # High-res publication panels & architecture diagram
+│   └── revised_manuscript.pdf          # Clean peer-reviewed revised manuscript (SMPT, Elsevier)
 │
 └── simulation/                         # Core co-simulation source tree
     ├── engine.py                       # Discrete-event & adaptive orchestrator implementations
