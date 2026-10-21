@@ -148,6 +148,20 @@ $$t^* = t_k + \frac{g(t_k)}{g(t_k) - g(t_{k+1})} \Delta t_k \quad \text{subject 
 
 This guarantees that RF link acquisition and loss-of-signal (LOS) events trigger network state machines at the exact physical boundary, reducing $\epsilon_{\text{net}}$ to zero.
 
+### Multi-Domain Temporal Dynamics & Step Adaptation (Figure 2)
+
+<p align="center">
+  <a href="simulation/graphs/fig2_temporal_panel.pdf">
+    <img src="simulation/graphs/fig2_temporal_panel.png" alt="Figure 2: Temporal Dynamics and Step Adaptation Panel" width="95%" style="border: 1px solid #ddd; border-radius: 4px;" />
+  </a>
+  <br/>
+  <em><b>Figure 2: Multi-Domain Temporal Dynamics & Dynamic Step-Size Adaptation.</b> (a) Adaptive step size $\Delta t$ sequence (teal dash-dot line) contracting by up to three orders of magnitude near Mars atmospheric and geometric occultation boundaries (red shading), capturing ingress/egress events with zero boundary error ($\epsilon_{\text{net}} = 0.0$ ms) while rapidly expanding during unconstrained orbital flight. (b) Delay-Tolerant Networking (DTN) bundle buffer accumulation (MB) during multi-day Cislunar NRHO blackouts, capturing periodic CCSDS bundle custody transfer handoffs (vertical dotted red lines) matched against analytical ground truth. (c) Discrete contact plan link availability schedule.</em>
+</p>
+
+**Key Physical Insights:**
+- **Boundary-Aware Contraction:** In the Mars Occultation regime (Figure 2a), the adaptive step $\Delta t$ contracts from hundreds of seconds down to fractional seconds as the line-of-sight vector approaches planetary limb grazing altitude ($h_{\text{atm}} \approx 120$ km). This eliminates boundary chattering and prevents premature or delayed link disconnect events without imposing a computationally wasteful microsecond time step throughout the entire orbit.
+- **Cross-Domain Buffer Synchronization:** In the 13-day Cislunar NRHO Gateway regime (Figure 2b–c), the orchestrator coordinates DTN bundle generation, local storage accumulation, and drain cycles. When contact with the Earth Deep Space Network (DSN) is unavailable (link down), bundle storage monotonically climbs toward capacity; upon link acquisition, bundles drain in conformity with channel Shannon limits, capturing custody signal acknowledgments without state desynchronization.
+
 ---
 
 ## 5. Canonical Mission Profiles
@@ -190,6 +204,16 @@ The engine benchmarks all three synchronization strategies across three represen
 | | Event-Driven | 0.0116 s | 13 | 435.44× | **3.10 × 10⁷ m (30,971 km)** | **0.0 ms** |
 | | **Adaptive (Ours)** | 0.5082 s | 1,532 | **9.90×** | **32.68 m** | **0.0 ms** |
 
+#### Accuracy–Efficiency Trade-offs & Pareto Optimality (Figure 3)
+
+<p align="center">
+  <a href="simulation/graphs/fig3_accuracy_panel.pdf">
+    <img src="simulation/graphs/fig3_accuracy_panel.png" alt="Figure 3: Accuracy–Efficiency Pareto Panel" width="95%" style="border: 1px solid #ddd; border-radius: 4px;" />
+  </a>
+  <br/>
+  <em><b>Figure 3: Accuracy–Efficiency Trade-offs across Co-Simulation Paradigms.</b> (a) Pareto frontier plotting time-weighted tracking error $\bar{\epsilon}_{\text{pos}}$ (meters, log scale) against total integration steps across all three canonical profiles (Mars, Elliptical, Cislunar). The Adaptive engine populates the optimal "knee", matching the continuous sub-35-meter physical fidelity of fine Fixed-Step integration with 7–10× fewer computational steps, while pure Event-Driven stepping diverges into an unviable quadrant with 5,800 to 31,000 km of drift. (b) Normalized component error breakdown illustrating the millions-of-meters trajectory error of pure event-driven Zero-Order Hold alongside boundary timestamp errors.</em>
+</p>
+
 > **Key Performance Insights & Physical Grounding:**
 > 1. **Meter-Scale Orbital Fidelity:** Initial velocity vectors $[v_{x0}, v_{y0}]$ initialized via the exact vis-viva relation $v_{y0} = \sqrt{\mu(1+e)/(a(1-e))}$ and matched central-body gravity constants ensure true mechanical energy conservation, bounding continuous orbital deviations to $<33$ meters over multi-day arcs. The Adaptive engine matches continuous Fixed-Step integration within **$0.12$ m ($0.37\%$)** on Cislunar, **$0.36$ m ($2.0\%$)** on Elliptical, and **$1.05$ m** on Mars.
 > 2. **Physical Justification of Event-Driven Drift:** Traditional discrete-event simulators freeze node coordinates during communication blackouts (Zero-Order Hold). As formalized in Eq. (24)–(28) of the paper, time-averaged drift grows as $\bar{\epsilon}_{\text{ZOH}} \approx \frac{1}{2} \bar{v} \Delta t$. Over multi-day blackouts in Cislunar orbits ($\Delta t \approx 6.0 \times 10^4$ s, $\bar{v} \approx 1.0$ km/s), this produces $>30,970$ km of drift.
@@ -200,6 +224,16 @@ The engine benchmarks all three synchronization strategies across three represen
 >    - *DTN Custody Desynchronization:* Propagation delay errors $\Delta \tau_{RTT} \approx 2 \epsilon_{\text{pos}}/c$ trigger premature retransmissions and duplicate bundle storms.
 >    - *Masked Buffer Overflows:* Simulators calculate buffers are draining when they are actually overflowing and losing science telemetry.
 > 5. **Predictive Event Guarding (Eq. 20):** Contraction of $\Delta t$ directly onto event boundaries ($t_{\text{next}}$) achieves zero millisecond error ($\epsilon_{\text{net}} = 0.0$ ms) and allows the 3-orbit Mars scenario to complete in only 49 steps without boundary chattering.
+
+#### Cumulative Trajectory Drift & Physical Justification (Figure 5)
+
+<p align="center">
+  <a href="simulation/graphs/fig5_cumulative_error.pdf">
+    <img src="simulation/graphs/fig5_cumulative_error.png" alt="Figure 5: Cumulative Error Growth Panel" width="95%" style="border: 1px solid #ddd; border-radius: 4px;" />
+  </a>
+  <br/>
+  <em><b>Figure 5: Cumulative Trajectory Drift across Mission Profiles.</b> Continuous time-weighted cumulative error $\bar{\epsilon}_{\text{pos}}(t)$ (log scale) over mission duration for (a) Mars Occultation (3 orbits), (b) Molniya Elliptical Relay (12 hours), and (c) Cislunar NRHO Gateway (13 days). While Fixed-Step and Adaptive engines maintain tight, bounded error envelopes below 33 meters, pure Event-Driven Zero-Order Hold exhibits runaway drift accumulation, culminating in terminal errors of <b>6,943 km</b> (Mars), <b>5,890 km</b> (Elliptical), and <b>30,971 km</b> (Cislunar).</em>
+</p>
 
 ---
 
@@ -216,6 +250,20 @@ Using the optimized slice dequeuing queue in [`simulation/engine.py`](simulation
 | **300** | 3.8000 s | 1,532 | 2.480 ms / step | O(N) |
 | **400** | 5.4466 s | 1,532 | 3.555 ms / step | O(N) |
 | **500** | 6.3525 s | 1,532 | 4.147 ms / step | **Strictly Linear O(N)** |
+
+#### Constellation Scalability & Execution Runtime (Figure 1)
+
+<p align="center">
+  <a href="simulation/graphs/fig1_perf_panel.pdf">
+    <img src="simulation/graphs/fig1_perf_panel.png" alt="Figure 1: Computational Performance Panel" width="95%" style="border: 1px solid #ddd; border-radius: 4px;" />
+  </a>
+  <br/>
+  <em><b>Figure 1: Computational Performance and Swarm Scalability.</b> (a) Wall-clock execution time (seconds) grouped by synchronization paradigm and mission profile, demonstrating that the Adaptive engine achieves 5.43× to 9.90× wall-clock speedup over fixed-step propagation. (b) Constellation scalability sweep from 10 to 500 spacecraft nodes evaluated over a 13-day Cislunar NRHO arc, demonstrating strictly linear $O(N)$ execution complexity (0.515 ms to 4.147 ms per step) compared against theoretical $O(N^2)$ cross-node degradation curves.</em>
+</p>
+
+**Scalability Discussion:**
+- **Strict Linear Scaling Invariance:** As demonstrated in Figure 1b, per-step execution time scales linearly from 0.515 ms for 10 nodes to 4.147 ms for 500 nodes. By avoiding quadratic all-to-all lockstep updates during orbital cruise phases and leveraging deque-based localized slice updates, the engine maintains $O(N)$ scaling even during intense multi-node occultation transitions.
+- **Wall-Clock Speedup across Profiles:** In Figure 1a, the wall-clock execution time reflects the amortized efficiency of gradient-controlled stepping. On Cislunar NRHO, runtime drops from 5.031 s (Fixed-Step) to 0.508 s (Adaptive), representing a 9.90× acceleration while maintaining sub-meter parity with the ground-truth ephemeris.
 
 ---
 
@@ -342,14 +390,14 @@ python3 simulation/run_scalability.py
 
 ## 10. Publication Figures Index
 
-| Figure | Filename | Description |
+| Figure | Formats | Description |
 | :---: | :--- | :--- |
-| **Fig. 1** | [`fig1_perf_panel.pdf`](simulation/graphs/fig1_perf_panel.pdf) | **Computational Performance:** (a) CPU runtime grouped by paradigm and profile; (b) Linear scalability across 10 to 500 constellation nodes. |
-| **Fig. 2** | [`fig2_temporal_panel.pdf`](simulation/graphs/fig2_temporal_panel.pdf) | **Temporal Dynamics:** Step size Δt contracting near atmospheric/occultation ingress (Mars) and DTN bundle buffer accumulation over multi-day blackouts (Cislunar). |
-| **Fig. 3** | [`fig3_accuracy_panel.pdf`](simulation/graphs/fig3_accuracy_panel.pdf) | **Accuracy–Efficiency Trade-offs:** (a) Pareto frontier demonstrating optimality of adaptive co-simulation; (b) Component error breakdown. |
-| **Fig. 4** | [`fig4_error_timeseries.pdf`](simulation/graphs/fig4_error_timeseries.pdf) | **Tracking Error Time Series:** Per-step instantaneous position error ε<sub>pos</sub>(t) for Fixed-Step, Event-Driven, and Adaptive engines across all three mission regimes. |
-| **Fig. 5** | [`fig5_cumulative_error.pdf`](simulation/graphs/fig5_cumulative_error.pdf) | **Cumulative Trajectory Drift:** Integrated orbital error accumulation over time showing how fixed-step errors compound exponentially across long arcs. |
-| **Fig. 6** | [`fig6_error_heatmap.pdf`](simulation/graphs/fig6_error_heatmap.pdf) | **Summary Heatmap:** Normalized relative position error matrix and speedup factor matrix comparing all engines against the ground truth. |
+| **Fig. 1** | [PDF](simulation/graphs/fig1_perf_panel.pdf) \| [PNG](simulation/graphs/fig1_perf_panel.png) | **Computational Performance Panel:** (a) Wall-clock execution time grouped by paradigm and profile; (b) Strictly linear $O(N)$ constellation scalability across 10 to 500 spacecraft nodes. |
+| **Fig. 2** | [PDF](simulation/graphs/fig2_temporal_panel.pdf) \| [PNG](simulation/graphs/fig2_temporal_panel.png) | **Temporal Dynamics Panel:** (a) Dynamic step size $\Delta t$ contraction near atmospheric and geometric occultation boundaries (Mars); (b) DTN bundle buffer accumulation and custody transfer events across multi-day blackouts (Cislunar NRHO); (c) Link contact schedule. |
+| **Fig. 3** | [PDF](simulation/graphs/fig3_accuracy_panel.pdf) \| [PNG](simulation/graphs/fig3_accuracy_panel.png) | **Accuracy–Efficiency Panel:** (a) Pareto frontier demonstrating optimality of adaptive co-simulation (the "Pareto knee"); (b) Normalized component error breakdown illustrating ZOH drift. |
+| **Fig. 4** | [PDF](simulation/graphs/fig4_error_timeseries.pdf) \| [PNG](simulation/graphs/fig4_error_timeseries.png) | **Tracking Error Time Series:** Per-step instantaneous position error $\epsilon_{\text{pos}}(t)$ for Fixed-Step, Event-Driven, and Adaptive engines across all three mission regimes. |
+| **Fig. 5** | [PDF](simulation/graphs/fig5_cumulative_error.pdf) \| [PNG](simulation/graphs/fig5_cumulative_error.png) | **Cumulative Trajectory Drift Panel:** Integrated orbital error accumulation over time showing how pure Event-Driven ZOH drift compounds to >30,970 km across long mission arcs. |
+| **Fig. 6** | [PDF](simulation/graphs/fig6_error_heatmap.pdf) \| [PNG](simulation/graphs/fig6_error_heatmap.png) | **Summary Heatmap Matrix:** (a) Normalized relative position error matrix; (b) Speedup factor matrix comparing all engines against analytical ground truth across profiles. |
 
 ---
 
@@ -371,7 +419,7 @@ If you utilize this simulation engine, benchmarks, or datasets in your research,
   author    = {Pandian, Jason and Kala, I.},
   booktitle = {Proceedings of the International Conference on ns-3 (ICNS3)},
   year      = {2026},
-  note      = {Lightning Talk Poster Presentation},
+  note      = {Lightning Talk},
   url       = {https://github.com/PandiaJason/SPICE-ns-Project/tree/main/Adaptive-Multi-Rate-Co-Simulation-Engine}
 }
 ```
