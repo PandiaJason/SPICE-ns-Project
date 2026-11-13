@@ -10,3 +10,7 @@ __pycache__/
 
 # Temporary TikZ compilation folder
 tikz_build/
+
+SESSION_RESUME_CHECKPOINT.md
+qrcode_preprint.*
+*.txt
