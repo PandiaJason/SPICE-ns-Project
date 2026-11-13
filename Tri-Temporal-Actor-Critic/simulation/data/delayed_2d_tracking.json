@@ -1,0 +1,11 @@
+{
+    "env_name": "Delayed2DTracking",
+    "state_dim": 2,
+    "action_dim": 2,
+    "base_delay": 4,
+    "delay_scale": 7.5,
+    "max_delay": 40,
+    "sim_steps": 200,
+    "tracking_dt": 0.1,
+    "learning_rate": 0.001
+}

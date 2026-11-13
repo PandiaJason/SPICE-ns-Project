@@ -4,10 +4,6 @@
 paper/
 JAIR_Manuscript/
 
-# Ignore simulation outputs/configs if necessary
-simulation/data/
-simulation/outputs/
-
 # Python caching
 __pycache__/
 *.pyc

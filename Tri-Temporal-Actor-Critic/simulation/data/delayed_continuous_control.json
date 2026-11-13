@@ -1,0 +1,11 @@
+{
+    "env_name": "DelayedContinuousControl",
+    "state_dim": 6,
+    "action_dim": 2,
+    "base_delay": 5,
+    "delay_coeff": 1.0,
+    "max_delay": 30,
+    "sim_steps": 200,
+    "control_dt": 0.05,
+    "learning_rate": 0.001
+}
