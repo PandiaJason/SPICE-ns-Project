@@ -10,12 +10,12 @@
 > *Jason Pandian¹ and I. Kala²*  
 > ¹ Department of Information Technology, Nehru Institute of Technology, Coimbatore, Tamil Nadu, India  
 > ² Department of Computer Science and Engineering, PSG Institute of Technology and Applied Research, Coimbatore, Tamil Nadu, India  
-> *(Manuscript submitted and currently under peer review at Simulation Modelling Practice and Theory, Elsevier)*  
+> *Published online in Simulation Modelling Practice and Theory (Elsevier), 18 November 2026, Article 103381 (Journal Pre-proof).*  
+> **DOI: [10.1016/j.simpat.2026.103381](https://doi.org/10.1016/j.simpat.2026.103381)**  
 
 <div align="center">
 
-[![Manuscript PDF](https://img.shields.io/badge/Manuscript-PDF%20(Full%20Paper)-red?style=for-the-badge&logo=adobeacrobatreader)](manuscript.pdf)
-[![Elsevier Package](https://img.shields.io/badge/Elsevier%20SMPT-Submission%20Package-blue?style=for-the-badge)](else_paper/)
+[![Published Article](https://img.shields.io/badge/Elsevier%20SMPT-Published%20Article-blue?style=for-the-badge)](https://doi.org/10.1016/j.simpat.2026.103381)
 [![ICNS3 2026 Poster](https://img.shields.io/badge/ICNS3%202026-Conference%20Poster%20(PDF)-darkgreen?style=for-the-badge)](ICNS3_2026_Poster.pdf)
 [![ICNS3 Slides](https://img.shields.io/badge/ICNS3%20Slides-PDF%20Presentation-purple?style=for-the-badge)](ICNS3_2026_Slides.pdf)
 [![Lightning Talk Proposal](https://img.shields.io/badge/ICNS3-Lightning%20Talk%20Proposal-teal?style=for-the-badge)](ICNS3_2026_Lightning_Talk_Proposal.md)
@@ -26,7 +26,7 @@
 
 ## Table of Contents
 - [📑 Manuscript & Conference Presentation Artifacts](#-manuscript--conference-presentation-artifacts)
-  - [1. Elsevier Submission Package (`else_paper/`)](#1-elsevier-submission-package-else_paper)
+  - [1. Published Journal Article](#1-published-journal-article)
   - [2. ICNS3 2026 Lightning Talk & Conference Poster](#2-icns3-2026-lightning-talk--conference-poster)
 - [1. Executive Overview](#1-executive-overview)
 - [2. The Fundamental Trilemma in Interplanetary Network Modeling](#2-the-fundamental-trilemma-in-interplanetary-network-modeling)
@@ -47,10 +47,13 @@
 
 ## 📑 Manuscript & Conference Presentation Artifacts
 
-### 1. Elsevier Submission Package ([`else_paper/`](else_paper/))
-This repository provides the complete, self-contained submission package under active peer review at **Simulation Modelling Practice and Theory (Elsevier)**:
+### 1. Published Journal Article
+The companion article is published online in **Simulation Modelling Practice and Theory (Elsevier)**, available from **18 November 2026**, Article **103381** (Journal Pre-proof):
 
-- 📄 **[Full Manuscript (Clean PDF)](manuscript.pdf)** ([Alternative Link: `revised_manuscript.pdf`](else_paper/revised_manuscript.pdf)) — Complete revised 28-page research article detailing mathematical formulations, continuous time-weighted error metrics ($\bar{\epsilon}_{\text{pos}}$), predictive event guarding, and empirical benchmarks across three canonical deep-space profiles.
+- 📄 **[The Limits of Discrete-Event Synchronization in Interplanetary Network Simulation: A Critical Review of Co-Simulation Fidelity](https://doi.org/10.1016/j.simpat.2026.103381)** — Jason Pandian and I. Kala.
+- **DOI: [10.1016/j.simpat.2026.103381](https://doi.org/10.1016/j.simpat.2026.103381)**
+
+The article details mathematical formulations, continuous time-weighted error metrics, predictive event guarding, and empirical benchmarks across three canonical deep-space profiles. Please use the publisher’s DOI link to access and cite the article.
 
 ### 2. ICNS3 2026 Lightning Talk & Conference Poster
 Accepted / prepared for presentation at the **International Conference on ns-3 (ICNS3 - 2026)**:
@@ -83,7 +86,7 @@ Simulating deep-space communication networks requires bridging two fundamentally
 
 When terrestrial network simulators (e.g., NS-3, OMNeT++) are applied to interplanetary regimes, their core assumption—that states evolve continuously between instantaneous, discrete events—fails. Conversely, forcing rigid, high-fidelity numerical propagators (e.g., Runge–Kutta ODE solvers) into fixed-step lockstep produces intractable computational overhead or catastrophic aliasing errors.
 
-This repository implements an **Adaptive Multi-Rate Co-Simulation Orchestrator** designed to rigorously evaluate and resolve these synchronization limits. By coupling a gradient-based step-size controller with predictive zero-crossing event localization, the engine achieves **up to $9.90\times$ wall-clock speedup** over fixed-step baselines ($5.43\times$ on Mars, $8.05\times$ on Elliptical), maintains **meter-scale trajectory accuracy ($12.2$ to $32.7$ meters)** matching continuous propagation within $0.12$ to $1.05$ meters, eliminates event-timestamp error ($\epsilon_{\text{net}} = 0.0$ ms), and scales linearly ($O(N)$) up to **500 spacecraft nodes**. Crucially, the accompanying research paper demonstrates how pure event-driven state freezing accumulates $>30,970$ km of orbital drift during blackouts, distorting deep-space link margins by $6.2$ to $14.1$ dB, generating optimistic "phantom throughput" under CCSDS ModCod rate switching, and triggering DTN custody timer storms—consequences thoroughly analyzed across the Abstract, Introduction, Discussion (§5.5), and Conclusion.
+This repository implements an **Adaptive Multi-Rate Co-Simulation Orchestrator** designed to rigorously evaluate and resolve these synchronization limits. By coupling a gradient-based step-size controller with predictive zero-crossing event localization, the engine achieves **up to $9.90\times$ wall-clock speedup** over fixed-step baselines ($5.43\times$ on Mars, $8.05\times$ on Elliptical), maintains **meter-scale trajectory accuracy ($12.2$ to $32.7$ meters)** matching continuous propagation within $0.12$ to $1.05$ meters, eliminates event-timestamp error ($\epsilon_{\text{net}} = 0.0$ ms), and scales linearly ($O(N)$) up to **500 spacecraft nodes**. Crucially, the [accompanying published article](https://doi.org/10.1016/j.simpat.2026.103381) demonstrates how pure event-driven state freezing accumulates $>30,970$ km of orbital drift during blackouts, distorting deep-space link margins by $6.2$ to $14.1$ dB, generating optimistic "phantom throughput" under CCSDS ModCod rate switching, and triggering DTN custody timer storms—consequences thoroughly analyzed across the Abstract, Introduction, Discussion (§5.5), and Conclusion.
 
 ---
 
@@ -218,7 +221,7 @@ The engine benchmarks all three synchronization strategies across three represen
 > 1. **Meter-Scale Orbital Fidelity:** Initial velocity vectors $[v_{x0}, v_{y0}]$ initialized via the exact vis-viva relation $v_{y0} = \sqrt{\mu(1+e)/(a(1-e))}$ and matched central-body gravity constants ensure true mechanical energy conservation, bounding continuous orbital deviations to $<33$ meters over multi-day arcs. The Adaptive engine matches continuous Fixed-Step integration within **$0.12$ m ($0.37\%$)** on Cislunar, **$0.36$ m ($2.0\%$)** on Elliptical, and **$1.05$ m** on Mars.
 > 2. **Physical Justification of Event-Driven Drift:** Traditional discrete-event simulators freeze node coordinates during communication blackouts (Zero-Order Hold). As formalized in Eq. (24)–(28) of the paper, time-averaged drift grows as $\bar{\epsilon}_{\text{ZOH}} \approx \frac{1}{2} \bar{v} \Delta t$. Over multi-day blackouts in Cislunar orbits ($\Delta t \approx 6.0 \times 10^4$ s, $\bar{v} \approx 1.0$ km/s), this produces $>30,970$ km of drift.
 > 3. **Authentic Multi-Event Stepping on Elliptical:** Rather than taking an unphysical single step of 18 hours, the Event-Driven baseline incorporates realistic 30-minute DSN telemetry tracking passes (36 steps). Even with periodic 30-minute tracking, freezing coordinates between passes accumulates **$5,890$ km** of drift ($18.66\times$ speedup).
-> 4. **Cross-Domain Implications on Network Metrics (Section 5.5 of manuscript):** Astrodynamics drift is not merely a geometric artifact—it cascades directly into catastrophic network protocol failures:
+> 4. **Cross-Domain Implications on Network Metrics ([Section 5.5 of the published article](https://doi.org/10.1016/j.simpat.2026.103381)):** Astrodynamics drift is not merely a geometric artifact—it cascades directly into catastrophic network protocol failures:
 >    - *Received Power & Link Margin Distortion:* Path loss error $\Delta \text{FSPL} = 20\log_{10}(1 + \epsilon_{\text{pos}}/d)$ reaches **$6.2$ to $14.1$ dB** on a $30,000$ km error, turning an ostensibly high-SNR link into unpredicted radio blackout.
 >    - *ModCod Bitrate Mismatch:* Transceiver models transmit at peak 20 Mbps (32APSK) when physical signal is in outage or QPSK (5 Mbps), producing phantom throughput and masking packet drops.
 >    - *DTN Custody Desynchronization:* Propagation delay errors $\Delta \tau_{RTT} \approx 2 \epsilon_{\text{pos}}/c$ trigger premature retransmissions and duplicate bundle storms.
@@ -274,7 +277,6 @@ Adaptive-Multi-Rate-Co-Simulation-Engine/
 ├── README.md                           # Comprehensive documentation and benchmark overview
 ├── requirements.txt                    # Python runtime dependencies
 ├── run_all.py                          # Master pipeline orchestrator (end-to-end execution)
-├── manuscript.pdf                      # Clean peer-reviewed revised manuscript (SMPT, Elsevier)
 ├── ICNS3_2026_Poster.pdf               # 2-Page Landscape Poster (ICNS3 2026 Lightning Talk)
 ├── ICNS3_2026_Poster.tex               # Poster LaTeX source code (TikZ/tcolorbox)
 ├── ICNS3_2026_Slides.pdf               # 6-Slide Lightning Talk Presentation (PDF)
@@ -283,9 +285,6 @@ Adaptive-Multi-Rate-Co-Simulation-Engine/
 ├── ICNS3_2026_Lightning_Talk_Proposal.md # 5-minute Lightning Talk presentation proposal (Markdown)
 ├── qrcode_preprint.{pdf,png}           # QR code pointing directly to this repository
 ├── poster_preview-{1,2}.png            # Rendered high-res previews of the poster
-│
-├── else_paper/                         # Complete Elsevier Submission Package
-│   └── revised_manuscript.pdf          # Clean peer-reviewed revised manuscript (SMPT, Elsevier)
 │
 └── simulation/                         # Core co-simulation source tree
     ├── engine.py                       # Discrete-event & adaptive orchestrator implementations
@@ -403,15 +402,20 @@ python3 simulation/run_scalability.py
 
 ## 11. Citation
 
-If you utilize this simulation engine, benchmarks, or datasets in your research, please cite our manuscript:
+If you utilize this simulation engine, benchmarks, or datasets in your research, please cite our published article:
+
+Jason Pandian and I. Kala (2026). The limits of discrete-event synchronization in interplanetary network simulation: A critical review of co-simulation fidelity. *Simulation Modelling Practice and Theory*, Article 103381. [https://doi.org/10.1016/j.simpat.2026.103381](https://doi.org/10.1016/j.simpat.2026.103381).
 
 ```bibtex
-@unpublished{pandian2026limits,
+@article{pandian2026limits,
   title  = {The Limits of Discrete-Event Synchronization in Interplanetary Network Simulation: A Critical Review of Co-Simulation Fidelity},
   author = {Pandian, Jason and Kala, I.},
-  note   = {Manuscript submitted to Simulation Modelling Practice and Theory (under review)},
+  journal = {Simulation Modelling Practice and Theory},
+  pages   = {103381},
+  doi     = {10.1016/j.simpat.2026.103381},
+  note    = {Available online 18 November 2026; Journal Pre-proof},
   year   = {2026},
-  url    = {https://github.com/PandiaJason/SPICE-ns-Project/tree/main/Adaptive-Multi-Rate-Co-Simulation-Engine}
+  url    = {https://doi.org/10.1016/j.simpat.2026.103381}
 }
 
 @inproceedings{pandian2026icns3,
